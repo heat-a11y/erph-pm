@@ -1,5 +1,6 @@
-build_data.py
-cleanup_data.py
-extract_rpt.py
-__pycache__/
 *.pyc
+__pycache__/
+build_timetable.py
+parse_timetable.py
+extract_rpt.py
+cleanup_data.py

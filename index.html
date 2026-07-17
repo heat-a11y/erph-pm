@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>eRPH-PM — eRancangan Pengajaran Harian</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="curriculum-data.js"></script>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>eRPH-PM — Jana RPH from Jadual Waktu</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="curriculum-data.js"></script>
+<script src="timetable-data.js"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>">
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased">
 <div x-data="app()" class="flex h-screen">
   <template x-teleport="body"><div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 z-30 bg-slate-900/40 backdrop-blur-sm md:hidden"></div></template>
-
-  <!-- Sidebar -->
   <aside class="sidebar-transition fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-slate-900 text-slate-100 md:static" x-bind:class="sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'">
     <div class="flex h-16 items-center gap-2.5 border-b border-slate-700/50 px-5">
       <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500 text-sm">&#x1F4D6;</span>
-      <div>
-        <p class="text-sm font-semibold leading-tight">eRPH-PM</p>
-        <p class="text-[10px] leading-tight text-slate-400">Malaysian Lesson Planner</p>
-      </div>
+      <div><p class="text-sm font-semibold leading-tight">eRPH-PM</p><p class="text-[10px] leading-tight text-slate-400">Jana RPH from Jadual Waktu</p></div>
     </div>
     <nav class="flex-1 space-y-1 overflow-y-auto p-3">
       <template x-for="tab in tabs" :key="tab.id">
@@ -33,10 +29,8 @@
         </button>
       </template>
     </nav>
-    <div class="border-t border-slate-700/50 p-4 text-center text-[10px] text-slate-500">v2.0 &middot; All data stored locally</div>
+    <div class="border-t border-slate-700/50 p-4 text-center text-[10px] text-slate-500">SJK(C) PIN MIN, BIDOR STESEN, PERAK</div>
   </aside>
-
-  <!-- Main -->
   <div class="flex min-w-0 flex-1 flex-col">
     <header class="flex h-16 items-center gap-3 border-b bg-white px-4 md:px-6 lg:px-8">
       <button @click="sidebarOpen = !sidebarOpen" class="-ml-1 rounded-lg p-1.5 text-slate-500 hover:bg-slate-100 md:hidden">
@@ -46,128 +40,55 @@
         <span x-text="tabs.find(t => t.id === activeTab)?.icon"></span>
         <span x-text="tabs.find(t => t.id === activeTab)?.label"></span>
       </div>
-      <div class="ml-auto flex items-center gap-2 text-xs text-slate-400">
-        <span x-text="`${lessonPlans.length} plan${lessonPlans.length !== 1 ? 's' : ''}`"></span>
-        <span class="hidden sm:inline">&middot;</span>
-        <span x-text="`${timetable.length} slot${timetable.length !== 1 ? 's' : ''}`"></span>
+      <div class="ml-auto flex items-center gap-2">
+        <select x-model="selectedTeacher" @change="onTeacherChange" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm focus:border-indigo-400 focus:outline-none">
+          <option value="">-- Pilih Guru --</option>
+          <template x-for="(info, code) in TEACHERS" :key="code">
+            <option x-bind:value="code" x-text="info.name + ' (' + code + ') ' + info.name_cn"></option>
+          </template>
+        </select>
+        <select x-model="selectedPenggal" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm focus:border-indigo-400 focus:outline-none">
+          <option value="1">Penggal 1 (12 Jan 2026)</option>
+          <option value="2">Penggal 2 (30 Mac 2026)</option>
+        </select>
+        <span class="text-xs text-slate-400" x-text="`${lessonPlans.length} RPH`"></span>
       </div>
     </header>
 
-    <!-- Subject/Year Switcher Bar -->
-    <div class="flex flex-wrap items-center gap-2 border-b bg-white px-4 py-2 md:px-6 lg:px-8">
-      <span class="text-xs font-medium text-slate-500">Subject:</span>
-      <template x-for="s in subjects" :key="s.code">
-        <button @click="selectedSubject = s.code; selectedUnit = null"
-          class="rounded-lg px-3 py-1 text-xs font-medium transition-colors"
-          x-bind:class="selectedSubject === s.code ? 'bg-indigo-600 text-white shadow' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
-          x-text="s.name">
-        </button>
-      </template>
-      <span class="ml-2 text-xs font-medium text-slate-500">Year:</span>
-      <template x-for="y in yearGroups" :key="y">
-        <button @click="selectedYear = y; selectedUnit = null"
-          class="rounded-lg px-3 py-1 text-xs font-medium transition-colors"
-          x-bind:class="selectedYear === y ? 'bg-emerald-600 text-white shadow' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
-          x-text="y.replace('Year ','Y')">
-        </button>
-      </template>
-    </div>
-
     <main class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
-      <!-- ═══ TAB: Curriculum ═══ -->
-      <section x-show="activeTab === 'curriculum'" x-cloak class="fade-in mx-auto max-w-5xl">
-        <div class="mb-6">
-          <h1 class="text-2xl font-bold text-slate-900" x-text="currentSubjectName + ' — ' + selectedYear"></h1>
-          <p class="mt-1 text-sm text-slate-500">RPT-aligned units for the selected subject and year.</p>
+      <!-- ═══ TIMETABLE TAB ═══ -->
+      <section x-show="activeTab === 'timetable'" x-cloak class="fade-in mx-auto max-w-6xl">
+        <div class="mb-4">
+          <h1 class="text-xl font-bold text-slate-900" x-text="selectedTeacherName ? 'Jadual Waktu: ' + selectedTeacherName : 'Pilih Guru'"></h1>
+          <p class="mt-1 text-sm text-slate-500" x-text="selectedTeacher ? teacherSlotCount + ' slots across ' + teacherClasses + ' classes' : 'Select a teacher and penggal above.'"></p>
         </div>
-        <div x-show="!currentUnits.length" class="flex flex-col items-center justify-center rounded-xl border-2 border-dashed py-16 text-center text-slate-400">
-          <span class="text-3xl mb-3">&#x1F4DA;</span>
-          <p class="text-sm font-medium">No curriculum data available</p>
-          <p class="mt-1 text-xs">Select a different subject or year combination.</p>
+        <div x-show="!selectedTeacher" class="flex flex-col items-center justify-center rounded-xl border-2 border-dashed py-16 text-center text-slate-400">
+          <span class="text-3xl mb-3">&#x1F468;&#x200D;&#x1F3EB;</span>
+          <p class="text-sm font-medium">Pilih guru untuk lihat jadual</p>
         </div>
-        <div class="space-y-3">
-          <template x-for="(unit, idx) in currentUnits" :key="idx">
-            <div class="rounded-xl border bg-white shadow-sm transition-shadow hover:shadow">
-              <div @click="unit._open = !unit._open" class="flex cursor-pointer items-center justify-between px-5 py-3">
-                <div class="flex items-center gap-3 min-w-0">
-                  <span class="shrink-0 text-slate-400" x-text="unit._open ? '▾' : '▸'"></span>
-                  <span class="shrink-0 rounded-md bg-indigo-100 px-2 py-0.5 text-xs font-mono text-indigo-700" x-text="'U' + unit.id"></span>
-                  <p class="truncate text-sm font-medium text-slate-900" x-text="unit.title"></p>
-                </div>
-                <span class="shrink-0 text-xs text-slate-400" x-show="unit.minggu" x-text="'W' + unit.minggu"></span>
-              </div>
-              <div x-show="unit._open" x-collapse class="border-t px-5 py-4 space-y-3">
-                <div x-show="unit.sk" class="rounded-lg border bg-slate-50 p-3">
-                  <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Standard Kandungan</p>
-                  <p class="text-sm text-slate-700" x-text="unit.sk"></p>
-                </div>
-                <div x-show="unit.sp" class="rounded-lg border bg-slate-50 p-3">
-                  <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Standard Pembelajaran</p>
-                  <p class="text-sm text-slate-700" x-text="unit.sp"></p>
-                </div>
-                <div x-show="!unit.sk && !unit.sp" class="rounded-lg border bg-amber-50 p-3">
-                  <p class="text-xs text-amber-700">Detailed content/learning standards available in DSKP document.</p>
-                </div>
-              </div>
-            </div>
-          </template>
-        </div>
-      </section>
-
-      <!-- ═══ TAB: Timetable ═══ -->
-      <section x-show="activeTab === 'timetable'" x-cloak class="fade-in mx-auto max-w-5xl">
-        <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h1 class="text-2xl font-bold text-slate-900">My Timetable</h1>
-            <p class="mt-1 text-sm text-slate-500">Click a cell to add or edit a class slot for <span class="font-semibold" x-text="currentSubjectName"></span>.</p>
-          </div>
-          <button @click="exportTimetable()" class="inline-flex items-center gap-1.5 rounded-lg border bg-white px-3 py-2 text-xs font-medium text-slate-600 shadow-sm hover:bg-slate-50">
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
-            Export
-          </button>
-        </div>
-        <div class="mb-4 flex items-center justify-between rounded-lg border bg-white px-4 py-3 shadow-sm">
-          <button @click="weekOffset--" class="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600">&larr;</button>
-          <div class="text-center">
-            <p class="text-sm font-semibold text-slate-900">
-              <span x-text="'MINGGU ' + weekNumber()"></span>
-              <span class="ml-2 text-xs font-normal text-slate-500" x-text="weekInfo().termLabel + ' · ' + weekInfo().blockLabel"></span>
-            </p>
-            <p class="text-xs text-slate-500" x-text="weekDateRange()"></p>
-          </div>
-          <button @click="weekOffset++" class="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600">&rarr;</button>
-        </div>
-        <div class="overflow-x-auto rounded-lg border bg-white shadow-sm">
-          <table class="w-full min-w-[600px] text-sm">
+        <div x-show="selectedTeacher" class="overflow-x-auto rounded-xl border bg-white shadow-sm">
+          <table class="w-full min-w-[800px] text-xs">
             <thead>
-              <tr class="border-b bg-slate-50">
-                <th class="w-16 px-3 py-2.5 text-left text-xs font-semibold uppercase text-slate-500">Per</th>
-                <template x-for="d in days" :key="d">
-                  <th class="px-3 py-2.5 text-left text-xs font-semibold uppercase text-slate-500">
-                    <span x-text="d"></span>
-                  </th>
+              <tr class="border-b bg-slate-100">
+                <th class="px-2 py-2 text-left font-semibold text-slate-500 w-20">Masa</th>
+                <template x-for="d in DAYS" :key="d">
+                  <th class="px-2 py-2 text-center font-semibold text-slate-500" x-text="d"></th>
                 </template>
               </tr>
             </thead>
             <tbody>
-              <template x-for="p in 8" :key="p">
-                <tr class="border-b last:border-0">
-                  <td class="px-3 py-1.5 text-xs font-medium text-slate-400">P<span x-text="p"></span></td>
-                  <template x-for="d in days" :key="d">
-                    <td @click="openSlotModal(d, p)" class="group relative min-h-[48px] sm:min-h-[64px] cursor-pointer border-l px-1 py-1 align-top transition-colors hover:bg-indigo-50/50">
-                      <template x-for="s in cellsFor(d, p)" :key="s.id">
-                        <div @click.stop="openSlotModal(d, p, s)" class="mb-0.5 cursor-pointer rounded-md border px-1.5 py-1 text-[11px] leading-tight"
-                          x-bind:class="yearBadge(s.yearGroup)">
-                          <div class="flex items-center justify-between gap-1">
-                            <span class="font-semibold" x-text="s.subject"></span>
-                            <span class="text-[9px] opacity-70" x-text="s.yearGroup.replace('Year ','Y')"></span>
-                          </div>
-                          <div class="text-[10px] opacity-70" x-text="s.startTime + '–' + s.endTime"></div>
+              <template x-for="per in PERIODS" :key="per[0]">
+                <tr class="border-b last:border-0" x-bind:class="per[0] === 'REHAT' ? 'bg-amber-50' : ''">
+                  <td class="px-2 py-1.5 text-[10px] font-medium text-slate-400 whitespace-nowrap" x-text="per[0] + ' ' + per[1] + '-' + per[2]"></td>
+                  <template x-for="d in DAYS" :key="d">
+                    <td class="px-1 py-1 text-center border-l">
+                      <template x-for="slot in getSlotsFor(d, per[0])" :key="slot.class + slot.subject">
+                        <div class="rounded border px-1 py-0.5 text-[10px] leading-tight mb-0.5"
+                          x-bind:class="slotClass(slot.subject)">
+                          <div class="font-semibold" x-text="slot.subjectName"></div>
+                          <div class="text-[9px] opacity-70" x-text="slot.class.replace('Tahun ','Y')"></div>
                         </div>
                       </template>
-                      <div x-show="!cellsFor(d, p).length" class="flex h-full min-h-[44px] items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
-                        <svg class="h-3.5 w-3.5 text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-                      </div>
                     </td>
                   </template>
                 </tr>
@@ -175,108 +96,32 @@
             </tbody>
           </table>
         </div>
-        <!-- Slot modal -->
-        <div x-show="slotModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm" @click.self="slotModal = false">
-          <div class="w-full max-w-md rounded-xl border bg-white p-6 shadow-lg">
-            <h3 class="mb-4 text-lg font-bold text-slate-900" x-text="slotForm.isNew ? 'Add Slot' : 'Edit Slot'"></h3>
-            <div class="space-y-3">
-              <div>
-                <label class="mb-1 block text-xs font-medium text-slate-600">Subject</label>
-                <select x-model="slotForm.subject" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm">
-                  <template x-for="s in subjects" :key="s.code">
-                    <option x-bind:value="s.code" x-text="s.name"></option>
-                  </template>
-                </select>
-              </div>
-              <div>
-                <label class="mb-1 block text-xs font-medium text-slate-600">Year Group</label>
-                <select x-model="slotForm.yearGroup" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm">
-                  <template x-for="y in yearGroups" :key="y">
-                    <option x-bind:value="y" x-text="y"></option>
-                  </template>
-                </select>
-              </div>
-              <div>
-                <label class="mb-1 block text-xs font-medium text-slate-600">Day</label>
-                <select x-model="slotForm.day" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm">
-                  <template x-for="d in days" :key="d">
-                    <option x-bind:value="d" x-text="d"></option>
-                  </template>
-                </select>
-              </div>
-              <div class="grid grid-cols-2 gap-3">
-                <div>
-                  <label class="mb-1 block text-xs font-medium text-slate-600">Period</label>
-                  <select x-model="slotForm.period" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm">
-                    <template x-for="p in 8" :key="p">
-                      <option x-bind:value="p" x-text="'P' + p"></option>
-                    </template>
-                  </select>
-                </div>
-                <div>
-                  <label class="mb-1 block text-xs font-medium text-slate-600">Part</label>
-                  <select x-model="slotForm.part" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm">
-                    <option value="1">Part 1</option>
-                    <option value="2">Part 2</option>
-                  </select>
-                </div>
-              </div>
-              <div class="grid grid-cols-2 gap-3">
-                <div>
-                  <label class="mb-1 block text-xs font-medium text-slate-600">Start Time</label>
-                  <input type="time" x-model="slotForm.startTime" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm" />
-                </div>
-                <div>
-                  <label class="mb-1 block text-xs font-medium text-slate-600">End Time</label>
-                  <input type="time" x-model="slotForm.endTime" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm" />
-                </div>
-              </div>
-            </div>
-            <div class="mt-5 flex items-center justify-between">
-              <button x-show="!slotForm.isNew" @click="deleteSlot(slotForm.id)" class="rounded-lg px-3 py-2 text-xs font-medium text-red-500 hover:bg-red-50">Delete</button>
-              <div class="flex gap-2 ml-auto">
-                <button @click="slotModal = false" class="rounded-lg border bg-white px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-50">Cancel</button>
-                <button @click="saveSlot()" class="rounded-lg bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">Save</button>
-              </div>
-            </div>
-          </div>
+        <div x-show="selectedTeacher" class="mt-4 flex gap-2">
+          <button @click="generateWeekRPH()" class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-indigo-700">
+            <span>&#x26A1;</span> Jana RPH Minggu Ini
+          </button>
         </div>
       </section>
 
-      <!-- ═══ TAB: Generate RPH ═══ -->
+      <!-- ═══ GENERATE RPH TAB ═══ -->
       <section x-show="activeTab === 'generate'" x-cloak class="fade-in mx-auto max-w-5xl">
         <div class="mb-6">
-          <h1 class="text-2xl font-bold text-slate-900">Generate RPH</h1>
-          <p class="mt-1 text-sm text-slate-500">Select a week and generate daily lesson plans from your timetable.</p>
+          <h1 class="text-xl font-bold text-slate-900">Generated RPH</h1>
+          <p class="mt-1 text-sm text-slate-500" x-text="selectedTeacherName ? selectedTeacherName + ' · ' + lessonPlans.length + ' RPH' : 'Select a teacher first.'"></p>
         </div>
-        <div class="mb-4 flex items-center justify-between rounded-lg border bg-white px-4 py-3 shadow-sm">
-          <button @click="genWeekOffset--" class="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600">&larr;</button>
-          <div class="text-center">
-            <p class="text-sm font-semibold text-slate-900">
-              <span x-text="mingguLabel"></span>
-              <span class="ml-2 text-xs font-normal text-slate-500" x-text="genWeekInfo.termLabel + ' · ' + genWeekInfo.blockLabel"></span>
-            </p>
-            <p class="text-xs text-slate-500" x-text="genDateRange"></p>
-          </div>
-          <button @click="genWeekOffset++" class="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600">&rarr;</button>
-        </div>
-        <div class="mb-4 rounded-xl border bg-white p-4 shadow-sm">
-          <div class="flex flex-wrap items-center gap-2">
-            <button @click="generateWeekPlans()" x-bind:class="generating ? 'btn-busy' : ''" class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-md hover:bg-indigo-700">
-              <span>&#x26A1;</span> <span x-text="generating ? 'Generating\u2026' : 'Generate RPH'"></span>
-            </button>
-            <span class="text-xs text-slate-400" x-text="'From ' + Object.keys(slotsByDay).length + ' day(s) · ' + slotsForWeek.length + ' slot(s)'"></span>
-            <button @click="exportAllPDF()" x-show="lessonPlans.length" class="inline-flex items-center gap-1.5 rounded-lg border bg-white px-3 py-2 text-xs font-medium text-slate-500 shadow-sm hover:bg-slate-50">
-              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
-              Export All PDF
-            </button>
-            <button @click="clearPlans()" x-show="lessonPlans.length" class="rounded-lg px-3 py-1.5 text-xs font-medium text-red-500 hover:bg-red-50">Clear All</button>
-          </div>
+        <div class="mb-4 flex flex-wrap items-center gap-2">
+          <button @click="generateWeekRPH()" class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-md hover:bg-indigo-700">
+            <span>&#x26A1;</span> Jana RPH
+          </button>
+          <button @click="exportAllPDF()" x-show="lessonPlans.length" class="inline-flex items-center gap-1.5 rounded-lg border bg-white px-3 py-2 text-xs font-medium text-slate-600 shadow-sm hover:bg-slate-50">
+            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg> Export All PDF
+          </button>
+          <button @click="lessonPlans = []" x-show="lessonPlans.length" class="rounded-lg px-3 py-1.5 text-xs font-medium text-red-500 hover:bg-red-50">Clear</button>
         </div>
         <div x-show="!lessonPlans.length" class="flex flex-col items-center justify-center rounded-xl border-2 border-dashed py-16 text-center text-slate-400">
           <span class="text-3xl mb-3">&#x1F4CB;</span>
-          <p class="text-sm font-medium">No lesson plans yet</p>
-          <p class="mt-1 text-xs">Navigate to a week and click <strong>Generate RPH</strong> to create plans from your timetable.</p>
+          <p class="text-sm font-medium">No RPH yet</p>
+          <p class="mt-1 text-xs">Go to Timetable tab and click <strong>Jana RPH Minggu Ini</strong>.</p>
         </div>
         <div x-show="lessonPlans.length" class="space-y-4">
           <template x-for="plan in lessonPlans" :key="plan.id">
@@ -285,12 +130,11 @@
                 <div class="flex items-center gap-2 sm:gap-3 min-w-0">
                   <span class="shrink-0 text-slate-400" x-text="plan._open ? '▾' : '▸'"></span>
                   <div class="min-w-0">
-                    <p class="truncate text-sm font-semibold text-slate-900" x-text="plan.title"></p>
+                    <p class="truncate text-sm font-semibold text-slate-900" x-text="plan.subjectName + ' — ' + plan.class"></p>
                     <p class="text-xs text-slate-500 truncate">
-                      <span x-text="plan.date"></span>
-                      <span x-show="plan.daySlot"> &middot; <span x-text="plan.daySlot"></span></span>
-                      <span x-show="plan.slotTime"> &middot; <span x-text="plan.slotTime"></span></span>
-                      <span x-text="' · ' + plan.yearGroup + ' · ' + plan.subject + ' · ' + plan.duration + ' min'"></span>
+                      <span x-text="plan.day"></span>
+                      <span x-text="' · P' + plan.period + ' (' + plan.time + ')'"></span>
+                      <span x-text="' · ' + plan.duration + ' min'"></span>
                     </p>
                   </div>
                 </div>
@@ -298,44 +142,34 @@
                   <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
                 </button>
               </div>
-              <div x-show="plan._open" x-collapse class="px-5 py-4 space-y-5 text-sm">
+              <div x-show="plan._open" x-collapse class="px-5 py-4 space-y-4 text-sm">
+                <div class="rounded-lg border bg-indigo-50 p-3">
+                  <p class="mb-1 text-xs font-semibold text-indigo-700">&#x1F4DA; Curriculum Unit</p>
+                  <p class="text-sm text-indigo-900" x-text="plan.unitTitle || 'Auto-selected based on RPT'"></p>
+                </div>
                 <div x-show="plan.contentStandards?.length">
-                  <h4 class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">&#x1F4CB; Content Standards</h4>
-                  <div class="space-y-1">
-                    <template x-for="cs in plan.contentStandards" :key="cs">
-                      <p class="text-slate-600" x-text="cs"></p>
-                    </template>
-                  </div>
+                  <h4 class="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Standard Kandungan</h4>
+                  <div class="space-y-1"><template x-for="cs in plan.contentStandards" :key="cs"><p class="text-slate-600 text-xs" x-text="cs"></p></template></div>
                 </div>
                 <div x-show="plan.learningStandards?.length">
-                  <h4 class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">&#x1F3AF; Learning Standards</h4>
-                  <div class="space-y-1">
-                    <template x-for="ls in plan.learningStandards" :key="ls">
-                      <p class="text-slate-600" x-text="ls"></p>
-                    </template>
-                  </div>
+                  <h4 class="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Standard Pembelajaran</h4>
+                  <div class="space-y-1"><template x-for="ls in plan.learningStandards" :key="ls"><p class="text-slate-600 text-xs" x-text="ls"></p></template></div>
                 </div>
                 <div>
-                  <h4 class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-600">Learning Objectives</h4>
-                  <ul class="space-y-1">
-                    <template x-for="(obj, i) in plan.learningObjectives" :key="i">
-                      <li class="flex items-start gap-2 text-slate-600">
-                        <span class="mt-1 block h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-400"></span>
-                        <span x-text="obj"></span>
-                      </li>
-                    </template>
-                  </ul>
+                  <h4 class="mb-1 text-xs font-semibold uppercase tracking-wider text-indigo-600">Objektif Pembelajaran</h4>
+                  <ul class="space-y-1"><template x-for="(obj, i) in plan.learningObjectives" :key="i">
+                    <li class="flex items-start gap-2 text-slate-600"><span class="mt-1 block h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-400"></span><span x-text="obj"></span></li>
+                  </template></ul>
                 </div>
                 <div>
-                  <h4 class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-600">Activities</h4>
+                  <h4 class="mb-1 text-xs font-semibold uppercase tracking-wider text-indigo-600">Aktiviti PdP</h4>
                   <div class="space-y-2">
                     <template x-for="(act, i) in plan.activities" :key="act.id">
                       <div class="relative flex gap-3">
                         <div x-show="i < plan.activities.length - 1" class="absolute left-[15px] top-8 h-full w-px bg-slate-200"></div>
                         <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold"
-                          x-bind:class="{'bg-amber-100 text-amber-700': act.phase === 'Set Induction','bg-blue-100 text-blue-700': act.phase === 'Pre-lesson','bg-green-100 text-green-700': act.phase === 'Lesson Development','bg-purple-100 text-purple-700': act.phase === 'Post-lesson','bg-rose-100 text-rose-700': act.phase === 'Closure'}"
-                          x-text="act.phase[0]">
-                        </div>
+                          x-bind:class="{'bg-amber-100 text-amber-700': act.phase==='Set Induction','bg-blue-100 text-blue-700': act.phase==='Pre-lesson','bg-green-100 text-green-700': act.phase==='Lesson Development','bg-purple-100 text-purple-700': act.phase==='Post-lesson','bg-rose-100 text-rose-700': act.phase==='Closure'}"
+                          x-text="act.phase[0]"></div>
                         <div class="flex-1 rounded-lg border bg-slate-50 p-3">
                           <div class="mb-1 flex items-center justify-between gap-2">
                             <span class="text-sm font-medium text-slate-800" x-text="act.phase"></span>
@@ -343,8 +177,8 @@
                           </div>
                           <p class="text-xs text-slate-600" x-text="act.description"></p>
                           <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-500">
-                            <div><span class="font-medium text-slate-700">Teacher:</span> <span x-text="act.teacherRole"></span></div>
-                            <div><span class="font-medium text-slate-700">Students:</span> <span x-text="act.studentRole"></span></div>
+                            <div><span class="font-medium text-slate-700">Guru:</span> <span x-text="act.teacherRole"></span></div>
+                            <div><span class="font-medium text-slate-700">Murid:</span> <span x-text="act.studentRole"></span></div>
                           </div>
                         </div>
                       </div>
@@ -353,42 +187,28 @@
                 </div>
                 <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
                   <div class="rounded-lg border bg-slate-50 p-3">
-                    <p class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">&#x1F6E0;&#xFE0F; Teaching Aids</p>
-                    <div class="flex flex-wrap gap-1">
-                      <template x-for="aid in plan.teachingAids" :key="aid">
-                        <span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="aid"></span>
-                      </template>
-                    </div>
+                    <p class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">&#x1F6E0;&#xFE0F; Bahan Bantu</p>
+                    <div class="flex flex-wrap gap-1"><template x-for="aid in plan.teachingAids" :key="aid"><span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="aid"></span></template></div>
                   </div>
                   <div class="rounded-lg border bg-slate-50 p-3">
-                    <p class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">&#x2764;&#xFE0F; Moral Values</p>
-                    <div class="flex flex-wrap gap-1">
-                      <template x-for="v in plan.moralValues" :key="v">
-                        <span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="v"></span>
-                      </template>
-                    </div>
+                    <p class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">&#x2764;&#xFE0F; Nilai Murni</p>
+                    <div class="flex flex-wrap gap-1"><template x-for="v in plan.moralValues" :key="v"><span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="v"></span></template></div>
                   </div>
                   <div class="rounded-lg border bg-slate-50 p-3">
-                    <p class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">&#x1F310; CCE</p>
-                    <div class="flex flex-wrap gap-1">
-                      <template x-for="c in plan.cce" :key="c">
-                        <span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="c"></span>
-                      </template>
-                    </div>
+                    <p class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">&#x1F310; EMK</p>
+                    <div class="flex flex-wrap gap-1"><template x-for="c in plan.cce" :key="c"><span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="c"></span></template></div>
                   </div>
                 </div>
                 <div>
-                  <h4 class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">&#x1F4DD; Teacher's Reflection</h4>
-                  <textarea x-model="plan.reflection" placeholder="How did the lesson go?"
-                    class="w-full rounded-lg border border-slate-300 bg-white p-3 text-xs text-slate-700 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100"
-                    rows="2"></textarea>
+                  <h4 class="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">&#x1F4DD; Refleksi</h4>
+                  <textarea x-model="plan.reflection" placeholder="Refleksi guru..." class="w-full rounded-lg border border-slate-300 bg-white p-3 text-xs text-slate-700 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100" rows="2"></textarea>
                 </div>
                 <div class="flex flex-wrap gap-2 border-t pt-4">
                   <button @click.stop="copyPlan(plan)" class="inline-flex items-center gap-1.5 rounded-lg border bg-white px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-50">
-                    <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"/></svg> Copy
+                    <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"/></svg> Salin
                   </button>
                   <button @click.stop="downloadPlanPDF(plan)" class="inline-flex items-center gap-1.5 rounded-lg border bg-white px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-50">
-                    <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg> Download PDF
+                    <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg> PDF
                   </button>
                 </div>
               </div>
@@ -404,317 +224,189 @@
 document.addEventListener('alpine:init', () => {
   Alpine.data('app', () => ({
     sidebarOpen: false,
-    activeTab: localStorage.getItem('erphp_tab') || 'curriculum',
-    selectedSubject: localStorage.getItem('erphp_subject') || 'BM',
-    selectedYear: localStorage.getItem('erphp_year') || 'Year 4',
-    selectedUnit: null,
-    weekOffset: 0,
-    genWeekOffset: 0,
-    timetable: [],
+    activeTab: localStorage.getItem('erphp_tab') || 'timetable',
+    selectedTeacher: localStorage.getItem('erphp_teacher') || '',
+    selectedPenggal: parseInt(localStorage.getItem('erphp_penggal') || '1'),
     lessonPlans: [],
-    generating: false,
-    slotModal: false,
-    slotForm: { id: '', day: 'Monday', period: 1, part: 1, startTime: '08:00', endTime: '09:00', yearGroup: 'Year 1', subject: 'BM', isNew: true },
-    days: ['Monday','Tuesday','Wednesday','Thursday','Friday'],
+
     tabs: [
-      { id: 'curriculum', label: 'Curriculum', icon: '&#x1F4DA;' },
-      { id: 'timetable',  label: 'Timetable', icon: '&#x1F4C5;' },
-      { id: 'generate',   label: 'Generate RPH', icon: '&#x1F4CB;' },
+      { id: 'timetable', label: 'Jadual Waktu', icon: '&#x1F4C5;' },
+      { id: 'generate',  label: 'Jana RPH', icon: '&#x1F4CB;' },
     ],
 
-    get subjects() { return SUBJECTS; },
-    get yearGroups() { return YEAR_GROUPS; },
+    get TEACHERS() { return TEACHERS; },
+    get PERIODS() { return PERIODS; },
+    get DAYS() { return DAYS; },
+    get CLASSES() { return CLASSES; },
 
-    get currentSubjectName() {
-      const s = this.subjects.find(s => s.code === this.selectedSubject)
-      return s ? s.name : this.selectedSubject
+    get selectedTeacherName() {
+      const t = TEACHERS[this.selectedTeacher];
+      return t ? t.name + ' (' + this.selectedTeacher + ')' : '';
     },
 
-    get dataKey() { return `${this.selectedYear}|${this.selectedSubject}` },
-
-    get currentUnits() {
-      const data = CURRICULUM_DATA[this.dataKey]
-      if (!data || !data.units) return []
-      return data.units.map(u => ({ ...u, _open: false }))
+    get teacherSlots() {
+      if (!this.selectedTeacher) return [];
+      return getTeacherSlots(this.selectedTeacher, this.selectedPenggal);
     },
 
-    get slotsByDay() {
-      const map = {}
-      this.slotsForWeek.forEach(s => {
-        if (!map[s.day]) map[s.day] = []
-        map[s.day].push(s)
-      })
-      return map
+    get teacherSlotCount() { return this.teacherSlots.length; },
+    get teacherClasses() {
+      const classes = new Set(this.teacherSlots.map(s => s.class));
+      return [...classes].join(', ');
     },
 
-    get slotsForWeek() {
-      const range = this.weekBoundsFor(this.genWeekOffset)
-      return this.timetable.filter(s => {
-        const slotDate = this.dateForDay(s.day, range.mon)
-        return slotDate >= range.mon && slotDate <= range.fri
-      })
+    getSlotsFor(day, period) {
+      return this.teacherSlots.filter(s => s.day === day && (s.period === period || (s.period === 'P' && period === 'P')));
     },
 
-    get mingguLabel() { return 'MINGGU ' + this.weekNumberFor(this.genWeekOffset) },
-    get genDateRange() { return this.weekDateRangeFor(this.genWeekOffset) },
-    get genWeekInfo() { return this.weekInfoFor(this.genWeekOffset) },
-
-    init() {
-      this.loadState()
-      this.$watch('activeTab', v => localStorage.setItem('erphp_tab', v))
-      this.$watch('selectedSubject', v => { localStorage.setItem('erphp_subject', v); this.selectedUnit = null })
-      this.$watch('selectedYear', v => localStorage.setItem('erphp_year', v))
-      this.$watch('timetable', v => this.persist(), { deep: true })
-      this.$watch('lessonPlans', v => this.persist(), { deep: true })
+    slotClass(code) {
+      const colors = {
+        'BM': 'bg-red-50 border-red-200 text-red-800', 'BC': 'bg-amber-50 border-amber-200 text-amber-800',
+        'BI': 'bg-emerald-50 border-emerald-200 text-emerald-800', 'MT': 'bg-blue-50 border-blue-200 text-blue-800',
+        'SN': 'bg-teal-50 border-teal-200 text-teal-800', 'PM': 'bg-purple-50 border-purple-200 text-purple-800',
+        'PI': 'bg-green-50 border-green-200 text-green-800', 'PJ': 'bg-orange-50 border-orange-200 text-orange-800',
+        'PK': 'bg-rose-50 border-rose-200 text-rose-800', 'PSV': 'bg-yellow-50 border-yellow-200 text-yellow-800',
+        'MZ': 'bg-indigo-50 border-indigo-200 text-indigo-800', 'SJ': 'bg-cyan-50 border-cyan-200 text-cyan-800',
+        'RBT': 'bg-violet-50 border-violet-200 text-violet-800',
+      };
+      return colors[code] || 'bg-slate-50 border-slate-200 text-slate-700';
     },
 
-    switchTab(id) { this.activeTab = id; this.sidebarOpen = false },
-
-    loadState() {
-      try {
-        const d = JSON.parse(localStorage.getItem('erphp_data'))
-        if (d) {
-          if (d.timetable) this.timetable = d.timetable
-          if (d.lessonPlans) this.lessonPlans = d.lessonPlans
-          if (d.weekOffset != null) this.weekOffset = d.weekOffset
-          if (d.genWeekOffset != null) this.genWeekOffset = d.genWeekOffset
-        }
-      } catch(_) {}
+    getUnitsFor(className, subjectCode) {
+      const y = className.replace('Tahun ', 'Year ');
+      const key = `${y}|${subjectCode}`;
+      return (CURRICULUM_DATA[key] || {}).units || [];
     },
 
-    persist() {
-      try {
-        localStorage.setItem('erphp_data', JSON.stringify({
-          timetable: this.timetable,
-          lessonPlans: this.lessonPlans,
-          weekOffset: this.weekOffset,
-          genWeekOffset: this.genWeekOffset,
-        }))
-      } catch(_) {}
+    getTimeForPeriod(period) {
+      const p = PERIODS.find(x => x[0] === period);
+      return p ? p[1] + '-' + p[2] : '';
     },
 
-    cellsFor(day, period) {
-      return this.timetable.filter(s => s.day === day && s.period === period)
+    getDuration(period) {
+      const p = PERIODS.find(x => x[0] === period);
+      if (!p) return 30;
+      const [sh, sm] = p[1].split(':').map(Number);
+      const [eh, em] = p[2].split(':').map(Number);
+      return (eh * 60 + em) - (sh * 60 + sm);
     },
 
-    openSlotModal(day, period, existing) {
-      if (existing) {
-        this.slotForm = { ...existing, isNew: false }
-      } else {
-        this.slotForm = { id: crypto.randomUUID(), day, period, part: 1, startTime: '08:00', endTime: '09:00', yearGroup: this.selectedYear, subject: this.selectedSubject, isNew: true }
-      }
-      this.slotModal = true
+    generateId() { return crypto.randomUUID?.() ?? Date.now().toString(36) + Math.random().toString(36).slice(2); },
+
+    generateWeekRPH() {
+      if (!this.selectedTeacher) { alert('Pilih guru terlebih dahulu.'); return; }
+      const plans = [];
+      this.teacherSlots.forEach(slot => {
+        const units = this.getUnitsFor(slot.class, slot.subject);
+        const unit = units.length ? units[Math.floor(Math.random() * units.length)] : null;
+        const duration = this.getDuration(slot.period);
+        const time = this.getTimeForPeriod(slot.period);
+
+        plans.push({
+          id: this.generateId(),
+          class: slot.class,
+          subject: slot.subject,
+          subjectName: slot.subjectName,
+          day: slot.day,
+          period: slot.period,
+          time,
+          duration,
+          yearGroup: slot.class.replace('Tahun ', 'Year '),
+          unitTitle: unit ? unit.title : 'RPT Unit',
+          contentStandards: unit && unit.sk ? [unit.sk] : ['Standard Kandungan mengikut DSKP'],
+          learningStandards: unit && unit.sp ? [unit.sp] : ['Standard Pembelajaran mengikut DSKP'],
+          learningObjectives: [
+            `Pada akhir PdP, murid dapat memahami dan mengaplikasikan konsep dalam topik ini.`,
+            `Murid dapat menjawab soalan dan menunjukkan kefahaman dengan bimbingan.`,
+          ],
+          teachingAids: ['Buku teks', 'Lembaran kerja', 'Alat tulis', 'Bahan bantu mengajar'],
+          moralValues: ['Kerjasama', 'Hormat-menghormati', 'Tanggungjawab'],
+          cce: ['Bahasa', 'Kreativiti dan Inovasi', 'Nilai Murni'],
+          activities: [
+            { id: this.generateId(), phase: 'Set Induction', description: `Set induksi berkaitan ${unit ? unit.title : 'topik'}.`, duration: Math.max(5, Math.floor(duration * 0.15)), teacherRole: 'Membimbing', studentRole: 'Melibatkan diri' },
+            { id: this.generateId(), phase: 'Pre-lesson', description: 'Memperkenalkan konsep dan kosa kata utama.', duration: Math.max(5, Math.floor(duration * 0.15)), teacherRole: 'Menerangkan', studentRole: 'Mendengar dan menyoal' },
+            { id: this.generateId(), phase: 'Lesson Development', description: 'Aktiviti PdP utama. Murid melaksanakan tugasan.', duration: Math.max(15, Math.floor(duration * 0.5)), teacherRole: 'Memudahcara', studentRole: 'Melaksanakan tugasan' },
+            { id: this.generateId(), phase: 'Post-lesson', description: 'Murid membentang hasil kerja dan memberi maklum balas.', duration: Math.max(5, Math.floor(duration * 0.1)), teacherRole: 'Menilai', studentRole: 'Membentang' },
+            { id: this.generateId(), phase: 'Closure', description: 'Rumusan dan refleksi.', duration: Math.max(3, Math.floor(duration * 0.1)), teacherRole: 'Merumus', studentRole: 'Mereflek' },
+          ],
+          reflection: '',
+          _open: true,
+        });
+      });
+      this.lessonPlans = [...plans, ...this.lessonPlans];
+      this.activeTab = 'generate';
     },
 
-    saveSlot() {
-      const f = this.slotForm
-      if (!f.yearGroup || !f.startTime || !f.endTime || !f.day) return
-      const slot = { id: f.id, day: f.day, period: f.period, part: parseInt(f.part) || 1, startTime: f.startTime, endTime: f.endTime, yearGroup: f.yearGroup, subject: f.subject }
-      if (f.isNew) {
-        this.timetable = [...this.timetable, slot]
-      } else {
-        this.timetable = this.timetable.map(s => s.id === slot.id ? slot : s)
-      }
-      this.slotModal = false
-    },
-
-    deleteSlot(id) {
-      if (confirm('Delete this slot?')) { this.timetable = this.timetable.filter(s => s.id !== id); this.slotModal = false }
-    },
-
-    weekNumber() { return this.weekNumberFor(this.weekOffset) },
-    weekDateRange() { return this.weekDateRangeFor(this.weekOffset) },
-    weekInfo() { return this.weekInfoFor(this.weekOffset) },
-
-    weekBoundsFor(offset) {
-      const idx = this.weekIndexFor(offset)
-      const w = TAKWIM_2026[idx] || TAKWIM_2026[0]
-      return { mon: new Date(w.start + 'T00:00:00'), fri: new Date(w.end + 'T00:00:00') }
-    },
-    weekNumberFor(offset) {
-      const idx = this.weekIndexFor(offset)
-      return (TAKWIM_2026[idx] || TAKWIM_2026[0]).minggu
-    },
-    weekDateRangeFor(offset) {
-      const r = this.weekBoundsFor(offset)
-      const fmt = d => d.toLocaleDateString('en-GB', { day:'2-digit', month:'short' })
-      return `${fmt(r.mon)} – ${fmt(r.fri)} ${r.fri.getFullYear()}`
-    },
-    weekIndexFor(offset) {
-      const mid = Math.floor(TAKWIM_2026.length / 2)
-      let idx = mid + (offset || 0)
-      if (idx < 0) idx = 0
-      if (idx >= TAKWIM_2026.length) idx = TAKWIM_2026.length - 1
-      return idx
-    },
-    weekInfoFor(offset) {
-      const w = TAKWIM_2026[this.weekIndexFor(offset)] || TAKWIM_2026[0]
-      return { ...w, termLabel: w.term === 1 ? 'Penggal 1' : 'Penggal 2', blockLabel: 'Blok ' + w.block }
-    },
-    dateForDay(dayName, referenceDate) {
-      const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
-      const targetIdx = days.indexOf(dayName)
-      if (targetIdx === -1) return referenceDate
-      const diff = targetIdx - referenceDate.getDay()
-      const d = new Date(referenceDate)
-      d.setDate(d.getDate() + diff)
-      return d
-    },
-
-    yearBadge(year) {
-      const map = { 'Year 1': 'bg-blue-100 text-blue-800 border-blue-200','Year 2': 'bg-emerald-100 text-emerald-800 border-emerald-200','Year 3': 'bg-amber-100 text-amber-800 border-amber-200','Year 4': 'bg-purple-100 text-purple-800 border-purple-200','Year 5': 'bg-rose-100 text-rose-800 border-rose-200','Year 6': 'bg-cyan-100 text-cyan-800 border-cyan-200' }
-      return map[year] || 'bg-slate-100 text-slate-800 border-slate-200'
-    },
-
-    exportTimetable() {
-      const text = this.timetable.map(s => `${s.day} P${s.period}${s.part ? ' (Part '+s.part+')' : ''}: ${s.startTime}–${s.endTime} — ${s.subject} ${s.yearGroup}`).join('\n')
-      navigator.clipboard.writeText(text || 'No slots').then(() => alert('Timetable copied!'))
-    },
-
-    generateId() { return crypto.randomUUID?.() ?? Date.now().toString(36) + Math.random().toString(36).slice(2) },
-
-    getUnitsFor(yearGroup, subject) {
-      const key = `${yearGroup}|${subject}`
-      return (CURRICULUM_DATA[key] || {}).units || []
-    },
-
-    generateWeekPlans() {
-      if (this.generating) return
-      this.generating = true
-      const range = this.weekBoundsFor(this.genWeekOffset)
-      const fmt = d => d.toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' })
-      const plans = []
-
-      this.days.forEach(day => {
-        const slots = this.slotsByDay[day] || []
-        const slotDate = this.dateForDay(day, range.mon)
-        const dateStr = fmt(slotDate)
-
-        slots.forEach(slot => {
-          const units = this.getUnitsFor(slot.yearGroup, slot.subject)
-          const unit = units.length ? units[Math.floor(Math.random() * units.length)] : null
-
-          const plan = {
-            id: this.generateId(),
-            title: unit ? `RPH — ${unit.title}` : `RPH — ${slot.subject} ${slot.yearGroup}`,
-            yearGroup: slot.yearGroup,
-            subject: slot.subject,
-            subjectName: (SUBJECTS.find(s => s.code === slot.subject) || {}).name || slot.subject,
-            date: dateStr,
-            weekLabel: this.mingguLabel,
-            daySlot: slot.day,
-            slotTime: slot.startTime + '\u2013' + slot.endTime,
-            duration: this.minutesBetween(slot.startTime, slot.endTime),
-            part: slot.part,
-            contentStandards: unit && unit.sk ? [unit.sk] : [],
-            learningStandards: unit && unit.sp ? [unit.sp] : [],
-            learningObjectives: [
-              `By the end of the lesson, pupils will be able to understand and apply the key concepts in this topic.`,
-              `Pupils will be able to respond to questions and demonstrate their understanding with guidance.`,
-            ],
-            teachingAids: ['Whiteboard', 'Worksheets', 'Textbook', 'Picture cards'],
-            moralValues: ['Cooperation', 'Respect', 'Responsibility'],
-            cce: ['Language', 'Creativity and Innovation'],
-            activities: [
-              { id: this.generateId(), phase: 'Set Induction', description: unit ? `Engage pupils with a starter activity related to ${unit.title}.` : `Engage pupils with a starter activity.`, duration: Math.max(5, Math.floor(this.minutesBetween(slot.startTime, slot.endTime) * 0.15)), teacherRole: 'Facilitator', studentRole: 'Participant' },
-              { id: this.generateId(), phase: 'Pre-lesson', description: 'Introduce key concepts and vocabulary.', duration: Math.max(5, Math.floor(this.minutesBetween(slot.startTime, slot.endTime) * 0.15)), teacherRole: 'Instructor', studentRole: 'Listener' },
-              { id: this.generateId(), phase: 'Lesson Development', description: 'Main teaching and learning activity.', duration: Math.max(15, Math.floor(this.minutesBetween(slot.startTime, slot.endTime) * 0.5)), teacherRole: 'Facilitator', studentRole: 'Active learner' },
-              { id: this.generateId(), phase: 'Post-lesson', description: 'Pupils present their work and give feedback.', duration: Math.max(5, Math.floor(this.minutesBetween(slot.startTime, slot.endTime) * 0.1)), teacherRole: 'Moderator', studentRole: 'Presenter' },
-              { id: this.generateId(), phase: 'Closure', description: 'Recap key points and exit ticket.', duration: Math.max(3, Math.floor(this.minutesBetween(slot.startTime, slot.endTime) * 0.1)), teacherRole: 'Facilitator', studentRole: 'Reflector' },
-            ],
-            reflection: '',
-            _open: true,
-          }
-          plans.push(plan)
-        })
-      })
-      this.lessonPlans = [...plans, ...this.lessonPlans]
-      setTimeout(() => { this.generating = false }, 400)
-    },
-
-    minutesBetween(start, end) {
-      const [sh, sm] = start.split(':').map(Number)
-      const [eh, em] = end.split(':').map(Number)
-      return (eh * 60 + em) - (sh * 60 + sm)
-    },
-
-    deletePlan(id) {
-      if (confirm('Delete this lesson plan?')) { this.lessonPlans = this.lessonPlans.filter(p => p.id !== id) }
-    },
-    clearPlans() {
-      if (confirm('Delete all lesson plans?')) { this.lessonPlans = [] }
-    },
+    deletePlan(id) { this.lessonPlans = this.lessonPlans.filter(p => p.id !== id); },
 
     copyPlan(plan) {
       const lines = [
         `RANCANGAN PENGAJARAN HARIAN`,
-        `Subject: ${plan.subjectName}  |  ${plan.yearGroup}`,
-        `Date: ${plan.date}  |  ${plan.daySlot}  |  ${plan.duration} min`,
-        plan.contentStandards?.length ? `\nContent Standards:\n${plan.contentStandards.join('\n')}` : '',
-        plan.learningStandards?.length ? `\nLearning Standards:\n${plan.learningStandards.join('\n')}` : '',
-        `\nLearning Objectives:\n${plan.learningObjectives.map(o => '  • ' + o).join('\n')}`,
-        `\nActivities:\n${plan.activities.map(a => `  [${a.phase}] ${a.description} (${a.duration} min)`).join('\n')}`,
-        `\nTeaching Aids: ${plan.teachingAids.join(', ')}`,
-        `\nMoral Values: ${plan.moralValues.join(', ')}`,
-        `\nCCE: ${plan.cce.join(', ')}`,
-        plan.reflection ? `\nReflection:\n${plan.reflection}` : '',
-      ]
-      navigator.clipboard.writeText(lines.join('\n'))
+        `Guru: ${this.selectedTeacherName}`,
+        `Kelas: ${plan.class}  |  Subjek: ${plan.subjectName}`,
+        `Hari: ${plan.day}  |  Masa: ${plan.time}  |  Tempoh: ${plan.duration} min`,
+        plan.contentStandards?.length ? `\nStandard Kandungan:\n${plan.contentStandards.join('\n')}` : '',
+        plan.learningStandards?.length ? `\nStandard Pembelajaran:\n${plan.learningStandards.join('\n')}` : '',
+        `\nObjektif:\n${plan.learningObjectives.map(o => '  • ' + o).join('\n')}`,
+        `\nAktiviti:\n${plan.activities.map(a => `  [${a.phase}] ${a.description} (${a.duration} min)`).join('\n')}`,
+        `\nBBM: ${plan.teachingAids.join(', ')}`,
+        `\nNilai: ${plan.moralValues.join(', ')}`,
+        `\nEMK: ${plan.cce.join(', ')}`,
+      ];
+      navigator.clipboard.writeText(lines.join('\n'));
     },
 
     buildPDFHtml(plan) {
-      return `<div style="font-family:'Segoe UI',sans-serif;max-width:210mm;margin:0 auto;color:#1e293b;line-height:1.5;padding:1.5cm">
+      return `<div style="font-family:sans-serif;max-width:210mm;margin:0 auto;padding:1.5cm">
         <div style="border-bottom:3px solid #4f46e5;padding-bottom:.75rem;margin-bottom:1.25rem">
           <h1 style="font-size:1.3rem;font-weight:700;margin:0">RANCANGAN PENGAJARAN HARIAN</h1>
-          <div style="font-size:.8rem;color:#64748b;margin-top:.25rem">${plan.subjectName} | ${plan.yearGroup} | ${plan.date}${plan.daySlot ? ' | ' + plan.daySlot : ''}${plan.slotTime ? ' | ' + plan.slotTime : ''}</div>
+          <div style="font-size:.8rem;color:#64748b;margin-top:.25rem">${plan.subjectName} | ${plan.class} | ${plan.day} | ${plan.time}</div>
         </div>
-        ${plan.contentStandards?.length ? '<div style="margin-top:1rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;margin-bottom:.5rem;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem">Content Standards</h2>' + plan.contentStandards.map(s => '<span style="background:#f1f5f9;border-radius:9999px;padding:.125rem .55rem;font-size:.72rem;color:#475569;margin-right:.25rem;display:inline-block;margin-bottom:.25rem">' + this.escapeHtml(s) + '</span>').join('') + '</div>' : ''}
-        ${plan.learningStandards?.length ? '<div style="margin-top:1rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;margin-bottom:.5rem;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem">Learning Standards</h2>' + plan.learningStandards.map(s => '<span style="background:#f1f5f9;border-radius:9999px;padding:.125rem .55rem;font-size:.72rem;color:#475569;margin-right:.25rem;display:inline-block;margin-bottom:.25rem">' + this.escapeHtml(s) + '</span>').join('') + '</div>' : ''}
-        <div style="margin-top:1rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;margin-bottom:.5rem;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem">Learning Objectives</h2><ul style="list-style:none;padding:0">${plan.learningObjectives.map(o => '<li style="padding:.2rem 0;font-size:.8rem;padding-left:1rem">' + this.escapeHtml(o) + '</li>').join('')}</ul></div>
-        <div style="margin-top:1rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;margin-bottom:.5rem;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem">Activities</h2>${plan.activities.map(a => '<div style="border:1px solid #e2e8f0;border-radius:.5rem;padding:.65rem .75rem;margin-bottom:.6rem"><h3 style="font-size:.8rem;font-weight:600;color:#4f46e5;margin-bottom:.2rem">' + this.escapeHtml(a.phase) + ' <span style="font-size:.7rem;color:#94a3b8;font-weight:400">- ' + a.duration + ' min</span></h3><p style="font-size:.78rem;color:#475569;margin:0">' + this.escapeHtml(a.description) + '</p><div style="display:flex;gap:1rem;margin-top:.35rem;font-size:.7rem;color:#64748b"><div><span style="font-weight:600;color:#334155">Teacher:</span> ' + this.escapeHtml(a.teacherRole) + '</div><div><span style="font-weight:600;color:#334155">Students:</span> ' + this.escapeHtml(a.studentRole) + '</div></div></div>').join('')}</div>
-        <div style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;font-size:.72rem;color:#475569">
-          <div><strong>Teaching Aids:</strong> ${plan.teachingAids.join(', ')}</div>
-          <div><strong>Moral Values:</strong> ${plan.moralValues.join(', ')}</div>
-          <div><strong>CCE:</strong> ${plan.cce.join(', ')}</div>
-        </div>
-        ${plan.reflection ? '<div style="margin-top:1rem;border-top:2px solid #e2e8f0;padding-top:.75rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;margin-bottom:.35rem">Reflection</h2><p style="font-size:.8rem;color:#475569;font-style:italic">' + this.escapeHtml(plan.reflection) + '</p></div>' : ''}
-        <div style="margin-top:1.5rem;padding-top:.75rem;border-top:2px solid #e2e8f0;font-size:.65rem;color:#94a3b8;text-align:center">Generated by eRPH-PM — Malaysian Lesson Planner</div>
-      </div>`
+        ${plan.contentStandards?.length ? '<div><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Standard Kandungan</h2>' + plan.contentStandards.map(s => '<span style="background:#f1f5f9;border-radius:9999px;padding:.125rem .55rem;font-size:.72rem;color:#475569;display:inline-block;margin:.125rem">' + this.escapeHtml(s) + '</span>').join('') + '</div>' : ''}
+        ${plan.learningStandards?.length ? '<div style="margin-top:1rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Standard Pembelajaran</h2>' + plan.learningStandards.map(s => '<span style="background:#f1f5f9;border-radius:9999px;padding:.125rem .55rem;font-size:.72rem;color:#475569;display:inline-block;margin:.125rem">' + this.escapeHtml(s) + '</span>').join('') + '</div>' : ''}
+        <div style="margin-top:1rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Objektif Pembelajaran</h2><ul style="list-style:none;padding:0">${plan.learningObjectives.map(o => '<li style="padding:.2rem 0;font-size:.8rem">' + this.escapeHtml(o) + '</li>').join('')}</ul></div>
+        <div style="margin-top:1rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Aktiviti PdP</h2>${plan.activities.map(a => '<div style="border:1px solid #e2e8f0;border-radius:.5rem;padding:.65rem;margin-bottom:.6rem"><h3 style="font-size:.8rem;font-weight:600;color:#4f46e5;margin-bottom:.2rem">' + this.escapeHtml(a.phase) + ' <span style="font-size:.7rem;color:#94a3b8;font-weight:400">- ' + a.duration + ' min</span></h3><p style="font-size:.78rem;color:#475569;margin:0">' + this.escapeHtml(a.description) + '</p></div>').join('')}</div>
+        <div style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;font-size:.72rem;color:#475569"><div><strong>BBM:</strong> ${plan.teachingAids.join(', ')}</div><div><strong>Nilai:</strong> ${plan.moralValues.join(', ')}</div><div><strong>EMK:</strong> ${plan.cce.join(', ')}</div></div>
+        <div style="margin-top:1.5rem;padding-top:.75rem;border-top:2px solid #e2e8f0;font-size:.68rem;color:#94a3b8;text-align:center">Generated by eRPH-PM | SJK(C) PIN MIN, BIDOR STESEN, PERAK</div>
+      </div>`;
     },
 
-    downloadPlanPDF(plan) {
-      this.openPDFWindow(this.buildPDFHtml(plan), `RPH_${plan.subject}_${plan.yearGroup.replace(' ','')}_${plan.date.replace(/\//g,'-')}.pdf`)
-    },
+    downloadPlanPDF(plan) { this.openPDFWindow(this.buildPDFHtml(plan), `RPH_${plan.subject}_${plan.class.replace(' ','')}_${plan.day}.pdf`); },
 
     exportAllPDF() {
-      if (!this.lessonPlans.length) return
-      const sorted = [...this.lessonPlans].sort((a, b) => {
-        const da = ({Monday:0,Tuesday:1,Wednesday:2,Thursday:3,Friday:4})[a.daySlot] ?? 99
-        const db = ({Monday:0,Tuesday:1,Wednesday:2,Thursday:3,Friday:4})[b.daySlot] ?? 99
-        if (da !== db) return da - db
-        return (a.slotTime || '') < (b.slotTime || '') ? -1 : 1
-      })
-      const pages = sorted.map((p, i) =>
-        '<div style="' + (i < sorted.length - 1 ? 'page-break-after:always;' : '') + 'page-break-inside:avoid">' + this.buildPDFHtml(p) + '</div>'
-      ).join('')
-      this.openPDFWindow(pages, 'eRPH_PM_All_Lesson_Plans.pdf')
+      if (!this.lessonPlans.length) return;
+      const pages = this.lessonPlans.map((p, i) =>
+        '<div style="' + (i < this.lessonPlans.length - 1 ? 'page-break-after:always;' : '') + 'page-break-inside:avoid">' + this.buildPDFHtml(p) + '</div>'
+      ).join('');
+      this.openPDFWindow(pages, `eRPH_PM_${this.selectedTeacher}_All.pdf`);
     },
 
     openPDFWindow(html, filename) {
-      const w = window.open('', '_blank')
-      if (!w) { alert('Please allow popups to download PDFs.'); return }
-      w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + filename + '</title><script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"><\/script><\/head><body style="margin:0;padding:0;font-family:sans-serif">' + html + '<script>setTimeout(function(){html2pdf().set({margin:[0.4,0.4,0.4,0.4],filename:' + JSON.stringify(filename) + ',image:{type:"jpeg",quality:0.98},html2canvas:{scale:2,useCORS:true,logging:false},jsPDF:{unit:"in",format:"a4",orientation:"portrait"}}).from(document.body).save().then(function(){window.close()})["catch"](function(){window.close()})},500)<\/script><\/body></html>')
-      w.document.close()
+      const w = window.open('', '_blank');
+      if (!w) { alert('Please allow popups.'); return; }
+      w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + filename + '</title><script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"><\/script><\/head><body style="margin:0;padding:0;font-family:sans-serif">' + html + '<script>setTimeout(function(){html2pdf().set({margin:[0.4,0.4,0.4,0.4],filename:' + JSON.stringify(filename) + ',image:{type:"jpeg",quality:0.98},html2canvas:{scale:2,useCORS:true,logging:false},jsPDF:{unit:"in",format:"a4",orientation:"portrait"}}).from(document.body).save().then(function(){window.close()})["catch"](function(){window.close()})},500)<\/script><\/body></html>');
+      w.document.close();
     },
 
     escapeHtml(str) {
-      if (!str) return ''
-      const d = document.createElement('div')
-      d.textContent = str
-      return d.innerHTML
+      if (!str) return '';
+      const d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
     },
-  }))
-})
+
+    switchTab(id) { this.activeTab = id; this.sidebarOpen = false; },
+    onTeacherChange() {
+      localStorage.setItem('erphp_teacher', this.selectedTeacher);
+      localStorage.setItem('erphp_penggal', this.selectedPenggal);
+    },
+    init() {
+      this.$watch('activeTab', v => localStorage.setItem('erphp_tab', v));
+      this.$watch('selectedTeacher', v => localStorage.setItem('erphp_teacher', v));
+      this.$watch('selectedPenggal', v => localStorage.setItem('erphp_penggal', v));
+    },
+  }));
+});
 </script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -726,7 +418,6 @@ body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
 .fade-in { animation: fadeIn 0.2s ease-out; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 [x-cloak] { display: none !important; }
-.btn-busy { pointer-events: none; opacity: 0.7; }
 </style>
 </body>
 </html>
