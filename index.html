@@ -7,6 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="cascading-combobox.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased" x-data="app()">
 <div class="flex h-screen">
@@ -42,13 +43,9 @@
 
       <!-- CURRICULUM -->
       <section x-show="a==='kur'" x-cloak class="max-w-4xl mx-auto">
-        <div class="mb-3 flex flex-wrap items-center gap-2">
-          <select x-model="cs" @change="sv()" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium shadow-sm"><template x-for="s in D.SUBJECTS" :key="s.c"><option :value="s.c" x-text="s.n"></option></template></select>
-          <select x-model="cy" @change="sv()" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium shadow-sm"><option value="Year 1">Tahun 1</option><option value="Year 2">Tahun 2</option><option value="Year 3">Tahun 3</option><option value="Year 4">Tahun 4</option><option value="Year 5">Tahun 5</option><option value="Year 6">Tahun 6</option></select>
-          <span class="text-xs text-slate-500" x-text="uL().length+' unit'"></span>
-        </div>
-        <template x-if="!uL().length"><div class="flex h-48 items-center justify-center text-slate-400 text-sm">Tiada data.</div></template>
-        <template x-if="uL().length"><div class="space-y-1.5"><template x-for="(u,i) in uL()" :key="i"><div class="rounded-lg border bg-white shadow-sm"><div @click="u.o=!u.o" class="flex cursor-pointer items-center justify-between px-4 py-2.5"><div class="flex items-center gap-2 min-w-0"><span class="shrink-0 text-slate-400 text-xs" x-text="u.o?'v':'>'"></span><p class="text-xs font-medium text-slate-900" x-text="u.title"></p></div></div><div x-show="u.o" x-collapse class="border-t px-4 py-3 space-y-2 text-xs text-slate-600"><p><span class="font-semibold text-slate-700">Topik:</span><template x-for="t in u.topics" :key="t"><br><span x-text="' - '+t"></span></template></p><p class="mt-1"><span class="font-semibold text-slate-700">Standard Kandungan:</span><template x-for="sk in gSK()"><br><span x-text="sk"></span></template></p><p class="mt-1"><span class="font-semibold text-slate-700">Standard Pembelajaran:</span><template x-for="sp in gSP()"><br><span x-text="sp"></span></template></p></div></div></template></div></template>
+        <div class="mb-3"><h2 class="text-base font-bold text-slate-900">DSKP Curriculum Browser</h2><p class="text-xs text-slate-500">Cascading combobox — accessible keyboard &amp; screen reader friendly.</p></div>
+        <div id="cc-mount" class="rounded-xl border bg-white p-4 shadow-sm"></div>
+        <div id="cc-selection" class="mt-3 rounded-lg border bg-indigo-50 p-3 text-xs text-indigo-900 hidden"></div>
       </section>
 
       <!-- RPH -->
@@ -225,6 +222,56 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
 
   init(){this.$watch('rph',()=>{this.sv();this.tabs[2].c=this.rph.length;},{deep:true});this.sv();},
 }));});
+
+// Cascading Combobox initialization
+const YEAR_GROUPS = ['Year 1','Year 2','Year 3','Year 4','Year 5','Year 6'];
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const mount = document.getElementById('cc-mount');
+    if (!mount || window._ccInitialized) return;
+    window._ccInitialized = true;
+
+    const d = window.D;
+    if (!d) return;
+
+    // Build hierarchical data: year -> subject -> units -> cs -> ls
+    const hierData = {};
+    (YEAR_GROUPS || ['Year 1','Year 2','Year 3','Year 4','Year 5','Year 6']).forEach(y => {
+      hierData[y] = {};
+      (d.SUBJECTS || []).forEach(s => {
+        const units = (d.CUR[s.c] || {})[y];
+        if (units && units.length) {
+          hierData[y][s.c] = { units };
+        }
+      });
+    });
+
+    window.cc = new CascadingCombobox(mount, {
+      data: {
+        ...hierData,
+        SK: d.SK,
+        SP: d.SP,
+        LANG: d.LANG,
+      },
+      lang: 'zh',
+      onChange: (path) => {
+        const el = document.getElementById('cc-selection');
+        if (!el) return;
+        const parts = [];
+        if (path.year) parts.push('Year: ' + path.year);
+        if (path.subject) {
+          const sn = (d.SUBJECTS || []).find(s => s.c === path.subject)?.n || path.subject;
+          parts.push('Subject: ' + sn);
+        }
+        if (path.unit) parts.push('Unit: ' + path.unit);
+        if (path.cs) parts.push('CS: ' + path.cs.substring(0, 60));
+        if (path.ls) parts.push('LS: ' + path.ls.substring(0, 60));
+        el.className = 'mt-3 rounded-lg border bg-indigo-50 p-3 text-xs text-indigo-900';
+        el.innerHTML = parts.length ? '<span class="font-semibold">Selected Path:</span> ' + parts.join(' &rarr; ') : '';
+      },
+    });
+  }, 500);
+});
 </script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
