@@ -11,6 +11,7 @@
 <script src="draft-sync.js"></script>
 <script src="reflection-generator.js"></script>
 <script src="tag-picker.js"></script>
+<script src="activity-db.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased" x-data="app()">
 <div class="flex h-screen">
@@ -86,7 +87,10 @@
             <div><p class="font-semibold text-emerald-600 uppercase tracking-wider text-[10px]">Kriteria Kejayaan</p><template x-for="(k,i) in p.kj" :key="i"><textarea x-model="p.kj[i]" class="w-full rounded border border-slate-300 bg-white p-1.5 text-xs mt-1" rows="1"></textarea></template></div>
 
             <!-- Activities -->
-            <div><p class="font-semibold text-indigo-600 uppercase tracking-wider text-[10px]">Aktiviti Pembelajaran</p><div class="space-y-2 mt-1"><template x-for="(a,i) in p.acts" :key="i"><div class="flex gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full text-[9px] font-bold mt-1" :class="aC(a.ph)" x-text="a.ph[0]"></span><div class="flex-1"><p class="font-medium text-slate-700 text-[11px]" x-text="a.ph"></p><textarea x-model="a.d" class="w-full rounded border border-slate-300 bg-white p-1.5 text-xs" rows="2"></textarea><div class="flex gap-2 mt-1"><input type="text" x-model="a.t" class="flex-1 rounded border border-slate-300 bg-white p-1 text-[10px]" placeholder="Peranan guru"><input type="text" x-model="a.s" class="flex-1 rounded border border-slate-300 bg-white p-1 text-[10px]" placeholder="Peranan murid"><input type="number" x-model="a.dr" class="w-14 rounded border border-slate-300 bg-white p-1 text-[10px]" placeholder="min"></div></div></div></template></div></div>
+            <div><p class="font-semibold text-indigo-600 uppercase tracking-wider text-[10px]">Aktiviti Pembelajaran</p><div class="space-y-2 mt-1"><template x-for="(a,i) in p.acts" :key="i"><div class="flex gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full text-[9px] font-bold mt-1" :class="aC(a.ph)" x-text="a.ph[0]"></span><div class="flex-1"><p class="font-medium text-slate-700 text-[11px]" x-text="a.ph"></p><textarea x-model="a.d" class="w-full rounded border border-slate-300 bg-white p-1.5 text-xs" rows="2"></textarea><div x-show="a._dif" class="mt-0.5 text-[10px] text-indigo-600 italic" x-text="'Dif: '+a._dif"></div><div class="flex gap-2 mt-1"><input type="text" x-model="a.t" class="flex-1 rounded border border-slate-300 bg-white p-1 text-[10px]" placeholder="Peranan guru"><input type="text" x-model="a.s" class="flex-1 rounded border border-slate-300 bg-white p-1 text-[10px]" placeholder="Peranan murid"><input type="number" x-model="a.dr" class="w-14 rounded border border-slate-300 bg-white p-1 text-[10px]" placeholder="min"></div></div></div></template></div></div>
+
+            <!-- Remedial -->
+            <div x-show="p.rem && p.rem.length" class="mt-2"><p class="font-semibold text-orange-600 uppercase tracking-wider text-[10px]">Aktiviti Pemulihan</p><div class="space-y-1.5 mt-1"><template x-for="(r,i) in p.rem" :key="i"><div class="rounded border border-orange-200 bg-orange-50 p-2"><div class="flex gap-1 items-start"><span class="text-orange-500 text-[10px] mt-0.5">&#x25B6;</span><div class="flex-1"><textarea x-model="r.title" class="w-full rounded border border-orange-200 bg-white p-1 text-[11px] font-medium text-orange-800" rows="1"></textarea><textarea x-model="r.desc" class="w-full rounded border border-orange-200 bg-white p-1 text-[10px] text-orange-700 mt-1" rows="2"></textarea><template x-if="r.strategies && r.strategies.length"><div class="flex flex-wrap gap-1 mt-1"><template x-for="st in r.strategies" :key="st"><span class="rounded bg-orange-100 px-1.5 py-0.5 text-[9px] text-orange-700" x-text="st"></span></template></div></template></div></div></div></template></div></div>
 
             <!-- BBM Nilai EMK - TagPickers -->
             <div class="space-y-3">
@@ -179,9 +183,10 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
       const units=(this.D.CUR[s.s]||{})[y]||[]; const unit=units.length?units[Math.floor(Math.random()*units.length)]:null;
       const sk=this.D.SK[l]||[]; const sp=this.D.SP[l]||[]; const obj=this.D.OBJ[l]||[]; const kj=this.D.KJ[l]||[];
       const bbm=this.D.BBM[l]||[]; const nilai=this.D.NILAI[l]||[]; const emk=this.D.EMK[l]||[];
-      const ph=this.D.PHASES[l]||[]; const acts=this.D.ACTS[l]||[]; const tr=this.D.TROLES[l]||[]; const sr=this.D.SROLES[l]||[];
+      const ph=this.D.PHASES[l]||[]; const tr=this.D.TROLES[l]||[]; const sr=this.D.SROLES[l]||[];
       const du=[8,7,22,5,5]; const per=D.PERIODS.find(x=>x[0]===s.p); const tm=per?per[1]+'-'+per[2]:'';
       const refs=this.D.REF[l]||[];
+      const phaseKeys = ['induction','pre','dev','post','closure'];
 
       // Calculate date from week
       let dateStr = s.d;
@@ -198,6 +203,25 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
         dateStr = dd+'/'+mm+'/'+yyyy;
       }
 
+      // Generate activities from ActivityDB with remedial
+      const generatedActs = ph.map((phName, i) => {
+        const key = phaseKeys[i];
+        const pool = (typeof ActivityDB !== 'undefined') ? ActivityDB.getActivities(s.s, key, 1) : [];
+        const a = pool[0] || {};
+        return {
+          ph: phName,
+          d: a.d || this.pick((this.D.ACTS[l]||[['']])[i]||['']),
+          dr: du[i],
+          t: a.t || tr[i]||'',
+          s: a.s || sr[i]||'',
+          _dif: a.dif || '',
+        };
+      });
+      const remActs = (typeof ActivityDB !== 'undefined') ? ActivityDB.getRemedial(3) : [
+        {title:'Bimbingan Individu',desc:'Bimbingan tambahan oleh guru.'},
+        {title:'Latihan Berstruktur',desc:'Latihan dipermudah langkah demi langkah.'},
+      ];
+
       plans.push({
         id:Date.now().toString(36)+Math.random().toString(36).slice(2),
         c:s.c,s:s.s,sn:s.n,d:dateStr,per:s.p,tm,dr:this.dr(s.p),
@@ -206,7 +230,8 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
         sk:[...sk.slice(0,2)],sp:[...sp.slice(0,2)],
         obj:[...obj.slice(0,2)],kj:[...kj.slice(0,2)],
         bbm:[...bbm],nilai:[...nilai],emk:[...emk],
-        acts:ph.map((ph,i)=>({ph,d:this.pick(acts[i]||['']),dr:du[i],t:tr[i]||'',s:sr[i]||''})),
+        acts: generatedActs,
+        rem: remActs.map(r=>({title:r.title,desc:r.desc,strategies:r.strategies||[],materials:r.materials||[]})),
         ref:refs.length?refs[Math.floor(Math.random()*refs.length)]:'',
         o:true,
       });
