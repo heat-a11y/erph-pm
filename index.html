@@ -12,6 +12,7 @@
 <script src="reflection-generator.js"></script>
 <script src="tag-picker.js"></script>
 <script src="activity-db.js"></script>
+<script src="curriculum-db.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased" x-data="app()">
 <div class="flex h-screen">
@@ -47,9 +48,33 @@
 
       <!-- CURRICULUM -->
       <section x-show="a==='kur'" x-cloak class="max-w-4xl mx-auto">
-        <div class="mb-3"><h2 class="text-base font-bold text-slate-900">DSKP Curriculum Browser</h2><p class="text-xs text-slate-500">Cascading combobox — accessible keyboard &amp; screen reader friendly.</p></div>
-        <div id="cc-mount" class="rounded-xl border bg-white p-4 shadow-sm"></div>
-        <div id="cc-selection" class="mt-3 rounded-lg border bg-indigo-50 p-3 text-xs text-indigo-900 hidden"></div>
+        <div class="mb-3"><h2 class="text-base font-bold text-slate-900">DSKP Curriculum Standards</h2><p class="text-xs text-slate-500">Browse Content Standards (SK) and Learning Standards (SP) from official DSKP documents.</p></div>
+        <div class="mb-3 flex flex-wrap items-center gap-2">
+          <select x-model="cs" @change="sv()" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium shadow-sm"><template x-for="s in D.SUBJECTS" :key="s.c"><option :value="s.c" x-text="s.n"></option></template></select>
+          <select x-model="cy" @change="sv()" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium shadow-sm"><option value="Year 1">Tahun 1</option><option value="Year 2">Tahun 2</option><option value="Year 3">Tahun 3</option><option value="Year 4">Tahun 4</option><option value="Year 5">Tahun 5</option><option value="Year 6">Tahun 6</option></select>
+          <span class="text-xs text-slate-500" x-text="gSK().length+' SK, '+gSP().length+' SP'"></span>
+        </div>
+        <template x-if="!gSK().length"><div class="flex h-48 items-center justify-center text-slate-400 text-sm">Tiada data kurikulum untuk subjek ini.</div></template>
+        <template x-if="gSK().length">
+          <div class="space-y-3">
+            <div class="rounded-lg border bg-white shadow-sm">
+              <div @click="_skOpen=!_skOpen" class="flex cursor-pointer items-center justify-between px-4 py-2.5 bg-indigo-50 rounded-t-lg"><p class="text-xs font-bold text-indigo-800 uppercase tracking-wider">Standard Kandungan (SK) — <span x-text="gSK().length"></span></p><span class="text-xs text-slate-400" x-text="_skOpen?'v':'>'"></span></div>
+              <div x-show="_skOpen" x-collapse class="px-4 py-3 space-y-2">
+                <template x-for="(sk,i) in gSK()" :key="i">
+                  <div class="flex gap-2 text-xs text-slate-700"><span class="shrink-0 font-mono font-bold text-indigo-600 min-w-[2.5rem]" x-text="'SK '+Object.keys(getCurriculum(cy,cs)?.SK||{})[i]||(i+1)"></span><span x-text="sk"></span></div>
+                </template>
+              </div>
+            </div>
+            <div class="rounded-lg border bg-white shadow-sm">
+              <div @click="_spOpen=!_spOpen" class="flex cursor-pointer items-center justify-between px-4 py-2.5 bg-emerald-50 rounded-t-lg"><p class="text-xs font-bold text-emerald-800 uppercase tracking-wider">Standard Pembelajaran (SP) — <span x-text="gSP().length"></span></p><span class="text-xs text-slate-400" x-text="_spOpen?'v':'>'"></span></div>
+              <div x-show="_spOpen" x-collapse class="px-4 py-3 space-y-2 max-h-96 overflow-y-auto">
+                <template x-for="(sp,i) in gSP()" :key="i">
+                  <div class="flex gap-2 text-xs text-slate-700"><span class="shrink-0 font-mono font-bold text-emerald-600 min-w-[2.5rem]" x-text="'SP '+(i+1)"></span><span x-text="sp"></span></div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </template>
       </section>
 
       <!-- RPH -->
@@ -145,6 +170,7 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
   tg:localStorage.getItem('eptg')||'', cs:localStorage.getItem('epcs')||'BC',
   cy:localStorage.getItem('epcy')||'Year 1', rph:JSON.parse(localStorage.getItem('eprph')||'[]'),
   currentWeek: localStorage.getItem('epwk') || '',
+  _skOpen: true, _spOpen: false,
   D, tabs:[{i:'T',l:'Jadual',id:'tt'},{i:'K',l:'Kurikulum',id:'kur'},{i:'R',l:'Jana RPH',id:'rph',c:0},{i:'F',l:'Refleksi',id:'ref'}],
 
   sv(){localStorage.setItem('eptg',this.tg);localStorage.setItem('epcs',this.cs);localStorage.setItem('epcy',this.cy);localStorage.setItem('eprph',JSON.stringify(this.rph));localStorage.setItem('epwk',this.currentWeek);this.tabs[2].c=this.rph.length;},
@@ -158,8 +184,8 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
   tN(){const t=this.D.TEACHERS[this.tg];return t?t.n+' ('+this.tg+')':'';},
 
   uL(){const c=this.D.CUR[this.cs];return c?c[this.cy]||[]:[];},
-  gSK(){const l=this.lg(this.cs);return this.D.SK[l]||[];},
-  gSP(){const l=this.lg(this.cs);return this.D.SP[l]||[];},
+  gSK(){return typeof CURR_DB!=='undefined'?getSK(this.cy,this.cs):this.D.SK[this.lg(this.cs)]||[];},
+  gSP(){return typeof CURR_DB!=='undefined'?getSP(this.cy,this.cs):this.D.SP[this.lg(this.cs)]||[];},
 
   pick(a){return a.length?a[Math.floor(Math.random()*a.length)]:'';},
 
@@ -366,55 +392,10 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
   },
 }));});
 
-// Cascading Combobox initialization
-const YEAR_GROUPS = ['Year 1','Year 2','Year 3','Year 4','Year 5','Year 6'];
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    const mount = document.getElementById('cc-mount');
-    if (!mount || window._ccInitialized) return;
-    window._ccInitialized = true;
-
-    const d = window.D;
-    if (!d) return;
-
-    // Build hierarchical data: year -> subject -> units -> cs -> ls
-    const hierData = {};
-    (YEAR_GROUPS || ['Year 1','Year 2','Year 3','Year 4','Year 5','Year 6']).forEach(y => {
-      hierData[y] = {};
-      (d.SUBJECTS || []).forEach(s => {
-        const units = (d.CUR[s.c] || {})[y];
-        if (units && units.length) {
-          hierData[y][s.c] = { units };
-        }
-      });
-    });
-
-    window.cc = new CascadingCombobox(mount, {
-      data: {
-        ...hierData,
-        SK: d.SK,
-        SP: d.SP,
-        LANG: d.LANG,
-      },
-      lang: 'zh',
-      onChange: (path) => {
-        const el = document.getElementById('cc-selection');
-        if (!el) return;
-        const parts = [];
-        if (path.year) parts.push('Year: ' + path.year);
-        if (path.subject) {
-          const sn = (d.SUBJECTS || []).find(s => s.c === path.subject)?.n || path.subject;
-          parts.push('Subject: ' + sn);
-        }
-        if (path.unit) parts.push('Unit: ' + path.unit);
-        if (path.cs) parts.push('CS: ' + path.cs.substring(0, 60));
-        if (path.ls) parts.push('LS: ' + path.ls.substring(0, 60));
-        el.className = 'mt-3 rounded-lg border bg-indigo-50 p-3 text-xs text-indigo-900';
-        el.innerHTML = parts.length ? '<span class="font-semibold">Selected Path:</span> ' + parts.join(' &rarr; ') : '';
-      },
-    });
-  }, 500);
-});
+// Expose CURR_DB helpers globally
+window.getCurriculum = typeof getCurriculum !== 'undefined' ? getCurriculum : function(y,s){return null;};
+window.getSK = typeof getSK !== 'undefined' ? getSK : function(y,s){return [];};
+window.getSP = typeof getSP !== 'undefined' ? getSP : function(y,s){return [];};
 </script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
