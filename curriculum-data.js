@@ -1757,7 +1757,7 @@ const CURRICULUM_DATA = {
       { id: 2, title: '第2课：草船借箭', minggu: '3', sk: '', sp: '' },
       { id: 3, title: '第3课：与众不同的一本书', minggu: '4', sk: '', sp: '' },
       { id: 4, title: '第4课：谁拿走了钱袋', minggu: '5', sk: '', sp: '' },
-      { id: 5, title: '第5课：“虫'不可貌相', minggu: '6', sk: '', sp: '' },
+      { id: 5, title: '第5课：“虫\'不可貌相', minggu: '6', sk: '', sp: '' },
       { id: 6, title: '单元二：温情之旅 | | 第6课：暖心小铺', minggu: '7', sk: '', sp: '' },
       { id: 7, title: '第7课：母亲的叮咛', minggu: '8', sk: '', sp: '' },
       { id: 8, title: '第8课：转递温情蓝丝带', minggu: '9', sk: '', sp: '' },
