@@ -4,3 +4,4 @@ build_timetable.py
 parse_timetable.py
 extract_rpt.py
 cleanup_data.py
+build_app.py
