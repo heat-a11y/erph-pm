@@ -8,6 +8,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="cascading-combobox.js"></script>
+<script src="draft-sync.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased" x-data="app()">
 <div class="flex h-screen">
@@ -220,7 +221,30 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
     navigator.clipboard.writeText(l.join('\n'));
   },
 
-  init(){this.$watch('rph',()=>{this.sv();this.tabs[2].c=this.rph.length;},{deep:true});this.sv();},
+  init(){
+    // DraftSync: auto-save drafts
+    this._draftSync = new DraftSync({
+      key: 'erph-pm-draft',
+      onRestore: (draft) => {
+        if (draft.rph) { this.rph = draft.rph; this.sv(); }
+        if (draft.tg) { this.tg = draft.tg; this.sv(); }
+        if (draft.a) { this.a = draft.a; }
+      },
+    });
+    this.$watch('rph', () => {
+      this.sv();
+      this.tabs[2].c = this.rph.length;
+      // Auto-save draft
+      if (this._draftSync) {
+        this._draftSync.watch({ rph: this.rph, tg: this.tg, a: this.a });
+      }
+    }, { deep: true });
+    // Check for draft on load
+    setTimeout(() => {
+      if (this._draftSync) this._draftSync.checkForDraft();
+    }, 1000);
+    this.sv();
+  },
 }));});
 
 // Cascading Combobox initialization
