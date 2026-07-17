@@ -9,6 +9,7 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="cascading-combobox.js"></script>
 <script src="draft-sync.js"></script>
+<script src="reflection-generator.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased" x-data="app()">
 <div class="flex h-screen">
@@ -83,8 +84,21 @@
             <!-- BBM Nilai EMK -->
             <div class="grid grid-cols-3 gap-2"><div><p class="font-semibold text-slate-500 text-[10px] uppercase mb-1">BBM</p><template x-for="(b,i) in p.bbm" :key="i"><div class="flex gap-1 mb-1"><input type="text" x-model="p.bbm[i]" class="flex-1 rounded border border-slate-300 bg-white p-1 text-[10px]"><button @click="p.bbm.splice(i,1);p.bbm.push('')" class="text-indigo-400 text-[9px]">+</button></div></template></div><div><p class="font-semibold text-slate-500 text-[10px] uppercase mb-1">Nilai</p><template x-for="(v,i) in p.nilai" :key="i"><div class="flex gap-1 mb-1"><input type="text" x-model="p.nilai[i]" class="flex-1 rounded border border-slate-300 bg-white p-1 text-[10px]"><button @click="p.nilai.splice(i,1);p.nilai.push('')" class="text-indigo-400 text-[9px]">+</button></div></template></div><div><p class="font-semibold text-slate-500 text-[10px] uppercase mb-1">EMK</p><template x-for="(e,i) in p.emk" :key="i"><div class="flex gap-1 mb-1"><input type="text" x-model="p.emk[i]" class="flex-1 rounded border border-slate-300 bg-white p-1 text-[10px]"><button @click="p.emk.splice(i,1);p.emk.push('')" class="text-indigo-400 text-[9px]">+</button></div></template></div></div>
 
-            <!-- Reflection - ALWAYS VISIBLE -->
-            <div class="border-t-2 border-amber-200 pt-3 mt-2"><p class="font-semibold text-amber-700 uppercase tracking-wider text-[10px] mb-1">Refleksi</p><textarea x-model="p.ref" class="w-full rounded-lg border-2 border-amber-200 bg-amber-50 p-3 text-xs text-slate-700 focus:border-amber-400 focus:outline-none" rows="3" placeholder="Taip refleksi..."></textarea></div>
+            <!-- Reflection Generator -->
+            <div class="border-t-2 border-amber-200 pt-3 mt-2">
+              <div class="flex items-center justify-between mb-1">
+                <p class="font-semibold text-amber-700 uppercase tracking-wider text-[10px]">Refleksi</p>
+                <div class="flex gap-1">
+                  <button @click.stop="ref1(p)" class="rounded border border-amber-300 bg-amber-50 px-2 py-0.5 text-[9px] font-medium text-amber-700 hover:bg-amber-100">Jana Cepat</button>
+                  <button @click.stop="toggleRG(p)" class="rounded border border-amber-300 bg-amber-50 px-2 py-0.5 text-[9px] font-medium text-amber-700 hover:bg-amber-100" x-text="p._rgOpen?'Tutup':'Buka RG'">RG</button>
+                </div>
+              </div>
+              <!-- ReflectionGenerator mount -->
+              <div x-show="p._rgOpen" x-cloak>
+                <div class="rg-mount" x-bind:data-plan-id="p.id"></div>
+              </div>
+              <textarea x-model="p.ref" class="w-full rounded-lg border-2 border-amber-200 bg-amber-50 p-3 text-xs text-slate-700 focus:border-amber-400 focus:outline-none" rows="3" placeholder="Taip refleksi..."></textarea>
+            </div>
 
             <!-- Actions -->
             <div class="flex flex-wrap gap-2 border-t pt-3">
@@ -172,8 +186,29 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
 
   dr(per){const p=D.PERIODS.find(x=>x[0]===per);if(!p)return 30;const[a,b]=p[1].split(':').map(Number),[c,d]=p[2].split(':').map(Number);return(c*60+d)-(a*60+b);},
 
-  ref1(p){const l=this.lg(p.s);const refs=this.D.REF[l]||[];if(refs.length)p.ref=refs[Math.floor(Math.random()*refs.length)];},
+  ref1(p){
+    const l=this.lg(p.s);const refs=this.D.REF[l]||[];
+    if(refs.length)p.ref=refs[Math.floor(Math.random()*refs.length)];
+  },
   iRef(){this.rph.forEach(p=>{if(!p.ref)this.ref1(p);});this.sv();},
+
+  toggleRG(p) {
+    p._rgOpen = !p._rgOpen;
+    if (p._rgOpen && !p._rgInitialized) {
+      p._rgInitialized = true;
+      this.$nextTick(() => {
+        const mount = document.querySelector(`.rg-mount[data-plan-id="${p.id}"]`);
+        if (!mount || mount._rg) return;
+        const total = 18, present = Math.floor(Math.random() * (total + 1));
+        mount._rg = new ReflectionGenerator(mount, {
+          present, total, lang: this.lg(p.s),
+          onChange: (text) => { p.ref = text; },
+        });
+        // Set existing reflection if any
+        if (p.ref) mount._rg.setText(p.ref);
+      });
+    }
+  },
 
   esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML;},
 
