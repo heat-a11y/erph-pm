@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +17,7 @@
   <template x-teleport="body"><div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 z-30 bg-slate-900/40 backdrop-blur-sm md:hidden"></div></template>
   <aside class="sidebar-transition fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-slate-900 text-slate-100 md:static" x-bind:class="sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'">
     <div class="flex h-16 items-center gap-2.5 border-b border-slate-700/50 px-5">
-      <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500 text-sm">&#x1F4D6;</span>
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500 text-sm shrink-0">R</span>
       <div><p class="text-sm font-semibold leading-tight">eRPH-PM</p><p class="text-[10px] leading-tight text-slate-400">Jana RPH from Jadual Waktu</p></div>
     </div>
     <nav class="flex-1 space-y-1 overflow-y-auto p-3">
@@ -44,33 +44,37 @@
         <select x-model="selectedTeacher" @change="onTeacherChange" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm focus:border-indigo-400 focus:outline-none">
           <option value="">-- Pilih Guru --</option>
           <template x-for="(info, code) in TEACHERS" :key="code">
-            <option x-bind:value="code" x-text="info.name + ' (' + code + ') ' + info.name_cn"></option>
+            <option x-bind:value="code" x-text="info.name + ' (' + code + ')' + (info.name_cn ? ' ' + info.name_cn : '')"></option>
           </template>
         </select>
-        <select x-model="selectedPenggal" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm focus:border-indigo-400 focus:outline-none">
-          <option value="1">Penggal 1 (12 Jan 2026)</option>
-          <option value="2">Penggal 2 (30 Mac 2026)</option>
+        <select x-model="selectedPenggal" @change="onTeacherChange" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm focus:border-indigo-400 focus:outline-none">
+          <option value="1">Penggal 1 (12 Jan - 22 Mei)</option>
+          <option value="2">Penggal 2 (8 Jun - 4 Dis)</option>
         </select>
-        <span class="text-xs text-slate-400" x-text="`${lessonPlans.length} RPH`"></span>
+        <span class="text-xs text-slate-400" x-text="lessonPlans.length + ' RPH'"></span>
       </div>
     </header>
 
     <main class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
-      <!-- ═══ TIMETABLE TAB ═══ -->
+      <!-- TIMETABLE TAB -->
       <section x-show="activeTab === 'timetable'" x-cloak class="fade-in mx-auto max-w-6xl">
-        <div class="mb-4">
-          <h1 class="text-xl font-bold text-slate-900" x-text="selectedTeacherName ? 'Jadual Waktu: ' + selectedTeacherName : 'Pilih Guru'"></h1>
-          <p class="mt-1 text-sm text-slate-500" x-text="selectedTeacher ? teacherSlotCount + ' slots across ' + teacherClasses + ' classes' : 'Select a teacher and penggal above.'"></p>
+        <div class="mb-4 flex items-center justify-between">
+          <div>
+            <h1 class="text-xl font-bold text-slate-900" x-text="selectedTeacher ? 'Jadual Waktu: ' + selectedTeacherName : 'Pilih Guru'"></h1>
+            <p class="mt-1 text-sm text-slate-500" x-text="selectedTeacher ? teacherSlotCount + ' slot across ' + teacherClassList : 'Select a teacher and penggal above, then click Generate.'"></p>
+          </div>
+          <button @click="generateWeekRPH()" x-show="selectedTeacher" class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-indigo-700">
+            <span>+</span> Jana RPH
+          </button>
         </div>
         <div x-show="!selectedTeacher" class="flex flex-col items-center justify-center rounded-xl border-2 border-dashed py-16 text-center text-slate-400">
-          <span class="text-3xl mb-3">&#x1F468;&#x200D;&#x1F3EB;</span>
           <p class="text-sm font-medium">Pilih guru untuk lihat jadual</p>
         </div>
         <div x-show="selectedTeacher" class="overflow-x-auto rounded-xl border bg-white shadow-sm">
-          <table class="w-full min-w-[800px] text-xs">
+          <table class="w-full min-w-[820px] text-xs">
             <thead>
               <tr class="border-b bg-slate-100">
-                <th class="px-2 py-2 text-left font-semibold text-slate-500 w-20">Masa</th>
+                <th class="px-2 py-2 text-left font-semibold text-slate-500 w-24">Masa</th>
                 <template x-for="d in DAYS" :key="d">
                   <th class="px-2 py-2 text-center font-semibold text-slate-500" x-text="d"></th>
                 </template>
@@ -81,9 +85,9 @@
                 <tr class="border-b last:border-0" x-bind:class="per[0] === 'REHAT' ? 'bg-amber-50' : ''">
                   <td class="px-2 py-1.5 text-[10px] font-medium text-slate-400 whitespace-nowrap" x-text="per[0] + ' ' + per[1] + '-' + per[2]"></td>
                   <template x-for="d in DAYS" :key="d">
-                    <td class="px-1 py-1 text-center border-l">
+                    <td class="px-1 py-1 text-center border-l align-top">
                       <template x-for="slot in getSlotsFor(d, per[0])" :key="slot.class + slot.subject">
-                        <div class="rounded border px-1 py-0.5 text-[10px] leading-tight mb-0.5"
+                        <div class="rounded border px-1 py-0.5 text-[10px] leading-tight mb-0.5 break-words"
                           x-bind:class="slotClass(slot.subject)">
                           <div class="font-semibold" x-text="slot.subjectName"></div>
                           <div class="text-[9px] opacity-70" x-text="slot.class.replace('Tahun ','Y')"></div>
@@ -96,87 +100,111 @@
             </tbody>
           </table>
         </div>
-        <div x-show="selectedTeacher" class="mt-4 flex gap-2">
-          <button @click="generateWeekRPH()" class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-indigo-700">
-            <span>&#x26A1;</span> Jana RPH Minggu Ini
-          </button>
-        </div>
       </section>
 
-      <!-- ═══ GENERATE RPH TAB ═══ -->
+      <!-- GENERATE RPH TAB -->
       <section x-show="activeTab === 'generate'" x-cloak class="fade-in mx-auto max-w-5xl">
         <div class="mb-6">
-          <h1 class="text-xl font-bold text-slate-900">Generated RPH</h1>
-          <p class="mt-1 text-sm text-slate-500" x-text="selectedTeacherName ? selectedTeacherName + ' · ' + lessonPlans.length + ' RPH' : 'Select a teacher first.'"></p>
+          <h1 class="text-xl font-bold text-slate-900">Rancangan Pengajaran Harian (RPH)</h1>
+          <p class="mt-1 text-sm text-slate-500" x-text="selectedTeacherName ? selectedTeacherName + ' - ' + lessonPlans.length + ' RPH' : 'Select a teacher first.'"></p>
         </div>
         <div class="mb-4 flex flex-wrap items-center gap-2">
-          <button @click="generateWeekRPH()" class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-md hover:bg-indigo-700">
-            <span>&#x26A1;</span> Jana RPH
+          <button @click="generateWeekRPH()" x-show="selectedTeacher" class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-md hover:bg-indigo-700">
+            <span>+</span> Jana RPH
+          </button>
+          <button @click="insertAllReflections()" x-show="lessonPlans.length" class="inline-flex items-center gap-1.5 rounded-lg border bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 shadow-sm hover:bg-amber-100">
+            <span>R</span> Sisip Refleksi
           </button>
           <button @click="exportAllPDF()" x-show="lessonPlans.length" class="inline-flex items-center gap-1.5 rounded-lg border bg-white px-3 py-2 text-xs font-medium text-slate-600 shadow-sm hover:bg-slate-50">
             <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg> Export All PDF
           </button>
-          <button @click="lessonPlans = []" x-show="lessonPlans.length" class="rounded-lg px-3 py-1.5 text-xs font-medium text-red-500 hover:bg-red-50">Clear</button>
+          <button @click="lessonPlans = []" x-show="lessonPlans.length" class="rounded-lg px-3 py-1.5 text-xs font-medium text-red-500 hover:bg-red-50">Padam Semua</button>
         </div>
         <div x-show="!lessonPlans.length" class="flex flex-col items-center justify-center rounded-xl border-2 border-dashed py-16 text-center text-slate-400">
-          <span class="text-3xl mb-3">&#x1F4CB;</span>
-          <p class="text-sm font-medium">No RPH yet</p>
-          <p class="mt-1 text-xs">Go to Timetable tab and click <strong>Jana RPH Minggu Ini</strong>.</p>
+          <p class="text-sm font-medium">Tiada RPH</p>
+          <p class="mt-1 text-xs">Go to Timetable and click <strong>Jana RPH</strong>.</p>
         </div>
         <div x-show="lessonPlans.length" class="space-y-4">
           <template x-for="plan in lessonPlans" :key="plan.id">
             <div class="rounded-xl border bg-white shadow-sm">
               <div @click="plan._open = !plan._open" class="flex cursor-pointer items-center justify-between border-b px-4 sm:px-5 py-3">
                 <div class="flex items-center gap-2 sm:gap-3 min-w-0">
-                  <span class="shrink-0 text-slate-400" x-text="plan._open ? '▾' : '▸'"></span>
+                  <span class="shrink-0 text-slate-400" x-text="plan._open ? 'v' : '>'"></span>
                   <div class="min-w-0">
-                    <p class="truncate text-sm font-semibold text-slate-900" x-text="plan.subjectName + ' — ' + plan.class"></p>
+                    <p class="truncate text-sm font-semibold text-slate-900" x-text="plan.subjectName + ' - ' + plan.class"></p>
                     <p class="text-xs text-slate-500 truncate">
                       <span x-text="plan.day"></span>
-                      <span x-text="' · P' + plan.period + ' (' + plan.time + ')'"></span>
-                      <span x-text="' · ' + plan.duration + ' min'"></span>
+                      <span x-text="' | P' + plan.period + ' (' + plan.time + ')'"></span>
+                      <span x-text="' | ' + plan.duration + ' min'"></span>
                     </p>
                   </div>
                 </div>
-                <button @click.stop="deletePlan(plan.id)" class="rounded-lg p-1 text-slate-400 hover:bg-red-50 hover:text-red-500">
-                  <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
-                </button>
+                <button @click.stop="deletePlan(plan.id)" class="rounded-lg p-1 text-slate-400 hover:bg-red-50 hover:text-red-500">&times;</button>
               </div>
-              <div x-show="plan._open" x-collapse class="px-5 py-4 space-y-4 text-sm">
+              <div x-show="plan._open" x-collapse class="px-5 py-4 space-y-5 text-sm">
+                <!-- Unit Info -->
                 <div class="rounded-lg border bg-indigo-50 p-3">
-                  <p class="mb-1 text-xs font-semibold text-indigo-700">&#x1F4DA; Curriculum Unit</p>
-                  <p class="text-sm text-indigo-900" x-text="plan.unitTitle || 'Auto-selected based on RPT'"></p>
+                  <p class="mb-1 text-xs font-semibold text-indigo-700">Unit Kurikulum</p>
+                  <p class="text-sm text-indigo-900" x-text="plan.unitTitle"></p>
                 </div>
-                <div x-show="plan.contentStandards?.length">
-                  <h4 class="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Standard Kandungan</h4>
-                  <div class="space-y-1"><template x-for="cs in plan.contentStandards" :key="cs"><p class="text-slate-600 text-xs" x-text="cs"></p></template></div>
+                <!-- Content Standards -->
+                <div x-show="plan.contentStandards.length">
+                  <h4 class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">Standard Kandungan</h4>
+                  <div class="space-y-1">
+                    <template x-for="cs in plan.contentStandards" :key="cs">
+                      <p class="text-slate-600 text-xs" x-text="cs"></p>
+                    </template>
+                  </div>
                 </div>
-                <div x-show="plan.learningStandards?.length">
-                  <h4 class="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Standard Pembelajaran</h4>
-                  <div class="space-y-1"><template x-for="ls in plan.learningStandards" :key="ls"><p class="text-slate-600 text-xs" x-text="ls"></p></template></div>
+                <!-- Learning Standards -->
+                <div x-show="plan.learningStandards.length">
+                  <h4 class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">Standard Pembelajaran</h4>
+                  <div class="space-y-1">
+                    <template x-for="ls in plan.learningStandards" :key="ls">
+                      <p class="text-slate-600 text-xs" x-text="ls"></p>
+                    </template>
+                  </div>
                 </div>
+                <!-- Objectives -->
                 <div>
-                  <h4 class="mb-1 text-xs font-semibold uppercase tracking-wider text-indigo-600">Objektif Pembelajaran</h4>
-                  <ul class="space-y-1"><template x-for="(obj, i) in plan.learningObjectives" :key="i">
-                    <li class="flex items-start gap-2 text-slate-600"><span class="mt-1 block h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-400"></span><span x-text="obj"></span></li>
-                  </template></ul>
+                  <h4 class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-600">Objektif Pembelajaran</h4>
+                  <ul class="space-y-1">
+                    <template x-for="(obj, i) in plan.learningObjectives" :key="i">
+                      <li class="flex items-start gap-2 text-slate-600">
+                        <span class="mt-1 block h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-400"></span>
+                        <span x-text="obj"></span>
+                      </li>
+                    </template>
+                  </ul>
                 </div>
+                <!-- Success Criteria -->
                 <div>
-                  <h4 class="mb-1 text-xs font-semibold uppercase tracking-wider text-indigo-600">Aktiviti PdP</h4>
+                  <h4 class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-600">Kriteria Kejayaan</h4>
+                  <ul class="space-y-1">
+                    <template x-for="(sc, i) in plan.successCriteria" :key="i">
+                      <li class="flex items-start gap-2 text-slate-600">
+                        <span class="mt-1 block h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400"></span>
+                        <span x-text="sc"></span>
+                      </li>
+                    </template>
+                  </ul>
+                </div>
+                <!-- Activities -->
+                <div>
+                  <h4 class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-600">Aktiviti Pembelajaran</h4>
                   <div class="space-y-2">
                     <template x-for="(act, i) in plan.activities" :key="act.id">
                       <div class="relative flex gap-3">
                         <div x-show="i < plan.activities.length - 1" class="absolute left-[15px] top-8 h-full w-px bg-slate-200"></div>
                         <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold"
-                          x-bind:class="{'bg-amber-100 text-amber-700': act.phase==='Set Induction','bg-blue-100 text-blue-700': act.phase==='Pre-lesson','bg-green-100 text-green-700': act.phase==='Lesson Development','bg-purple-100 text-purple-700': act.phase==='Post-lesson','bg-rose-100 text-rose-700': act.phase==='Closure'}"
-                          x-text="act.phase[0]"></div>
+                          x-bind:class="actColor(act.phase)" x-text="act.phase[0]"></div>
                         <div class="flex-1 rounded-lg border bg-slate-50 p-3">
                           <div class="mb-1 flex items-center justify-between gap-2">
                             <span class="text-sm font-medium text-slate-800" x-text="act.phase"></span>
                             <span class="shrink-0 text-xs text-slate-400" x-text="act.duration + ' min'"></span>
                           </div>
-                          <p class="text-xs text-slate-600" x-text="act.description"></p>
-                          <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-500">
+                          <p class="text-xs text-slate-600 leading-relaxed" x-text="act.description"></p>
+                          <div class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
                             <div><span class="font-medium text-slate-700">Guru:</span> <span x-text="act.teacherRole"></span></div>
                             <div><span class="font-medium text-slate-700">Murid:</span> <span x-text="act.studentRole"></span></div>
                           </div>
@@ -185,30 +213,75 @@
                     </template>
                   </div>
                 </div>
+                <!-- Cross-curricular elements -->
                 <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
                   <div class="rounded-lg border bg-slate-50 p-3">
-                    <p class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">&#x1F6E0;&#xFE0F; Bahan Bantu</p>
-                    <div class="flex flex-wrap gap-1"><template x-for="aid in plan.teachingAids" :key="aid"><span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="aid"></span></template></div>
+                    <h5 class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Bahan Bantu Mengajar</h5>
+                    <div class="flex flex-wrap gap-1">
+                      <template x-for="aid in plan.teachingAids" :key="aid">
+                        <span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="aid"></span>
+                      </template>
+                    </div>
                   </div>
                   <div class="rounded-lg border bg-slate-50 p-3">
-                    <p class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">&#x2764;&#xFE0F; Nilai Murni</p>
-                    <div class="flex flex-wrap gap-1"><template x-for="v in plan.moralValues" :key="v"><span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="v"></span></template></div>
+                    <h5 class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Nilai Murni</h5>
+                    <div class="flex flex-wrap gap-1">
+                      <template x-for="v in plan.moralValues" :key="v">
+                        <span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="v"></span>
+                      </template>
+                    </div>
                   </div>
                   <div class="rounded-lg border bg-slate-50 p-3">
-                    <p class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">&#x1F310; EMK</p>
-                    <div class="flex flex-wrap gap-1"><template x-for="c in plan.cce" :key="c"><span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="c"></span></template></div>
+                    <h5 class="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">EMK</h5>
+                    <div class="flex flex-wrap gap-1">
+                      <template x-for="c in plan.cce" :key="c">
+                        <span class="rounded-md border bg-white px-2 py-0.5 text-[11px] text-slate-600" x-text="c"></span>
+                      </template>
+                    </div>
                   </div>
                 </div>
+                <!-- Remedial Instruction -->
+                <div x-show="plan.remedialInstruction">
+                  <div @click="plan._riOpen = !plan._riOpen" class="flex cursor-pointer items-center gap-2 rounded-lg border border-orange-200 bg-orange-50 px-4 py-2.5">
+                    <span class="text-orange-500 shrink-0" x-text="plan._riOpen ? 'v' : '>'"></span>
+                    <span class="text-sm font-semibold text-orange-800">Aktiviti Pemulihan</span>
+                    <span class="ml-auto rounded-full bg-orange-200 px-2 py-0.5 text-[10px] font-medium text-orange-700" x-text="plan.remedialInstruction.activities.length + ' aktiviti'"></span>
+                  </div>
+                  <div x-show="plan._riOpen" x-collapse class="border border-t-0 border-orange-200 rounded-b-lg bg-orange-50/50 px-4 py-3 space-y-3">
+                    <div class="flex flex-wrap gap-2">
+                      <template x-for="s in plan.remedialInstruction.students" :key="s">
+                        <span class="rounded-full bg-orange-200 px-2.5 py-0.5 text-[11px] font-medium text-orange-800" x-text="s"></span>
+                      </template>
+                    </div>
+                    <template x-for="ra in plan.remedialInstruction.activities" :key="ra.id">
+                      <div class="rounded-lg border border-orange-200 bg-white p-3">
+                        <p class="text-sm font-semibold text-slate-800" x-text="ra.title"></p>
+                        <p class="mt-0.5 text-xs text-slate-600" x-text="ra.description"></p>
+                        <div class="mt-2 flex flex-wrap gap-1">
+                          <template x-for="str in ra.strategies" :key="str">
+                            <span class="rounded-md bg-orange-100 px-1.5 py-0.5 text-[10px] text-orange-700" x-text="str"></span>
+                          </template>
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+                <!-- Reflection -->
                 <div>
-                  <h4 class="mb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">&#x1F4DD; Refleksi</h4>
-                  <textarea x-model="plan.reflection" placeholder="Refleksi guru..." class="w-full rounded-lg border border-slate-300 bg-white p-3 text-xs text-slate-700 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100" rows="2"></textarea>
+                  <h4 class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">Refleksi</h4>
+                  <textarea x-model="plan.reflection" placeholder="Refleksi guru tentang pengajaran dan pembelajaran..."
+                    class="w-full rounded-lg border border-slate-300 bg-white p-3 text-xs text-slate-700 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100" rows="3"></textarea>
                 </div>
+                <!-- Actions -->
                 <div class="flex flex-wrap gap-2 border-t pt-4">
                   <button @click.stop="copyPlan(plan)" class="inline-flex items-center gap-1.5 rounded-lg border bg-white px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-50">
                     <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"/></svg> Salin
                   </button>
                   <button @click.stop="downloadPlanPDF(plan)" class="inline-flex items-center gap-1.5 rounded-lg border bg-white px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-50">
                     <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg> PDF
+                  </button>
+                  <button @click.stop="insertReflection(plan)" class="inline-flex items-center gap-1.5 rounded-lg border bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-700 hover:bg-amber-100">
+                    <span>R</span> Sisip Refleksi
                   </button>
                 </div>
               </div>
@@ -228,108 +301,195 @@ document.addEventListener('alpine:init', () => {
     selectedTeacher: localStorage.getItem('erphp_teacher') || '',
     selectedPenggal: parseInt(localStorage.getItem('erphp_penggal') || '1'),
     lessonPlans: [],
-
     tabs: [
-      { id: 'timetable', label: 'Jadual Waktu', icon: '&#x1F4C5;' },
-      { id: 'generate',  label: 'Jana RPH', icon: '&#x1F4CB;' },
+      { id: 'timetable', label: 'Jadual Waktu', icon: 'T' },
+      { id: 'generate',  label: 'Jana RPH', icon: 'R' },
     ],
-
     get TEACHERS() { return TEACHERS; },
     get PERIODS() { return PERIODS; },
     get DAYS() { return DAYS; },
-    get CLASSES() { return CLASSES; },
-
-    get selectedTeacherName() {
-      const t = TEACHERS[this.selectedTeacher];
-      return t ? t.name + ' (' + this.selectedTeacher + ')' : '';
-    },
-
-    get teacherSlots() {
-      if (!this.selectedTeacher) return [];
-      return getTeacherSlots(this.selectedTeacher, this.selectedPenggal);
-    },
-
+    get selectedTeacherName() { const t = TEACHERS[this.selectedTeacher]; return t ? t.name + ' (' + this.selectedTeacher + ')' : ''; },
+    get teacherSlots() { return this.selectedTeacher ? getTeacherSlots(this.selectedTeacher, this.selectedPenggal) : []; },
     get teacherSlotCount() { return this.teacherSlots.length; },
-    get teacherClasses() {
-      const classes = new Set(this.teacherSlots.map(s => s.class));
-      return [...classes].join(', ');
-    },
-
-    getSlotsFor(day, period) {
-      return this.teacherSlots.filter(s => s.day === day && (s.period === period || (s.period === 'P' && period === 'P')));
-    },
-
+    get teacherClassList() { return [...new Set(this.teacherSlots.map(s => s.class))].join(', '); },
+    getSlotsFor(day, period) { return this.teacherSlots.filter(s => s.day === day && (s.period === period || (s.period === 'P' && period === 'P'))); },
     slotClass(code) {
-      const colors = {
-        'BM': 'bg-red-50 border-red-200 text-red-800', 'BC': 'bg-amber-50 border-amber-200 text-amber-800',
-        'BI': 'bg-emerald-50 border-emerald-200 text-emerald-800', 'MT': 'bg-blue-50 border-blue-200 text-blue-800',
-        'SN': 'bg-teal-50 border-teal-200 text-teal-800', 'PM': 'bg-purple-50 border-purple-200 text-purple-800',
-        'PI': 'bg-green-50 border-green-200 text-green-800', 'PJ': 'bg-orange-50 border-orange-200 text-orange-800',
-        'PK': 'bg-rose-50 border-rose-200 text-rose-800', 'PSV': 'bg-yellow-50 border-yellow-200 text-yellow-800',
-        'MZ': 'bg-indigo-50 border-indigo-200 text-indigo-800', 'SJ': 'bg-cyan-50 border-cyan-200 text-cyan-800',
-        'RBT': 'bg-violet-50 border-violet-200 text-violet-800',
-      };
-      return colors[code] || 'bg-slate-50 border-slate-200 text-slate-700';
+      const m = { BM:'bg-red-50 border-red-200 text-red-800', BC:'bg-amber-50 border-amber-200 text-amber-800', BI:'bg-emerald-50 border-emerald-200 text-emerald-800', MT:'bg-blue-50 border-blue-200 text-blue-800', SN:'bg-teal-50 border-teal-200 text-teal-800', PM:'bg-purple-50 border-purple-200 text-purple-800', PI:'bg-green-50 border-green-200 text-green-800', PJ:'bg-orange-50 border-orange-200 text-orange-800', PK:'bg-rose-50 border-rose-200 text-rose-800', PSV:'bg-yellow-50 border-yellow-200 text-yellow-800', MZ:'bg-indigo-50 border-indigo-200 text-indigo-800', SJ:'bg-cyan-50 border-cyan-200 text-cyan-800', RBT:'bg-violet-50 border-violet-200 text-violet-800' };
+      return m[code] || 'bg-slate-50 border-slate-200 text-slate-700';
     },
-
+    actColor(phase) {
+      const m = { 'Set Induction':'bg-amber-100 text-amber-700', 'Pre-lesson':'bg-blue-100 text-blue-700', 'Lesson Development':'bg-green-100 text-green-700', 'Post-lesson':'bg-purple-100 text-purple-700', 'Closure':'bg-rose-100 text-rose-700' };
+      return m[phase] || 'bg-slate-100 text-slate-700';
+    },
     getUnitsFor(className, subjectCode) {
       const y = className.replace('Tahun ', 'Year ');
-      const key = `${y}|${subjectCode}`;
-      return (CURRICULUM_DATA[key] || {}).units || [];
+      return (CURRICULUM_DATA[y + '|' + subjectCode] || {}).units || [];
     },
-
-    getTimeForPeriod(period) {
-      const p = PERIODS.find(x => x[0] === period);
-      return p ? p[1] + '-' + p[2] : '';
-    },
-
+    getTimeForPeriod(period) { const p = PERIODS.find(x => x[0] === period); return p ? p[1] + '-' + p[2] : ''; },
     getDuration(period) {
-      const p = PERIODS.find(x => x[0] === period);
-      if (!p) return 30;
-      const [sh, sm] = p[1].split(':').map(Number);
-      const [eh, em] = p[2].split(':').map(Number);
+      const p = PERIODS.find(x => x[0] === period); if (!p) return 30;
+      const [sh, sm] = p[1].split(':').map(Number), [eh, em] = p[2].split(':').map(Number);
       return (eh * 60 + em) - (sh * 60 + sm);
     },
-
     generateId() { return crypto.randomUUID?.() ?? Date.now().toString(36) + Math.random().toString(36).slice(2); },
+    rand(n) { return Math.floor(Math.random() * n); },
+    pick(arr) { return arr.length ? arr[this.rand(arr.length)] : ''; },
+
+    // Subject-specific content standards and learning standards
+    getSubjectStandards(subject, yearNum, unitTitle) {
+      const s = subject;
+      // Return appropriate SK/SP arrays based on subject
+      const skMap = {
+        BM: ['1.1 Mendengar dan memberikan respons semasa berkomunikasi', '2.1 Asas membaca dan memahami', '3.1 Asas menulis', '4.1 Mengaplikasikan unsur keindahan dan kesantunan bahasa'],
+        BC: ['1.1 Mendengar dan bertutur dengan menggunakan ayat yang sesuai', '2.1 Membaca dan memahami bahan bacaan', '3.1 Menulis perkataan dan ayat yang bermakna', '4.1 Mengungkapkan idea secara kreatif'],
+        BI: ['1.1 Recognise and reproduce target language sounds', '2.1 Communicate simple information intelligibly', '3.1 Understand a variety of linear and non-linear texts', '4.1 Form letters and words in neat legible print'],
+        MT: ['1.0 Nombor dan Operasi', '2.0 Pengukuran dan Geometri', '3.0 Perkaitan dan Algebra', '4.0 Statistik dan Kebarangkalian'],
+        SN: ['1.0 Kemahiran Saintifik', '2.0 Penyiasatan Saintifik', '3.0 Sains Hayat', '4.0 Sains Fizikal'],
+        PM: ['1.0 Kepercayaan kepada Tuhan', '2.0 Baik Hati', '3.0 Bertanggungjawab', '4.0 Berterima Kasih', '5.0 Hemah Tinggi', '6.0 Hormat', '7.0 Kasih Sayang', '8.0 Keadilan', '9.0 Keberanian', '10.0 Kejujuran', '11.0 Kerajinan', '12.0 Kerjasama', '13.0 Kesederhanaan', '14.0 Toleransi'],
+        PI: ['1.0 Al-Quran', '2.0 Hadis', '3.0 Akidah', '4.0 Ibadah', '5.0 Sirah', '6.0 Adab', '7.0 Jawi'],
+        PJ: ['1.0 Gimnastik Asas', '2.0 Pergerakan Berirama', '3.0 Permainan Kategori Serangan', '4.0 Permainan Kategori Jaring', '5.0 Olahraga Asas', '6.0 Kecergasan'],
+        PK: ['1.0 Kesihatan Diri dan Reproduktif', '2.0 Penyalahgunaan Bahan', '3.0 Kesihatan Mental dan Emosi', '4.0 Kekeluargaan', '5.0 Kemahiran Interpersonal', '6.0 Pencegahan Penyakit', '7.0 Keselamatan Diri', '8.0 Pemakanan Sihat', '9.0 Pertolongan Cemas'],
+        PSV: ['1.0 Menggambar', '2.0 Membuat Corak dan Rekaan', '3.0 Membentuk dan Membuat Binaan', '4.0 Mengenal Kraf Tradisional'],
+        MZ: ['1.0 Bernyanyi', '2.0 Bermain Alat Perkusi', '3.0 Pergerakan Muzikal', '4.0 Apresiasi Muzik'],
+        SJ: ['1.0 Pengertian Sejarah', '2.0 Sejarah Tempat Tinggal', '3.0 Sejarah Negara', '4.0 Institusi Pemerintahan', '5.0 Kedaulatan Negara', '6.0 Warisan Negara', '7.0 Perjuangan Kemerdekaan', '8.0 Yang di-Pertuan Agong', '9.0 Identiti Negara'],
+        RBT: ['1.0 Keselamatan Bengkel', '2.0 Pengenalan kepada Reka Bentuk', '3.0 Teknologi Rumah Tangga', '4.0 Aplikasi Reka Bentuk', '5.0 Reka Bentuk Pengaturcaraan', '6.0 Teknologi Pertanian', '7.0 Penghasilan Projek'],
+      };
+      const spMap = {
+        BM: ['Mendengar, mengecam, dan menyebut semula ujaran', 'Membaca dan memahami maklumat tersurat dan tersirat', 'Menulis ayat dalam perenggan secara mekanis', 'Bercerita dengan menggunakan peribahasa', 'Menggunakan kata nama am dan khas dalam ayat'],
+        BC: ['Mendengar dan mengecam bunyi bahasa', 'Membaca dan memahami bahan bacaan', 'Menulis perkataan dan ayat yang bermakna', 'Mengungkapkan idea secara lisan'],
+        BI: ['Recognise and reproduce target language sounds', 'Understand meaning in a variety of familiar contexts', 'Read and understand simple texts', 'Write words and phrases with correct formation'],
+        MT: ['Mengenal pasti nilai nombor', 'Melaksanakan operasi asas', 'Menyelesaikan masalah rutin', 'Menaakul secara matematik'],
+        SN: ['Menggunakan kemahiran proses sains', 'Menjalankan eksperimen', 'Mengumpul dan merekod data', 'Membuat kesimpulan'],
+        PM: ['Menyenaraikan contoh nilai dalam kehidupan', 'Menjelaskan kepentingan nilai dalam masyarakat', 'Menghubungkait nilai dengan situasi harian', 'Mengaplikasikan nilai dalam kehidupan'],
+        PI: ['Membaca ayat Al-Quran dengan betul', 'Menjelaskan pengertian hadis', 'Melaksanakan ibadah dengan sempurna', 'Meneladani sirah Rasulullah'],
+        PJ: ['Melakukan kemahiran asas pergerakan', 'Mengaplikasikan konsep pergerakan', 'Melakukan aktiviti kecergasan', 'Menunjukkan sikap positif dalam sukan'],
+        PK: ['Mengamalkan gaya hidup sihat', 'Mengenal pasti faktor risiko kesihatan', 'Menangani stress dengan cara yang sihat', 'Membuat keputusan yang bertanggungjawab'],
+        PSV: ['Menghasilkan karya seni', 'Mengaplikasikan bahasa seni visual', 'Menggunakan pelbagai teknik', 'Menghargai karya seni'],
+        MZ: ['Bernyanyi dengan teknik yang betul', 'Bermain alat perkusi mengikut irama', 'Membuat pergerakan mengikut muzik', 'Mengapresiasi muzik pelbagai genre'],
+        SJ: ['Menyatakan pengertian sejarah', 'Mengenal pasti sumber sejarah', 'Menjelaskan peristiwa bersejarah', 'Menghargai warisan negara'],
+        RBT: ['Mematuhi peraturan keselamatan bengkel', 'Mengenal pasti elemen reka bentuk', 'Menghasilkan projek mengikut spesifikasi', 'Mengaplikasikan teknologi dalam kehidupan'],
+      };
+      const standards = skMap[s] || ['Standard Kandungan mengikut DSKP'];
+      const learnings = spMap[s] || ['Standard Pembelajaran mengikut DSKP'];
+      return { sk: standards.slice(0, 2), sp: learnings.slice(0, 2) };
+    },
+
+    getSubjectActivities(subject, unitTitle, duration) {
+      const s = subject;
+      const acts = {
+        BM: {
+          induction: ['Tayang video pendek berkaitan topik.', 'Soal jawab tentang pengalaman murid.', 'Bercerita berdasarkan gambar.', 'Main peranan situasi harian.', 'Nyanyian lagu bertema.'],
+          pre: ['Perkenal kosa kata baru menggunakan kad imbasan.', 'Perbincangan kumpulan kecil.', 'Padanan gambar dan perkataan.', 'Menyusun ayat mudah.', 'Mendengar dan mengulang sebutan.'],
+          dev: ['Murid membaca dan memahami teks.', 'Menulis ayat berdasarkan gambar.', 'Melengkapkan latihan dalam lembaran kerja.', 'Perbincangan dan pembentangan kumpulan.', 'Mencipta dialog dan main peranan.'],
+          post: ['Pembentangan hasil kerja.', 'Gallery walk dan maklum balas rakan.', 'Kuiz ringkas secara lisan.', 'Sesi soal jawab.', 'Persembahan sketsa pendek.'],
+          closure: ['Rumusan oleh guru.', 'Refleksi murid secara lisan.', 'Exit ticket: Satu perkara yang saya belajar.', 'Soalan untuk menguji kefahaman.', 'Menyanyi lagu pengukuhan.'],
+        },
+        MT: {
+          induction: ['Tunjuk cara menggunakan bahan maujud.', 'Soal kiraan cepat secara lisan.', 'Permainan matematik.', 'Tayang video konsep matematik.', 'Kaitkan dengan situasi harian.'],
+          pre: ['Ulang kaji prasyarat.', 'Perkenal istilah matematik.', 'Demonstrasi penggunaan alat.', 'Latihan lisan secara kelas.', 'Kad soalan kilat.'],
+          dev: ['Aktiviti kumpulan menyelesaikan masalah.', 'Latihan individu dalam buku latihan.', 'Penggunaan alat peraga.', 'Permainan matematik berkumpulan.', 'Kerja projek secara berpasangan.'],
+          post: ['Pembentangan hasil kerja kumpulan.', 'Semakan jawapan secara kelas.', 'Kuiz bertulis pendek.', 'Perbincangan strategi penyelesaian.', 'Gallery walk hasil kerja.'],
+          closure: ['Rumusan konsep utama.', 'Refleksi pemahaman murid.', 'Latihan pengukuhan.', 'Soalan untuk sesi akan datang.', 'Permainan matematik pantas.'],
+        },
+      };
+      const defaultActs = {
+        induction: ['Tayang bahan rangsangan.', 'Soal jawab lisan.', 'Permainan pendek.', 'Bercerita.', 'Tunjuk cara.'],
+        pre: ['Perkenal konsep utama.', 'Perbincangan kumpulan.', 'Kad imbasan.', 'Ulang kaji.', 'Demonstrasi.'],
+        dev: ['Aktiviti kumpulan.', 'Latihan individu.', 'Lembaran kerja.', 'Perbincangan.', 'Penyelesaian masalah.'],
+        post: ['Pembentangan.', 'Gallery walk.', 'Kuiz.', 'Sesi soal jawab.', 'Perkongsian hasil.'],
+        closure: ['Rumusan guru.', 'Refleksi murid.', 'Exit ticket.', 'Soalan pengukuhan.', 'Pengukuhan nilai.'],
+      };
+      const subjectActs = acts[s] || defaultActs;
+      const phases = ['Set Induction', 'Pre-lesson', 'Lesson Development', 'Post-lesson', 'Closure'];
+      const dur = [Math.max(5, Math.floor(duration * 0.15)), Math.max(5, Math.floor(duration * 0.15)), Math.max(15, Math.floor(duration * 0.5)), Math.max(5, Math.floor(duration * 0.1)), Math.max(3, Math.floor(duration * 0.1))];
+      const rolesT = ['Membimbing dan merangsang pemikiran', 'Menerangkan konsep dan memberi contoh', 'Memudahcara aktiviti pembelajaran', 'Menilai dan memberi maklum balas', 'Merumus dan membuat refleksi'];
+      const rolesS = ['Melibatkan diri secara aktif', 'Mendengar dan bertanya', 'Melaksanakan tugasan', 'Membentang dan berkongsi', 'Mereflek dan membuat rumusan'];
+      return phases.map((p, i) => ({
+        id: this.generateId(), phase: p,
+        description: this.pick(subjectActs[['induction','pre','dev','post','closure'][i]]).replace('topik', unitTitle || 'topik'),
+        duration: dur[i], teacherRole: rolesT[i], studentRole: rolesS[i],
+      }));
+    },
+
+    getTeachingAids(subject) {
+      const m = { BM: ['Buku teks BM', 'Kad imbasan', 'Lembaran kerja', 'Kertas mahjong', 'Pen penanda'], BC: ['Buku teks BC', 'Kad perkataan', 'Lembaran kerja', 'Bahan bercetak'], BI: ['Textbook', 'Flashcards', 'Worksheets', 'Picture cards', 'Audio'], MT: ['Buku teks MT', 'Alat peraga', 'Lembaran kerja', 'Kad nombor', 'Bahan maujud'], SN: ['Buku teks SN', 'Alat radas sains', 'Lembaran kerja', 'Bahan maujud', 'Video'], PM: ['Buku teks PM', 'Kad nilai', 'Lembaran kerja', 'Gambar situasi'], PJ: ['Kon', 'Bola', 'Tikar', 'Alat muzik', 'Wisel'], PK: ['Buku teks PK', 'Video', 'Lembaran kerja', 'Gambar'], PSV: ['Kertas lukisan', 'Pensel warna', 'Berus cat', 'Gunting', 'Gam'], MZ: ['Alat perkusi', 'Rakaman audio', 'Skor lagu'], SJ: ['Buku teks SJ', 'Peta', 'Gambar bersejarah', 'Video'], RBT: ['Alat keselamatan', 'Bahan projek', 'Alat tangan', 'Lembaran kerja'] };
+      return m[subject] || ['Buku teks', 'Lembaran kerja', 'Alat tulis', 'Bahan bantu mengajar'];
+    },
+    getMoralValues(subject) {
+      const m = { BM: ['Kasih sayang', 'Kerjasama', 'Hormat-menghormati', 'Bertanggungjawab'], BC: ['Ketabahan', 'Kerajinan', 'Hormat'], BI: ['Cooperation', 'Respect', 'Responsibility'], MT: ['Ketelitian', 'Kerjasama', 'Keyakinan'], SN: ['Kerjasama', 'Ketelitian', 'Kesedaran alam'], PM: ['Kepercayaan', 'Baik hati', 'Bertanggungjawab', 'Kerjasama'], PJ: ['Kerjasama', 'Semangat sukan', 'Ketabahan'], PK: ['Tanggungjawab', 'Prihatin', 'Yakin diri'], PSV: ['Kreativiti', 'Apresiasi', 'Ketekunan'], MZ: ['Apresiasi', 'Kerjasama', 'Kreativiti'], SJ: ['Cinta akan negara', 'Bangga sebagai rakyat Malaysia', 'Kerjasama'], RBT: ['Keselamatan', 'Ketelitian', 'Kreativiti', 'Kerjasama'] };
+      return m[subject] || ['Kerjasama', 'Hormat-menghormati', 'Tanggungjawab'];
+    },
+    getCCE(subject) {
+      const m = { BM: ['Bahasa', 'Nilai Murni', 'Kreativiti'], BC: ['Bahasa', 'Nilai Murni'], BI: ['Language', 'Values', 'Creativity'], MT: ['TMK', 'Kreativiti dan Inovasi', 'Nilai Murni'], SN: ['Sains dan Teknologi', 'Nilai Murni', 'Kelestarian Alam'], PM: ['Nilai Murni', 'Kewarganegaraan', 'Bahasa'], PJ: ['Kesihatan', 'Nilai Murni', 'Kreativiti'], PK: ['Kesihatan', 'Nilai Murni', 'Sains'], PSV: ['Kreativiti dan Inovasi', 'Bahasa', 'Apresiasi'], MZ: ['Apresiasi', 'Kreativiti', 'Bahasa'], SJ: ['Kewarganegaraan', 'Nilai Murni', 'Bahasa'], RBT: ['TMK', 'Kreativiti dan Inovasi', 'Keusahawanan'] };
+      return m[subject] || ['Bahasa', 'Kreativiti dan Inovasi', 'Nilai Murni'];
+    },
+    getObjectives(subject, unitTitle) {
+      const base = ['Pada akhir PdP, murid dapat memahami dan mengaplikasikan konsep dalam ' + (unitTitle || 'topik ini') + '.', 'Murid dapat menjawab soalan dan menunjukkan kefahaman dengan bimbingan.'];
+      const m = { BM: ['Pada akhir PdP, murid dapat membaca dan memahami teks dengan betul.', 'Murid dapat menulis ayat gramatis berdasarkan topik.', 'Murid dapat mengungkapkan idea secara lisan dengan jelas.'], MT: ['Pada akhir PdP, murid dapat menyelesaikan masalah matematik berkaitan topik.', 'Murid dapat menjelaskan langkah penyelesaian dengan betul.'], SN: ['Pada akhir PdP, murid dapat menjalankan eksperimen mengikut prosedur.', 'Murid dapat merekod dan menganalisis data dengan tepat.'], PM: ['Pada akhir PdP, murid dapat menerapkan nilai murni dalam kehidupan.', 'Murid dapat menghubungkait nilai dengan situasi harian.'] };
+      return m[subject] || base;
+    },
+
+    getSuccessCriteria(subject) {
+      const m = { BM: ['Saya boleh membaca teks dengan betul.', 'Saya boleh menulis ayat gramatis.', 'Saya boleh menjawab soalan kefahaman.'], MT: ['Saya boleh menyelesaikan masalah.', 'Saya boleh menerangkan langkah kerja.', 'Saya boleh menyemak jawapan.'], SN: ['Saya boleh menjalankan eksperimen.', 'Saya boleh merumuskan dapatan.'] };
+      return m[subject] || ['Saya boleh memahami konsep.', 'Saya boleh menyelesaikan tugasan.', 'Saya boleh menerangkan kepada rakan.'];
+    },
+
+    getRemedialStudents(className) {
+      const m = { 'Tahun 1': ['Murid murid linus'], 'Tahun 2': ['Murid murid linus'], 'Tahun 3': ['Lim Yi Sheng'], 'Tahun 4': ['Murid pemulihan'], 'Tahun 5': ['Murid pemulihan'], 'Tahun 6': ['Liew Wei Yang', 'Liew Zi Shun', 'Yong Han Peng'] };
+      return m[className] || ['Murid pemulihan khas'];
+    },
+    getRemedialActivities() {
+      const pool = [
+        { id: 1, title: 'Bimbingan Individu', description: 'Bimbingan secara individu oleh guru untuk murid yang memerlukan bantuan tambahan.', strategies: ['Bimbingan', 'Soalan lisan'], duration: 10 },
+        { id: 2, title: 'Latihan Berstruktur', description: 'Latihan dipermudah dengan arahan langkah demi langkah.', strategies: ['Latihan berpandu', 'Contoh'], duration: 10 },
+        { id: 3, title: 'Tunjuk Cara Ulangan', description: 'Demonstrasi semula oleh guru dengan penerangan lebih perlahan.', strategies: ['Demonstrasi', 'Pengulangan'], duration: 10 },
+        { id: 4, title: 'Bahan Bantu Visual', description: 'Menggunakan gambar rajah dan carta untuk menjelaskan konsep.', strategies: ['Visual', 'Konkrit'], duration: 10 },
+        { id: 5, title: 'Latihan Pengukuhan', description: 'Latihan tambahan yang lebih mudah untuk membina keyakinan.', strategies: ['Latihan', 'Pengukuhan'], duration: 10 },
+      ];
+      return pool.sort(() => Math.random() - 0.5).slice(0, 3);
+    },
+
+    getReflections(yearGroup) {
+      const refs = {
+        'Year 1': ['12 murid dapat menguasai objektif pembelajaran. 3 murid memerlukan bimbingan tambahan. Aktiviti set induksi menarik minat murid. Langkah pengajaran perlu dipercepatkan.', 'Pembelajaran berpusatkan murid berjaya meningkatkan penglibatan. BBM perlu pelbagaikan. Murud seronok dengan aktiviti kumpulan.'],
+        'Year 2': ['Objektif tercapai. Murid dapat menyelesaikan tugasan dengan baik. Aktiviti berkumpulan berjalan lancar. Masa perlu diurus dengan lebih efisien.', '15 daripada 18 murid mencapai objektif. Tiga murid perlu pemulihan. Aktiviti hands-on sangat berkesan.'],
+        'Year 3': ['Penguasaan murid memuaskan. PdP berjalan seperti dirancang. Murid memberi kerjasama yang baik. EMK diterapkan secara implicit.', 'Majoriti murid dapat menguasai standard pembelajaran. Beberapa murid perlukan latihan tambahan. Aktiviti kumpulan meningkatkan kolaborasi.'],
+        'Year 4': ['Objektif PdP tercapai. Murid aktif dalam perbincangan. Pentaksiran formatif menunjukkan perkembangan positif. PdP akan datang perlu lebih mencabar.', 'PdP berjalan lancar. Murid dapat mengaitkan pembelajaran dengan kehidupan harian. Aktiviti gallery walk sangat efektif.'],
+        'Year 5': ['Semua murid mencapai objektif minimum. Murid menunjukkan minat yang tinggi. Pembelajaran abad ke-21 diaplikasikan. Refleksi murid menunjukkan kefahaman.', 'Objektif PdP tercapai sepenuhnya. Murid berjaya menyelesaikan tugasan berkumpulan. Kemahiran berfikir aras tinggi diterapkan.'],
+        'Year 6': ['Penguasaan murid sangat memuaskan. PdP berjalan mengikut perancangan. Murid bersedia untuk sesi akan datang. Pentaksiran dijalankan secara menyeluruh.', 'Objektif tercapai. Murid dapat mengaplikasikan pengetahuan dalam situasi baru. Latihan pengukuhan diberikan.'],
+      };
+      return refs[yearGroup] || ['PdP berjalan lancar. Objektif tercapai. Murid memberi kerjasama.'],
+    },
 
     generateWeekRPH() {
-      if (!this.selectedTeacher) { alert('Pilih guru terlebih dahulu.'); return; }
+      if (!this.selectedTeacher) return;
       const plans = [];
       this.teacherSlots.forEach(slot => {
         const units = this.getUnitsFor(slot.class, slot.subject);
-        const unit = units.length ? units[Math.floor(Math.random() * units.length)] : null;
+        const unit = units.length ? units[this.rand(units.length)] : null;
         const duration = this.getDuration(slot.period);
         const time = this.getTimeForPeriod(slot.period);
+        const yearNum = slot.class.replace('Tahun ', 'Year ');
+        const stds = this.getSubjectStandards(slot.subject, yearNum, unit ? unit.title : '');
+        const remedialStudents = this.getRemedialStudents(slot.class);
+        const remedialActivities = this.getRemedialActivities();
 
         plans.push({
           id: this.generateId(),
-          class: slot.class,
-          subject: slot.subject,
-          subjectName: slot.subjectName,
-          day: slot.day,
-          period: slot.period,
-          time,
-          duration,
-          yearGroup: slot.class.replace('Tahun ', 'Year '),
-          unitTitle: unit ? unit.title : 'RPT Unit',
-          contentStandards: unit && unit.sk ? [unit.sk] : ['Standard Kandungan mengikut DSKP'],
-          learningStandards: unit && unit.sp ? [unit.sp] : ['Standard Pembelajaran mengikut DSKP'],
-          learningObjectives: [
-            `Pada akhir PdP, murid dapat memahami dan mengaplikasikan konsep dalam topik ini.`,
-            `Murid dapat menjawab soalan dan menunjukkan kefahaman dengan bimbingan.`,
-          ],
-          teachingAids: ['Buku teks', 'Lembaran kerja', 'Alat tulis', 'Bahan bantu mengajar'],
-          moralValues: ['Kerjasama', 'Hormat-menghormati', 'Tanggungjawab'],
-          cce: ['Bahasa', 'Kreativiti dan Inovasi', 'Nilai Murni'],
-          activities: [
-            { id: this.generateId(), phase: 'Set Induction', description: `Set induksi berkaitan ${unit ? unit.title : 'topik'}.`, duration: Math.max(5, Math.floor(duration * 0.15)), teacherRole: 'Membimbing', studentRole: 'Melibatkan diri' },
-            { id: this.generateId(), phase: 'Pre-lesson', description: 'Memperkenalkan konsep dan kosa kata utama.', duration: Math.max(5, Math.floor(duration * 0.15)), teacherRole: 'Menerangkan', studentRole: 'Mendengar dan menyoal' },
-            { id: this.generateId(), phase: 'Lesson Development', description: 'Aktiviti PdP utama. Murid melaksanakan tugasan.', duration: Math.max(15, Math.floor(duration * 0.5)), teacherRole: 'Memudahcara', studentRole: 'Melaksanakan tugasan' },
-            { id: this.generateId(), phase: 'Post-lesson', description: 'Murid membentang hasil kerja dan memberi maklum balas.', duration: Math.max(5, Math.floor(duration * 0.1)), teacherRole: 'Menilai', studentRole: 'Membentang' },
-            { id: this.generateId(), phase: 'Closure', description: 'Rumusan dan refleksi.', duration: Math.max(3, Math.floor(duration * 0.1)), teacherRole: 'Merumus', studentRole: 'Mereflek' },
-          ],
+          class: slot.class, subject: slot.subject, subjectName: slot.subjectName,
+          day: slot.day, period: slot.period, time, duration,
+          yearGroup: yearNum,
+          unitTitle: unit ? unit.title : 'Unit ' + slot.subjectName + ' ' + slot.class,
+          contentStandards: unit && unit.sk ? [unit.sk] : stds.sk,
+          learningStandards: unit && unit.sp ? [unit.sp] : stds.sp,
+          learningObjectives: this.getObjectives(slot.subject, unit ? unit.title : ''),
+          successCriteria: this.getSuccessCriteria(slot.subject),
+          activities: this.getSubjectActivities(slot.subject, unit ? unit.title : '', duration),
+          teachingAids: this.getTeachingAids(slot.subject),
+          moralValues: this.getMoralValues(slot.subject),
+          cce: this.getCCE(slot.subject),
           reflection: '',
+          remedialInstruction: { students: remedialStudents, activities: remedialActivities },
           _open: true,
         });
       });
@@ -337,69 +497,86 @@ document.addEventListener('alpine:init', () => {
       this.activeTab = 'generate';
     },
 
+    insertReflection(plan) {
+      const refs = this.getReflections(plan.yearGroup);
+      plan.reflection = refs[this.rand(refs.length)];
+    },
+    insertAllReflections() {
+      this.lessonPlans.forEach(p => { if (!p.reflection) this.insertReflection(p); });
+    },
     deletePlan(id) { this.lessonPlans = this.lessonPlans.filter(p => p.id !== id); },
 
     copyPlan(plan) {
       const lines = [
-        `RANCANGAN PENGAJARAN HARIAN`,
-        `Guru: ${this.selectedTeacherName}`,
-        `Kelas: ${plan.class}  |  Subjek: ${plan.subjectName}`,
-        `Hari: ${plan.day}  |  Masa: ${plan.time}  |  Tempoh: ${plan.duration} min`,
-        plan.contentStandards?.length ? `\nStandard Kandungan:\n${plan.contentStandards.join('\n')}` : '',
-        plan.learningStandards?.length ? `\nStandard Pembelajaran:\n${plan.learningStandards.join('\n')}` : '',
-        `\nObjektif:\n${plan.learningObjectives.map(o => '  • ' + o).join('\n')}`,
-        `\nAktiviti:\n${plan.activities.map(a => `  [${a.phase}] ${a.description} (${a.duration} min)`).join('\n')}`,
-        `\nBBM: ${plan.teachingAids.join(', ')}`,
-        `\nNilai: ${plan.moralValues.join(', ')}`,
-        `\nEMK: ${plan.cce.join(', ')}`,
+        'RANCANGAN PENGAJARAN HARIAN',
+        'Guru: ' + this.selectedTeacherName,
+        'Kelas: ' + plan.class + '  |  Subjek: ' + plan.subjectName,
+        'Hari: ' + plan.day + '  |  Masa: ' + plan.time + '  |  Tempoh: ' + plan.duration + ' min',
+        '',
+        'Standard Kandungan:',
+        ...plan.contentStandards.map(s => '  - ' + s),
+        '',
+        'Standard Pembelajaran:',
+        ...plan.learningStandards.map(s => '  - ' + s),
+        '',
+        'Objektif Pembelajaran:',
+        ...plan.learningObjectives.map(o => '  - ' + o),
+        '',
+        'Kriteria Kejayaan:',
+        ...plan.successCriteria.map(s => '  - ' + s),
+        '',
+        'Aktiviti:',
+        ...plan.activities.map(a => '  [' + a.phase + '] ' + a.description + ' (' + a.duration + ' min)'),
+        '',
+        'BBM: ' + plan.teachingAids.join(', '),
+        'Nilai Murni: ' + plan.moralValues.join(', '),
+        'EMK: ' + plan.cce.join(', '),
+        plan.reflection ? '\nRefleksi:\n' + plan.reflection : '',
+        '',
+        'Dijana oleh eRPH-PM | SJK(C) PIN MIN, BIDOR STESEN, PERAK',
       ];
       navigator.clipboard.writeText(lines.join('\n'));
     },
 
+    setAllReflections() { this.insertAllReflections(); },
+
     buildPDFHtml(plan) {
-      return `<div style="font-family:sans-serif;max-width:210mm;margin:0 auto;padding:1.5cm">
-        <div style="border-bottom:3px solid #4f46e5;padding-bottom:.75rem;margin-bottom:1.25rem">
-          <h1 style="font-size:1.3rem;font-weight:700;margin:0">RANCANGAN PENGAJARAN HARIAN</h1>
-          <div style="font-size:.8rem;color:#64748b;margin-top:.25rem">${plan.subjectName} | ${plan.class} | ${plan.day} | ${plan.time}</div>
-        </div>
-        ${plan.contentStandards?.length ? '<div><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Standard Kandungan</h2>' + plan.contentStandards.map(s => '<span style="background:#f1f5f9;border-radius:9999px;padding:.125rem .55rem;font-size:.72rem;color:#475569;display:inline-block;margin:.125rem">' + this.escapeHtml(s) + '</span>').join('') + '</div>' : ''}
-        ${plan.learningStandards?.length ? '<div style="margin-top:1rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Standard Pembelajaran</h2>' + plan.learningStandards.map(s => '<span style="background:#f1f5f9;border-radius:9999px;padding:.125rem .55rem;font-size:.72rem;color:#475569;display:inline-block;margin:.125rem">' + this.escapeHtml(s) + '</span>').join('') + '</div>' : ''}
-        <div style="margin-top:1rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Objektif Pembelajaran</h2><ul style="list-style:none;padding:0">${plan.learningObjectives.map(o => '<li style="padding:.2rem 0;font-size:.8rem">' + this.escapeHtml(o) + '</li>').join('')}</ul></div>
-        <div style="margin-top:1rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Aktiviti PdP</h2>${plan.activities.map(a => '<div style="border:1px solid #e2e8f0;border-radius:.5rem;padding:.65rem;margin-bottom:.6rem"><h3 style="font-size:.8rem;font-weight:600;color:#4f46e5;margin-bottom:.2rem">' + this.escapeHtml(a.phase) + ' <span style="font-size:.7rem;color:#94a3b8;font-weight:400">- ' + a.duration + ' min</span></h3><p style="font-size:.78rem;color:#475569;margin:0">' + this.escapeHtml(a.description) + '</p></div>').join('')}</div>
-        <div style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;font-size:.72rem;color:#475569"><div><strong>BBM:</strong> ${plan.teachingAids.join(', ')}</div><div><strong>Nilai:</strong> ${plan.moralValues.join(', ')}</div><div><strong>EMK:</strong> ${plan.cce.join(', ')}</div></div>
-        <div style="margin-top:1.5rem;padding-top:.75rem;border-top:2px solid #e2e8f0;font-size:.68rem;color:#94a3b8;text-align:center">Generated by eRPH-PM | SJK(C) PIN MIN, BIDOR STESEN, PERAK</div>
-      </div>`;
+      const esc = s => { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+      return '<div style="font-family:sans-serif;max-width:210mm;margin:0 auto;padding:1.5cm">' +
+        '<div style="border-bottom:3px solid #4f46e5;padding-bottom:.75rem;margin-bottom:1.25rem">' +
+        '<h1 style="font-size:1.3rem;font-weight:700;margin:0">RANCANGAN PENGAJARAN HARIAN</h1>' +
+        '<div style="font-size:.8rem;color:#64748b;margin-top:.25rem">' + esc(plan.subjectName) + ' | ' + esc(plan.class) + ' | ' + esc(plan.day) + ' | ' + esc(plan.time) + '</div>' +
+        '<div style="font-size:.75rem;color:#64748b;margin-top:.1rem">Guru: ' + esc(this.selectedTeacherName) + '</div>' +
+        '</div>' +
+        (plan.contentStandards.length ? '<div style="margin-top:.75rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Standard Kandungan</h2>' + plan.contentStandards.map(s => '<span style="background:#f1f5f9;border-radius:9999px;padding:.125rem .55rem;font-size:.72rem;color:#475569;display:inline-block;margin:.125rem">' + esc(s) + '</span>').join('') + '</div>' : '') +
+        (plan.learningStandards.length ? '<div style="margin-top:.75rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Standard Pembelajaran</h2>' + plan.learningStandards.map(s => '<span style="background:#f1f5f9;border-radius:9999px;padding:.125rem .55rem;font-size:.72rem;color:#475569;display:inline-block;margin:.125rem">' + esc(s) + '</span>').join('') + '</div>' : '') +
+        '<div style="margin-top:.75rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Objektif Pembelajaran</h2><ul style="list-style:none;padding:0">' + plan.learningObjectives.map(o => '<li style="padding:.2rem 0;font-size:.8rem;padding-left:1rem;position:relative">' + esc(o) + '</li>').join('') + '</ul></div>' +
+        '<div style="margin-top:.75rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Kriteria Kejayaan</h2><ul style="list-style:none;padding:0">' + plan.successCriteria.map(s => '<li style="padding:.2rem 0;font-size:.78rem;padding-left:1rem">' + esc(s) + '</li>').join('') + '</ul></div>' +
+        '<div style="margin-top:.75rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:.25rem;margin-bottom:.5rem">Aktiviti Pembelajaran</h2>' +
+        plan.activities.map(a => '<div style="border:1px solid #e2e8f0;border-radius:.5rem;padding:.65rem;margin-bottom:.5rem"><h3 style="font-size:.8rem;font-weight:600;color:#4f46e5;margin-bottom:.2rem">' + esc(a.phase) + ' <span style="font-size:.7rem;color:#94a3b8;font-weight:400">- ' + a.duration + ' min</span></h3><p style="font-size:.78rem;color:#475569;margin:0">' + esc(a.description) + '</p></div>').join('') + '</div>' +
+        (plan.remedialInstruction ? '<div style="margin-top:.75rem"><h2 style="font-size:.85rem;font-weight:700;color:#ea580c;border-bottom:2px solid #fed7aa;padding-bottom:.25rem;margin-bottom:.5rem">Aktiviti Pemulihan</h2>' + plan.remedialInstruction.students.map(s => '<span style="background:#fed7aa;color:#9a3412;border-radius:9999px;padding:.1rem .55rem;font-size:.68rem;display:inline-block;margin:.15rem">' + esc(s) + '</span>').join('') + plan.remedialInstruction.activities.map(a => '<div style="border:1px solid #fed7aa;border-radius:.5rem;padding:.5rem;margin-top:.5rem"><p style="font-size:.78rem;font-weight:600;color:#c2410c">' + esc(a.title) + '</p><p style="font-size:.72rem;color:#78350f">' + esc(a.description) + '</p></div>').join('') + '</div>' : '') +
+        '<div style="margin-top:.75rem;display:flex;gap:1rem;flex-wrap:wrap;font-size:.72rem;color:#475569"><div><strong>BBM:</strong> ' + plan.teachingAids.map(s => esc(s)).join(', ') + '</div><div><strong>Nilai:</strong> ' + plan.moralValues.map(s => esc(s)).join(', ') + '</div><div><strong>EMK:</strong> ' + plan.cce.map(s => esc(s)).join(', ') + '</div></div>' +
+        (plan.reflection ? '<div style="margin-top:.75rem;border-top:2px solid #e2e8f0;padding-top:.5rem"><h2 style="font-size:.85rem;font-weight:700;color:#4f46e5;margin-bottom:.35rem">Refleksi</h2><p style="font-size:.8rem;color:#475569;font-style:italic">' + esc(plan.reflection) + '</p></div>' : '') +
+        '<div style="margin-top:1rem;padding-top:.5rem;border-top:2px solid #e2e8f0;font-size:.65rem;color:#94a3b8;text-align:center">Dijana oleh eRPH-PM | SJK(C) PIN MIN, BIDOR STESEN, PERAK</div></div>';
     },
 
-    downloadPlanPDF(plan) { this.openPDFWindow(this.buildPDFHtml(plan), `RPH_${plan.subject}_${plan.class.replace(' ','')}_${plan.day}.pdf`); },
-
+    downloadPlanPDF(plan) {
+      this.openPDFWindow(this.buildPDFHtml(plan), 'RPH_' + plan.subject + '_' + plan.class.replace(' ','') + '_' + plan.day + '.pdf');
+    },
     exportAllPDF() {
       if (!this.lessonPlans.length) return;
-      const pages = this.lessonPlans.map((p, i) =>
-        '<div style="' + (i < this.lessonPlans.length - 1 ? 'page-break-after:always;' : '') + 'page-break-inside:avoid">' + this.buildPDFHtml(p) + '</div>'
-      ).join('');
-      this.openPDFWindow(pages, `eRPH_PM_${this.selectedTeacher}_All.pdf`);
+      const pages = this.lessonPlans.map((p, i) => '<div style="' + (i < this.lessonPlans.length - 1 ? 'page-break-after:always;' : '') + 'page-break-inside:avoid">' + this.buildPDFHtml(p) + '</div>').join('');
+      this.openPDFWindow(pages, 'eRPH_PM_' + this.selectedTeacher + '_All.pdf');
     },
-
     openPDFWindow(html, filename) {
       const w = window.open('', '_blank');
-      if (!w) { alert('Please allow popups.'); return; }
+      if (!w) { alert('Sila benarkan popup untuk muat turun PDF.'); return; }
       w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + filename + '</title><script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"><\/script><\/head><body style="margin:0;padding:0;font-family:sans-serif">' + html + '<script>setTimeout(function(){html2pdf().set({margin:[0.4,0.4,0.4,0.4],filename:' + JSON.stringify(filename) + ',image:{type:"jpeg",quality:0.98},html2canvas:{scale:2,useCORS:true,logging:false},jsPDF:{unit:"in",format:"a4",orientation:"portrait"}}).from(document.body).save().then(function(){window.close()})["catch"](function(){window.close()})},500)<\/script><\/body></html>');
       w.document.close();
     },
 
-    escapeHtml(str) {
-      if (!str) return '';
-      const d = document.createElement('div');
-      d.textContent = str;
-      return d.innerHTML;
-    },
-
     switchTab(id) { this.activeTab = id; this.sidebarOpen = false; },
-    onTeacherChange() {
-      localStorage.setItem('erphp_teacher', this.selectedTeacher);
-      localStorage.setItem('erphp_penggal', this.selectedPenggal);
-    },
+    onTeacherChange() { localStorage.setItem('erphp_teacher', this.selectedTeacher); localStorage.setItem('erphp_penggal', this.selectedPenggal); },
     init() {
       this.$watch('activeTab', v => localStorage.setItem('erphp_tab', v));
       this.$watch('selectedTeacher', v => localStorage.setItem('erphp_teacher', v));
