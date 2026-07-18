@@ -258,31 +258,37 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
   },
 
   pdf1(p){
-    const html = this.ht(p);
-    const doPrint = () => {
-      const w = window.open('','_blank');
-      if(!w){alert('Sila benarkan popup untuk PDF.');return;}
-      w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>RPH - '+p.sn+'</title><style>body{font-family:sans-serif;padding:1.5cm;color:#3A2A1A;line-height:1.6}table{border-collapse:collapse;width:100%}td,th{padding:4px 6px;border:1px solid #ddd}@media print{body{padding:0}}h2{color:#1E3A5F;font-size:1rem;margin-top:.8rem}.act-box{border:1.5px solid #C4956A;border-radius:8px;padding:8px;margin-bottom:6px;background:#FFF8F0}.act-box p{margin:2px 0}.tp-badge{display:inline-block;width:1.5rem;height:1.5rem;line-height:1.5rem;text-align:center;border-radius:50%;font-size:.65rem;font-weight:700}</style></head><body>'+html+'<script>setTimeout(function(){window.print();window.close()},500)<'+'/script></body></html>');
-      w.document.close();
-    };
-    if(typeof html2pdf !== 'undefined'){
-      const el=document.createElement('div');el.innerHTML=html;
-      html2pdf().set({margin:[0.4,0.4,0.4,0.4],filename:'RPH_'+p.s+'_'+p.c.replace(' ','')+'_'+p.d+'.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true,logging:false},jsPDF:{unit:'in',format:'a4',orientation:'portrait'}}).from(el).save().catch(function(){doPrint();});
-    }else{doPrint();}
+    const w = window.open('','_blank');
+    if(!w){alert('Sila benarkan popup untuk PDF.');return;}
+    w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>RPH - '+p.sn+'</title><style>
+      body{font-family:sans-serif;padding:1.5cm;color:#3A2A1A;line-height:1.6;max-width:210mm;margin:0 auto}
+      table{border-collapse:collapse;width:100%}td,th{padding:4px 6px;border:1px solid #ddd;text-align:left}
+      h1{font-size:1.3rem;color:#1E3A5F;border-bottom:3px solid #C4956A;padding-bottom:.5rem}
+      h2{font-size:.85rem;color:#1E3A5F;margin-top:.75rem;margin-bottom:.3rem}
+      .act{border:1.5px solid #C4956A;border-radius:6px;padding:8px;margin-bottom:5px;background:#FFF8F0}
+      .act p{margin:2px 0}.sk{display:inline-block;background:#FFF8F0;border:1px solid #C4956A30;border-radius:999px;padding:2px 8px;font-size:.7rem;margin:2px}
+      .tp{display:inline-block;width:1.5rem;height:1.5rem;line-height:1.5rem;text-align:center;border-radius:50%;font-size:.65rem;font-weight:700}
+      @media print{body{padding:0;margin:0 auto}div[style*="break-after"]{page-break-after:always}}
+      .footer{text-align:center;font-size:.6rem;color:#C4956A;margin-top:.75rem;padding-top:.3rem;border-top:1px solid #C4956A20}
+    </style></head><body>'+this.ht(p)+'<div class="footer">🇲🇾 Dijana oleh eRPH-PM</div><script>window.onload=function(){setTimeout(function(){window.print();window.close()},300)}<'+'/script></body></html>');
+    w.document.close();
   },
   pAll(){
     if(!this.rph.length)return;
     const ps=this.rph.map((p,i)=>'<div style="'+(i<this.rph.length-1?'page-break-after:always;':'')+'page-break-inside:avoid">'+this.ht(p)+'</div>').join('');
-    const doPrint = () => {
-      const w = window.open('','_blank');
-      if(!w){alert('Sila benarkan popup untuk PDF Semua.');return;}
-      w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>eRPH-PM All</title><style>body{font-family:sans-serif;padding:1.5cm;color:#3A2A1A;line-height:1.6}table{border-collapse:collapse;width:100%}td,th{padding:4px 6px;border:1px solid #ddd}.act-box{border:1.5px solid #C4956A;border-radius:8px;padding:8px;margin-bottom:6px;background:#FFF8F0}h2{color:#1E3A5F;font-size:1rem;margin-top:.8rem}.tp-badge{display:inline-block;width:1.5rem;height:1.5rem;line-height:1.5rem;text-align:center;border-radius:50%;font-size:.65rem;font-weight:700}@media print{body{padding:0}div[style*="page-break-after:always"]{page-break-after:always}}</style></head><body>'+ps+'<script>setTimeout(function(){window.print();window.close()},500)<'+'/script></body></html>');
-      w.document.close();
-    };
-    if(typeof html2pdf !== 'undefined'){
-      const el=document.createElement('div');el.innerHTML=ps;
-      html2pdf().set({margin:[0.4,0.4,0.4,0.4],filename:'eRPH_PM_All.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true,logging:false},jsPDF:{unit:'in',format:'a4',orientation:'portrait'}}).from(el).save().catch(function(){doPrint();});
-    }else{doPrint();}
+    const w = window.open('','_blank');
+    if(!w){alert('Sila benarkan popup untuk PDF Semua.');return;}
+    w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>eRPH-PM All</title><style>
+      body{font-family:sans-serif;padding:1.5cm;color:#3A2A1A;line-height:1.6;max-width:210mm;margin:0 auto}
+      table{border-collapse:collapse;width:100%}td,th{padding:4px 6px;border:1px solid #ddd;text-align:left}
+      h1{font-size:1.3rem;color:#1E3A5F;border-bottom:3px solid #C4956A;padding-bottom:.5rem}
+      h2{font-size:.85rem;color:#1E3A5F;margin-top:.75rem;margin-bottom:.3rem}
+      .act{border:1.5px solid #C4956A;border-radius:6px;padding:8px;margin-bottom:5px;background:#FFF8F0}
+      .act p{margin:2px 0}.tp{display:inline-block;width:1.5rem;height:1.5rem;line-height:1.5rem;text-align:center;border-radius:50%;font-size:.65rem;font-weight:700}
+      @media print{body{padding:0}div[style*="break-after"]{page-break-after:always}}
+      .footer{text-align:center;font-size:.6rem;color:#C4956A;margin-top:.75rem;padding-top:.3rem;border-top:1px solid #C4956A20}
+    </style></head><body>'+ps+'<script>window.onload=function(){setTimeout(function(){window.print();window.close()},500)}<'+'/script></body></html>');
+    w.document.close();
   },
 
   cp(p){
