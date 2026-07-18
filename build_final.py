@@ -33,12 +33,17 @@ html = html.replace(
     "ref1(p){const l=this.lg(p.s);const refs=REF[l]||REF['bm']||[];if(refs.length)p.ref=refs[Math.floor(Math.random()*refs.length)];}"
 )
 
-# Add lg() if missing
-if 'lg(s){' not in html:
+# Add lg(s,t) with teacher check if missing
+if 'lg(s){' not in html and 'lg(s,t){' not in html:
     html = html.replace(
         "tN(){const t=this.TEACHERS[this.tg];return t?t.n+' ('+this.tg+')':'';},",
-        "tN(){const t=this.TEACHERS[this.tg];return t?t.n+' ('+this.tg+')':'';},\n  lg(s){const m={BM:'bm',BI:'en'};return m[s]||'zh';},"
+        "tN(){const t=this.TEACHERS[this.tg];return t?t.n+' ('+this.tg+')':'';},\n  lg(s,t){if(t&&(t==='ARMAN'||t==='BALKIS'))return'bm';const m={BM:'bm',BI:'en'};return m[s]||'zh';},"
     )
+# Also update ref1 to pass teacher code
+html = html.replace(
+    "ref1(p){const l=this.lg(p.s);const refs=REF[l]||REF['bm']||[];if(refs.length)p.ref=refs[Math.floor(Math.random()*refs.length)];}",
+    "ref1(p){const l=this.lg(p.s,this.tg);const refs=REF[l]||REF['bm']||[];if(refs.length)p.ref=refs[Math.floor(Math.random()*refs.length)];}"
+)
 
 # Add curriculum-db script
 if 'curriculum-db.js' not in html:
