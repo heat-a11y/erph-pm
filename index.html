@@ -30,7 +30,9 @@
       <div class="ml-auto flex items-center gap-2 text-xs text-[#8B5A2B]/60"><span x-text="tg?sl().length+' slot':''"></span><template x-if="rph.length"><span class="rounded-full bg-[#C4956A]/20 px-2 py-0.5 text-[10px] font-medium text-[#8B5A2B]" x-text="rph.length+' RPH'"></span></template></div>
     </header>
     <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="back-to-top" id="backToTop">↑</button>
-
+  <script>
+    window.addEventListener('scroll',function(){var b=document.getElementById('backToTop');if(b){if(window.scrollY>300)b.classList.add('show');else b.classList.remove('show');}});
+  </script>
   <main class="flex-1 overflow-y-auto p-2 md:p-4">
 
       <!-- 📅 JADUAL -->
@@ -55,11 +57,10 @@
         <template x-if="!rph.length"><div class="flex h-48 items-center justify-center text-[#8B5A2B]/60 text-sm">⚡ Pilih guru dan minggu, kemudian Jana RPH.</div></template>
         <template x-if="rph.length"><div class="space-y-4"><template x-for="(p,i) in rph" :key="p.id">
 <div>
-  <div x-show="i===0||rph[i-1].d!==p.d" class="day-divider" 
-    :style="'border-color:'+({Isnin:'#60a5fa',Selasa:'#fb923c',Rabu:'#4ade80',Khamis:'#a78bfa',Jumaat:'#fb7185'})[p.d]+';background:'+({Isnin:'#eff6ff',Selasa:'#fff7ed',Rabu:'#f0fdf4',Khamis:'#faf5ff',Jumaat:'#fff1f2'})[p.d]">
-    <span style="font-size:1.5rem" x-text="({Isnin:'🌙',Selasa:'🔥',Rabu:'💡',Khamis:'⭐',Jumaat:'🌙'})[p.d]||'📅'"></span>
-    <span x-text="({Isnin:'Isnin (Monday)',Selasa:'Selasa (Tuesday)',Rabu:'Rabu (Wednesday)',Khamis:'Khamis (Thursday)',Jumaat:'Jumaat (Friday)'})[p.d]||p.d"></span>
-    <span class="divider-date" x-text="p.d"></span>
+  <div x-show="i===0||rph[i-1].d!==p.d" class="day-divider border-l-4" 
+    :style="'border-left-color:'+({Isnin:'#60a5fa',Selasa:'#fb923c',Rabu:'#4ade80',Khamis:'#a78bfa',Jumaat:'#fb7185'})[p.d]+';background:'+({Isnin:'#eff6ff',Selasa:'#fff7ed',Rabu:'#f0fdf4',Khamis:'#faf5ff',Jumaat:'#fff1f2'})[p.d]">
+    <span x-text="({Isnin:'🌙',Selasa:'🔥',Rabu:'💡',Khamis:'⭐',Jumaat:'🌙'})[p.d]||'📅'"></span>
+    <span style="font-weight:700;font-size:1.1rem" x-text="p.d"></span>
   </div>
           <div @click="p.o=!p.o" class="flex cursor-pointer items-center justify-between border-b border-[#C4956A]/10 px-3 py-2 sm:px-4 sm:py-2.5 gap-2"><div class="min-w-0 flex-1"><p class="text-sm font-semibold text-[#3A2A1A] truncate">📚 <span x-text="p.sn+' | '+p.c"></span></p><div class="cc-header-mobile text-xs text-[#8B5A2B]/70 mt-0.5"><span>📅 M<span x-text="p._wk"></span></span><span>|</span><span x-text="p.d"></span><span>|</span><span>⏰ P<span x-text="p.per"></span></span><span>(<span x-text="p.tm"></span>)</span><span>|</span><span class="meta-chip" x-text="p.dr+'min'"></span></div></div><span class="shrink-0 text-[#C4956A] text-xs ml-1" x-text="p.o?'▼':'▶'"></span></div>
           <div x-show="p.o" x-collapse class="p-4 space-y-4 text-xs">
@@ -302,8 +303,8 @@ body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
 [x-cloak]{display:none!important}
 @keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(196,149,106,0.4)}50%{opacity:0.8;box-shadow:0 0 0 6px rgba(196,149,106,0)}}
 .cc-act-textarea{word-break:break-word;overflow-wrap:break-word;white-space:pre-wrap;hyphens:auto;width:100%;max-width:100%;line-height:1.6;font-size:.7rem}
-.day-divider{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;border-radius:1rem;font-size:1.1rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin:1.25rem 0 .75rem;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:2px solid}
-.day-divider .divider-date{font-size:.75rem;font-weight:500;opacity:.75;margin-left:auto;text-transform:none;letter-spacing:normal}
+.day-divider{display:flex;align-items:center;gap:.5rem;padding:.5rem .75rem;border-radius:.75rem;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin:1rem 0 .5rem;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+.day-divider span:last-child{font-size:.65rem;font-weight:400;opacity:.7}
 .cc-header-mobile{display:flex;flex-wrap:wrap;gap:0.25rem 0.5rem;align-items:baseline}
 .cc-header-mobile > span{white-space:nowrap}
 @media(max-width:640px){.rph-card-header{flex-direction:column;align-items:flex-start;gap:0.25rem}
@@ -316,8 +317,9 @@ body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
 @media(prefers-reduced-motion:reduce){.btn-jana,.sidebar-transition{animation:none!important;transition:none!important}}
 
 /* ── Back to Top ── */
-.back-to-top{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#C4956A,#8B5A2B);color:#fff;border:2px solid #fff;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:all .2s;display:flex;align-items:center;justify-content:center}
-.back-to-top:hover{transform:scale(1.1);box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.back-to-top{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#C4956A,#8B5A2B);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 12px rgba(196,149,106,0.3);transition:all .2s;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none}
+.back-to-top.show{opacity:1;pointer-events:auto}
+.back-to-top:hover{transform:scale(1.1);box-shadow:0 4px 20px rgba(196,149,106,0.4)}
 /* ── Standardized Theme ── */
 :root{--primary:#1E3A5F;--accent:#C4956A;--bg:#FFF8F0;--text:#3A2A1A;--text-light:#8B5A2B;--border:#C4956A20;--card-bg:#fff;--sidebar-bg:linear-gradient(180deg,#1E3A5F,#162D4A)}
 body{background:var(--bg);color:var(--text)}
@@ -336,5 +338,7 @@ body{background:var(--bg);color:var(--text)}
   .meta-chip{font-size:.6rem;padding:.1rem .35rem}
 }
 </style>
+
+<div style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:99999"><button onclick="var e=document.querySelector('[class*="overflow-y-auto"]');if(e)e.scrollTo({top:0,behavior:'smooth'});else window.scrollTo({top:0,behavior:'smooth'})" style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#C4956A,#8B5A2B);color:#fff;border:2px solid #fff;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2)">↑</button></div>
 </body>
 </html>

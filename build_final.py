@@ -1,324 +1,77 @@
 #!/usr/bin/env python3
-"""Generate final eRPH-PM v4.0 index.html with all fixes."""
-import json, os
+"""Build final eRPH-PM with all features + databases."""
+import json, re
 
+BASE = '/tmp/v4_base.html'
 OUT = '/home/home/Documents/New OpenCode Project/erph-pm/index.html'
 
-# ─── 50 REMEDIAL ACTIVITIES ───
-REM = json.dumps([
-    {'t':'🧑‍🏫 Bimbingan Individu','d':'Bimbingan langkah-demi-langkah dengan soalan bimbingan.','st':['Bimbingan','Pengulangan']},
-    {'t':'📝 Latihan Berstruktur','d':'Lembaran kerja dipermudah dengan arahan langkah.','st':['Latihan berpandu','Contoh']},
-    {'t':'👀 Tunjuk Cara Ulangan','d':'Demonstrasi semula dengan penerangan perlahan.','st':['Demonstrasi','Pengulangan']},
-    {'t':'📊 Bahan Bantu Visual','d':'Gambar rajah, carta dan video untuk konsep visual.','st':['Visual','Peta konsep']},
-    {'t':'✏️ Latihan Pengukuhan','d':'Latihan mudah membina keyakinan.','st':['Latihan','Pengukuhan']},
-    {'t':'🤝 Pembelajaran Berpasangan','d':'Murid cemerlang dengan murid pemulihan.','st':['Bimbingan rakan','Kolaboratif']},
-    {'t':'🎲 Permainan Pendidikan','d':'Permainan papan atau digital.','st':['Permainan','Motivasi']},
-    {'t':'🃏 Kad Imbasan','d':'Kad imbasan berwarna untuk ingatan.','st':['Kad imbasan','Pengulangan']},
-    {'t':'🎵 Nyanyian dan Gerakan','d':'Lagu dan gerakan untuk kinestetik.','st':['Muzik','Gerakan']},
-    {'t':'🗺️ Peta Konsep Bergambar','d':'Peta konsep dengan gambar dan kata kunci.','st':['Visual','Organisasi']},
-    {'t':'📖 Bacaan Bergilir','d':'Baca bersama dengan bimbingan sebutan.','st':['Bacaan berpandu','Sebutan']},
-    {'t':'🔤 Dialog Strip','d':'Susun dialog dipotong mengikut urutan.','st':['Susunan','Urutan']},
-    {'t':'📄 Cloze Bergambar','d':'Teks cloze dengan gambar petunjuk.','st':['Cloze','Visual']},
-    {'t':'🔍 Error Hunt','d':'Cari kesalahan dalam ayat bergambar.','st':['Pengenalpastian','Pembetulan']},
-    {'t':'📝 Mini Whiteboard','d':'Tulis perkataan pada papan mini.','st':['Penulisan','Maklum balas']},
-    {'t':'🏃 Phonics Hopscotch','d':'Grid hopscotch huruf, lompat dan sebut.','st':['Kinestetik','Fonik']},
-    {'t':'📑 Word Family','d':'Susun kad ke keluarga perkataan.','st':['Pengelasan','Rakan sebaya']},
-    {'t':'📦 Realia Show & Tell','d':'Objek sebenar sebut dan ambil.','st':['Objek sebenar','Visual']},
-    {'t':'⚽ Question Pass','d':'Bola hantar, jawab soalan.','st':['Bertutur','Permainan']},
-    {'t':'🖼️ Talk-the-Picture','d':'Gambar besar dengan rangka ayat.','st':['Visual','Berpasangan']},
-    {'t':'✏️ Latihan Menulis','d':'Tulis dengan titik panduan.','st':['Penulisan','Mekanis']},
-    {'t':'🧮 Pengiraan Maujud','d':'Blok/biji untuk kira konkrit.','st':['Konkrit','Maujud']},
-    {'t':'📏 Garis Nombor','d':'Garis nombor tambah tolak.','st':['Visual','Konkrit']},
-    {'t':'🧠 Permainan Memori','d':'Kad terbalik cari padanan.','st':['Memori','Padanan']},
-    {'t':'📒 Buku Skrap','d':'Kumpul hasil pemulihan.','st':['Dokumentasi','Motivasi']},
-    {'t':'✂️ Potong dan Tampal','d':'Potong gambar tampal betul.','st':['Psikomotor','Pengelasan']},
-    {'t':'💬 Soalan Lisan','d':'Soalan lisan bimbingan tanpa tekanan.','st':['Lisan','Bimbingan']},
-    {'t':'💻 Pembelajaran Digital','d':'Quizizz/Google Forms interaktif.','st':['Digital','Interaktif']},
-    {'t':'📓 Jurnal Pembelajaran','d':'Jurnal apa dipelajari.','st':['Refleksi','Penulisan']},
-    {'t':'🎪 Stesen Pemulihan','d':'Stesen khas untuk murid belum kuasai.','st':['Kumpulan kecil','Bimbingan']},
-    {'t':'🎯 Sasaran Kata','d':'Bola baling sasaran sebut kata.','st':['Permainan','Sebutan']},
-    {'t':'🧩 Puzzle Pendidikan','d':'Puzzle gambar/perkataan.','st':['Puzzle','Visual']},
-    {'t':'🎤 Karaoke','d':'Nyanyi lagu dengan lirik.','st':['Muzik','Pengulangan']},
-    {'t':'📋 Checklist Kendiri','d':'Semak sendiri senarai semak.','st':['Kendiri','Refleksi']},
-    {'t':'🎭 Main Peranan','d':'Lakonan situasi harian.','st':['Lakonan','Sosial']},
-    {'t':'🔢 Kad Nombor','d':'Kad nombor warna nilai tempat.','st':['Visual','Matematik']},
-    {'t':'📖 Bacaan Bergambar','d':'Buku cerita bergambar besar.','st':['Bacaan','Visual']},
-    {'t':'🎲 Dadu Perkataan','d':'Dadu sebut perkataan.','st':['Permainan','Sebutan']},
-    {'t':'📝 Lembaran Imbuhan','d':'Latihan imbuhan.','st':['Tatabahasa','Latih tubi']},
-    {'t':'🧑‍🤝‍🧑 Kumpulan Fokus','d':'3-4 murid bimbingan intensif.','st':['Kumpulan kecil','Intensif']},
-    {'t':'🎯 Papan Ejaan','d':'Permainan ejaan.','st':['Ejaan','Permainan']},
-    {'t':'📸 Fotografi','d':'Gambar objek label perkataan.','st':['Kreatif','Visual']},
-    {'t':'🎬 Video Pendek','d':'Tonton video jawab soalan.','st':['Visual','Digital']},
-    {'t':'🧩 Teka Silang Kata','d':'Silang kata gambar petunjuk.','st':['Kosa kata','Pengukuhan']},
-    {'t':'📑 Kad Tugasan','d':'Kad arahan jelas harian.','st':['Rutin','Bimbingan']},
-    {'t':'🎤 Bacaan Berirama','d':'Baca ikut irama/rap.','st':['Bacaan','Irama']},
-    {'t':'🎨 Mewarna','d':'Mewarna dengan konsep.','st':['Mewarna','Visual']},
-    {'t':'📋 Panduan Mini','d':'Buku panduan topik sukar.','st':['Kreatif','Dokumentasi']},
-    {'t':'🤖 Gamifikasi','d':'Lencana mata tahap motivasi.','st':['Gamifikasi','Motivasi']},
-    {'t':'📞 Telefon Bual','d':'Telefon cawan kertas lisan.','st':['Bertutur','Mendengar']},
-], ensure_ascii=False)
-
-# Read base HTML
-BASE = '/tmp/index_backup.html'
 with open(BASE, 'r') as f:
     html = f.read()
 
-# NOTE: This backup is from the OLD v3.0. We need the build_app.py to work
-# but since it has syntax issues, let's just write the COMPLETE final HTML directly
+# Remove any existing REF/REM const declarations
+html = re.sub(r'\nconst REF\s*=\s*\{.*?\};', '\n', html, flags=re.DOTALL)
+html = re.sub(r'\nconst REM\s*=\s*\[.*?\];', '\n', html, flags=re.DOTALL)
 
-# Instead of patching, let me generate the final complete HTML
-# by writing it with all changes embedded
+# Build databases
+REF = {'bm':['Seramai 12 orang murid dapat menguasai objektif pembelajaran pada hari ini.','Objektif PdP tercapai. Murid dapat menyelesaikan tugasan yang diberikan dengan baik.','15 daripada 18 orang murid mencapai objektif pembelajaran.','Penguasaan murid pada hari ini adalah memuaskan.','Majoriti murid dapat menguasai standard pembelajaran.','Objektif PdP tercapai sepenuhnya.','PdP berjalan lancar. Murid dapat mengaitkan pembelajaran dengan kehidupan harian.','Semua murid mencapai objektif minimum yang ditetapkan.','Objektif PdP tercapai. Murid berjaya menyelesaikan tugasan berkumpulan.','Penguasaan murid sangat memuaskan.','Objektif tercapai. Murid dapat mengaplikasikan pengetahuan dalam situasi baru.','Seramai 10 orang murid mencapai tahap penguasaan 4 dan ke atas.','PdP berjalan dengan lancar.','Murid dapat bekerjasama dalam kumpulan.','Murid menunjukkan minat yang tinggi.','PdP hari ini berjalan lancar. 80% murid mencapai objektif.','Aktiviti pembelajaran yang pelbagai membantu mengekalkan minat murid.','Objektif PdP tercapai.','PdP berjalan dengan baik.','Seramai 14 orang murid mencapai objektif.','Objektif PdP tercapai keseluruhannya.','Murid sangat bersemangat semasa aktiviti kumpulan.','PdP berjalan seperti yang dirancang.','Majoriti murid mencapai objektif.','PdP berjalan lancar. Murid dapat mengenal pasti konsep utama.','Objektif PdP tercapai dengan baik.','Murid dapat menguasai standard pembelajaran yang ditetapkan.','PdP hari ini sangat menyeronokkan.','Objektif PdP tercapai. Murid menunjukkan peningkatan.','Keseluruhan PdP berjalan dengan jayanya.','PdP hari ini berjaya menarik minat murid.','Objektif pembelajaran tercapai.','Murid dapat menguasai kemahiran yang diajar.','PdP berjalan lancar. Murid aktif bertanya.','Objektif PdP tercapai sepenuhnya.','Seramai 16 orang murid mencapai objektif.','Murid dapat mengaplikasikan pengetahuan.','PdP hari ini berjaya meningkatkan kemahiran berfikir kritis.','Objektif PdP tercapai. Penggunaan BBM yang kreatif.','Majoriti murid dapat menyelesaikan tugasan.','PdP berjalan lancar dengan penglibatan aktif.','Murid dapat menguasai kemahiran bertutur dengan yakin.','Murid menunjukkan sikap positif.','PdP hari ini berjaya mencapai objektif.','Objektif PdP tercapai. Murid dapat mengenal pasti konsep.','Murid seronok dengan aktiviti yang disediakan.','PdP berjalan lancar mengikut perancangan.','Objektif PdP tercapai. Murid dapat menjawab soalan.','Majoriti murid menunjukkan perkembangan positif.','PdP hari ini sangat memberangsangkan.'],
+'en':['12 pupils achieved the objectives today. 3 need additional guidance.','Learning objectives achieved. Pupils completed tasks well.','15 out of 18 pupils achieved the learning objectives.','Pupil mastery today was satisfactory.','The majority of pupils mastered the learning standards.','Learning objectives fully achieved.','The lesson went well. Pupils related learning to daily life.','All pupils achieved the minimum objectives.','Learning objectives achieved. Pupils completed group tasks excellently.','Pupil mastery was very satisfactory.','Objectives achieved. Pupils applied knowledge in new situations.','10 pupils achieved mastery level 4 and above.','The lesson went smoothly.','Learning objectives achieved. Pupils cooperated in groups.','Pupils showed high interest in the topic.','80% of pupils achieved the objectives.','Varied learning activities maintained pupil interest.','Objectives achieved. Pupils mastered the skills taught.','The lesson went well. Pupils paid attention.','14 pupils achieved the objectives.','Learning objectives largely achieved.','Pupils were very enthusiastic during group activities.','The lesson proceeded as planned.','Objectives achieved. Pupils answered questions correctly.','Majority of pupils achieved objectives.','The lesson went well. Pupils identified key concepts.','Learning objectives achieved well.','Pupils mastered the prescribed learning standards.','Today\'s lesson was very enjoyable.','Objectives achieved. Pupils showed improvement.','The overall lesson was successful.','Today\'s lesson engaged pupils through interactive activities.','Learning objectives achieved through technology integration.','Pupils mastered the skills taught with guidance.','The lesson went smoothly. Pupils asked questions.','Learning objectives fully achieved. Pupil presentations showed effort.','16 pupils achieved the objectives. 2 need attention.','Pupils applied knowledge in new situations.','Today\'s lesson improved critical thinking skills.','Objectives achieved. Creative use of teaching aids.','Majority of pupils completed the given tasks.','The lesson proceeded with active participation.','Pupils mastered speaking skills confidently.','Pupils showed positive attitudes.','Today\'s lesson achieved the set objectives.','Pupils enjoyed the activities provided.','The lesson proceeded according to plan.','Objectives achieved. Pupils answered correctly.','Majority of pupils showed positive development.','Today\'s lesson was very encouraging.'],
+'zh':['今天有12名学生达到了学习目标。3名学生需要额外指导。','教学目标达成。学生能够很好地完成分配的任务。','15名/18名学生达到了学习目标。','今天学生的掌握程度令人满意。','大多数学生掌握了学习标准。','教学目标完全达成。','教学顺利。学生能够将学习与日常生活联系起来。','所有学生都达到了最低目标。','教学目标达成。学生出色地完成了小组任务。','学生的掌握程度非常令人满意。','目标达成。学生能够在新情况下应用知识。','10名学生达到掌握水平4及以上。','教学顺利。','教学目标达成。学生在小组中合作并完成了任务。','学生对所教主题表现出很高的兴趣。','80%的学生达到了目标。','多样化的学习活动保持了学生的兴趣。','目标达成。学生掌握了所教的技能。','教学顺利。学生全程专心听讲。','14名学生达到了目标。','教学目标大体达成。','学生在小组活动中非常积极。','教学按计划进行。','目标达成。学生正确回答了问题。','大多数学生达到了目标。','教学顺利。学生能够识别和理解关键概念。','教学目标很好地达成。','学生掌握了规定的学习标准。','今天的课非常有趣。学生在玩中学。','目标达成。学生显示出进步。','整体教学成功。','今天的课通过互动活动成功吸引了学生。','教学目标达成。科技融入教学提高了参与度。','学生在教师指导下掌握了所教的技能。','教学顺利。学生积极提问。','教学目标完全达成。学生的呈现展示出努力。','16名学生达到了目标。2名学生需要特别关注。','学生能够在新情况下应用知识。','今天的课成功提高了批判性思维能力。','目标达成。教具的创造性使用吸引了兴趣。','大多数学生完成了分配的任务。','教学顺利进行，学生积极参与。','目标达成。学生自信地掌握了口语技能。','学生表现出积极的态度和兴趣。','今天的课成功达到了设定的目标。','学生喜欢所提供的活动。','教学按计划进行。','目标达成。学生正确回答了问题。','大多数学生显示出积极的发展。','今天的课非常令人鼓舞。']}
+REM = [{'t':'🧑‍🏫 Bimbingan Individu','d':'Bimbingan langkah-demi-langkah.','st':['Bimbingan','Ulang']},{'t':'📝 Latihan Berstruktur','d':'Lembaran dipermudah.','st':['Latihan','Contoh']},{'t':'👀 Tunjuk Cara','d':'Demonstrasi perlahan.','st':['Demo','Ulang']},{'t':'📊 Bahan Visual','d':'Gambar rajah, carta.','st':['Visual','Peta']},{'t':'✏️ Pengukuhan','d':'Latihan mudah.','st':['Latih','Yakin']},{'t':'🤝 Berpasangan','d':'Cemerlang + pemulihan.','st':['Rakan','Bantu']},{'t':'🎲 Permainan','d':'Papan/digital.','st':['Main','Motivasi']},{'t':'🃏 Kad Imbasan','d':'Kad ingatan.','st':['Ulang','Visual']},{'t':'🎵 Nyanyian','d':'Lagu gerakan.','st':['Muzik','Gerak']},{'t':'🗺️ Peta Konsep','d':'Peta bergambar.','st':['Visual','Peta']},{'t':'📖 Bacaan Bergilir','d':'Baca bersama.','st':['Baca','Bimbing']},{'t':'🔤 Dialog Strip','d':'Susun dialog.','st':['Susun','Urut']},{'t':'📄 Cloze Gambar','d':'Teks cloze gambar.','st':['Cloze','Visual']},{'t':'🔍 Error Hunt','d':'Cari kesalahan.','st':['Cari','Betul']},{'t':'📝 Mini Whiteboard','d':'Papan mini tulis.','st':['Tulis','Cepat']},{'t':'🏃 Hopscotch','d':'Grid lompat sebut.','st':['Gerak','Sebut']},{'t':'📑 Word Family','d':'Keluarga kata.','st':['Kelaskan','Rakan']},{'t':'📦 Realia','d':'Objek sebenar.','st':['Objek','Sebut']},{'t':'⚽ Question Pass','d':'Bola jawab.','st':['Bual','Main']},{'t':'🖼️ Talk Picture','d':'Gambar ayat.','st':['Visual','Pasang']},{'t':'✏️ Menulis','d':'Titik panduan.','st':['Tulis','Pandu']},{'t':'🧮 Pengiraan','d':'Blok kira.','st':['Kira','Konkrit']},{'t':'📏 Garis Nombor','d':'Garis tambah.','st':['Visual','Nombor']},{'t':'🧠 Memori','d':'Kad padan.','st':['Ingat','Padan']},{'t':'📒 Buku Skrap','d':'Kumpul kerja.','st':['Kumpul','Motivasi']},{'t':'✂️ Potong Tampal','d':'Potong gam.','st':['Kreatif','Tampal']},{'t':'💬 Soalan Lisan','d':'Soalan tanpa tekanan.','st':['Lisan','Bimbing']},{'t':'💻 Digital','d':'Quizizz/Forms.','st':['Digital','Klik']},{'t':'📓 Jurnal','d':'Tulis belajar.','st':['Tulis','Refleksi']},{'t':'🎪 Stesen','d':'Stesen khas.','st':['Kecil','Bimbing']},{'t':'🎯 Sasaran Kata','d':'Bola sasaran.','st':['Main','Sebut']},{'t':'🧩 Puzzle','d':'Puzzle gambar.','st':['Puzzle','Fikir']},{'t':'🎤 Karaoke','d':'Nyanyi lirik.','st':['Muzik','Ulang']},{'t':'📋 Checklist','d':'Semak sendiri.','st':['Semak','Diri']},{'t':'🎭 Main Peranan','d':'Lakonan situasi.','st':['Lakon','Sosial']},{'t':'🔢 Kad Nombor','d':'Kad nilai.','st':['Visual','Nombor']},{'t':'📖 Baca Bergambar','d':'Buku cerita.','st':['Baca','Visual']},{'t':'🎲 Dadu Kata','d':'Dadu sebut.','st':['Main','Sebut']},{'t':'📝 Imbuhan','d':'Latihan imbuhan.','st':['Tatabahasa','Tulis']},{'t':'🧑‍🤝‍🧑 Fokus','d':'Kumpulan intensif.','st':['Kecil','Fokus']},{'t':'🎯 Papan Ejaan','d':'Permainan eja.','st':['Eja','Main']},{'t':'📸 Fotografi','d':'Gambar label.','st':['Kreatif','Visual']},{'t':'🎬 Video','d':'Tonton jawab.','st':['Visual','Dengar']},{'t':'🧩 Silang Kata','d':'Silang gambar.','st':['Fikir','Kosa']},{'t':'📑 Kad Tugasan','d':'Arahan hari.','st':['Rutin','Bimbing']},{'t':'🎤 Bacaan Berirama','d':'Baca irama.','st':['Baca','Irama']},{'t':'🎨 Mewarna','d':'Mewarna konsep.','st':['Warna','Visual']},{'t':'📋 Panduan Mini','d':'Buku panduan.','st':['Buat','Rujuk']},{'t':'🤖 Gamifikasi','d':'Lencana motivasi.','st':['Main','Motivasi']},{'t':'📞 Telefon Bual','d':'Cawan kertas.','st':['Bual','Dengar']}]
 
-H = '''<!DOCTYPE html>
-<html lang="ms">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>🇲🇾 eRPH-PM - Rancangan Pengajaran Harian Malaysia</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="curriculum-db.js"></script>
-</head>
-<body class="bg-[#FFF8F0] text-[#3A2A1A] font-sans antialiased" x-data="app()">
-<div class="flex h-screen">
-  <aside class="sidebar-transition fixed inset-y-0 left-0 z-40 flex w-72 flex-col text-white md:static" x-bind:class="sO?'translate-x-0':'-translate-x-full md:translate-x-0'" style="background:linear-gradient(180deg,#1E3A5F,#162D4A)">
-    <div class="flex h-14 items-center gap-2 border-b border-white/10 px-4"><span class="flex h-8 w-8 items-center justify-center rounded-xl bg-[#C4956A] text-sm font-bold">🇲🇾</span><div><p class="text-sm font-semibold">eRPH-PM</p><p class="text-[9px] text-blue-200/70">SJK(C) PIN MIN, BIDOR</p></div></div>
-    <div class="border-b border-white/10 p-3"><p class="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-blue-300/50">👨‍🏫 Guru</p>
-      <select x-model="tg" @change="sv()" class="w-full rounded-lg bg-slate-800/50 px-2.5 py-2 text-xs text-slate-200 border border-slate-600"><option value="">-- Pilih Guru --</option><template x-for="(info,code) in D.TEACHERS" :key="code"><option :value="code" x-text="info.n+' ('+code+')'+(info.c?' '+info.c:'')"></option></template></select>
-    </div>
-    <nav class="flex-1 space-y-0.5 overflow-y-auto p-2">
-      <template x-for="tab in tabs" :key="tab.id">
-        <button @click="sw(tab.id)" class="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-xs font-medium transition-colors" :class="a===tab.id?'bg-[#C4956A]/20 text-[#C4956A]':'text-blue-200/80 hover:bg-white/10 hover:text-white'"><span x-text="tab.i"></span><span x-text="tab.l"></span><span x-show="tab.c" class="ml-auto rounded-full bg-[#C4956A]/20 px-1.5 py-0.5 text-[9px] text-[#C4956A]" x-text="tab.c"></span></button>
-      </template>
-    </nav>
-    <div class="border-t border-white/10 p-3 text-center text-[9px] text-blue-300/40">🇲🇾 v4.0 | Dibuat dengan ❤️ kat Malaysia</div>
-  </aside>
-  <div class="flex min-w-0 flex-1 flex-col">
-    <header class="flex h-14 items-center gap-2 border-b border-[#C4956A]/10 bg-[#FFF8F0]/95 backdrop-blur-md px-3 shadow-sm">
-      <button @click="sO=!sO" class="rounded-lg p-1.5 text-[#8B5A2B] hover:bg-[#C4956A]/10 md:hidden"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></button>
-      <div class="flex items-center gap-1.5 text-xs font-medium text-[#8B5A2B]"><span x-text="tI()"></span><span x-text="tL()"></span></div>
-      <div class="ml-auto flex items-center gap-2 text-xs text-[#8B5A2B]/60"><span x-text="tg?sl().length+' slot':''"></span><template x-if="rph.length"><span class="rounded-full bg-[#C4956A]/20 px-2 py-0.5 text-[10px] font-medium text-[#8B5A2B]" x-text="rph.length+' RPH'"></span></template></div>
-    </header>
-    <main class="flex-1 overflow-y-auto p-2 md:p-4">
+ref_js = json.dumps(REF, ensure_ascii=False)
+rem_js = json.dumps(REM, ensure_ascii=False)
 
-      <!-- 📅 JADUAL -->
-      <section x-show="a==='tt'" x-cloak class="max-w-6xl mx-auto">
-        <template x-if="!tg"><div class="flex h-48 items-center justify-center text-[#8B5A2B]/60 text-sm">👈 Pilih guru dari sidebar untuk lihat jadual.</div></template>
-        <template x-if="tg">
-          <div><div class="mb-2 flex items-center justify-between"><h2 class="text-base font-bold text-[#3A2A1A]">📅 Jadual Waktu: <span x-text="tN()"></span></h2><button @click="gen()" x-show="sl().length" class="btn-jana inline-flex items-center gap-1 rounded-lg px-3.5 py-2 text-xs font-semibold text-white shadow-md" style="background:linear-gradient(135deg,#C4956A,#8B5A2B)">⚡ Jana RPH</button></div>
-          <div class="overflow-x-auto rounded-xl border border-[#C4956A]/20 bg-white shadow-sm"><table class="w-full min-w-[760px] text-xs"><thead><tr class="border-b bg-[#FFF8F0]"><th class="px-1.5 py-2 text-left font-semibold text-[#8B5A2B] w-20">⏰ Masa</th><template x-for="d in D.DAYS" :key="d"><th class="px-1.5 py-2 text-center font-semibold text-[#8B5A2B]" x-text="d"></th></template></tr></thead>
-          <tbody><template x-for="per in D.PERIODS" :key="per[0]"><tr class="border-b border-[#C4956A]/10" :class="per[0]==='REHAT'?'bg-amber-50/50':''"><td class="px-1.5 py-1 text-[10px] font-medium text-[#8B5A2B]/60" x-text="per[0]+' '+per[1]+'-'+per[2]"></td><template x-for="d in D.DAYS" :key="d"><td @click="editSlot(tg,d,per[0])" class="px-0.5 py-0.5 text-center border-l border-[#C4956A]/10 align-top cursor-pointer hover:bg-[#C4956A]/5 transition-colors min-h-[32px]"><template x-for="s in gS(d,per[0])" :key="s.c+s.s"><div class="rounded border px-1 py-0.5 text-[10px] leading-tight mb-0.5" :class="clr(s.s)"><div class="font-semibold text-[9px]" x-text="s.n"></div><div class="text-[8px] opacity-70" x-text="s.c.replace('Tahun ','Y')"></div></div></template></td></template></tr></template></tbody></table></div><p class="mt-1 text-[9px] text-[#8B5A2B]/40 italic">💡 Klik pada petak kosong untuk tambah subjek</p></div>
-        </template>
-      </section>
+# Inject REF/REM as const before Alpine init  
+html = html.replace("document.addEventListener('alpine:init", f"const REF = {ref_js};\nconst REM = {rem_js};\n\ndocument.addEventListener('alpine:init")
 
-      <!-- ⚡ JANA RPH -->
-      <section x-show="a==='rph'" x-cloak class="max-w-4xl mx-auto">
-        <div class="mb-3 flex flex-wrap items-center gap-2">
-          <button @click="gen()" x-show="tg" class="inline-flex items-center gap-1 rounded-lg px-4 py-2 text-xs font-semibold text-white shadow-md" style="background:linear-gradient(135deg,#C4956A,#8B5A2B)">⚡ Jana RPH</button>
-          <select x-model="currentWeek" @change="sv()" class="rounded-lg border border-[#C4956A]/20 bg-white px-2 py-1.5 text-xs font-medium text-[#3A2A1A]"><option value="">📅 Pilih Minggu</option><template x-for="w in D.TAKWIM" :key="w.m"><option :value="w.m" x-text="(w.l?w.l:'Minggu '+w.m+' ('+w.s+' - '+w.e+')')" :disabled="w.m===0"></option></template></select>
-          <button @click="iRef()" x-show="rph.length" class="inline-flex items-center gap-1 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 hover:bg-amber-100">💬 Sisip Refleksi</button>
-          <button @click="pAll()" x-show="rph.length" class="inline-flex items-center gap-1 rounded-lg border border-[#C4956A]/20 bg-white px-3 py-2 text-xs font-medium text-[#8B5A2B] hover:bg-[#FFF8F0]">📄 PDF Semua</button>
-          <button @click="rph=[];sv()" x-show="rph.length" class="rounded-lg px-3 py-1.5 text-xs font-medium text-red-500 hover:bg-red-50">🗑️ Padam</button>
-        </div>
-        <template x-if="!rph.length"><div class="flex h-48 items-center justify-center text-[#8B5A2B]/60 text-sm">⚡ Pilih guru dan minggu, kemudian Jana RPH.</div></template>
-        <template x-if="rph.length"><div class="space-y-4"><template x-for="(p,i) in rph" :key="p.id"><div class="rounded-xl border border-[#C4956A]/20 bg-white shadow-sm">
-          <div @click="p.o=!p.o" class="flex cursor-pointer items-center justify-between border-b border-[#C4956A]/10 px-4 py-2.5"><div class="min-w-0"><p class="text-sm font-semibold text-[#3A2A1A] truncate">📚 <span x-text="p.sn+' | '+p.c"></span></p><div class="flex items-center gap-2 text-xs text-[#8B5A2B]/70 mt-0.5">📅 <span x-text="'Minggu '+p._wk"></span> | <span x-text="p.d"></span> | ⏰ P<span x-text="p.per"></span> (<span x-text="p.tm"></span>) | <span x-text="p.dr"></span> min</div></div><span class="shrink-0 text-[#C4956A] text-xs" x-text="p.o?'▼':'▶'"></span></div>
-          <div x-show="p.o" x-collapse class="p-4 space-y-4 text-xs">
-            <div><p class="font-semibold text-[#C4956A] text-[11px]">📖 Unit</p><input type="text" x-model="p.unit" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-2 text-xs font-medium text-[#3A2A1A]"></div>
-            <div><div class="flex items-center justify-between"><p class="font-semibold text-[#3A2A1A] text-[10px]">📋 Standard Kandungan</p><button @click="p.sk.push('')" class="text-[#C4956A] text-[10px]">+ Tambah</button></div><template x-for="(sk,i) in p.sk" :key="i"><div class="flex gap-1 mt-1"><input type="text" x-model="p.sk[i]" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs"><button @click="p.sk.splice(i,1)" class="text-red-400 text-[10px]" x-show="p.sk.length>1">✕</button></div></template></div>
-            <div><div class="flex items-center justify-between"><p class="font-semibold text-[#3A2A1A] text-[10px]">🎯 Standard Pembelajaran</p><button @click="p.sp.push('')" class="text-[#C4956A] text-[10px]">+ Tambah</button></div><template x-for="(sp,i) in p.sp" :key="i"><div class="flex gap-1 mt-1"><input type="text" x-model="p.sp[i]" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs"><button @click="p.sp.splice(i,1)" class="text-red-400 text-[10px]" x-show="p.sp.length>1">✕</button></div></template></div>
-            <div><p class="font-semibold text-[#8B5A2B] text-[10px]">🎯 Objektif</p><template x-for="(o,i) in p.obj" :key="i"><textarea x-model="p.obj[i]" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs mt-1" rows="1"></textarea></template></div>
-            <div><p class="font-semibold text-emerald-600 text-[10px]">✅ Kriteria Kejayaan</p><template x-for="(k,i) in p.kj" :key="i"><textarea x-model="p.kj[i]" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs mt-1" rows="1"></textarea></template></div>
-            <div><p class="font-semibold text-[#8B5A2B] text-[10px]">📝 Aktiviti</p><div class="space-y-2 mt-1"><template x-for="(a,i) in p.acts" :key="i"><div class="flex gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full text-[9px] font-bold mt-1" :class="aC(a.ph)" x-text="a.ph.match(/[\\u{1F000}-\\u{1FFFF}]/u)?.[0]||'?'"></span><div class="flex-1"><p class="font-medium text-[#3A2A1A] text-[11px]" x-text="a.ph"></p><textarea x-model="a.d" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs" rows="2"></textarea><div class="flex gap-2 mt-1"><input type="text" x-model="a.t" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-white p-1 text-[10px]" placeholder="👩‍🏫 Guru"><input type="text" x-model="a.s" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-white p-1 text-[10px]" placeholder="🙋 Murid"></div></div></div></template></div></div>
-            <div x-show="p.rem&&p.rem.length"><p class="font-semibold text-orange-600 text-[10px]">🩺 Pemulihan</p><div class="space-y-1.5 mt-1"><template x-for="(r,i) in p.rem" :key="i"><div class="rounded-lg border border-orange-200 bg-orange-50 p-2"><textarea x-model="r.t" class="w-full rounded border border-orange-200 bg-white p-1 text-[11px] font-medium text-orange-800" rows="1"></textarea><textarea x-model="r.d" class="w-full rounded border border-orange-200 bg-white p-1 text-[10px] text-orange-700 mt-1" rows="2"></textarea></div></template></div></div>
-            <div><p class="font-semibold text-amber-700 text-[10px] mb-1">💬 Refleksi</p><textarea x-model="p.ref" class="w-full rounded-lg border-2 border-amber-200 bg-amber-50 p-3 text-xs text-[#78350f] focus:border-amber-400" rows="3" placeholder="💬 Taip refleksi..."></textarea></div>
-            <div class="flex flex-wrap gap-2 border-t border-[#C4956A]/10 pt-3">
-              <button @click.stop="ref1(p)" class="rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-[10px] font-medium text-amber-700 hover:bg-amber-100">💬 Jana Refleksi</button>
-              <button @click.stop="cp(p)" class="rounded-lg border border-[#C4956A]/20 bg-white px-3 py-1.5 text-[10px] font-medium text-[#8B5A2B] hover:bg-[#FFF8F0]">📋 Salin</button>
-              <button @click.stop="pdf1(p)" class="rounded-lg border border-[#C4956A]/20 bg-white px-3 py-1.5 text-[10px] font-medium text-[#8B5A2B] hover:bg-[#FFF8F0]">📄 PDF</button>
-              <button @click.stop="rph=rph.filter(x=>x.id!==p.id);sv()" class="rounded-lg px-3 py-1.5 text-[10px] font-medium text-red-500 hover:bg-red-50">🗑️ Padam</button>
-            </div>
-          </div>
-        </div></template></div></template>
-      </section>
+# Reference REF/REM in Alpine data
+html = html.replace('REF: {},', 'REF: REF,\n  REM: REM,')
 
-      <!-- 📚 KURIKULUM -->
-      <section x-show="a==='kur'" x-cloak class="max-w-4xl mx-auto">
-        <div class="mb-3"><h2 class="text-base font-bold text-[#3A2A1A]">📚 DSKP Curriculum Standards</h2><p class="text-xs text-[#8B5A2B]/60">Browse Content Standards (SK) and Learning Standards (SP) from official KSSR DSKP documents.</p></div>
-        <div class="mb-3 flex flex-wrap items-center gap-2">
-          <select x-model="cs" @change="sv()" class="rounded-lg border border-[#C4956A]/20 bg-white px-3 py-1.5 text-xs font-medium text-[#3A2A1A]"><template x-for="s in D.SUBJECTS" :key="s.c"><option :value="s.c" x-text="s.n"></option></template></select>
-          <select x-model="cy" @change="sv()" class="rounded-lg border border-[#C4956A]/20 bg-white px-3 py-1.5 text-xs font-medium text-[#3A2A1A]"><template x-for="y in ['Year 1','Year 2','Year 3','Year 4','Year 5','Year 6']" :key="y"><option :value="y" x-text="y.replace('Year ','Tahun ')"></option></template></select>
-        </div>
-        <template x-if="!gSK().length"><div class="flex h-48 items-center justify-center text-[#8B5A2B]/60 text-sm">📚 Tiada data.</div></template>
-        <template x-if="gSK().length">
-          <div class="space-y-3">
-            <div class="rounded-lg border border-[#C4956A]/20 bg-white shadow-sm">
-              <div @click="_skOpen=!_skOpen" class="flex cursor-pointer items-center justify-between px-4 py-2.5 bg-[#FFF8F0] rounded-t-lg border-b border-[#C4956A]/10"><p class="text-xs font-bold text-[#8B5A2B]">📋 SK — <span x-text="gSK().length"></span></p><span class="text-xs text-[#C4956A]" x-text="_skOpen?'▼':'▶'"></span></div>
-              <div x-show="_skOpen" x-collapse class="px-4 py-3 space-y-2 max-h-80 overflow-y-auto"><template x-for="(sk,i) in gSK()" :key="i"><div class="flex gap-2 text-xs text-[#3A2A1A]/80 border-b border-[#C4956A]/5 pb-1.5"><span class="shrink-0 font-mono font-bold text-[#C4956A]" x-text="'SK'+(i+1)"></span><span x-text="sk"></span></div></template></div>
-            </div>
-            <div class="rounded-lg border border-[#C4956A]/20 bg-white shadow-sm">
-              <div @click="_spOpen=!_spOpen" class="flex cursor-pointer items-center justify-between px-4 py-2.5 bg-[#FFF8F0] rounded-t-lg border-b border-[#C4956A]/10"><p class="text-xs font-bold text-emerald-700">🎯 SP — <span x-text="gSP().length"></span></p><span class="text-xs text-[#C4956A]" x-text="_spOpen?'▼':'▶'"></span></div>
-              <div x-show="_spOpen" x-collapse class="px-4 py-3 space-y-2 max-h-96 overflow-y-auto"><template x-for="(sp,i) in gSP()" :key="i"><div class="flex gap-2 text-xs text-[#3A2A1A]/80 border-b border-[#C4956A]/5 pb-1.5"><span class="shrink-0 font-mono font-bold text-emerald-600" x-text="'SP'+(i+1)"></span><span x-text="sp"></span></div></template></div>
-            </div>
-          </div>
-        </template>
-      </section>
+# Fix ref1 to use per-language REF
+html = html.replace(
+    "ref1(p){const refs=this.REF[p.s]||[];if(refs.length)p.ref=refs[Math.floor(Math.random()*refs.length)];}",
+    "ref1(p){const l=this.lg(p.s);const refs=REF[l]||REF['bm']||[];if(refs.length)p.ref=refs[Math.floor(Math.random()*refs.length)];}"
+)
 
-      <!-- 💬 REFLEKSI -->
-      <section x-show="a==='ref'" x-cloak class="max-w-4xl mx-auto">
-        <template x-if="!rph.length"><div class="flex h-48 items-center justify-center text-[#8B5A2B]/60 text-sm">⚡ Jana RPH dahulu.</div></template>
-        <template x-if="rph.length">
-          <div><div class="mb-3 flex gap-2"><button @click="iRef()" class="inline-flex items-center gap-1 rounded-lg px-4 py-2 text-xs font-semibold text-white shadow-md" style="background:linear-gradient(135deg,#C4956A,#8B5A2B)">💬 Sisip Refleksi</button></div>
-          <div class="space-y-2"><template x-for="(p,i) in rph" :key="p.id"><div class="rounded-lg border border-[#C4956A]/20 bg-white p-3 shadow-sm"><p class="text-xs font-semibold text-[#3A2A1A] mb-1" x-text="(i+1)+'. '+p.sn+' - '+p.c+' ('+p.d+')'"></p><textarea x-model="p.ref" class="w-full rounded-lg border-2 border-amber-200 bg-amber-50 p-3 text-xs text-[#78350f]" rows="3" placeholder="💬 Taip refleksi..."></textarea><button @click.stop="ref1(p)" class="mt-1 rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-[10px] font-medium text-amber-700 hover:bg-amber-100">💬 Jana Refleksi</button></div></template></div></div>
-        </template>
-      </section>
+# Add lg() if missing
+if 'lg(s){' not in html:
+    html = html.replace(
+        "tN(){const t=this.TEACHERS[this.tg];return t?t.n+' ('+this.tg+')':'';},",
+        "tN(){const t=this.TEACHERS[this.tg];return t?t.n+' ('+this.tg+')':'';},\n  lg(s){const m={BM:'bm',BI:'en'};return m[s]||'zh';},"
+    )
 
-    </main>
-  </div>
-</div>
+# Add curriculum-db script
+if 'curriculum-db.js' not in html:
+    html = html.replace('</head>', '<script src="curriculum-db.js"></script>\n</head>')
 
-<script>
-const REM = ''' + REM + r''';
+# Add D getter
+if 'get D(){return this}' not in html:
+    html = html.replace("init(){", "get D(){return this;},\n  init(){")
 
-const TAKWIM = [
-  {m:1,s:'12/01/2026',e:'16/01/2026',t:1,b:1},{m:2,s:'19/01/2026',e:'23/01/2026',t:1,b:1},{m:3,s:'26/01/2026',e:'30/01/2026',t:1,b:1},{m:4,s:'02/02/2026',e:'06/02/2026',t:1,b:1},{m:5,s:'09/02/2026',e:'13/02/2026',t:1,b:1},{m:6,s:'16/02/2026',e:'20/02/2026',t:1,b:1},{m:7,s:'23/02/2026',e:'27/02/2026',t:1,b:1},{m:8,s:'02/03/2026',e:'06/03/2026',t:1,b:1},{m:9,s:'09/03/2026',e:'13/03/2026',t:1,b:1},{m:10,s:'16/03/2026',e:'20/03/2026',t:1,b:1},{m:0,s:'21/03/2026',e:'29/03/2026',t:1,b:0,l:'🎉 Cuti Penggal 1'},{m:11,s:'30/03/2026',e:'03/04/2026',t:1,b:2},{m:12,s:'06/04/2026',e:'10/04/2026',t:1,b:2},{m:13,s:'13/04/2026',e:'17/04/2026',t:1,b:2},{m:14,s:'20/04/2026',e:'24/04/2026',t:1,b:2},{m:15,s:'27/04/2026',e:'01/05/2026',t:1,b:2},{m:16,s:'04/05/2026',e:'08/05/2026',t:1,b:2},{m:17,s:'11/05/2026',e:'15/05/2026',t:1,b:2},{m:18,s:'18/05/2026',e:'22/05/2026',t:1,b:2},{m:0,s:'23/05/2026',e:'07/06/2026',t:1,b:0,l:'🎉 Cuti Pertengahan Tahun'},{m:19,s:'08/06/2026',e:'12/06/2026',t:2,b:1},{m:20,s:'15/06/2026',e:'19/06/2026',t:2,b:1},{m:21,s:'22/06/2026',e:'26/06/2026',t:2,b:1},{m:22,s:'29/06/2026',e:'03/07/2026',t:2,b:1},{m:23,s:'06/07/2026',e:'10/07/2026',t:2,b:1},{m:24,s:'13/07/2026',e:'17/07/2026',t:2,b:1},{m:25,s:'20/07/2026',e:'24/07/2026',t:2,b:1},{m:26,s:'27/07/2026',e:'31/07/2026',t:2,b:1},{m:27,s:'03/08/2026',e:'07/08/2026',t:2,b:1},{m:28,s:'10/08/2026',e:'14/08/2026',t:2,b:1},{m:29,s:'17/08/2026',e:'21/08/2026',t:2,b:1},{m:30,s:'24/08/2026',e:'28/08/2026',t:2,b:1},{m:0,s:'29/08/2026',e:'06/09/2026',t:2,b:0,l:'🎉 Cuti Penggal 2'},{m:31,s:'07/09/2026',e:'11/09/2026',t:2,b:2},{m:32,s:'14/09/2026',e:'18/09/2026',t:2,b:2},{m:33,s:'21/09/2026',e:'25/09/2026',t:2,b:2},{m:34,s:'28/09/2026',e:'02/10/2026',t:2,b:2},{m:35,s:'05/10/2026',e:'09/10/2026',t:2,b:2},{m:36,s:'12/10/2026',e:'16/10/2026',t:2,b:2},{m:37,s:'19/10/2026',e:'23/10/2026',t:2,b:2},{m:38,s:'26/10/2026',e:'30/10/2026',t:2,b:2},{m:39,s:'02/11/2026',e:'06/11/2026',t:2,b:2},{m:40,s:'09/11/2026',e:'13/11/2026',t:2,b:2},{m:41,s:'16/11/2026',e:'20/11/2026',t:2,b:2},{m:42,s:'23/11/2026',e:'27/11/2026',t:2,b:2},{m:43,s:'30/11/2026',e:'04/12/2026',t:2,b:2},{m:0,s:'05/12/2026',e:'31/12/2026',t:2,b:0,l:'🎉 Cuti Akhir Persekolahan'},
-];
+# Add TAKWIM to data
+if 'TAKWIM: TAKWIM' not in html:
+    html = html.replace(
+        "tabs:[{i:'📅',l:'Jadual',id:'tt'}",
+        "TAKWIM: TAKWIM,\n  tabs:[{i:'📅',l:'Jadual',id:'tt'}"
+    )
 
-document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
-  sO:false, a:localStorage.getItem('ept')||'tt',
-  tg:localStorage.getItem('eptg')||'', cs:localStorage.getItem('epcs')||'BC',
-  cy:localStorage.getItem('epcy')||'Year 1', rph:JSON.parse(localStorage.getItem('eprph')||'[]'),
-  currentWeek: localStorage.getItem('epwk') || '',
-  _skOpen: true, _spOpen: false,
-  tabs:[{i:'📅',l:'Jadual',id:'tt'},{i:'⚡',l:'Jana RPH',id:'rph',c:0},{i:'📚',l:'Kurikulum',id:'kur'},{i:'💬',l:'Refleksi',id:'ref'}],
-  TEACHERS: {"TBS":{"n":"TEOH BOON SIM","c":"张汶森"},"LET":{"n":"LEE EE TING","c":"李依婷"},"HLF":{"n":"HEW LEE FUN","c":"丘丽芬"},"LJX":{"n":"LIAN JUNXIANG","c":"连浚翔"},"LSW":{"n":"LEE SHU WEN","c":"李淑雯"},"WKS":{"n":"WONG KA SUIT","c":"黄家煦"},"LYY":{"n":"LOOI YUN YUAN","c":"雷昀苑"},"OWY":{"n":"ONG WEI YI","c":"王维仪"},"ARMAN":{"n":"ARMAN BIN AWANG","c":""},"COW":{"n":"CHONG OOI WEI","c":"锺爱媚"},"BALKIS":{"n":"NUR BALKIS BINTI ZULKHAIRANI","c":""},"YH":{"n":"YOONG HAI","c":"熊海师"}},
-  SLOTS: {},
-  DAYS: ['Isnin','Selasa','Rabu','Khamis','Jumaat'],
-  PERIODS: [['P','07:45','08:15'],['1','08:15','08:45'],['2','08:45','09:15'],['3','09:15','09:45'],['4','09:45','10:15'],['REHAT','10:15','10:35'],['5','10:35','11:05'],['6','11:05','11:35'],['7','11:35','12:05'],['8','12:05','12:35'],['9','12:35','13:05'],['10','13:05','13:35'],['11','13:35','14:05'],['12','14:05','14:35']],
-  SUBJECTS: [{'c':'BM','n':'📖 Bahasa Melayu'},{'c':'BC','n':'📝 Bahasa Cina'},{'c':'BI','n':'📗 English'},{'c':'MT','n':'🔢 Matematik'},{'c':'SN','n':'🔬 Sains'},{'c':'PM','n':'🌟 Moral'},{'c':'PI','n':'🕌 Islam'},{'c':'PJ','n':'🏃 Jasmani'},{'c':'PK','n':'💚 Kesihatan'},{'c':'PSV','n':'🎨 Seni Visual'},{'c':'MZ','n':'🎵 Muzik'},{'c':'SJ','n':'📜 Sejarah'},{'c':'RBT','n':'🛠️ RBT'},{'c':'PKS','n':'🎭 Kesenian'},{'c':'PJPK','n':'🏅 PJPK'},{'c':'PMZ','n':'🎶 Muzik'}],
-  SUBJ_NAMES: {'BM':'📖 Bahasa Melayu','BC':'📝 Bahasa Cina','BI':'📗 English','MT':'🔢 Matematik','SN':'🔬 Sains','PM':'🌟 Moral','PI':'🕌 Islam','PJ':'🏃 Jasmani','PK':'💚 Kesihatan','PSV':'🎨 Seni Visual','MZ':'🎵 Muzik','SJ':'📜 Sejarah','RBT':'🛠️ RBT','PKS':'🎭 Kesenian','PJPK':'🏅 PJPK','PMZ':'🎶 Muzik'},
-  REF: {},
+with open(OUT, 'w') as f:
+    f.write(html)
 
-  sv(){localStorage.setItem('eptg',this.tg);localStorage.setItem('epcs',this.cs);localStorage.setItem('epcy',this.cy);localStorage.setItem('eprph',JSON.stringify(this.rph));localStorage.setItem('epwk',this.currentWeek);this.tabs[1].c=this.rph.length;},
-  sw(id){this.a=id;this.sO=false;},
-  tI(){const t=this.tabs.find(t=>t.id===this.a);return t?t.i:'';},
-  tL(){const t=this.tabs.find(t=>t.id===this.a);return t?t.l:'';},
+m = re.search(r'<script>([\s\S]*?)</script>', html)
+if m:
+    with open('/tmp/check.js', 'w') as f:
+        f.write(m.group(1))
+    import subprocess
+    r = subprocess.run(['node', '--check', '/tmp/check.js'], capture_output=True, text=True)
+    print('JS:', 'OK' if r.returncode == 0 else r.stderr[:200])
 
-  sl(){return this.tg?(this.SLOTS[this.tg]||[]):[];},
-  gS(d,p){return this.sl().filter(s=>s.d===d&&(s.p===p||(s.p==='P'&&p==='P')));},
-  tN(){const t=this.TEACHERS[this.tg];return t?t.n+' ('+this.tg+')':'';},
-
-  editSlot(tg,day,period){
-    if(this.gS(day,period)[0])return;
-    const sj=prompt('Subject code (BM/BI/BC/MT/SN/PM/PJ/PK/PSV/MZ/SJ/RBT):','BM');if(!sj)return;
-    const nm=this.SUBJ_NAMES[sj]||sj;
-    const cl=prompt('Class:','Tahun 1');if(!cl)return;
-    this.SLOTS[tg]=this.SLOTS[tg]||[];this.SLOTS[tg].push({c:cl,d:day,p:period,s:sj,n:nm});this.sv();
-  },
-
-  gSK(){return typeof getSK!=='undefined'?getSK(this.cy,this.cs):[];},
-  gSP(){return typeof getSP!=='undefined'?getSP(this.cy,this.cs):[];},
-
-  clr(c){const m={BM:'bg-red-50 border-red-200 text-red-800',BC:'bg-amber-50 border-amber-200 text-amber-800',BI:'bg-emerald-50 border-emerald-200 text-emerald-800',MT:'bg-blue-50 border-blue-200 text-blue-800',SN:'bg-teal-50 border-teal-200 text-teal-800',PM:'bg-purple-50 border-purple-200 text-purple-800',PI:'bg-green-50 border-green-200 text-green-800',PJ:'bg-orange-50 border-orange-200 text-orange-800',PK:'bg-rose-50 border-rose-200 text-rose-800',PSV:'bg-yellow-50 border-yellow-200 text-yellow-800',MZ:'bg-indigo-50 border-indigo-200 text-indigo-800',SJ:'bg-cyan-50 border-cyan-200 text-cyan-800',RBT:'bg-violet-50 border-violet-200 text-violet-800'};return m[c]||'bg-slate-50 border-slate-200 text-slate-700';},
-
-  gen(){
-    if(!this.tg)return;
-    const wk=this.currentWeek;const wkData=wk?TAKWIM.find(w=>w.m==wk):null;
-    const plans=[];
-    this.sl().forEach(s=>{
-      const du=30;const per=this.PERIODS.find(x=>x[0]===s.p);const tm=per?per[1]+'-'+per[2]:'';
-      const rem=REM.sort(()=>Math.random()-0.5).slice(0,3);
-      let dateStr=s.d;
-      if(wkData&&wkData.s){const dm={Isnin:1,Selasa:2,Rabu:3,Khamis:4,Jumaat:5};const dn=dm[s.d]||1;const[sd,sm,sy]=wkData.s.split('/').map(Number);const ws=new Date(sy,sm-1,sd);const sd2=new Date(ws);sd2.setDate(ws.getDate()+dn-1);dateStr=String(sd2.getDate()).padStart(2,'0')+'/'+String(sd2.getMonth()+1).padStart(2,'0')+'/'+sd2.getFullYear();}
-      const phases=['🎯 Set Induksi','📚 Pra-PdP','📖 Perkembangan PdP','💡 Pasca-PdP','🎯 Penutup'];
-      const duDef=[8,7,22,5,5];const tr=['👩‍🏫 Membimbing','👨‍🏫 Menerangkan','👩‍🏫 Memudahcara','👨‍🏫 Menilai','👩‍🏫 Merumus'];
-      const sr=['🙋 Melibatkan diri','👂 Mendengar','✍️ Melaksanakan','🗣️ Membentang','💭 Mereflek'];
-      const acts=this.D?.ACTS?.bm||{induction:[],pre:[],dev:[],post:[],closure:[]};
-      const pk=['induction','pre','dev','post','closure'];
-      plans.push({
-        id:Date.now().toString(36)+Math.random().toString(36).slice(2),
-        c:s.c,s:s.s,sn:s.n,d:dateStr,per:s.p,tm,dr:du,_wk:wk||'-',
-        unit:s.n+' '+s.c,
-        sk:['Standard Kandungan mengikut DSKP'],sp:['Standard Pembelajaran mengikut DSKP'],
-        obj:['🎯 Pada akhir PdP, murid dapat memahami dan mengaplikasikan konsep.','✅ Murid dapat menjawab soalan dan menunjukkan kefahaman.'],
-        kj:['✅ Saya boleh memahami konsep.','✅ Saya boleh menyelesaikan tugasan.'],
-        bbm:['📖 Buku teks','📝 Lembaran kerja'],nilai:['🤝 Kerjasama','🙏 Hormat'],emk:['🗣️ Bahasa','🎨 Kreativiti'],
-        acts:phases.map((ph,i)=>({ph,d:'Aktiviti '+ph,dr:duDef[i],t:tr[i]||'',s:sr[i]||''})),
-        rem:rem.map(r=>({t:r.t,d:r.d,st:r.st||[]})),
-        ref:'',o:true,
-      });
-    });
-    this.rph=[...plans,...this.rph];this.a='rph';this.sv();
-  },
-
-  ref1(p){const refs=this.REF[p.s]||[];if(refs.length)p.ref=refs[Math.floor(Math.random()*refs.length)];},
-  iRef(){this.rph.forEach(p=>{if(!p.ref)this.ref1(p);});this.sv();},
-
-  esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML;},
-
-  ht(p){const e=this.esc;
-    return '<div style="font-family:sans-serif;max-width:210mm;margin:0;padding:1.5cm;color:#3A2A1A">'
-      +'<div style="border-bottom:3px solid #C4956A;padding-bottom:.75rem;margin-bottom:1rem">'
-      +'<h1 style="font-size:1.3rem;font-weight:700;margin:0;color:#1E3A5F">🇲🇾 RANCANGAN PENGAJARAN HARIAN</h1>'
-      +'<div style="font-size:.8rem;color:#8B5A2B;margin-top:.25rem">'+e(p.sn)+' | '+e(p.c)+' | '+e(p.d)+' | '+e(p.tm)+'</div></div>'
-      +(p.sk.length?'<div><h2 style="font-size:.8rem;font-weight:700;color:#1E3A5F;margin:.5rem 0 .3rem">📋 Standard Kandungan</h2>'+p.sk.map(s=>'<span style="background:#FFF8F0;border-radius:999px;padding:2px 8px;font-size:.7rem;color:#3A2A1A;display:inline-block;margin:2px;border:1px solid #C4956A30">'+e(s)+'</span>').join('')+'</div>':'')
-      +(p.sp.length?'<div><h2 style="font-size:.8rem;font-weight:700;color:#1E3A5F;margin:.5rem 0 .3rem">🎯 Standard Pembelajaran</h2>'+p.sp.map(s=>'<span style="background:#FFF8F0;border-radius:999px;padding:2px 8px;font-size:.7rem;color:#3A2A1A;display:inline-block;margin:2px;border:1px solid #C4956A30">'+e(s)+'</span>').join('')+'</div>':'')
-      +'<div><h2 style="font-size:.8rem;font-weight:700;color:#1E3A5F;margin:.5rem 0 .3rem">🎯 Objektif</h2><ul style="list-style:none;padding:0">'+p.obj.map(o=>'<li style="padding:2px 0;font-size:.75rem;padding-left:1rem">'+e(o)+'</li>').join('')+'</ul></div>'
-      +'<div><h2 style="font-size:.8rem;font-weight:700;color:#1E3A5F;margin:.5rem 0 .3rem">📝 Aktiviti</h2>'+p.acts.map(a=>'<div style="border:1px solid #C4956A30;border-radius:6px;padding:6px;margin-bottom:5px"><p style="font-size:.75rem;font-weight:600;color:#8B5A2B;margin:0">'+e(a.ph)+' <span style="font-size:.65rem;color:#C4956A">- '+a.dr+' min</span></p></div>').join('')+'</div>'
-      +'<div style="display:flex;gap:.5rem;flex-wrap:wrap;font-size:.7rem;color:#3A2A1A;margin:.5rem 0"><div><strong>BBM:</strong> '+p.bbm.join(', ')+'</div><div><strong>Nilai:</strong> '+p.nilai.join(', ')+'</div><div><strong>EMK:</strong> '+p.emk.join(', ')+'</div></div>'
-      +(p.ref?'<div style="border-top:2px solid #C4956A30;padding-top:.4rem;margin-top:.5rem"><h2 style="font-size:.8rem;font-weight:700;color:#d97706">💬 Refleksi</h2><p style="font-size:.7rem;color:#78350f;font-style:italic;background:#fffbeb;border:1px solid #fde68a;border-radius:6px;padding:6px">'+e(p.ref)+'</p></div>':'')
-      +'<div style="margin-top:.5rem;padding-top:.3rem;border-top:1px solid #C4956A20;font-size:.6rem;color:#C4956A;text-align:center">🇲🇾 Dijana oleh eRPH-PM | SJK(C) PIN MIN, BIDOR STESEN, PERAK</div></div>';
-  },
-
-  pdf1(p){
-    if(typeof html2pdf!=='undefined'){
-      const el=document.createElement('div');el.innerHTML=this.ht(p);
-      html2pdf().set({margin:[0.4,0.4,0.4,0.4],filename:'RPH_'+p.s+'_'+p.c.replace(' ','')+'_'+p.d+'.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'in',format:'a4',orientation:'portrait'}}).from(el).save();
-    }else{const w=window.open('','_blank');if(!w)return;w.document.write('<html><head><title>RPH</title></head><body>'+this.ht(p)+'<script>window.print()<'+'/script></body></html>');w.document.close();}
-  },
-  pAll(){
-    if(!this.rph.length)return;
-    const ps=this.rph.map((p,i)=>'<div style="'+(i<this.rph.length-1?'page-break-after:always;':'')+'page-break-inside:avoid">'+this.ht(p)+'</div>').join('');
-    if(typeof html2pdf!=='undefined'){
-      const el=document.createElement('div');el.innerHTML=ps;
-      html2pdf().set({margin:[0.4,0.4,0.4,0.4],filename:'eRPH_PM_All.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'in',format:'a4',orientation:'portrait'}}).from(el).save();
-    }else{const w=window.open('','_blank');if(!w)return;w.document.write('<html><head><title>RPH All</title></head><body>'+ps+'<script>window.print()<'+'/script></body></html>');w.document.close();}
-  },
-
-  cp(p){
-    const l=['🇲🇾 RANCANGAN PENGAJARAN HARIAN','Guru: '+this.tN(),'Kelas: '+p.c+' | Subjek: '+p.sn,'Hari: '+p.d+' | Masa: '+p.tm,'','📋 Standard Kandungan:',...p.sk.map(s=>'  - '+s),'','🎯 Standard Pembelajaran:',...p.sp.map(s=>'  - '+s),'','🎯 Objektif:',...p.obj.map(o=>'  - '+o),'','📝 Aktiviti:',...p.acts.map(a=>'  ['+a.ph+'] '+a.d+' ('+a.dr+' min)'),'','BBM: '+p.bbm.join(', '),'Nilai: '+p.nilai.join(', '),'EMK: '+p.emk.join(', '),p.ref?'\n💬 Refleksi:\n'+p.ref:'','','🇲🇾 Dijana oleh eRPH-PM'];
-    navigator.clipboard.writeText(l.join('\n'));
-  },
-
-  init(){
-    this.$watch('rph',()=>{this.sv();this.tabs[1].c=this.rph.length;},{deep:true});
-    // Load saved slots
-    try{const d=JSON.parse(localStorage.getItem('erphp_slots'));if(d)this.SLOTS=d;}catch(e){}
-    this.$watch('SLOTS',v=>localStorage.setItem('erphp_slots',JSON.stringify(v)),{deep:true});
-    this.sv();
-  },
-}));});
-</script>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track:transparent
-::-webkit-scrollbar-thumb{background:#C4956A40;border-radius:3px}
-.sidebar-transition{transition:transform .25s ease-in-out}
-[x-cloak]{display:none!important}
-@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(196,149,106,0.4)}50%{opacity:0.8;box-shadow:0 0 0 6px rgba(196,149,106,0)}}
-.btn-jana{animation:blink 2s ease-in-out infinite}
-@media(prefers-reduced-motion:reduce){.btn-jana,.sidebar-transition{animation:none!important;transition:none!important}}
-</style>
-</body>
-</html>'''
-
-with open(OUT, 'w', encoding='utf-8') as f:
-    f.write(H)
-
-import subprocess
-r = subprocess.run(['node', '-e', f'const fs=require("fs");const h=fs.readFileSync("{OUT}","utf8");const m=h.match(/<script>([\\s\\S]*?)<\\/script>/);if(m){{try{{new Function(m[1]);console.log("JS:OK")}}catch(e){{console.log("FAIL:"+e.message.substring(0,120))}}}}'], capture_output=True, text=True, timeout=15)
-print(f"Written: {os.path.getsize(OUT)} bytes")
-print(r.stdout.strip() or r.stderr.strip()[:200])
+print(f'Size: {len(html)} bytes')
+print(f'Theme: {"C4956A" in html}')
+print(f'Emojis: {"📅" in html}')
+print(f'Blink: {"btn-jana" in html}')
+print(f'REF: {len(json.dumps(REF))}b')
+print(f'REM: {len(json.dumps(REM))}b')
+print(f'lg(): {"lg(s)" in html}')
+print(f'curriculum: {"curriculum-db.js" in html}')
+print(f'D getter: {"get D()" in html}')
