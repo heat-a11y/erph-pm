@@ -277,7 +277,7 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
   },
   pAll(){
     if(!this.rph.length)return;
-    const dm={Isnin:1,Selasa:2,Rabu:3,Khamis:4,Jumaat:5};
+    const e=this.esc;
     const ps=this.rph.map((p,i)=>{
       const dayHeader=i===0||this.rph[i-1].d!==p.d?'<div style="border-bottom:3px solid #C4956A;padding:.5rem 0;margin-bottom:1rem;font-size:1.1rem;font-weight:700;color:#1E3A5F">📅 '+e(p.d)+'</div>':'';
       return dayHeader+'<div style="'+(i<this.rph.length-1?'page-break-after:always;':'')+'page-break-inside:avoid">'+this.ht(p)+'</div>';
