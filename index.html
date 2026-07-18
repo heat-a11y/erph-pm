@@ -60,8 +60,8 @@
   <div x-show="i===0||rph[i-1].d!==p.d" class="day-divider border-l-4" 
     :style="'border-left-color:'+({Isnin:'#60a5fa',Selasa:'#fb923c',Rabu:'#4ade80',Khamis:'#a78bfa',Jumaat:'#fb7185'})[p.d]+';background:'+({Isnin:'#eff6ff',Selasa:'#fff7ed',Rabu:'#f0fdf4',Khamis:'#faf5ff',Jumaat:'#fff1f2'})[p.d]">
     <span style="font-size:1.3rem" x-text="({Isnin:'🌙',Selasa:'🔥',Rabu:'💡',Khamis:'⭐',Jumaat:'🌙'})[p.d]||'📅'"></span>
-    <span style="font-weight:800;font-size:1.1rem;text-transform:uppercase;letter-spacing:.05em" x-text="({Isnin:'Isnin',Selasa:'Selasa',Rabu:'Rabu',Khamis:'Khamis',Jumaat:'Jumaat'})[p.d]||''"></span>
-    <span style="margin-left:auto;font-size:.85rem;font-weight:500;opacity:.7" x-text="p.d"></span>
+    <span style="font-weight:800;font-size:1.1rem;text-transform:uppercase;letter-spacing:.05em" x-text="p.d"></span>
+    <span style="margin-left:auto;font-size:.85rem;font-weight:501;opacity:.7" x-text="('Minggu '+p._wk)"></span>
   </div>
           <div @click="p.o=!p.o" class="flex cursor-pointer items-center justify-between border-b border-[#C4956A]/10 px-3 py-2 sm:px-4 sm:py-2.5 gap-2"><div class="min-w-0 flex-1"><p class="text-sm font-semibold text-[#3A2A1A] truncate">📚 <span x-text="p.sn+' | '+p.c"></span></p><div class="cc-header-mobile text-xs text-[#8B5A2B]/70 mt-0.5"><span>📅 M<span x-text="p._wk"></span></span><span>|</span><span x-text="p.d"></span><span>|</span><span>⏰ P<span x-text="p.per"></span></span><span>(<span x-text="p.tm"></span>)</span><span>|</span><span class="meta-chip" x-text="p.dr+'min'"></span></div></div><span class="shrink-0 text-[#C4956A] text-xs ml-1" x-text="p.o?'▼':'▶'"></span></div>
           <div x-show="p.o" x-collapse class="p-4 space-y-4 text-xs">
