@@ -170,7 +170,7 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
       const duDef=[8,7,22,5,5];const tr=l==='en'?['👩‍🏫 Guide','👨‍🏫 Explain','👩‍🏫 Facilitate','👨‍🏫 Assess','👩‍🏫 Summarise']:l==='bm'?['👩‍🏫 Membimbing','👨‍🏫 Menerangkan','👩‍🏫 Memudahcara','👨‍🏫 Menilai','👩‍🏫 Merumus']:['👩‍🏫 引导','👨‍🏫 讲解','👩‍🏫 引导活动','👨‍🏫 评估','👩‍🏫 总结'];
       const sr=l==='en'?['🙋 Participate','👂 Listen','✍️ Carry out','🗣️ Present','💭 Reflect']:l==='bm'?['🙋 Melibatkan diri','👂 Mendengar','✍️ Melaksanakan','🗣️ Membentang','💭 Mereflek']:['🙋 积极参与','👂 聆听','✍️ 执行','🗣️ 呈现','💭 反思'];
       const acts=this.D?.ACTS?.bm||{induction:[],pre:[],dev:[],post:[],closure:[]};
-      pk=['induction','pre','dev','post','closure'];
+      pk=['i','p','d','ps','c'];
       plans.push({
         id:Date.now().toString(36)+Math.random().toString(36).slice(2),
         c:s.c,s:s.s,sn:s.n,d:dateStr,per:s.p,tm,dr:du,_wk:wk||'-',
@@ -182,7 +182,7 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
         bbm:l==='en'?['📖 Textbook','📝 Worksheets','🃏 Flashcards','✏️ Stationery','📋 Whiteboard']:l==='bm'?['📖 Buku teks','📝 Lembaran kerja','🃏 Kad imbasan','✏️ Alat tulis','📋 Papan putih']:['📖 课本','📝 工作纸','🃏 字卡','✏️ 文具','📋 白板'],
         nilai:l==='en'?['🤝 Cooperation','🙏 Respect','💪 Responsibility','🌟 Diligence']:l==='bm'?['🤝 Kerjasama','🙏 Hormat-menghormati','💪 Tanggungjawab','🌟 Kesungguhan']:['🤝 合作','🙏 尊重','💪 责任','🌟 勤奋'],
         emk:l==='en'?['🗣️ Language','💻 ICT','🎨 Creativity and Innovation','🌟 Values']:l==='bm'?['🗣️ Bahasa','💻 TMK','🎨 Kreativiti dan Inovasi','🌟 Nilai Murni']:['🗣️ 语言','💻 资讯科技','🎨 创造与创新','🌟 价值观'],
-        acts:phases.map((ph,i)=>{const pool=(ACTS[l]||ACTS['bm']||{})[['induction','pre','dev','post','closure'][i]]||[];const pick=pool.length?pool[Math.floor(Math.random()*pool.length)]:('Aktiviti '+ph);return{ph,d:pick,dr:duDef[i],t:tr[i]||'',s:sr[i]||''}}),
+        acts:phases.map((ph,i)=>{const pool=(ACTS[l]||ACTS['bm']||{})[['i','p','d','ps','c'][i]]||[];const pick=pool.length?pool[Math.floor(Math.random()*pool.length)]:('Aktiviti '+ph);return{ph,d:pick,dr:duDef[i],t:tr[i]||'',s:sr[i]||''}}),
         rem:rem.map(r=>({t:r.t,d:r.d,st:r.st||[]})),
         ref:'',o:true,
       });
