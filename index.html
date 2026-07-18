@@ -204,7 +204,7 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
       const rem=REM.sort(()=>Math.random()-0.5).slice(0,3);
       let dateStr=s.d;
       if(wkData&&wkData.s){const dm={Isnin:1,Selasa:2,Rabu:3,Khamis:4,Jumaat:5};const dn=dm[s.d]||1;const[sd,sm,sy]=wkData.s.split('/').map(Number);const ws=new Date(sy,sm-1,sd);const sd2=new Date(ws);sd2.setDate(ws.getDate()+dn-1);dateStr=String(sd2.getDate()).padStart(2,'0')+'/'+String(sd2.getMonth()+1).padStart(2,'0')+'/'+sd2.getFullYear();}
-      const l=this.lg(s.s);const phases=l==='en'?['🎯 Set Induction','📚 Pre-lesson','📖 Lesson Development','💡 Post-lesson','🎯 Closure']:l==='bm'?['🎯 Set Induksi','📚 Pra-PdP','📖 Perkembangan PdP','💡 Pasca-PdP','🎯 Penutup']:['🎯 导入','📚 课前活动','📖 主要教学','💡 课后活动','🎯 总结'];
+      const l=this.lg(s.s,this.tg);const phases=l==='en'?['🎯 Set Induction','📚 Pre-lesson','📖 Lesson Development','💡 Post-lesson','🎯 Closure']:l==='bm'?['🎯 Set Induksi','📚 Pra-PdP','📖 Perkembangan PdP','💡 Pasca-PdP','🎯 Penutup']:['🎯 导入','📚 课前活动','📖 主要教学','💡 课后活动','🎯 总结'];
       const duDef=[8,7,22,5,5];const tr=l==='en'?['👩‍🏫 Guide','👨‍🏫 Explain','👩‍🏫 Facilitate','👨‍🏫 Assess','👩‍🏫 Summarise']:l==='bm'?['👩‍🏫 Membimbing','👨‍🏫 Menerangkan','👩‍🏫 Memudahcara','👨‍🏫 Menilai','👩‍🏫 Merumus']:['👩‍🏫 引导','👨‍🏫 讲解','👩‍🏫 引导活动','👨‍🏫 评估','👩‍🏫 总结'];
       const sr=l==='en'?['🙋 Participate','👂 Listen','✍️ Carry out','🗣️ Present','💭 Reflect']:l==='bm'?['🙋 Melibatkan diri','👂 Mendengar','✍️ Melaksanakan','🗣️ Membentang','💭 Mereflek']:['🙋 积极参与','👂 聆听','✍️ 执行','🗣️ 呈现','💭 反思'];
       const acts=this.D?.ACTS?.bm||{induction:[],pre:[],dev:[],post:[],closure:[]};
@@ -234,7 +234,7 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
     this.rph=[...plans,...this.rph];this.a='rph';this.sv();
   },
 
-  ref1(p){const l=this.lg(p.s);const refs=REF[l]||REF['bm']||[];if(refs.length)p.ref=refs[Math.floor(Math.random()*refs.length)];},
+  ref1(p){const l=this.lg(p.s,this.tg);const refs=REF[l]||REF['bm']||[];if(refs.length)p.ref=refs[Math.floor(Math.random()*refs.length)];},
   iRef(){this.rph.forEach(p=>{if(!p.ref)this.ref1(p);});this.sv();},
 
   esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML;},
