@@ -180,7 +180,7 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
   sl(){return this.tg?(this.SLOTS[this.tg]||[]):[];},
   gS(d,p){return this.sl().filter(s=>s.d===d&&(s.p===p||(s.p==='P'&&p==='P')));},
   tN(){const t=this.TEACHERS[this.tg];return t?t.n+' ('+this.tg+')':'';},
-  lg(s){const m={BM:'bm',BI:'en'};return m[s]||'zh';},
+  lg(s,t){if(t&&(t==='ARMAN'||t==='BALKIS'))return'bm';const m={BM:'bm',BI:'en'};return m[s]||'zh';},
 
   editSlot(tg,day,period){
     if(this.gS(day,period)[0])return;
