@@ -40,7 +40,7 @@
         <template x-if="!tg"><div class="flex h-48 items-center justify-center text-[#8B5A2B]/60 text-sm">👈 Pilih guru dari sidebar untuk lihat jadual.</div></template>
         <template x-if="tg">
           <div><div class="mb-2 flex items-center justify-between"><h2 class="text-base font-bold text-[#3A2A1A]">📅 Jadual Waktu: <span x-text="tN()"></span></h2><button @click="gen()" x-show="sl().length" class="btn-jana inline-flex items-center gap-1 rounded-lg px-3.5 py-2 text-xs font-semibold text-white shadow-md" style="background:linear-gradient(135deg,#C4956A,#8B5A2B)">⚡ Jana RPH</button></div>
-          <div class="overflow-x-auto rounded-xl border border-[#C4956A]/20 bg-white shadow-sm"><table class="w-full min-w-[760px] text-xs"><thead><tr class="border-b bg-[#FFF8F0]"><th class="px-1.5 py-2 text-left font-semibold text-[#8B5A2B] w-20">⏰ Masa</th><template x-for="d in D.DAYS" :key="d"><th class="px-1.5 py-2 text-center font-semibold text-[#8B5A2B]" x-text="d"></th></template></tr></thead>
+          <div class="overflow-x-auto rounded-xl border border-[#C4956A]/20 bg-white shadow-sm"><table class="w-full min-w-[760px] text-xs"><thead><tr class="border-b bg-[#FFF8F0]"><th class="px-1.5 py-2 text-left font-semibold text-[#8B5A2B] w-20">⏰ Masa</th><template x-for="d in D.DAYS" :key="d"><th class="px-1.5 py-2 text-center font-semibold text-[#8B5A2B]"><div x-text="d"></div><div class="text-[9px] font-normal opacity-60" x-text="dayDate(d)"></div></th></template></tr></thead>
           <tbody><template x-for="per in D.PERIODS" :key="per[0]"><tr class="border-b border-[#C4956A]/10" :class="per[0]==='REHAT'?'bg-amber-50/50':''"><td class="px-1.5 py-1 text-[10px] font-medium text-[#8B5A2B]/60" x-text="per[0]+' '+per[1]+'-'+per[2]"></td><template x-for="d in D.DAYS" :key="d"><td @click="editSlot(tg,d,per[0])" class="px-0.5 py-0.5 text-center border-l border-[#C4956A]/10 align-top cursor-pointer hover:bg-[#C4956A]/5 transition-colors min-h-[32px]"><template x-for="s in gS(d,per[0])" :key="s.c+s.s"><div class="rounded border px-1 py-0.5 text-[10px] leading-tight mb-0.5" :class="clr(s.s)"><div class="font-semibold text-[9px]" x-text="s.n"></div><div class="text-[8px] opacity-70" x-text="s.c.replace('Tahun ','Y')"></div></div></template></td></template></tr></template></tbody></table></div><p class="mt-1 text-[9px] text-[#8B5A2B]/40 italic">💡 Klik pada petak kosong untuk tambah subjek</p></div>
         </template>
       </section>
@@ -182,6 +182,18 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
   tL(){const t=this.tabs.find(t=>t.id===this.a);return t?t.l:'';},
 
   sl(){return this.tg?(this.SLOTS[this.tg]||[]):[];},
+  dayDate(day){
+    if(!this.currentWeek)return day;
+    const wkData=TAKWIM.find(w=>w.m==this.currentWeek);
+    if(!wkData||!wkData.s)return day;
+    const dm={Isnin:1,Selasa:2,Rabu:3,Khamis:4,Jumaat:5};
+    const dn=dm[day]||1;
+    const[sd,sm,sy]=wkData.s.split('/').map(Number);
+    const ws=new Date(sy,sm-1,sd);
+    const d=new Date(ws);
+    d.setDate(ws.getDate()+dn-1);
+    return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();
+  },
   gS(d,p){return this.sl().filter(s=>s.d===d&&(s.p===p||(s.p==='P'&&p==='P')));},
   tN(){const t=this.TEACHERS[this.tg];return t?t.n+' ('+this.tg+')':'';},
   lg(s,t){if(t&&(t==='ARMAN'||t==='BALKIS'))return'bm';const m={BM:'bm',BI:'en'};return m[s]||'zh';},
@@ -265,10 +277,14 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
   },
   pAll(){
     if(!this.rph.length)return;
-    const ps=this.rph.map((p,i)=>'<div style="'+(i<this.rph.length-1?'page-break-after:always;':'')+'page-break-inside:avoid">'+this.ht(p)+'</div>').join('');
+    const dm={Isnin:1,Selasa:2,Rabu:3,Khamis:4,Jumaat:5};
+    const ps=this.rph.map((p,i)=>{
+      const dayHeader=i===0||this.rph[i-1].d!==p.d?'<div style="border-bottom:3px solid #C4956A;padding:.5rem 0;margin-bottom:1rem;font-size:1.1rem;font-weight:700;color:#1E3A5F">📅 '+e(p.d)+'</div>':'';
+      return dayHeader+'<div style="'+(i<this.rph.length-1?'page-break-after:always;':'')+'page-break-inside:avoid">'+this.ht(p)+'</div>';
+    }).join('');
     const w = window.open('','_blank');
     if(!w){alert('Sila benarkan popup untuk PDF Semua.');return;}
-    w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>eRPH-PM All</title><style> body{font-family:sans-serif;padding:1.5cm;color:#3A2A1A;line-height:1.6;max-width:210mm;margin:0 auto} table{border-collapse:collapse;width:100%}td,th{padding:4px 6px;border:1px solid #ddd;text-align:left} h1{font-size:1.3rem;color:#1E3A5F;border-bottom:3px solid #C4956A;padding-bottom:.5rem} h2{font-size:.85rem;color:#1E3A5F;margin-top:.75rem;margin-bottom:.3rem} .act{border:1.5px solid #C4956A;border-radius:6px;padding:8px;margin-bottom:5px;background:#FFF8F0} .act p{margin:2px 0}.tp{display:inline-block;width:1.5rem;height:1.5rem;line-height:1.5rem;text-align:center;border-radius:50%;font-size:.65rem;font-weight:700} @media print{body{padding:0}div[style*="break-after"]{page-break-after:always}} .footer{text-align:center;font-size:.6rem;color:#C4956A;margin-top:.75rem;padding-top:.3rem;border-top:1px solid #C4956A20} </style></head><body>'+ps+'</body></html>');;
+    w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>eRPH-PM All</title><style> body{font-family:sans-serif;padding:1.5cm;color:#3A2A1A;line-height:1.6;max-width:210mm;margin:0 auto} table{border-collapse:collapse;width:100%}td,th{padding:4px 6px;border:1px solid #ddd;text-align:left} h1{font-size:1.3rem;color:#1E3A5F;border-bottom:3px solid #C4956A;padding-bottom:.5rem} h2{font-size:.85rem;color:#1E3A5F;margin-top:.75rem;margin-bottom:.3rem} .act{border:1.5px solid #C4956A;border-radius:6px;padding:8px;margin-bottom:5px;background:#FFF8F0} .act p{margin:2px 0}.tp{display:inline-block;width:1.5rem;height:1.5rem;line-height:1.5rem;text-align:center;border-radius:50%;font-size:.65rem;font-weight:700} @media print{body{padding:0}div[style*="break-after"]{page-break-after:always}} .footer{text-align:center;font-size:.6rem;color:#C4956A;margin-top:.75rem;padding-top:.3rem;border-top:1px solid #C4956A20} .day-pdf{font-size:1.1rem;font-weight:700;color:#1E3A5F;border-bottom:3px solid #C4956A;padding:.5rem 0;margin-bottom:1rem}</style></head><body>'+ps+'</body></html>');;
     w.document.close();
   },
 
