@@ -1,4 +1,75 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""Generate final eRPH-PM v4.0 index.html with all fixes."""
+import json, os
+
+OUT = '/home/home/Documents/New OpenCode Project/erph-pm/index.html'
+
+# ─── 50 REMEDIAL ACTIVITIES ───
+REM = json.dumps([
+    {'t':'🧑‍🏫 Bimbingan Individu','d':'Bimbingan langkah-demi-langkah dengan soalan bimbingan.','st':['Bimbingan','Pengulangan']},
+    {'t':'📝 Latihan Berstruktur','d':'Lembaran kerja dipermudah dengan arahan langkah.','st':['Latihan berpandu','Contoh']},
+    {'t':'👀 Tunjuk Cara Ulangan','d':'Demonstrasi semula dengan penerangan perlahan.','st':['Demonstrasi','Pengulangan']},
+    {'t':'📊 Bahan Bantu Visual','d':'Gambar rajah, carta dan video untuk konsep visual.','st':['Visual','Peta konsep']},
+    {'t':'✏️ Latihan Pengukuhan','d':'Latihan mudah membina keyakinan.','st':['Latihan','Pengukuhan']},
+    {'t':'🤝 Pembelajaran Berpasangan','d':'Murid cemerlang dengan murid pemulihan.','st':['Bimbingan rakan','Kolaboratif']},
+    {'t':'🎲 Permainan Pendidikan','d':'Permainan papan atau digital.','st':['Permainan','Motivasi']},
+    {'t':'🃏 Kad Imbasan','d':'Kad imbasan berwarna untuk ingatan.','st':['Kad imbasan','Pengulangan']},
+    {'t':'🎵 Nyanyian dan Gerakan','d':'Lagu dan gerakan untuk kinestetik.','st':['Muzik','Gerakan']},
+    {'t':'🗺️ Peta Konsep Bergambar','d':'Peta konsep dengan gambar dan kata kunci.','st':['Visual','Organisasi']},
+    {'t':'📖 Bacaan Bergilir','d':'Baca bersama dengan bimbingan sebutan.','st':['Bacaan berpandu','Sebutan']},
+    {'t':'🔤 Dialog Strip','d':'Susun dialog dipotong mengikut urutan.','st':['Susunan','Urutan']},
+    {'t':'📄 Cloze Bergambar','d':'Teks cloze dengan gambar petunjuk.','st':['Cloze','Visual']},
+    {'t':'🔍 Error Hunt','d':'Cari kesalahan dalam ayat bergambar.','st':['Pengenalpastian','Pembetulan']},
+    {'t':'📝 Mini Whiteboard','d':'Tulis perkataan pada papan mini.','st':['Penulisan','Maklum balas']},
+    {'t':'🏃 Phonics Hopscotch','d':'Grid hopscotch huruf, lompat dan sebut.','st':['Kinestetik','Fonik']},
+    {'t':'📑 Word Family','d':'Susun kad ke keluarga perkataan.','st':['Pengelasan','Rakan sebaya']},
+    {'t':'📦 Realia Show & Tell','d':'Objek sebenar sebut dan ambil.','st':['Objek sebenar','Visual']},
+    {'t':'⚽ Question Pass','d':'Bola hantar, jawab soalan.','st':['Bertutur','Permainan']},
+    {'t':'🖼️ Talk-the-Picture','d':'Gambar besar dengan rangka ayat.','st':['Visual','Berpasangan']},
+    {'t':'✏️ Latihan Menulis','d':'Tulis dengan titik panduan.','st':['Penulisan','Mekanis']},
+    {'t':'🧮 Pengiraan Maujud','d':'Blok/biji untuk kira konkrit.','st':['Konkrit','Maujud']},
+    {'t':'📏 Garis Nombor','d':'Garis nombor tambah tolak.','st':['Visual','Konkrit']},
+    {'t':'🧠 Permainan Memori','d':'Kad terbalik cari padanan.','st':['Memori','Padanan']},
+    {'t':'📒 Buku Skrap','d':'Kumpul hasil pemulihan.','st':['Dokumentasi','Motivasi']},
+    {'t':'✂️ Potong dan Tampal','d':'Potong gambar tampal betul.','st':['Psikomotor','Pengelasan']},
+    {'t':'💬 Soalan Lisan','d':'Soalan lisan bimbingan tanpa tekanan.','st':['Lisan','Bimbingan']},
+    {'t':'💻 Pembelajaran Digital','d':'Quizizz/Google Forms interaktif.','st':['Digital','Interaktif']},
+    {'t':'📓 Jurnal Pembelajaran','d':'Jurnal apa dipelajari.','st':['Refleksi','Penulisan']},
+    {'t':'🎪 Stesen Pemulihan','d':'Stesen khas untuk murid belum kuasai.','st':['Kumpulan kecil','Bimbingan']},
+    {'t':'🎯 Sasaran Kata','d':'Bola baling sasaran sebut kata.','st':['Permainan','Sebutan']},
+    {'t':'🧩 Puzzle Pendidikan','d':'Puzzle gambar/perkataan.','st':['Puzzle','Visual']},
+    {'t':'🎤 Karaoke','d':'Nyanyi lagu dengan lirik.','st':['Muzik','Pengulangan']},
+    {'t':'📋 Checklist Kendiri','d':'Semak sendiri senarai semak.','st':['Kendiri','Refleksi']},
+    {'t':'🎭 Main Peranan','d':'Lakonan situasi harian.','st':['Lakonan','Sosial']},
+    {'t':'🔢 Kad Nombor','d':'Kad nombor warna nilai tempat.','st':['Visual','Matematik']},
+    {'t':'📖 Bacaan Bergambar','d':'Buku cerita bergambar besar.','st':['Bacaan','Visual']},
+    {'t':'🎲 Dadu Perkataan','d':'Dadu sebut perkataan.','st':['Permainan','Sebutan']},
+    {'t':'📝 Lembaran Imbuhan','d':'Latihan imbuhan.','st':['Tatabahasa','Latih tubi']},
+    {'t':'🧑‍🤝‍🧑 Kumpulan Fokus','d':'3-4 murid bimbingan intensif.','st':['Kumpulan kecil','Intensif']},
+    {'t':'🎯 Papan Ejaan','d':'Permainan ejaan.','st':['Ejaan','Permainan']},
+    {'t':'📸 Fotografi','d':'Gambar objek label perkataan.','st':['Kreatif','Visual']},
+    {'t':'🎬 Video Pendek','d':'Tonton video jawab soalan.','st':['Visual','Digital']},
+    {'t':'🧩 Teka Silang Kata','d':'Silang kata gambar petunjuk.','st':['Kosa kata','Pengukuhan']},
+    {'t':'📑 Kad Tugasan','d':'Kad arahan jelas harian.','st':['Rutin','Bimbingan']},
+    {'t':'🎤 Bacaan Berirama','d':'Baca ikut irama/rap.','st':['Bacaan','Irama']},
+    {'t':'🎨 Mewarna','d':'Mewarna dengan konsep.','st':['Mewarna','Visual']},
+    {'t':'📋 Panduan Mini','d':'Buku panduan topik sukar.','st':['Kreatif','Dokumentasi']},
+    {'t':'🤖 Gamifikasi','d':'Lencana mata tahap motivasi.','st':['Gamifikasi','Motivasi']},
+    {'t':'📞 Telefon Bual','d':'Telefon cawan kertas lisan.','st':['Bertutur','Mendengar']},
+], ensure_ascii=False)
+
+# Read base HTML
+BASE = '/tmp/index_backup.html'
+with open(BASE, 'r') as f:
+    html = f.read()
+
+# NOTE: This backup is from the OLD v3.0. We need the build_app.py to work
+# but since it has syntax issues, let's just write the COMPLETE final HTML directly
+
+# Instead of patching, let me generate the final complete HTML
+# by writing it with all changes embedded
+
+H = '''<!DOCTYPE html>
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
@@ -59,7 +130,7 @@
             <div><div class="flex items-center justify-between"><p class="font-semibold text-[#3A2A1A] text-[10px]">🎯 Standard Pembelajaran</p><button @click="p.sp.push('')" class="text-[#C4956A] text-[10px]">+ Tambah</button></div><template x-for="(sp,i) in p.sp" :key="i"><div class="flex gap-1 mt-1"><input type="text" x-model="p.sp[i]" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs"><button @click="p.sp.splice(i,1)" class="text-red-400 text-[10px]" x-show="p.sp.length>1">✕</button></div></template></div>
             <div><p class="font-semibold text-[#8B5A2B] text-[10px]">🎯 Objektif</p><template x-for="(o,i) in p.obj" :key="i"><textarea x-model="p.obj[i]" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs mt-1" rows="1"></textarea></template></div>
             <div><p class="font-semibold text-emerald-600 text-[10px]">✅ Kriteria Kejayaan</p><template x-for="(k,i) in p.kj" :key="i"><textarea x-model="p.kj[i]" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs mt-1" rows="1"></textarea></template></div>
-            <div><p class="font-semibold text-[#8B5A2B] text-[10px]">📝 Aktiviti</p><div class="space-y-2 mt-1"><template x-for="(a,i) in p.acts" :key="i"><div class="flex gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full text-[9px] font-bold mt-1" :class="aC(a.ph)" x-text="a.ph.match(/[\u{1F000}-\u{1FFFF}]/u)?.[0]||'?'"></span><div class="flex-1"><p class="font-medium text-[#3A2A1A] text-[11px]" x-text="a.ph"></p><textarea x-model="a.d" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs" rows="2"></textarea><div class="flex gap-2 mt-1"><input type="text" x-model="a.t" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-white p-1 text-[10px]" placeholder="👩‍🏫 Guru"><input type="text" x-model="a.s" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-white p-1 text-[10px]" placeholder="🙋 Murid"></div></div></div></template></div></div>
+            <div><p class="font-semibold text-[#8B5A2B] text-[10px]">📝 Aktiviti</p><div class="space-y-2 mt-1"><template x-for="(a,i) in p.acts" :key="i"><div class="flex gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full text-[9px] font-bold mt-1" :class="aC(a.ph)" x-text="a.ph.match(/[\\u{1F000}-\\u{1FFFF}]/u)?.[0]||'?'"></span><div class="flex-1"><p class="font-medium text-[#3A2A1A] text-[11px]" x-text="a.ph"></p><textarea x-model="a.d" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs" rows="2"></textarea><div class="flex gap-2 mt-1"><input type="text" x-model="a.t" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-white p-1 text-[10px]" placeholder="👩‍🏫 Guru"><input type="text" x-model="a.s" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-white p-1 text-[10px]" placeholder="🙋 Murid"></div></div></div></template></div></div>
             <div x-show="p.rem&&p.rem.length"><p class="font-semibold text-orange-600 text-[10px]">🩺 Pemulihan</p><div class="space-y-1.5 mt-1"><template x-for="(r,i) in p.rem" :key="i"><div class="rounded-lg border border-orange-200 bg-orange-50 p-2"><textarea x-model="r.t" class="w-full rounded border border-orange-200 bg-white p-1 text-[11px] font-medium text-orange-800" rows="1"></textarea><textarea x-model="r.d" class="w-full rounded border border-orange-200 bg-white p-1 text-[10px] text-orange-700 mt-1" rows="2"></textarea></div></template></div></div>
             <div><p class="font-semibold text-amber-700 text-[10px] mb-1">💬 Refleksi</p><textarea x-model="p.ref" class="w-full rounded-lg border-2 border-amber-200 bg-amber-50 p-3 text-xs text-[#78350f] focus:border-amber-400" rows="3" placeholder="💬 Taip refleksi..."></textarea></div>
             <div class="flex flex-wrap gap-2 border-t border-[#C4956A]/10 pt-3">
@@ -108,7 +179,7 @@
 </div>
 
 <script>
-const REM = [{"t": "🧑‍🏫 Bimbingan Individu", "d": "Bimbingan langkah-demi-langkah dengan soalan bimbingan.", "st": ["Bimbingan", "Pengulangan"]}, {"t": "📝 Latihan Berstruktur", "d": "Lembaran kerja dipermudah dengan arahan langkah.", "st": ["Latihan berpandu", "Contoh"]}, {"t": "👀 Tunjuk Cara Ulangan", "d": "Demonstrasi semula dengan penerangan perlahan.", "st": ["Demonstrasi", "Pengulangan"]}, {"t": "📊 Bahan Bantu Visual", "d": "Gambar rajah, carta dan video untuk konsep visual.", "st": ["Visual", "Peta konsep"]}, {"t": "✏️ Latihan Pengukuhan", "d": "Latihan mudah membina keyakinan.", "st": ["Latihan", "Pengukuhan"]}, {"t": "🤝 Pembelajaran Berpasangan", "d": "Murid cemerlang dengan murid pemulihan.", "st": ["Bimbingan rakan", "Kolaboratif"]}, {"t": "🎲 Permainan Pendidikan", "d": "Permainan papan atau digital.", "st": ["Permainan", "Motivasi"]}, {"t": "🃏 Kad Imbasan", "d": "Kad imbasan berwarna untuk ingatan.", "st": ["Kad imbasan", "Pengulangan"]}, {"t": "🎵 Nyanyian dan Gerakan", "d": "Lagu dan gerakan untuk kinestetik.", "st": ["Muzik", "Gerakan"]}, {"t": "🗺️ Peta Konsep Bergambar", "d": "Peta konsep dengan gambar dan kata kunci.", "st": ["Visual", "Organisasi"]}, {"t": "📖 Bacaan Bergilir", "d": "Baca bersama dengan bimbingan sebutan.", "st": ["Bacaan berpandu", "Sebutan"]}, {"t": "🔤 Dialog Strip", "d": "Susun dialog dipotong mengikut urutan.", "st": ["Susunan", "Urutan"]}, {"t": "📄 Cloze Bergambar", "d": "Teks cloze dengan gambar petunjuk.", "st": ["Cloze", "Visual"]}, {"t": "🔍 Error Hunt", "d": "Cari kesalahan dalam ayat bergambar.", "st": ["Pengenalpastian", "Pembetulan"]}, {"t": "📝 Mini Whiteboard", "d": "Tulis perkataan pada papan mini.", "st": ["Penulisan", "Maklum balas"]}, {"t": "🏃 Phonics Hopscotch", "d": "Grid hopscotch huruf, lompat dan sebut.", "st": ["Kinestetik", "Fonik"]}, {"t": "📑 Word Family", "d": "Susun kad ke keluarga perkataan.", "st": ["Pengelasan", "Rakan sebaya"]}, {"t": "📦 Realia Show & Tell", "d": "Objek sebenar sebut dan ambil.", "st": ["Objek sebenar", "Visual"]}, {"t": "⚽ Question Pass", "d": "Bola hantar, jawab soalan.", "st": ["Bertutur", "Permainan"]}, {"t": "🖼️ Talk-the-Picture", "d": "Gambar besar dengan rangka ayat.", "st": ["Visual", "Berpasangan"]}, {"t": "✏️ Latihan Menulis", "d": "Tulis dengan titik panduan.", "st": ["Penulisan", "Mekanis"]}, {"t": "🧮 Pengiraan Maujud", "d": "Blok/biji untuk kira konkrit.", "st": ["Konkrit", "Maujud"]}, {"t": "📏 Garis Nombor", "d": "Garis nombor tambah tolak.", "st": ["Visual", "Konkrit"]}, {"t": "🧠 Permainan Memori", "d": "Kad terbalik cari padanan.", "st": ["Memori", "Padanan"]}, {"t": "📒 Buku Skrap", "d": "Kumpul hasil pemulihan.", "st": ["Dokumentasi", "Motivasi"]}, {"t": "✂️ Potong dan Tampal", "d": "Potong gambar tampal betul.", "st": ["Psikomotor", "Pengelasan"]}, {"t": "💬 Soalan Lisan", "d": "Soalan lisan bimbingan tanpa tekanan.", "st": ["Lisan", "Bimbingan"]}, {"t": "💻 Pembelajaran Digital", "d": "Quizizz/Google Forms interaktif.", "st": ["Digital", "Interaktif"]}, {"t": "📓 Jurnal Pembelajaran", "d": "Jurnal apa dipelajari.", "st": ["Refleksi", "Penulisan"]}, {"t": "🎪 Stesen Pemulihan", "d": "Stesen khas untuk murid belum kuasai.", "st": ["Kumpulan kecil", "Bimbingan"]}, {"t": "🎯 Sasaran Kata", "d": "Bola baling sasaran sebut kata.", "st": ["Permainan", "Sebutan"]}, {"t": "🧩 Puzzle Pendidikan", "d": "Puzzle gambar/perkataan.", "st": ["Puzzle", "Visual"]}, {"t": "🎤 Karaoke", "d": "Nyanyi lagu dengan lirik.", "st": ["Muzik", "Pengulangan"]}, {"t": "📋 Checklist Kendiri", "d": "Semak sendiri senarai semak.", "st": ["Kendiri", "Refleksi"]}, {"t": "🎭 Main Peranan", "d": "Lakonan situasi harian.", "st": ["Lakonan", "Sosial"]}, {"t": "🔢 Kad Nombor", "d": "Kad nombor warna nilai tempat.", "st": ["Visual", "Matematik"]}, {"t": "📖 Bacaan Bergambar", "d": "Buku cerita bergambar besar.", "st": ["Bacaan", "Visual"]}, {"t": "🎲 Dadu Perkataan", "d": "Dadu sebut perkataan.", "st": ["Permainan", "Sebutan"]}, {"t": "📝 Lembaran Imbuhan", "d": "Latihan imbuhan.", "st": ["Tatabahasa", "Latih tubi"]}, {"t": "🧑‍🤝‍🧑 Kumpulan Fokus", "d": "3-4 murid bimbingan intensif.", "st": ["Kumpulan kecil", "Intensif"]}, {"t": "🎯 Papan Ejaan", "d": "Permainan ejaan.", "st": ["Ejaan", "Permainan"]}, {"t": "📸 Fotografi", "d": "Gambar objek label perkataan.", "st": ["Kreatif", "Visual"]}, {"t": "🎬 Video Pendek", "d": "Tonton video jawab soalan.", "st": ["Visual", "Digital"]}, {"t": "🧩 Teka Silang Kata", "d": "Silang kata gambar petunjuk.", "st": ["Kosa kata", "Pengukuhan"]}, {"t": "📑 Kad Tugasan", "d": "Kad arahan jelas harian.", "st": ["Rutin", "Bimbingan"]}, {"t": "🎤 Bacaan Berirama", "d": "Baca ikut irama/rap.", "st": ["Bacaan", "Irama"]}, {"t": "🎨 Mewarna", "d": "Mewarna dengan konsep.", "st": ["Mewarna", "Visual"]}, {"t": "📋 Panduan Mini", "d": "Buku panduan topik sukar.", "st": ["Kreatif", "Dokumentasi"]}, {"t": "🤖 Gamifikasi", "d": "Lencana mata tahap motivasi.", "st": ["Gamifikasi", "Motivasi"]}, {"t": "📞 Telefon Bual", "d": "Telefon cawan kertas lisan.", "st": ["Bertutur", "Mendengar"]}];
+const REM = ''' + REM + r''';
 
 const TAKWIM = [
   {m:1,s:'12/01/2026',e:'16/01/2026',t:1,b:1},{m:2,s:'19/01/2026',e:'23/01/2026',t:1,b:1},{m:3,s:'26/01/2026',e:'30/01/2026',t:1,b:1},{m:4,s:'02/02/2026',e:'06/02/2026',t:1,b:1},{m:5,s:'09/02/2026',e:'13/02/2026',t:1,b:1},{m:6,s:'16/02/2026',e:'20/02/2026',t:1,b:1},{m:7,s:'23/02/2026',e:'27/02/2026',t:1,b:1},{m:8,s:'02/03/2026',e:'06/03/2026',t:1,b:1},{m:9,s:'09/03/2026',e:'13/03/2026',t:1,b:1},{m:10,s:'16/03/2026',e:'20/03/2026',t:1,b:1},{m:0,s:'21/03/2026',e:'29/03/2026',t:1,b:0,l:'🎉 Cuti Penggal 1'},{m:11,s:'30/03/2026',e:'03/04/2026',t:1,b:2},{m:12,s:'06/04/2026',e:'10/04/2026',t:1,b:2},{m:13,s:'13/04/2026',e:'17/04/2026',t:1,b:2},{m:14,s:'20/04/2026',e:'24/04/2026',t:1,b:2},{m:15,s:'27/04/2026',e:'01/05/2026',t:1,b:2},{m:16,s:'04/05/2026',e:'08/05/2026',t:1,b:2},{m:17,s:'11/05/2026',e:'15/05/2026',t:1,b:2},{m:18,s:'18/05/2026',e:'22/05/2026',t:1,b:2},{m:0,s:'23/05/2026',e:'07/06/2026',t:1,b:0,l:'🎉 Cuti Pertengahan Tahun'},{m:19,s:'08/06/2026',e:'12/06/2026',t:2,b:1},{m:20,s:'15/06/2026',e:'19/06/2026',t:2,b:1},{m:21,s:'22/06/2026',e:'26/06/2026',t:2,b:1},{m:22,s:'29/06/2026',e:'03/07/2026',t:2,b:1},{m:23,s:'06/07/2026',e:'10/07/2026',t:2,b:1},{m:24,s:'13/07/2026',e:'17/07/2026',t:2,b:1},{m:25,s:'20/07/2026',e:'24/07/2026',t:2,b:1},{m:26,s:'27/07/2026',e:'31/07/2026',t:2,b:1},{m:27,s:'03/08/2026',e:'07/08/2026',t:2,b:1},{m:28,s:'10/08/2026',e:'14/08/2026',t:2,b:1},{m:29,s:'17/08/2026',e:'21/08/2026',t:2,b:1},{m:30,s:'24/08/2026',e:'28/08/2026',t:2,b:1},{m:0,s:'29/08/2026',e:'06/09/2026',t:2,b:0,l:'🎉 Cuti Penggal 2'},{m:31,s:'07/09/2026',e:'11/09/2026',t:2,b:2},{m:32,s:'14/09/2026',e:'18/09/2026',t:2,b:2},{m:33,s:'21/09/2026',e:'25/09/2026',t:2,b:2},{m:34,s:'28/09/2026',e:'02/10/2026',t:2,b:2},{m:35,s:'05/10/2026',e:'09/10/2026',t:2,b:2},{m:36,s:'12/10/2026',e:'16/10/2026',t:2,b:2},{m:37,s:'19/10/2026',e:'23/10/2026',t:2,b:2},{m:38,s:'26/10/2026',e:'30/10/2026',t:2,b:2},{m:39,s:'02/11/2026',e:'06/11/2026',t:2,b:2},{m:40,s:'09/11/2026',e:'13/11/2026',t:2,b:2},{m:41,s:'16/11/2026',e:'20/11/2026',t:2,b:2},{m:42,s:'23/11/2026',e:'27/11/2026',t:2,b:2},{m:43,s:'30/11/2026',e:'04/12/2026',t:2,b:2},{m:0,s:'05/12/2026',e:'31/12/2026',t:2,b:0,l:'🎉 Cuti Akhir Persekolahan'},
@@ -122,7 +193,7 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
   _skOpen: true, _spOpen: false,
   tabs:[{i:'📅',l:'Jadual',id:'tt'},{i:'⚡',l:'Jana RPH',id:'rph',c:0},{i:'📚',l:'Kurikulum',id:'kur'},{i:'💬',l:'Refleksi',id:'ref'}],
   TEACHERS: {"TBS":{"n":"TEOH BOON SIM","c":"张汶森"},"LET":{"n":"LEE EE TING","c":"李依婷"},"HLF":{"n":"HEW LEE FUN","c":"丘丽芬"},"LJX":{"n":"LIAN JUNXIANG","c":"连浚翔"},"LSW":{"n":"LEE SHU WEN","c":"李淑雯"},"WKS":{"n":"WONG KA SUIT","c":"黄家煦"},"LYY":{"n":"LOOI YUN YUAN","c":"雷昀苑"},"OWY":{"n":"ONG WEI YI","c":"王维仪"},"ARMAN":{"n":"ARMAN BIN AWANG","c":""},"COW":{"n":"CHONG OOI WEI","c":"锺爱媚"},"BALKIS":{"n":"NUR BALKIS BINTI ZULKHAIRANI","c":""},"YH":{"n":"YOONG HAI","c":"熊海师"}},
-  SLOTS: {"BALKIS": [{"c": "Tahun 1", "d": "Isnin", "p": "4", "s": "BM", "n": "📖 Bahasa Melayu"}, {"c": "Tahun 1", "d": "Isnin", "p": "5", "s": "BM", "n": "📖 Bahasa Melayu"}, {"c": "Tahun 1", "d": "Isnin", "p": "8", "s": "BM", "n": "📖 Bahasa Melayu"}, {"c": "Tahun 2", "d": "Isnin", "p": "1", "s": "BM", "n": "📖 Bahasa Melayu"}, {"c": "Tahun 3", "d": "Selasa", "p": "3", "s": "BM", "n": "📖 Bahasa Melayu"}, {"c": "Tahun 3", "d": "Khamis", "p": "1", "s": "BM", "n": "📖 Bahasa Melayu"}], "LJX": [{"c": "Tahun 1", "d": "Isnin", "p": "3", "s": "BI", "n": "📗 English"}, {"c": "Tahun 3", "d": "Selasa", "p": "1", "s": "BI", "n": "📗 English"}, {"c": "Tahun 5", "d": "Isnin", "p": "4", "s": "BC", "n": "📝 Bahasa Cina"}, {"c": "Tahun 6", "d": "Rabu", "p": "P", "s": "PJ", "n": "🏃 Jasmani"}], "LSW": [{"c": "Tahun 1", "d": "Selasa", "p": "3", "s": "MT", "n": "🔢 Matematik"}, {"c": "Tahun 5", "d": "Rabu", "p": "7", "s": "SN", "n": "🔬 Sains"}, {"c": "Tahun 6", "d": "Isnin", "p": "1", "s": "PM", "n": "🌟 Moral"}], "OWY": [{"c": "Tahun 4", "d": "Selasa", "p": "2", "s": "BM", "n": "📖 Bahasa Melayu"}, {"c": "Tahun 5", "d": "Isnin", "p": "6", "s": "BM", "n": "📖 Bahasa Melayu"}, {"c": "Tahun 6", "d": "Isnin", "p": "8", "s": "BM", "n": "📖 Bahasa Melayu"}], "HLF": [{"c": "Tahun 4", "d": "Isnin", "p": "2", "s": "BC", "n": "📝 Bahasa Cina"}, {"c": "Tahun 5", "d": "Selasa", "p": "2", "s": "MT", "n": "🔢 Matematik"}], "COW": [{"c": "Tahun 2", "d": "Isnin", "p": "4", "s": "BC", "n": "📝 Bahasa Cina"}, {"c": "Tahun 3", "d": "Isnin", "p": "1", "s": "MT", "n": "🔢 Matematik"}], "ARMAN": [{"c": "Tahun 2", "d": "Rabu", "p": "P", "s": "PSV", "n": "🎨 Seni Visual"}, {"c": "Tahun 5", "d": "Jumaat", "p": "1", "s": "PSV", "n": "🎨 Seni Visual"}], "LYY": [{"c": "Tahun 2", "d": "Isnin", "p": "2", "s": "MT", "n": "🔢 Matematik"}, {"c": "Tahun 5", "d": "Selasa", "p": "9", "s": "RBT", "n": "🛠️ RBT"}], "WKS": [{"c": "Tahun 4", "d": "Isnin", "p": "4", "s": "BI", "n": "📗 English"}, {"c": "Tahun 5", "d": "Isnin", "p": "1", "s": "PM", "n": "🌟 Moral"}], "TBS": [{"c": "Tahun 6", "d": "Isnin", "p": "3", "s": "RBT", "n": "🛠️ RBT"}, {"c": "Tahun 6", "d": "Rabu", "p": "3", "s": "MT", "n": "🔢 Matematik"}], "YH": []},
+  SLOTS: {},
   DAYS: ['Isnin','Selasa','Rabu','Khamis','Jumaat'],
   PERIODS: [['P','07:45','08:15'],['1','08:15','08:45'],['2','08:45','09:15'],['3','09:15','09:45'],['4','09:45','10:15'],['REHAT','10:15','10:35'],['5','10:35','11:05'],['6','11:05','11:35'],['7','11:35','12:05'],['8','12:05','12:35'],['9','12:35','13:05'],['10','13:05','13:35'],['11','13:35','14:05'],['12','14:05','14:35']],
   SUBJECTS: [{'c':'BM','n':'📖 Bahasa Melayu'},{'c':'BC','n':'📝 Bahasa Cina'},{'c':'BI','n':'📗 English'},{'c':'MT','n':'🔢 Matematik'},{'c':'SN','n':'🔬 Sains'},{'c':'PM','n':'🌟 Moral'},{'c':'PI','n':'🕌 Islam'},{'c':'PJ','n':'🏃 Jasmani'},{'c':'PK','n':'💚 Kesihatan'},{'c':'PSV','n':'🎨 Seni Visual'},{'c':'MZ','n':'🎵 Muzik'},{'c':'SJ','n':'📜 Sejarah'},{'c':'RBT','n':'🛠️ RBT'},{'c':'PKS','n':'🎭 Kesenian'},{'c':'PJPK','n':'🏅 PJPK'},{'c':'PMZ','n':'🎶 Muzik'}],
@@ -242,4 +313,12 @@ body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
 @media(prefers-reduced-motion:reduce){.btn-jana,.sidebar-transition{animation:none!important;transition:none!important}}
 </style>
 </body>
-</html>
+</html>'''
+
+with open(OUT, 'w', encoding='utf-8') as f:
+    f.write(H)
+
+import subprocess
+r = subprocess.run(['node', '-e', f'const fs=require("fs");const h=fs.readFileSync("{OUT}","utf8");const m=h.match(/<script>([\\s\\S]*?)<\\/script>/);if(m){{try{{new Function(m[1]);console.log("JS:OK")}}catch(e){{console.log("FAIL:"+e.message.substring(0,120))}}}}'], capture_output=True, text=True, timeout=15)
+print(f"Written: {os.path.getsize(OUT)} bytes")
+print(r.stdout.strip() or r.stderr.strip()[:200])
