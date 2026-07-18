@@ -66,7 +66,7 @@
                 <p class="font-semibold text-indigo-700 text-[10px] uppercase">📊 Rekod Transit</p>
                 <button @click.stop="genTP(p)" class="rounded border border-indigo-300 bg-indigo-50 px-2 py-0.5 text-[9px] font-medium text-indigo-700 hover:bg-indigo-100">🎲 Jana TP</button>
               </div>
-              <div x-show="p._tpOpen" x-collapse>
+              <div>
                 <div class="overflow-x-auto rounded-lg border border-indigo-200 bg-white text-xs">
                 <table class="w-full min-w-[350px]">
                   <thead><tr class="border-b bg-indigo-50">
@@ -218,6 +218,12 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
         ref:'',o:true,
       });
     });
+    // Auto-init TP for each plan
+    plans.forEach(p=>{
+      const y=p.c.replace('Tahun ','Year ');
+      const ns=STUDENTS[y]||[];
+      p._students=ns.map(n=>{const tp=Math.floor(Math.random()*6)+1;return{n,tp,c:tp<=2?'Bimbingan tambahan dalam kemahiran asas.':tp<=4?'Bimbingan sederhana untuk meningkatkan kefahaman.':'Aktiviti pengayaan untuk mencabar pemikiran.'};});
+    });
     this.rph=[...plans,...this.rph];this.a='rph';this.sv();
   },
 
@@ -234,9 +240,9 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
       +(p.sk.length?'<div><h2 style="font-size:.8rem;font-weight:700;color:#1E3A5F;margin:.5rem 0 .3rem">📋 Standard Kandungan</h2>'+p.sk.map(s=>'<span style="background:#FFF8F0;border-radius:999px;padding:2px 8px;font-size:.7rem;color:#3A2A1A;display:inline-block;margin:2px;border:1px solid #C4956A30">'+e(s)+'</span>').join('')+'</div>':'')
       +(p.sp.length?'<div><h2 style="font-size:.8rem;font-weight:700;color:#1E3A5F;margin:.5rem 0 .3rem">🎯 Standard Pembelajaran</h2>'+p.sp.map(s=>'<span style="background:#FFF8F0;border-radius:999px;padding:2px 8px;font-size:.7rem;color:#3A2A1A;display:inline-block;margin:2px;border:1px solid #C4956A30">'+e(s)+'</span>').join('')+'</div>':'')
       +'<div><h2 style="font-size:.8rem;font-weight:700;color:#1E3A5F;margin:.5rem 0 .3rem">🎯 Objektif</h2><ul style="list-style:none;padding:0">'+p.obj.map(o=>'<li style="padding:2px 0;font-size:.75rem;padding-left:1rem">'+e(o)+'</li>').join('')+'</ul></div>'
-      +'<div><h2 style="font-size:.8rem;font-weight:700;color:#1E3A5F;margin:.5rem 0 .3rem">📝 Aktiviti</h2>'+p.acts.map(a=>'<div style="border:1.5px solid #C4956A;border-radius:8px;padding:8px;margin-bottom:6px;page-break-inside:avoid;background:#FFF8F0;word-break:break-word;overflow-wrap:break-word"><p style="font-size:.75rem;font-weight:600;color:#8B5A2B;margin:0 0 4px 0">'+e(a.ph)+' <span style="font-size:.65rem;color:#C4956A">- '+a.dr+' min</span></p></p><p style="font-size:.7rem;color:#3A2A1A;margin:4px 0 0 0;line-height:1.6;word-break:break-word;overflow-wrap:break-word;white-space:pre-wrap">' +e(a.d||"")+ '</p></div>').join('')+'</div>'
+      +'<div><h2 style="font-size:.8rem;font-weight:700;color:#1E3A5F;margin:.5rem 0 .3rem">📝 Aktiviti</h2>'+p.acts.map(a=>'<div style="border:1.5px solid #C4956A;border-radius:8px;padding:8px;margin-bottom:6px;page-break-inside:avoid;background:#FFF8F0;word-break:break-word;overflow-wrap:break-word"><p style="font-size:.75rem;font-weight:600;color:#8B5A2B;margin:0 0 4px 0">'+e(a.ph)+' <span style="font-size:.65rem;color:#C4956A">- '+a.dr+' min</span></p><p style="font-size:.7rem;color:#3A2A1A;margin:4px 0 0 0;line-height:1.6;word-break:break-word;overflow-wrap:break-word;white-space:pre-wrap">' +e(a.d||"")+ '</p></div>').join('')+'</div>'
       +'<div style="display:flex;gap:.5rem;flex-wrap:wrap;font-size:.7rem;color:#3A2A1A;margin:.5rem 0"><div><strong>BBM:</strong> '+p.bbm.join(', ')+'</div><div><strong>Nilai:</strong> '+p.nilai.join(', ')+'</div><div><strong>EMK:</strong> '+p.emk.join(', ')+'</div></div>'
-      +(p.ref?'<div style="border-top:2px solid #C4956A;padding-top:.5rem;margin-top:.75rem;page-break-inside:avoid;word-break:break-word;overflow-wrap:break-word"><h2 style="font-size:.8rem;font-weight:700;color:#d97706">💬 Refleksi</h2><p style="font-size:.7rem;color:#78350f;font-style:italic;background:#fffbeb;border:1.5px solid #fde68a;border-radius:8px;padding:8px;line-height:1.6;word-break:break-word;overflow-wrap:break-word;white-space:pre-wrap">'+e(p.ref)+'</p></div>':'')
+      +(p.ref?'<div style="border-top:2px solid #C4956A;padding-top:.5rem;margin-top:.75rem;page-break-inside:avoid;word-break:break-word;overflow-wrap:break-word"><h2 style="font-size:.8rem;font-weight:700;color:#d97706">💬 Refleksi</h2><p style="font-size:.7rem;color:#78350f;font-style:italic;background:#fffbeb;border:1.5px solid #fde68a;border-radius:8px;padding:8px;line-height:1.6;word-break:break-word;overflow-wrap:break-word;white-space:pre-wrap">'+e(p.ref)+'</p></div>':'')+(p._students&&p._students.length?'<div style="margin-top:.5rem;border-top:2px solid #C4956A;padding-top:.4rem"><h2 style="font-size:.8rem;font-weight:700;color:#6366f1;margin-bottom:.3rem">📊 Rekod Transit</h2><table style="width:100%;border-collapse:collapse;font-size:.7rem"><thead><tr style="background:#eef2ff;border-bottom:2px solid #c7d2fe"><th style="padding:3px 6px;text-align:left;color:#4338ca">#</th><th style="padding:3px 6px;text-align:left;color:#4338ca">Nama</th><th style="padding:3px 6px;text-align:center;color:#4338ca">TP</th><th style="padding:3px 6px;text-align:left;color:#4338ca">Intervensi</th></tr></thead><tbody>'+p._students.map((s,i)=>'<tr style="border-bottom:1px solid #e2e8f0"><td style="padding:2px 6px;color:#94a3b8">'+(i+1)+'</td><td style="padding:2px 6px;font-weight:500;color:#334155">'+e(s.n)+'</td><td style="padding:2px 6px;text-align:center"><span style="display:inline-block;width:1.5rem;height:1.5rem;line-height:1.5rem;text-align:center;border-radius:9999px;font-size:.65rem;font-weight:700;background:'+(s.tp>=5?'#dcfce7':s.tp>=3?'#fef3c7':'#fee2e2')+';color:'+(s.tp>=5?'#166534':s.tp>=3?'#92400e':'#991b1b')+'">'+s.tp+'</span></td><td style="padding:2px 6px;color:#78350f;font-size:.65rem">'+e(s.c||'')+'</td></tr>').join('')+'</tbody></table></div>':'')+
       +'<div style="margin-top:.5rem;padding-top:.3rem;border-top:1px solid #C4956A20;font-size:.6rem;color:#C4956A;text-align:center">🇲🇾 Dijana oleh eRPH-PM | SJK(C) PIN MIN, BIDOR STESEN, PERAK</div></div>';
   },
 
