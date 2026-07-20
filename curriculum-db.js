@@ -1447,6 +1447,40 @@ const CURR_DB = {
   "KM 2.1.2": "Menunjukkan rasa bangga terhadap identiti negara, lagu negeri, dan tokoh/pemimpin negara."
 }
   }
+,
+  'Prasekolah|SA': {
+    SK: {
+  "1.1": "Menguasai kemahiran proses sains dan inkuiri",
+  "2.1": "Meneroka alam hidupan, bahan, dan teknologi"
+},
+    SP: {
+  "SA 1.1.1": "Membuat pemerhatian terhadap persekitaran menggunakan lima deria.",
+  "SA 1.1.2": "Mengelaskan objek mengikut satu ciri (warna, bentuk, saiz, tekstur).",
+  "SA 1.1.3": "Membuat perbandingan dan mengukur panjang, tinggi, atau berat objek menggunakan unit bukan piawai (seperti jengkal, klip kertas).",
+  "SA 1.1.4": "Membuat ramalan dan inferens mudah berdasarkan aktiviti penerokaan/eksperimen STEM.",
+  "SA 2.1.1": "Mengenal pasti bahagian tubuh haiwan dan bahagian tumbuhan.",
+  "SA 2.1.2": "Meneroka sifat bahan (tenggelam/timbul, menyerap air, keterlarutan, daya magnet).",
+  "SA 2.1.3": "Mengaplikasikan asas teknologi dan pemikiran komputasional mudah (pola, logik langkah/algoritma) dalam penyelesaian masalah."
+}
+  },
+  'Prasekolah|MA': {
+    SK: {
+  "1.1": "Menguasai konsep pra-nombor dan padanan",
+  "2.1": "Memahami konsep nombor, membilang, dan operasi asas",
+  "3.1": "Memahami konsep bentuk, ruang, masa dan wang"
+},
+    SP: {
+  "MA 1.1.1": "Memadankan objek berpasangan yang sama atau berkaitan.",
+  "MA 1.1.2": "Membuat seriasi objek mengikut susunan saiz atau bilangan.",
+  "MA 1.1.3": "Mengecam dan meniru pola/corak berulang.",
+  "MA 2.1.1": "Membilang objek secara tertib 1 hingga 10.",
+  "MA 2.1.2": "Membilang dan membina himpunan objek 1 hingga 20 serta menulis nombor dengan betul.",
+  "MA 2.1.3": "Menyelesaikan masalah operasi tambah dan tolak asas dalam lingkungan 10 menggunakan bahan konkrit.",
+  "MA 3.1.1": "Mengecam bentuk dua dimensi (2D) dan tiga dimensi (3D) di persekitaran.",
+  "MA 3.1.2": "Mengenal waktu dalam sehari (pagi, tengah hari, petang, malam) dan urutan hari dalam seminggu.",
+  "MA 3.1.3": "Mengenal mata wang Malaysia (duit syiling dan wang kertas RM1, RM5, RM10)."
+}
+  }
 
 };
 
