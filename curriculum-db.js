@@ -1481,6 +1481,25 @@ const CURR_DB = {
   "MA 3.1.3": "Mengenal mata wang Malaysia (duit syiling dan wang kertas RM1, RM5, RM10)."
 }
   }
+,
+  'Prasekolah|KE': {
+    SK: {
+  "1.1": "Menyanyikan lagu dan meneroka bunyi daripada pelbagai sumber",
+  "1.2": "Main peranan dan lakonan drama kreatif",
+  "2.1": "Menghasilkan karya seni visual melalui pelbagai media dan teknik"
+},
+    SP: {
+  "KE 1.1.1": "Menyanyi lagu mengikut detik, tempo, dan pitch yang betul.",
+  "KE 1.1.2": "Meneroka pelbagai alat muzik perkusi atau bahan persekitaran untuk menghasilkan bunyi mengikut irama.",
+  "KE 1.1.3": "Melakukan pergerakan kreatif secara ekspresif berdasarkan tempo dan dinamik muzik yang didengar.",
+  "KE 1.2.1": "Melakonkan watak mengikut imaginasi melalui aktiviti main peranan.",
+  "KE 1.2.2": "Melakonkan watak berasaskan cerita, watak masyarakat, atau situasi harian secara kreatif menggunakan props.",
+  "KE 2.1.1": "Menghasilkan gambar menggunakan pelbagai media (warna air, krayon, pensel warna) dan teknik asas (mewarna, merenjis, mencetak).",
+  "KE 2.1.2": "Menghasilkan rekaan dan corak mudah mengikut kreativiti sendiri.",
+  "KE 2.1.3": "Menghasilkan binaan/model 3D yang kreatif menggunakan bahan terbuang, plastisin, atau blok binaan.",
+  "KE 2.1.4": "Mencipta karya seni visual yang menggabungkan pelbagai unsur (garisan, warna, bentuk, tekstur) serta menceritakan hasil karya sendiri."
+}
+  }
 
 };
 
