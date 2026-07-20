@@ -1366,6 +1366,31 @@ const CURR_DB = {
   "3.2.2": "依照正确的笔顺规则在田字格/方格内书写简单的独体字及常用字。"
 }
   }
+,
+  'Prasekolah|SE': {
+    SK: {
+  "1.1": "Mengenal pasti dan mengurus emosi sendiri (Emotional Self-Regulation)",
+  "1.2": "Mengenal pasti dan menghormati emosi orang lain (Empathy & Emotional Awareness)",
+  "2.1": "Membina konsep diri yang positif dan keyakinan diri (Self-Confidence & Identity)",
+  "2.2": "Membina sikap gigih dan ketahanan diri (Resilience & Perseverance)",
+  "3.1": "Membina hubungan positif dengan rakan dan orang dewasa (Relationship Building)"
+},
+    SP: {
+  "1.1.1": "Mengenal pasti dan menyatakan emosi asas (gembira, sedih, takut, marah).",
+  "1.1.2": "Menyatakan punca atau faktor yang menyebabkan emosi gembira, sedih, takut, dan marah.",
+  "1.1.3": "Menggunakan strategi kawalan emosi yang sesuai mengikut situasi (cth: bernafas secara mendalam, meminta bantuan, berehat sejenak).",
+  "1.1.4": "Menerangkan dan mengurus emosi secara positif apabila berhadapan dengan situasi yang mencabar atau tidak disenangi.",
+  "1.2.1": "Mengenal pasti emosi orang lain berdasarkan gerak laku, nada suara, dan mimik muka.",
+  "1.2.2": "Menunjukkan empati dan membalas emosi atau keperluan orang lain secara positif dan prihatin.",
+  "2.1.1": "Menyatakan kebolehan, minat, dan kelebihan diri sendiri secara positif.",
+  "2.1.2": "Menunjukkan sikap yakin pada diri sendiri semasa mencuba aktiviti baharu atau membuat persembahan.",
+  "2.2.1": "Menunjukkan sikap mahu mencuba semula apabila menghadapi kesukaran semasa aktiviti.",
+  "2.2.2": "Menunjukkan sikap tidak mudah putus asa dan kebolehan menyelesaikan masalah secara berdikari atau bersama rakan.",
+  "3.1.1": "Berinteraksi dan bermain bersama-sama rakan secara mesra dan berhemah.",
+  "3.1.2": "Berkongsi alatan, bahan, dan mainan dengan rakan semasa aktiviti.",
+  "3.1.3": "Membina hubungan yang mesra, jujur, dan saling menghormati dengan dewasa dan rakan sebaya daripada pelbagai latar belakang."
+}
+  }
 
 };
 
