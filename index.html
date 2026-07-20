@@ -246,11 +246,49 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
       const y=p.c.replace('Tahun ','Year ');
       const ns=STUDENTS[y]||[];
       p._students=ns.map(n=>{const tp=Math.floor(Math.random()*6)+1;return{n,tp,c:tp<=2?'Bimbingan tambahan dalam kemahiran asas.':tp<=4?'Bimbingan sederhana untuk meningkatkan kefahaman.':'Aktiviti pengayaan untuk mencabar pemikiran.'};});
+      this.ref1(p);
     });
     this.rph=[...plans,...this.rph];this.a='rph';this.sv();
   },
 
-  ref1(p){const l=this.lg(p.s,this.tg);const refs=REF[l]||REF['bm']||[];if(refs.length)p.ref=refs[Math.floor(Math.random()*refs.length)];},
+  ref1(p){
+    const l=this.lg(p.s,this.tg);
+    const total=p._students?p._students.length:0;
+    const low=p._students?p._students.filter(function(s){return s.tp<=2;}):[];
+    const mid=p._students?p._students.filter(function(s){return s.tp>=3&&s.tp<=4;}):[];
+    const high=p._students?p._students.filter(function(s){return s.tp>=5;}):[];
+    const lowNames=low.map(function(s){return s.n;}).join(', ');
+    const topAct=p.acts&&p.acts.length?p.acts[2].d||'aktiviti utama':'aktiviti';
+    const topRem=p.rem&&p.rem.length?p.rem[0].t||'bimbingan':'';
+    if(l==='bm'){
+      var r='Seramai '+total+' orang murid terlibat dalam PdP hari ini. ';
+      if(high.length>0)r+=high.length+' orang murid mencapai tahap penguasaan 5-6 ('+high.map(function(s){return s.n;}).join(', ')+'). ';
+      if(mid.length>0)r+=mid.length+' orang murid berada pada tahap 3-4 dan memerlukan latihan tambahan. ';
+      if(low.length>0)r+=low.length+' orang murid ('+lowNames+') masih pada tahap 1-2 dan memerlukan bimbingan rapi. ';
+      r+='Aktiviti '+topAct+' telah dijalankan. ';
+      if(topRem)r+='Aktiviti pemulihan '+topRem+' diberikan kepada murid yang memerlukan. ';
+      r+='PdP akan diteruskan dengan penekanan kepada pemantapan kemahiran bagi memastikan semua murid mencapai objektif.';
+      p.ref=r;
+    }else if(l==='en'){
+      var r='A total of '+total+' pupils were involved in today\'s lesson. ';
+      if(high.length>0)r+=high.length+' pupils achieved mastery levels 5-6 ('+high.map(function(s){return s.n;}).join(', ')+'). ';
+      if(mid.length>0)r+=mid.length+' pupils are at levels 3-4 and need additional practice. ';
+      if(low.length>0)r+=low.length+' pupils ('+lowNames+') are at levels 1-2 and need close guidance. ';
+      r+='The activity "'+topAct+'" was carried out. ';
+      if(topRem)r+='Remedial activity "'+topRem+'" was given to pupils who needed it. ';
+      r+='The next lesson will focus on strengthening skills to ensure all pupils achieve the objectives.';
+      p.ref=r;
+    }else{
+      var r='今天共有 '+total+' 名学生参与了课堂教学。';
+      if(high.length>0)r+=high.length+' 名学生达到掌握水平 5-6（'+high.map(function(s){return s.n;}).join('、')+'）。';
+      if(mid.length>0)r+=mid.length+' 名学生处于水平 3-4，需要额外练习。';
+      if(low.length>0)r+=low.length+' 名学生（'+lowNames+'）处于水平 1-2，需要密切指导。';
+      r+='活动"'+topAct+'"已完成。';
+      if(topRem)r+='辅导活动"'+topRem+'"已提供给需要的学生。';
+      r+='下节课将着重加强技能，确保所有学生达到学习目标。';
+      p.ref=r;
+    }
+  },
   skOpts(p){
     const y=p.c.replace('Tahun ','Year ');
     const all=typeof getCurriculum!=='undefined'?getCurriculum(y,p.s):null;
