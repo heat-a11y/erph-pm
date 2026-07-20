@@ -1391,6 +1391,31 @@ const CURR_DB = {
   "3.1.3": "Membina hubungan yang mesra, jujur, dan saling menghormati dengan dewasa dan rakan sebaya daripada pelbagai latar belakang."
 }
   }
+,
+  'Prasekolah|FK': {
+    SK: {
+  "1.1": "Meneroka pelbagai aktiviti yang melibatkan penguasaan motor halus",
+  "2.1": "Melakukan pergerakan lokomotor dan bukan lokomotor",
+  "2.2": "Melakukan kemahiran manipulasi alatan (Manipulative Skills)",
+  "3.1": "Mengamalkan kebersihan dan kesihatan diri dalam kehidupan harian"
+},
+    SP: {
+  "1.1.1": "Menggunakan jari untuk memegang, meremas, memicit, dan mengoyak pelbagai bahan.",
+  "1.1.2": "Menunjukkan koordinasi mata-tangan dan kawalan otot halus melalui manipulasi objek (seperti memasang manik, doh, dan binaan blok).",
+  "1.1.3": "Menggunakan alat menggunting dengan teknik dan kawalan yang betul untuk memotong pelbagai corak dan bentuk.",
+  "1.1.4": "Menggunakan alatan dan bahan secara cermat untuk aktiviti motor halus yang lebih kompleks (seperti membutang baju, mengikat tali, dan melipat kertas).",
+  "2.1.1": "Melakukan pergerakan lokomotor asas (berjalan, berlari, melompat, merangkak, dan melompat sebelah kaki).",
+  "2.1.2": "Melakukan pergerakan bukan lokomotor (membongkok, mengilas, mengimbangi badan, dan meregang).",
+  "2.1.3": "Melakukan gabungan pergerakan lokomotor dan bukan lokomotor mengikut tempo atau irama secara terkawal.",
+  "2.1.4": "Melakukan pelbagai aktiviti imbangan dinamik dan statik dengan kawalan postur badan yang betul.",
+  "2.2.1": "Melambung, menangkap, merenyuk, dan melempar objek pelbagai saiz menggunakan satu atau dua tangan.",
+  "2.2.2": "Menendang, menggolek, dan memukul objek ke arah sasaran dengan kawalan tenaga dan ketepatan.",
+  "3.1.1": "Mengamalkan kebersihan diri asas (mencuci tangan dengan sabun dan air bersih, menggosok gigi, dan menjaga kebersihan pakaian).",
+  "3.1.2": "Mengenal pasti dan membezakan makanan yang sihat/berkhasiat dengan makanan tidak sihat.",
+  "3.1.3": "Mengamalkan kebiasaan hidup sihat dan amalan kebersihan secara mandiri sebelum dan selepas makan serta selepas menggunakan tandas.",
+  "3.1.4": "Mengamalkan amalan pemakanan yang seimbang mengikut KPR (Piramid Makanan / Pinggan Sihat Malaysia)."
+}
+  },
 
 };
 
