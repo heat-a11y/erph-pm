@@ -101,7 +101,7 @@
                 </table>
                 </div>
               </div>
-              <button @click.stop="p._tpOpen=!p._tpOpen;if(p._tpOpen&&!p._tpInit){p._tpInit=true;const y=p.c==='Prasekolah'?'Year 1':p.c.replace('Tahun ','Year ');const ns=STUDENTS[y]||[];p._students=ns.map(n=>{const tp=Math.floor(Math.random()*6)+1;return{n,tp,c:tp<=2?'Bimbingan tambahan dalam kemas asas.':tp<=4?'Bimbingan sederhana.':'Aktiviti pengayaan.'};});}" class="mt-1 inline-flex items-center gap-1 rounded border border-indigo-300 bg-indigo-50 px-2.5 py-1 text-[10px] font-medium text-indigo-700 hover:bg-indigo-100">📊 Buka Rekod Transit</button>
+              <button @click.stop="p._tpOpen=!p._tpOpen;if(p._tpOpen&&!p._tpInit){p._tpInit=true;const y=p.c==='Prasekolah'?'Prasekolah':p.c.replace('Tahun ','Year ');const ns=STUDENTS[y]||[];p._students=ns.map(n=>{const tp=Math.floor(Math.random()*6)+1;return{n,tp,c:tp<=2?'Bimbingan tambahan dalam kemas asas.':tp<=4?'Bimbingan sederhana.':'Aktiviti pengayaan.'};});}" class="mt-1 inline-flex items-center gap-1 rounded border border-indigo-300 bg-indigo-50 px-2.5 py-1 text-[10px] font-medium text-indigo-700 hover:bg-indigo-100">📊 Buka Rekod Transit</button>
             </div>
             <div class="flex flex-wrap gap-2 border-t border-[#C4956A]/10 pt-3">
               <button @click.stop="ref1(p)" class="rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-[10px] font-medium text-amber-700 hover:bg-amber-100">💬 Jana Refleksi</button>
@@ -243,7 +243,7 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
     });
     // Auto-init TP for each plan
     plans.forEach(p=>{
-      const y=p.c==='Prasekolah'?'Year 1':p.c.replace('Tahun ','Year ');
+      const y=p.c==='Prasekolah'?'Prasekolah':p.c.replace('Tahun ','Year ');
       const ns=STUDENTS[y]||[];
       p._students=ns.map(n=>{const tp=Math.floor(Math.random()*6)+1;return{n,tp,c:tp<=2?'Bimbingan tambahan dalam kemahiran asas.':tp<=4?'Bimbingan sederhana untuk meningkatkan kefahaman.':'Aktiviti pengayaan untuk mencabar pemikiran.'};});
       this.ref1(p);
