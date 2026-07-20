@@ -1255,8 +1255,7 @@ const CURR_DB = {
     SP: {
   "2.1.1": "Merancang, membuat pameran karya seni, dan membuat ulasan kritis karya sendiri dan rakan."
 }
-  }
-,
+  },
   'Prasekolah|BM': {
     SK: {
   "1.1": "Mendengar dan memberi respons terhadap pelbagai bunyi di persekitaran",
@@ -1304,8 +1303,7 @@ const CURR_DB = {
   "3.2.1": "Menulis huruf kecil dan huruf besar dengan cara yang betul.",
   "3.2.2": "Menyalin dan menulis suku kata, perkataan, dan frasa mudah dengan kemas."
 }
-  }
-,
+  },
   'Prasekolah|BI': {
     SK: {
   "1.1": "Listen to and identify sounds",
@@ -1339,8 +1337,7 @@ const CURR_DB = {
   "3.2.1": "Write recognizable small and capital letters legibly.",
   "3.2.2": "Copy and write simple words, familiar phrases, and short labels in legible print."
 }
-  }
-,
+  },
   'Prasekolah|BC': {
     SK: {
   "1.1": "专注且耐心地听话，理解日常对话",
@@ -1365,8 +1362,7 @@ const CURR_DB = {
   "3.2.1": "掌握汉字的基本笔画名称（如：横、竖、撇、捺、折）。",
   "3.2.2": "依照正确的笔顺规则在田字格/方格内书写简单的独体字及常用字。"
 }
-  }
-,
+  },
   'Prasekolah|SE': {
     SK: {
   "1.1": "Mengenal pasti dan mengurus emosi sendiri (Emotional Self-Regulation)",
@@ -1390,8 +1386,7 @@ const CURR_DB = {
   "3.1.2": "Berkongsi alatan, bahan, dan mainan dengan rakan semasa aktiviti.",
   "3.1.3": "Membina hubungan yang mesra, jujur, dan saling menghormati dengan dewasa dan rakan sebaya daripada pelbagai latar belakang."
 }
-  }
-,
+  },
   'Prasekolah|FK': {
     SK: {
   "1.1": "Meneroka pelbagai aktiviti yang melibatkan penguasaan motor halus",
@@ -1416,6 +1411,42 @@ const CURR_DB = {
   "3.1.4": "Mengamalkan amalan pemakanan yang seimbang mengikut KPR (Piramid Makanan / Pinggan Sihat Malaysia)."
 }
   },
+  'Prasekolah|PI': {
+    SK: {
+  "1.1": "Mengenal dan menyebut huruf Hijaiyah serta asas Al-Quran",
+  "2.1": "Mengamalkan rukun Islam, rukun Iman dan adab harian"
+},
+    SP: {
+  "PI 1.1.1": "Mengenal pasti dan menyebut huruf Hijaiyah tunggal.",
+  "PI 1.1.2": "Membaca suku kata mudah yang mengandungi huruf Hijaiyah berbaris satu (fathah, kasrah, dammah).",
+  "PI 2.1.1": "Menyebut Rukun Iman dan Rukun Islam.",
+  "PI 2.1.2": "Melakukan amalan bersuci (wuduk) dengan urutan yang betul.",
+  "PI 2.1.3": "Melakukan pergerakan solat mengikut tertib dan melafazkan doa harian."
+}
+  },
+  'Prasekolah|PM': {
+    SK: {
+  "1.1": "Mengamalkan nilai murni dalam kehidupan seharian"
+},
+    SP: {
+  "PM 1.1.1": "Menunjukkan sikap baik hati, menghormati, dan bersopan santun terhadap keluarga dan rakan.",
+  "PM 1.1.2": "Mengamalkan amalan berterima kasih dan bertolak ansur semasa berinteraksi.",
+  "PM 1.1.3": "Menunjukkan sikap bertanggungjawab, jujur, dan berani dalam membuat keputusan mudah.",
+  "PM 1.1.4": "Mengamalkan sikap kerajinan dan kerjasama dalam menyelesaikan tugasan kumpulan."
+}
+  },
+  'Prasekolah|KM': {
+    SK: {
+  "1.1": "Mengenal identiti diri, keluarga dan komuniti",
+  "2.1": "Menunjukkan rasa patriotisme dan cinta akan negara"
+},
+    SP: {
+  "KM 1.1.1": "Menyatakan peranan diri dalam keluarga, sekolah, dan masyarakat setempat.",
+  "KM 1.1.2": "Mengenal pasti kepelbagaian kaum, perayaan, dan pakaian tradisional di Malaysia.",
+  "KM 2.1.1": "Mengenal dan menghormati simbol negara (Bendera Jalur Gemilang, Bunga Raya, dan Lagu Negaraku).",
+  "KM 2.1.2": "Menunjukkan rasa bangga terhadap identiti negara, lagu negeri, dan tokoh/pemimpin negara."
+}
+  }
 
 };
 
