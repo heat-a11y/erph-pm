@@ -464,5 +464,5 @@ const CURR_DB = {
 
 // Helper: get SK/SP for a subject+year
 function getCurriculum(year, subject) { return CURR_DB[year+'|'+subject] || null; }
-function getSK(year, subject) { const d = getCurriculum(year, subject); return d ? Object.values(d.SK) : []; }
-function getSP(year, subject) { const d = getCurriculum(year, subject); return d ? Object.values(d.SP) : []; }
+function getSK(year, subject) { const d = getCurriculum(year, subject); return d ? Object.keys(d.SK).map(function(k){return k+' '+d.SK[k];}) : []; }
+function getSP(year, subject) { const d = getCurriculum(year, subject); return d ? Object.keys(d.SP).map(function(k){return k+' '+d.SP[k];}) : []; }
