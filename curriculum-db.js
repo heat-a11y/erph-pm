@@ -154,11 +154,7 @@ const CURR_DB = {
     SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
     SP: {"1.0.1": "Menghasilkan gambar dengan pelbagai media dan teknik", "2.0.1": "Membuat corak dengan teknik cetakan", "3.0.1": "Membina diorama dan stabil", "4.0.1": "Membuat kraf tradisional secara kreatif"}
   },
-    'Year 4|SJ': {
-    SK: {"1.0": "Pengertian Sejarah", "2.0": "Sejarah Tempat Tinggal", "3.0": "Kerajaan Melayu Awal", "4.0": "Tokoh Terbilang", "5.0": "Warisan Negara"},
-    SP: {"1.0.1": "Menyatakan pengertian sejarah", "1.0.2": "Mengenal pasti sumber sejarah", "2.0.1": "Menjelaskan sejarah tempat tinggal", "3.0.1": "Menyatakan kerajaan Melayu awal", "4.0.1": "Mengenal pasti tokoh terbilang", "5.0.1": "Menghargai warisan negara"}
-  },
-        'Year 5|BM': {
+            'Year 5|BM': {
     SK: {"1.1": "Mendengar dan memberikan respons semasa berkomunikasi dalam situasi formal dan tidak formal.", "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan.", "1.3": "Bercerita, dan menceritakan perkara yang didengar, ditonton dan dibaca dengan sebutan dan intonasi yang betul.", "2.1": "Asas membaca dan memahami.", "2.2": "Membaca, memahami, dan menaakul bahan multimedia.", "2.3": "Membaca dan mengapresiasi pelbagai bahan sastera dan bahan bukan sastera.", "3.1": "Asas menulis.", "3.2": "Menulis perkataan, frasa, dan ayat yang bermakna.", "3.3": "Menghasilkan penulisan.", "4.1": "Mengaplikasikan unsur keindahan dan kesantunan bahasa dalam bahan sastera.", "4.2": "Menghayati keindahan dan kesantunan bahasa dalam bahan sastera.", "4.3": "Menghasilkan bahan sastera dengan menyerapkan keindahan dan kesantunan bahasa serta mempersembahkannya secara kreatif.", "4.4": "Mengenal dan menghayati tulisan jawi sebagai seni warisan bangsa.  tidak ditaksir.  oleh Kementerian Pendidikan Malaysia. PdP.", "5.1": "Memahami dan menggunakan golongan kata mengikut konteks.", "5.2": "Memahami dan menggunakan bentuk kata mengikut konteks. mengikut konteks. mengikut kesesuaian PdP. kesesuaian PdP."},
     SP: {"1.1.1": "Mendengar, mengecam sebutan, dan menyebut semula ujaran yang terdapat dalam situasi formal.", "1.1.2": "Mendengar, memahami dan memberikan respons terhadap maklumat yang diujarkan dalam situasi formal.", "1.1.3": "Mendengar, mentafsir dan memberikan respons terhadap soalan secara kritis dan kreatif.", "1.2.1": "Bertutur untuk menyatakan pertimbangan dan keputusan tentang bahan multimedia secara bertatasusila mengikut konteks.", "1.2.2": "Bertutur untuk menghuraikan maklumat tersurat dan tersirat yang dikenal pasti dengan menggunakan idea yang kritis dan kreatif.", "1.2.3": "Bersoal jawab untuk menjana idea tentang sesuatu perkara.", "1.3.1": "Bercerita dengan sebutan yang betul, intonasi dan gaya yang sesuai.", "1.3.2": "Menceritakan sesuatu perkara yang didengar, ditonton dan dibaca dengan sebutan yang betul dan intonasi serta gaya yang sesuai.", "2.1.1": "Membaca dan memahami maklumat tersurat dan tersirat untuk memberikan respons.", "2.1.2": "Membaca dan merujuk kamus serta media elektronik untuk mencari makna perkataan dan meneliti ejaan yang tepat mengikut susunan perkataan.", "2.2.1": "Membaca dan memahami maklumat berdasarkan bahan multimedia untuk membuat pertimbangan dan keputusan.", "2.3.1": "Membaca dan meneliti kandungan teks karya sastera dan karya bukan sastera untuk membuat rumusan.", "2.3.2": "Membaca dan mempersembahkan karya sastera, dan karya bukan sastera dengan gaya penyampaian dan sebutan yang sesuai.", "3.1.1": "Menulis ayat dalam perenggan secara mekanis dalam bentuk tulisan berangkai.", "3.2.1": "Membina dan menulis ayat untuk menyatakan pendapat daripada sesuatu bahan multimedia.", "3.2.2": "Menghasilkan jawapan dengan memberikan alasan secara kritis dan kreatif.", "3.2.3": "Mencatat maklumat berdasarkan bahan yang dibaca, dilihat, dan didengar.", "3.2.4": "Menulis teks prosa yang diimlakkan.", "3.3.1": "Mendraf dan menghasilkan penulisan berformat, dan tidak berformat.", "3.3.2": "Mengedit dan memurnikan perenggan dari aspek ejaan, tanda baca, penggunaan imbuhan, penggunaan kata, dan struktur ayat.", "4.1.1": "Bercerita dan mengujarkan dialog yang mengandungi peribahasa dan bahasa yang santun.", "4.2.1": "Melafazkan dan melagukan syair dengan irama yang sesuai serta menyatakan idea keseluruhan syair.", "4.2.2": "Mendeklamasikan sajak dengan nada yang sesuai dan menyatakan maksud sajak.", "4.3.1": "Mengubah suai puisi dengan bahasa yang indah dan santun secara separa berpandu dan mempersembahkannya secara kreatif.", "4.3.2": "Mengubah suai cerita dengan bahasa yang indah dan santun secara separa berpandu dan mempersembahkannya secara kreatif.", "4.3.3": "Mengubah suai seni kata lagu dengan menggunakan diksi yang sesuai dan mempersembahkannya dengan gaya yang kreatif.", "4.4.1": "Mengenal tulisan jawi yang terdapat dalam sesuatu objek kehidupan harian. (tugu negara, label halal, papan tanda jalan dan lain-lain)", "4.4.2": "Mempamerkan tulisan jawi melalui perkataan yang terdapat dalam sesuatu objek kehidupan harian. (tugu negara, label halal, papan tanda jalan dan lain-lain) Aspek seni bahasa dilaksanakan untuk menyokong kemahiran bahasa. Walau bagaimanapun aspek seni bahasa Persetujuan pelaksanaan tulisan jawi di SJK adalah berdasarkan Surat Siaran dan Garis Panduan yang dikeluarkan Pentaksiran aspek seni bahasa boleh dilaksanakan melalui kemahiran mendengar dan bertutur, membaca dan menulis mengikut kesesuaian", "5.1.1": "Memahami dan menggunakan kata nama mengikut konteks; (i) kata nama am (ii) kata nama khas (iii) kata ganti nama (iv) penjodoh bilangan", "5.1.2": "Memahami dan menggunakan kata kerja transitif dan kata kerja tak transitif mengikut konteks.", "5.1.3": "Memahami dan menggunakan pelbagai kata adjektif mengikut konteks.", "5.1.4": "Memahami dan menggunakan kata tugas mengikut konteks; (i) kata pemeri (ii) kata penguat (iii) kata bantu", "5.2.1": "Memahami dan menggunakan kata berimbuhan mengikut konteks; (i) kata berimbuhan awalan (ii) kata berimbuhan akhiran (iii) (iii) kata berimbuhan apitan (iv) (iv) kata berimbuhan sisipan", "5.2.2": "Memahami dan menggunakan kata majmuk mengikut konteks; (i) kata majmuk bebas dan kata majmuk mantap (ii) kata majmuk kiasan", "5.2.3": "Memahami dan menggunakan kata ganda mengikut konteks; (i) kata ganda penuh (ii) kata ganda separa (iii) kata ganda berentak", "5.3.1": "Memahami dan membina ayat tunggal dan ayat majmuk dengan peluasan subjek dan predikat mengikut konteks.", "5.3.2": "Memahami dan membina pelbagai jenis ayat mengikut konteks; (i) ayat seruan (ii) ayat perintah", "5.3.3": "Memahami dan membina ayat aktif, dan ayat pasif mengikut konteks.", "5.3.4": "Memahami dan membina ayat susunan biasa dan susunan songsang mengikut konteks. Pentaksiran aspek tatabahasa boleh dilaksanakan melalui kemahiran mendengar dan bertutur, membaca dan menulis mengikut"}
   },
@@ -190,11 +186,7 @@ const CURR_DB = {
     SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
     SP: {"1.0.1": "Menghasilkan gambar dengan kreatif", "2.0.1": "Membuat corak dengan teknik resis dan stensilan", "3.0.1": "Membina model 3D dengan kreatif", "4.0.1": "Menghasilkan kraf tradisional secara kreatif"}
   },
-    'Year 5|SJ': {
-    SK: {"1.0": "Kedaulatan Negara", "2.0": "Institusi Raja", "3.0": "Perjuangan Kemerdekaan", "4.0": "Identiti Negara", "5.0": "Warisan Negara"},
-    SP: {"1.0.1": "Menyatakan maksud kedaulatan", "2.0.1": "Menerangkan peranan institusi raja", "3.0.1": "Menjelaskan perjuangan kemerdekaan", "4.0.1": "Mengenal pasti identiti negara", "5.0.1": "Menghargai warisan negara"}
-  },
-        'Year 6|BM': {
+            'Year 6|BM': {
     SK: {"1.1": "Mendengar dan memberikan respons semasa berkomunikasi dalam situasi formal dan tidak formal.", "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan.", "1.3": "Bercerita, dan menceritakan perkara yang didengar, ditonton dan dibaca dengan sebutan dan intonasi yang betul.", "2.1": "Asas membaca dan memahami.", "2.2": "Membaca, memahami, dan menaakul bahan multimedia.", "2.3": "Membaca dan mengapresiasi pelbagai bahan sastera dan bahan bukan sastera.", "3.1": "Asas menulis.", "3.2": "Menulis perkataan, frasa, dan ayat yang bermakna.", "3.3": "Menghasilkan penulisan.", "4.1": "Mengaplikasikan unsur keindahan dan kesantunan bahasa dalam bahan sastera.", "4.2": "Menghayati keindahan dan kesantunan bahasa dalam bahan sastera.", "4.3": "Menghasilkan bahan sastera dengan menyerapkan keindahan dan kesantunan bahasa serta mempersembahkannya secara kreatif.", "4.4": "Mengenal dan menghayati tulisan jawi sebagai seni warisan bangsa.  tidak ditaksir.  oleh Kementerian Pendidikan Malaysia. PdP.", "5.1": "Memahami dan menggunakan golongan kata mengikut konteks.", "5.2": "Memahami dan menggunakan bentuk kata mengikut konteks. mengikut konteks. mengikut kesesuaian PdP. kesesuaian PdP."},
     SP: {"1.1.1": "Mendengar, mengecam sebutan, dan menyebut semula ujaran yang terdapat dalam situasi formal.", "1.1.2": "Mendengar, memahami dan memberikan respons terhadap maklumat yang diujarkan dalam situasi formal.", "1.1.3": "Mendengar, mentafsir dan memberikan respons terhadap soalan secara kritis dan kreatif.", "1.2.1": "Bertutur untuk menyatakan pertimbangan dan keputusan tentang bahan multimedia secara bertatasusila mengikut konteks.", "1.2.2": "Bertutur untuk menghuraikan maklumat tersurat dan tersirat yang dikenal pasti dengan menggunakan idea yang kritis dan kreatif.", "1.2.3": "Bersoal jawab untuk menjana idea tentang sesuatu perkara.", "1.3.1": "Bercerita dengan sebutan yang betul, intonasi dan gaya yang sesuai.", "1.3.2": "Menceritakan sesuatu perkara yang didengar, ditonton dan dibaca dengan sebutan yang betul dan intonasi serta gaya yang sesuai.", "2.1.1": "Membaca dan memahami maklumat tersurat dan tersirat untuk memberikan respons.", "2.1.2": "Membaca dan merujuk kamus serta media elektronik untuk mencari makna perkataan dan meneliti ejaan yang tepat mengikut susunan perkataan.", "2.2.1": "Membaca dan memahami maklumat berdasarkan bahan multimedia untuk membuat pertimbangan dan keputusan.", "2.3.1": "Membaca dan meneliti kandungan teks karya sastera dan karya bukan sastera untuk membuat rumusan.", "2.3.2": "Membaca dan mempersembahkan karya sastera, dan karya bukan sastera dengan gaya penyampaian dan sebutan yang sesuai.", "3.1.1": "Menulis ayat dalam perenggan secara mekanis dalam bentuk tulisan berangkai.", "3.2.1": "Membina dan menulis ayat untuk menyatakan pendapat daripada sesuatu bahan multimedia.", "3.2.2": "Menghasilkan jawapan dengan memberikan alasan secara kritis dan kreatif.", "3.2.3": "Mencatat maklumat berdasarkan bahan yang dibaca, dilihat, dan didengar.", "3.2.4": "Menulis teks prosa yang diimlakkan.", "3.3.1": "Mendraf dan menghasilkan penulisan berformat, dan tidak berformat.", "3.3.2": "Mengedit dan memurnikan perenggan dari aspek ejaan, tanda baca, penggunaan imbuhan, penggunaan kata, dan struktur ayat.", "4.1.1": "Bercerita dan mengujarkan dialog yang mengandungi peribahasa dan bahasa yang santun.", "4.2.1": "Melafazkan dan melagukan syair dengan irama yang sesuai serta menyatakan idea keseluruhan syair.", "4.2.2": "Mendeklamasikan sajak dengan nada yang sesuai dan menyatakan maksud sajak.", "4.3.1": "Mengubah suai puisi dengan bahasa yang indah dan santun secara separa berpandu dan mempersembahkannya secara kreatif.", "4.3.2": "Mengubah suai cerita dengan bahasa yang indah dan santun secara separa berpandu dan mempersembahkannya secara kreatif.", "4.3.3": "Mengubah suai seni kata lagu dengan menggunakan diksi yang sesuai dan mempersembahkannya dengan gaya yang kreatif.", "4.4.1": "Mengenal tulisan jawi yang terdapat dalam sesuatu objek kehidupan harian. (tugu negara, label halal, papan tanda jalan dan lain-lain)", "4.4.2": "Mempamerkan tulisan jawi melalui perkataan yang terdapat dalam sesuatu objek kehidupan harian. (tugu negara, label halal, papan tanda jalan dan lain-lain) Aspek seni bahasa dilaksanakan untuk menyokong kemahiran bahasa. Walau bagaimanapun aspek seni bahasa Persetujuan pelaksanaan tulisan jawi di SJK adalah berdasarkan Surat Siaran dan Garis Panduan yang dikeluarkan Pentaksiran aspek seni bahasa boleh dilaksanakan melalui kemahiran mendengar dan bertutur, membaca dan menulis mengikut kesesuaian", "5.1.1": "Memahami dan menggunakan kata nama mengikut konteks; (i) kata nama am (ii) kata nama khas (iii) kata ganti nama (iv) penjodoh bilangan", "5.1.2": "Memahami dan menggunakan kata kerja transitif dan kata kerja tak transitif mengikut konteks.", "5.1.3": "Memahami dan menggunakan pelbagai kata adjektif mengikut konteks.", "5.1.4": "Memahami dan menggunakan kata tugas mengikut konteks; (i) kata pemeri (ii) kata penguat (iii) kata bantu", "5.2.1": "Memahami dan menggunakan kata berimbuhan mengikut konteks; (i) kata berimbuhan awalan (ii) kata berimbuhan akhiran (iii) (iii) kata berimbuhan apitan (iv) (iv) kata berimbuhan sisipan", "5.2.2": "Memahami dan menggunakan kata majmuk mengikut konteks; (i) kata majmuk bebas dan kata majmuk mantap (ii) kata majmuk kiasan", "5.2.3": "Memahami dan menggunakan kata ganda mengikut konteks; (i) kata ganda penuh (ii) kata ganda separa (iii) kata ganda berentak", "5.3.1": "Memahami dan membina ayat tunggal dan ayat majmuk dengan peluasan subjek dan predikat mengikut konteks.", "5.3.2": "Memahami dan membina pelbagai jenis ayat mengikut konteks; (i) ayat seruan (ii) ayat perintah", "5.3.3": "Memahami dan membina ayat aktif, dan ayat pasif mengikut konteks.", "5.3.4": "Memahami dan membina ayat susunan biasa dan susunan songsang mengikut konteks. Pentaksiran aspek tatabahasa boleh dilaksanakan melalui kemahiran mendengar dan bertutur, membaca dan menulis mengikut"}
   },
@@ -226,11 +218,7 @@ const CURR_DB = {
     SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
     SP: {"1.0.1": "Menghasilkan gambar dengan kreatif dan inovatif", "2.0.1": "Membuat corak dengan gabungan teknik", "3.0.1": "Membina model dan arca dengan kreatif", "4.0.1": "Menghasilkan kraf tradisional dengan inovatif"}
   },
-    'Year 6|SJ': {
-    SK: {"1.0": "Malaysia dan Dunia", "2.0": "Kemerdekaan Negara", "3.0": "Tokoh-tokoh Negara", "4.0": "Hubungan Antarabangsa", "5.0": "Malaysia Madani"},
-    SP: {"1.0.1": "Menjelaskan kedudukan Malaysia di dunia", "2.0.1": "Menerangkan sejarah kemerdekaan", "3.0.1": "Mengenal pasti tokoh-tokoh negara", "4.0.1": "Menjelaskan hubungan antarabangsa", "5.0.1": "Menerapkan nilai Malaysia Madani"}
-  },
-    'Year 1|BM': {
+        'Year 1|BM': {
     SK: {
   "1.1": "Mendengar dan memberikan respons semasa berkomunikasi dalam pelbagai situasi",
   "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan",
@@ -941,6 +929,63 @@ const CURR_DB = {
   "4.1.2": "计算生产成本和设定售价，理解盈利的基本概念。",
   "5.1.1": "综合运用编程、设计与手工技能制作创新科技作品。",
   "5.1.2": "在班级/校内展示并介绍项目成果。"
+}
+  }
+,
+  'Year 4|SJ': {
+    SK: {
+  "1.1": "历史的定义与技能 (Pengertian dan Kemahiran Sejarah)",
+  "1.2": "个人与家庭历史 (Sejarah Diri dan Keluarga)",
+  "2.1": "我国的史前时代 (Zaman Prasejarah di Malaysia)",
+  "3.1": "早期马来王国的出现与地理位置 (Kedudukan Kerajaan Melayu Awal)",
+  "4.1": "拜里米苏拉与马六甲的建立 (Parameswara Pengasas Melaka)",
+  "4.2": "宰相敦霹雳与海军统帅航都亚 (Laksamana Hang Tuah & Bendahara Tun Perak)"
+},
+    SP: {
+  "1.1.1": "说明历史的定义、主要史料来源（初级与次级史料）及历史研究方法。",
+  "1.1.2": "解释历史事件的时间线概念（公元、年代、世纪）。",
+  "1.2.1": "阐明个人简历及家庭成员的历史背景与树状图。",
+  "2.1.1": "列出旧石器时代、中石器时代、新石器时代及青铜时代的顺序与特征。",
+  "2.1.2": "举例说明我国史前时代的遗址与出土文物（如玲珑谷霹雳人）。",
+  "3.1.1": "在地图上确认早期马来王国（如扶南、赤土、刚迦王国、吉打榜坑等）的位置。",
+  "3.1.2": "说明早期马来王国在沿海与河流沿岸的海事与经济活动。",
+  "4.1.1": "讲述拜里米苏拉建立马六甲的历史背景、过程及马六甲名称的由来。",
+  "4.2.1": "说明敦霹雳作为马六甲宰相的贡献与行政智慧。",
+  "4.2.2": "讲述航都亚作为海军统帅对马六甲王室的忠诚与贡献。"
+}
+  },
+  'Year 5|SJ': {
+    SK: {
+  "1.1": "君主立宪制度 (Institusi Raja)",
+  "1.2": "伊斯兰教与马来语的地位 (Agama Islam & Bahasa Melayu)",
+  "2.1": "外来势力的干涉与殖民 (Campur Tangan dan Penjajahan Kuasa Asing)",
+  "2.2": "地方英雄抗暴斗争 (Pahlawan Tempatan Menentang Penjajah)",
+  "3.1": "走向独立之路 (Sejarah Kemerdekaan 1957)"
+},
+    SP: {
+  "1.1.1": "阐明君主与人民之间的誓约概念以及君主作为国家统治核心的作用。",
+  "1.1.2": "列出实行君主制度的州属及最高元首的地位。",
+  "1.2.1": "说明伊斯兰教作为联邦宗教的地位及马来语作为通用语和官方语言的传统。",
+  "2.1.1": "列出侵略我国的外来势力（葡萄牙、荷兰、英国、日本、泰国）。",
+  "2.2.1": "讲述各州地方英雄抗击殖民者的事迹与原因。",
+  "3.1.1": "讲述争取国家独立的杰出领袖的贡献。",
+  "3.1.2": "描述1957年8月31日国家独立的宣告过程及其历史意义。"
+}
+  },
+  'Year 6|SJ': {
+    SK: {
+  "1.1": "成立马来西亚的过程 (Gagasan Pembentukan Malaysia 1963)",
+  "2.1": "州的名称、首府与州旗州歌 (Negeri-negeri dan Lambang Negeri)",
+  "3.1": "国家原则的制定与含义 (Prinsip Rukun Negara)",
+  "3.2": "我国的多元族群与节庆 (Perayaan dan Kebudayaan di Malaysia)"
+},
+    SP: {
+  "1.1.1": "说明成立马来西亚的原因、参与成员州及遇到的挑战。",
+  "1.1.2": "讲述1963年9月16日马来西亚成立宣布的历史时刻。",
+  "2.1.1": "在地图上确认马来西亚13个州属与3个联邦直辖区的位置。",
+  "2.1.2": "说明各州名称的由来及其州旗、州徽与州歌的象征意义。",
+  "3.1.1": "阐明五一三事件后制定国家原则的历史背景与五大原则的含义。",
+  "3.2.1": "介绍我国各民族的主要传统节庆与文化。"
 }
   }
 
