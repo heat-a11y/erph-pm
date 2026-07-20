@@ -6,147 +6,27 @@ const CURR_DB = {
     SK: {"1.1": "Mendengar dan memberikan respons", "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan", "2.1": "Asas membaca dan memahami", "2.2": "Membaca, memahami, dan menaakul bahan grafik dan bukan grafik", "2.3": "Membaca dan mengapresiasi karya sastera dan bukan sastera", "3.1": "Asas menulis", "3.2": "Menulis perkataan, frasa, dan ayat yang bermakna", "3.3": "Menghasilkan penulisan", "4.1": "Mengaplikasikan unsur keindahan dan kesantunan bahasa dalam bahan sastera.", "4.2": "Menghayati keindahan dan kesantunan bahasa dalam bahan sastera.", "4.3": "Menghasilkan bahan sastera dengan menyerapkan keindahan dan kesantunan bahasa serta mempersembahkannya secara kreatif.", "5.1": "Memahami fungsi dan menggunakan golongan kata mengikut konteks", "5.2": "Memahami dan menggunakan pembentukan kata mengikut konteks", "5.3": "Memahami dan membina ayat mengikut konteks"},
     SP: {"1.1.1": "Mengajuk, dan menyebut; (i) nama abjad (ii) bunyi abjad", "1.1.2": "Mengajuk, dan menyebut perkataan, frasa dan ayat yang mengandungi pelbagai bunyi; (i) vokal dan konsonan (ii) diftong dan vokal berganding (iii) digraf dan konsonan bergabung", "1.1.3": "Mendengar, memahami, dan memberikan respons terhadap; (i) soalan dengan kata tanya (ii) suruhan", "1.2.1": "Bertutur untuk menyampaikan pesanan dengan sebutan dan intonasi yang betul secara bertatasusila.", "1.2.2": "Menyampaikan maklumat tersurat daripada bahan.", "2.1.1": "Membaca dengan sebutan yang betul dan intonasi yang sesuai; (i) suku kata (ii) perkataan (iii) ayat", "2.1.2": "Membaca dengan sebutan yang betul, intonasi yang sesuai, dan memahami; (i) perkataan (ii) frasa (iii) ayat dalam perenggan", "2.2.1": "Membaca, memahami, dan menaakul bahan untuk mendapatkan; (i) kosa kata umum (ii) ideal tersurat", "2.3.1": "Membaca bahan sastera dengan sebutan yang betul dan intonasi yang sesuai, serta mempersembahkannya dengan penuh penghayatan; (i) cerita (ii) pantun", "2.3.2": "Membaca bahan bukan sastera dengan sebutan yang betul dan intonasi yang sesuai, serta mempersembahkannya dengan penuh penghayatan; (i) label", "3.1.1": "Menulis secara mekanis; (i) huruf (ii) suku kata (iii) perkataan (iv) frasa (v) ayat", "3.2.1": "Membina dan menulis; (i) perkataan (ii) frasa (iii) ayat", "3.2.2": "Membina dan menulis jawapan pemahaman dengan berdasarkan soalan; (i) bertumpu (ii) bercapah", "3.2.3": "Mencatat maklumat tentang sesuatu perkara.", "3.2.4": "Menulis sesuatu yang diimlakkan; (i) perkataan (ii) frasa", "3.3.1": "Menghasilkan penulisan naratif dan bukan naratif secara; (i) terkawal", "3.3.2": "Mengedit dan memurnikan hasil penulisan daripada aspek; (i) ejaan (ii) tanda baca", "4.4.1": "Bercerita secara spontan dengan sebutan yang betul dan intonasi yang sesuai.", "4.2.1": "Menghayati keindahan bahasa; (i) pantun dua kerat dengan sebutan dan intonasi yang sesuai. (ii) pantun empat kerat dengan sebutan dan intonasi yang sesuai.", "4.2.2": "Menyanyikan lagu dengan sebutan yang betul dan intonasi yang sesuai; (i) lagu berdasarkan melodi lagu kanak-kanak", "4.3.1": "Mencipta pantun secara separa terkawal dan mempersembahkan; (i) pantun dua kerat (ii) pantun empat kerat Dalam Aspek Seni Bahasa, pentaksiran kemahiran Mendengar dan Bertutur, Kemahiran Membaca atau Kemahiran Menulis juga boleh dilaksanakan. Walau", "5.1.1": "Memahami dan mengenal pasti penggunaan golongan kata mengikut konteks; (i) kata nama am (ii) kata nama khas (iii) kata ganti nama diri pertama dan kedua (iii) penjodoh bilangan", "5.1.2": "Memahami, mengenal pasti dan menggunakan kata kerja mengikut konteks; (i) kata kerja transitif", "5.1.3": "Memahami, mengenal pasti dan menggunakan kata adjektif mengikut konteks; (i) sifat / keadaan (ii) warna (iii) bentuk", "5.1.4": "Memahami, mengenal pasti dan menggunakan kata tugas mengikut konteks; (i) kata hubung gabungan (ii) kata sendi nama (iii) kata arah", "5.2.1": "Memahami, mengenal pasti dan menggunakan kata terbitan mengikut konteks; (i) kata berimbuhan awalan", "5.2.2": "Memahami, mengenal pasti dan meggunakan kata majmuk mengikut konteks; (i) kata majmuk rangkai kata bebas", "5.2.3": "Memahami, mengenal pasti dan menggunakan kata ganda mengikut konteks; (i) kata ganda penuh", "5.3.1": "Memahami, mengenal pasti dan menggunakan jenis ayat mengikut konteks; (i) ayat penyata (ii) ayat tanya dengan kata tanya", "5.3.2": "Memahami, mengenal pasti dan menggunakan bentuk ayat mengikut konteks; (i) ayat tunggal (ii) ayat majmuk"}
   },
-    'Year 1|MZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi Muzik"},
-    SP: {"1.0.1": "Bernyanyi dengan pic dan irama yang betul", "2.0.1": "Bermain alat perkusi mengikut irama", "3.0.1": "Membuat pergerakan mengikut muzik", "4.0.1": "Mengenal pasti pelbagai genre muzik"}
-  },
-    'Year 1|PJ': {
-    SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Serangan", "4.0": "Olahraga Asas", "5.0": "Kecergasan"},
-    SP: {"1.0.1": "Melakukan kemahiran asas gimnastik dengan betul", "2.0.1": "Mengaplikasi pergerakan mengikut irama", "3.0.1": "Melakukan kemahiran menyerang dan bertahan", "4.0.1": "Melakukan kemahiran asas olahraga", "5.0.1": "Melakukan aktiviti kecergasan"}
-  },
-    'Year 1|PK': {
-    SK: {"1.0": "Kesihatan Diri", "2.0": "Kekeluargaan", "3.0": "Keselamatan Diri", "4.0": "Pemakanan Sihat", "5.0": "Pertolongan Cemas"},
-    SP: {"1.0.1": "Mengamalkan cara menjaga kebersihan diri", "2.0.1": "Mengenal pasti ahli keluarga dan peranan", "3.0.1": "Mengamalkan langkah keselamatan diri", "4.0.1": "Mengenal pasti makanan berkhasiat", "5.0.1": "Mengenal pasti situasi kecemasan"}
-  },
-      'Year 1|PMZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
-    SP: {"1.0.1": "Bernyanyi lagu mudah", "2.0.1": "Bermain alat perkusi asas", "3.0.1": "Membuat pergerakan mengikut muzik", "4.0.1": "Mengenal pasti alat muzik"}
-  },
-  'Year 1|PSV': {
-    SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
-    SP: {"1.0.1": "Mengenal dan meneroka bahasa seni visual", "2.0.1": "Membuat corak dan rekaan menggunakan teknik asas", "3.0.1": "Membentuk dan membuat binaan mudah", "4.0.1": "Mengenal kraf tradisional tempatan"}
-  },
-        'Year 2|BM': {
+                            'Year 2|BM': {
     SK: {"1.1": "Mendengar dan memberikan respons", "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan", "2.1": "Asas membaca dan memahami", "2.2": "Membaca, memahami, dan menaakul bahan grafik dan bukan grafik", "2.3": "Membaca dan mengapresiasi karya sastera dan bukan sastera", "3.1": "Asas menulis", "3.2": "Menulis perkataan, frasa, dan ayat yang bermakna", "3.3": "Menghasilkan penulisan", "4.1": "Mengaplikasikan unsur keindahan dan kesantunan bahasa dalam bahan sastera.", "4.2": "Menghayati keindahan dan kesantunan bahasa dalam bahan sastera.", "4.3": "Menghasilkan bahan sastera dengan menyerapkan keindahan dan kesantunan bahasa serta mempersembahkannya secara kreatif.", "5.1": "Memahami fungsi dan menggunakan golongan kata mengikut konteks", "5.2": "Memahami dan menggunakan pembentukan kata mengikut konteks", "5.3": "Memahami dan membina ayat mengikut konteks"},
     SP: {"1.1.1": "Mengajuk, dan menyebut; (i) nama abjad (ii) bunyi abjad", "1.1.2": "Mengajuk, dan menyebut perkataan, frasa dan ayat yang mengandungi pelbagai bunyi; (i) vokal dan konsonan (ii) diftong dan vokal berganding (iii) digraf dan konsonan bergabung", "1.1.3": "Mendengar, memahami, dan memberikan respons terhadap; (i) soalan dengan kata tanya (ii) suruhan", "1.2.1": "Bertutur untuk menyampaikan pesanan dengan sebutan dan intonasi yang betul secara bertatasusila.", "1.2.2": "Menyampaikan maklumat tersurat daripada bahan.", "2.1.1": "Membaca dengan sebutan yang betul dan intonasi yang sesuai; (i) suku kata (ii) perkataan (iii) ayat", "2.1.2": "Membaca dengan sebutan yang betul, intonasi yang sesuai, dan memahami; (i) perkataan (ii) frasa (iii) ayat dalam perenggan", "2.2.1": "Membaca, memahami, dan menaakul bahan untuk mendapatkan; (i) kosa kata umum (ii) ideal tersurat", "2.3.1": "Membaca bahan sastera dengan sebutan yang betul dan intonasi yang sesuai, serta mempersembahkannya dengan penuh penghayatan; (i) cerita (ii) pantun", "2.3.2": "Membaca bahan bukan sastera dengan sebutan yang betul dan intonasi yang sesuai, serta mempersembahkannya dengan penuh penghayatan; (i) label", "3.1.1": "Menulis secara mekanis; (i) huruf (ii) suku kata (iii) perkataan (iv) frasa (v) ayat", "3.2.1": "Membina dan menulis; (i) perkataan (ii) frasa (iii) ayat", "3.2.2": "Membina dan menulis jawapan pemahaman dengan berdasarkan soalan; (i) bertumpu (ii) bercapah", "3.2.3": "Mencatat maklumat tentang sesuatu perkara.", "3.2.4": "Menulis sesuatu yang diimlakkan; (i) perkataan (ii) frasa", "3.3.1": "Menghasilkan penulisan naratif dan bukan naratif secara; (i) terkawal", "3.3.2": "Mengedit dan memurnikan hasil penulisan daripada aspek; (i) ejaan (ii) tanda baca", "4.4.1": "Bercerita secara spontan dengan sebutan yang betul dan intonasi yang sesuai.", "4.2.1": "Menghayati keindahan bahasa; (i) pantun dua kerat dengan sebutan dan intonasi yang sesuai. (ii) pantun empat kerat dengan sebutan dan intonasi yang sesuai.", "4.2.2": "Menyanyikan lagu dengan sebutan yang betul dan intonasi yang sesuai; (i) lagu berdasarkan melodi lagu kanak-kanak", "4.3.1": "Mencipta pantun secara separa terkawal dan mempersembahkan; (i) pantun dua kerat (ii) pantun empat kerat Dalam Aspek Seni Bahasa, pentaksiran kemahiran Mendengar dan Bertutur, Kemahiran Membaca atau Kemahiran Menulis juga boleh dilaksanakan. Walau", "5.1.1": "Memahami dan mengenal pasti penggunaan golongan kata mengikut konteks; (i) kata nama am (ii) kata nama khas (iii) kata ganti nama diri pertama dan kedua (iii) penjodoh bilangan", "5.1.2": "Memahami, mengenal pasti dan menggunakan kata kerja mengikut konteks; (i) kata kerja transitif", "5.1.3": "Memahami, mengenal pasti dan menggunakan kata adjektif mengikut konteks; (i) sifat / keadaan (ii) warna (iii) bentuk", "5.1.4": "Memahami, mengenal pasti dan menggunakan kata tugas mengikut konteks; (i) kata hubung gabungan (ii) kata sendi nama (iii) kata arah", "5.2.1": "Memahami, mengenal pasti dan menggunakan kata terbitan mengikut konteks; (i) kata berimbuhan awalan", "5.2.2": "Memahami, mengenal pasti dan meggunakan kata majmuk mengikut konteks; (i) kata majmuk rangkai kata bebas", "5.2.3": "Memahami, mengenal pasti dan menggunakan kata ganda mengikut konteks; (i) kata ganda penuh", "5.3.1": "Memahami, mengenal pasti dan menggunakan jenis ayat mengikut konteks; (i) ayat penyata (ii) ayat tanya dengan kata tanya", "5.3.2": "Memahami, mengenal pasti dan menggunakan bentuk ayat mengikut konteks; (i) ayat tunggal (ii) ayat majmuk"}
   },
-    'Year 2|MZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi Muzik"},
-    SP: {"1.0.1": "Bernyanyi dengan ekspresi", "2.0.1": "Bermain alat perkusi dengan pelbagai dinamik", "3.0.1": "Membuat pergerakan kreatif mengikut muzik", "4.0.1": "Menghayati unsur muzik dalam lagu"}
-  },
-    'Year 2|PJ': {
-    SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Jaring", "4.0": "Olahraga Asas", "5.0": "Kecergasan"},
-    SP: {"1.0.1": "Melakukan kemahiran gimnastik dengan koordinasi", "2.0.1": "Mengaplikasi pergerakan kreatif", "3.0.1": "Melakukan kemahiran permainan jaring", "4.0.1": "Melakukan kemahiran lari dan lompat", "5.0.1": "Melakukan aktiviti kecergasan secara konsisten"}
-  },
-    'Year 2|PK': {
-    SK: {"1.0": "Kesihatan Reproduktif", "2.0": "Bahan Terlarang", "3.0": "Kesihatan Mental"},
-    SP: {"1.0.1": "Mengenal pasti bahagian tubuh dan fungsinya", "2.0.1": "Mengenal pasti bahan berbahaya", "3.0.1": "Mengenal pasti emosi diri"}
-  },
-      'Year 2|PMZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
-    SP: {"1.0.1": "Bernyanyi dengan pic betul", "2.0.1": "Bermain alat perkusi dengan irama", "3.0.1": "Membuat pergerakan kreatif", "4.0.1": "Mengenal pasti tempo dan dinamik"}
-  },
-  'Year 2|PSV': {
-    SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
-    SP: {"1.0.1": "Mengaplikasi bahasa seni visual dalam menggambar", "2.0.1": "Membuat corak dengan teknik lipatan dan guntingan", "3.0.1": "Membentuk dan membuat binaan dengan pelbagai bahan", "4.0.1": "Membuat kraf tradisional mudah"}
-  },
-        'Year 3|BM': {
+                            'Year 3|BM': {
     SK: {"1.1": "Mendengar dan memberikan respons", "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan", "2.1": "Asas membaca dan memahami", "2.2": "Membaca, memahami, dan menaakul bahan grafik dan bukan grafik", "2.3": "Membaca dan mengapresiasi karya sastera dan bukan sastera", "3.1": "Asas menulis", "3.2": "Menulis perkataan, frasa, dan ayat yang bermakna", "3.3": "Menghasilkan penulisan", "4.1": "Mengaplikasikan unsur keindahan dan kesantunan bahasa dalam bahan sastera.", "4.2": "Menghayati keindahan dan kesantunan bahasa dalam bahan sastera.", "4.3": "Menghasilkan bahan sastera dengan menyerapkan keindahan dan kesantunan bahasa serta mempersembahkannya secara kreatif.", "5.1": "Memahami fungsi dan menggunakan golongan kata mengikut konteks", "5.2": "Memahami dan menggunakan pembentukan kata mengikut konteks", "5.3": "Memahami dan membina ayat mengikut konteks"},
     SP: {"1.1.1": "Mengajuk, dan menyebut; (i) nama abjad (ii) bunyi abjad", "1.1.2": "Mengajuk, dan menyebut perkataan, frasa dan ayat yang mengandungi pelbagai bunyi; (i) vokal dan konsonan (ii) diftong dan vokal berganding (iii) digraf dan konsonan bergabung", "1.1.3": "Mendengar, memahami, dan memberikan respons terhadap; (i) soalan dengan kata tanya (ii) suruhan", "1.2.1": "Bertutur untuk menyampaikan pesanan dengan sebutan dan intonasi yang betul secara bertatasusila.", "1.2.2": "Menyampaikan maklumat tersurat daripada bahan.", "2.1.1": "Membaca dengan sebutan yang betul dan intonasi yang sesuai; (i) suku kata (ii) perkataan (iii) ayat", "2.1.2": "Membaca dengan sebutan yang betul, intonasi yang sesuai, dan memahami; (i) perkataan (ii) frasa (iii) ayat dalam perenggan", "2.2.1": "Membaca, memahami, dan menaakul bahan untuk mendapatkan; (i) kosa kata umum (ii) ideal tersurat", "2.3.1": "Membaca bahan sastera dengan sebutan yang betul dan intonasi yang sesuai, serta mempersembahkannya dengan penuh penghayatan; (i) cerita (ii) pantun", "2.3.2": "Membaca bahan bukan sastera dengan sebutan yang betul dan intonasi yang sesuai, serta mempersembahkannya dengan penuh penghayatan; (i) label", "3.1.1": "Menulis secara mekanis; (i) huruf (ii) suku kata (iii) perkataan (iv) frasa (v) ayat", "3.2.1": "Membina dan menulis; (i) perkataan (ii) frasa (iii) ayat", "3.2.2": "Membina dan menulis jawapan pemahaman dengan berdasarkan soalan; (i) bertumpu (ii) bercapah", "3.2.3": "Mencatat maklumat tentang sesuatu perkara.", "3.2.4": "Menulis sesuatu yang diimlakkan; (i) perkataan (ii) frasa", "3.3.1": "Menghasilkan penulisan naratif dan bukan naratif secara; (i) terkawal", "3.3.2": "Mengedit dan memurnikan hasil penulisan daripada aspek; (i) ejaan (ii) tanda baca", "4.4.1": "Bercerita secara spontan dengan sebutan yang betul dan intonasi yang sesuai.", "4.2.1": "Menghayati keindahan bahasa; (i) pantun dua kerat dengan sebutan dan intonasi yang sesuai. (ii) pantun empat kerat dengan sebutan dan intonasi yang sesuai.", "4.2.2": "Menyanyikan lagu dengan sebutan yang betul dan intonasi yang sesuai; (i) lagu berdasarkan melodi lagu kanak-kanak", "4.3.1": "Mencipta pantun secara separa terkawal dan mempersembahkan; (i) pantun dua kerat (ii) pantun empat kerat Dalam Aspek Seni Bahasa, pentaksiran kemahiran Mendengar dan Bertutur, Kemahiran Membaca atau Kemahiran Menulis juga boleh dilaksanakan. Walau", "5.1.1": "Memahami dan mengenal pasti penggunaan golongan kata mengikut konteks; (i) kata nama am (ii) kata nama khas (iii) kata ganti nama diri pertama dan kedua (iii) penjodoh bilangan", "5.1.2": "Memahami, mengenal pasti dan menggunakan kata kerja mengikut konteks; (i) kata kerja transitif", "5.1.3": "Memahami, mengenal pasti dan menggunakan kata adjektif mengikut konteks; (i) sifat / keadaan (ii) warna (iii) bentuk", "5.1.4": "Memahami, mengenal pasti dan menggunakan kata tugas mengikut konteks; (i) kata hubung gabungan (ii) kata sendi nama (iii) kata arah", "5.2.1": "Memahami, mengenal pasti dan menggunakan kata terbitan mengikut konteks; (i) kata berimbuhan awalan", "5.2.2": "Memahami, mengenal pasti dan meggunakan kata majmuk mengikut konteks; (i) kata majmuk rangkai kata bebas", "5.2.3": "Memahami, mengenal pasti dan menggunakan kata ganda mengikut konteks; (i) kata ganda penuh", "5.3.1": "Memahami, mengenal pasti dan menggunakan jenis ayat mengikut konteks; (i) ayat penyata (ii) ayat tanya dengan kata tanya", "5.3.2": "Memahami, mengenal pasti dan menggunakan bentuk ayat mengikut konteks; (i) ayat tunggal (ii) ayat majmuk"}
   },
-    'Year 3|MZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi Muzik"},
-    SP: {"1.0.1": "Bernyanyi dalam pelbagai gaya", "2.0.1": "Bermain alat perkusi dengan pelbagai corak irama", "3.0.1": "Membuat pergerakan kreatif dengan alat", "4.0.1": "Menilai muzik berdasarkan unsur muzik"}
-  },
-    'Year 3|PJ': {
-    SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Serangan", "4.0": "Kecergasan", "5.0": "Rekreasi"},
-    SP: {"1.0.1": "Melakukan kemahiran gimnastik dengan kreatif", "2.0.1": "Mengaplikasi pergerakan dengan alat", "3.0.1": "Melakukan kemahiran permainan serangan", "4.0.1": "Melakukan aktiviti kecergasan fizikal", "5.0.1": "Mengambil bahagian dalam aktiviti rekreasi"}
-  },
-    'Year 3|PK': {
-    SK: {"1.0": "Kesihatan Diri", "2.0": "Kekeluargaan", "3.0": "Kemahiran Interpersonal", "4.0": "Pencegahan Penyakit"},
-    SP: {"1.0.1": "Mengamalkan gaya hidup sihat", "2.0.1": "Mengenal pasti peranan dalam keluarga", "3.0.1": "Mengamalkan kemahiran komunikasi", "4.0.1": "Mengenal pasti cara pencegahan penyakit"}
-  },
-      'Year 3|PMZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
-    SP: {"1.0.1": "Bernyanyi dengan teknik betul", "2.0.1": "Bermain alat perkusi dengan corak irama", "3.0.1": "Membuat pergerakan dengan alat", "4.0.1": "Menilai muzik berdasarkan unsur muzik"}
-  },
-  'Year 3|PSV': {
-    SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
-    SP: {"1.0.1": "Mengaplikasi bahasa seni visual dengan pelbagai teknik", "2.0.1": "Membuat corak dengan teknik ikatan dan celupan", "3.0.1": "Membina model dan boneka", "4.0.1": "Membuat kraf tradisional dengan bimbingan"}
-  },
-        'Year 4|BM': {
+                            'Year 4|BM': {
     SK: {"1.1": "Mendengar dan memberikan respons", "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan", "2.1": "Asas membaca dan memahami", "2.2": "Membaca, memahami, dan menaakul bahan grafik dan bukan grafik", "2.3": "Membaca dan mengapresiasi karya sastera dan bukan sastera", "3.1": "Asas menulis", "3.2": "Menulis perkataan, frasa, dan ayat yang bermakna", "3.3": "Menghasilkan penulisan", "4.1": "Mengaplikasikan unsur keindahan dan kesantunan bahasa dalam bahan sastera.", "4.2": "Menghayati keindahan dan kesantunan bahasa dalam bahan sastera.", "4.3": "Menghasilkan bahan sastera dengan menyerapkan keindahan dan kesantunan bahasa serta mempersembahkannya secara kreatif.", "5.1": "Memahami fungsi dan menggunakan golongan kata mengikut konteks", "5.2": "Memahami dan menggunakan pembentukan kata mengikut konteks", "5.3": "Memahami dan membina ayat mengikut konteks"},
     SP: {"1.1.1": "Mengajuk, dan menyebut; (i) nama abjad (ii) bunyi abjad", "1.1.2": "Mengajuk, dan menyebut perkataan, frasa dan ayat yang mengandungi pelbagai bunyi; (i) vokal dan konsonan (ii) diftong dan vokal berganding (iii) digraf dan konsonan bergabung", "1.1.3": "Mendengar, memahami, dan memberikan respons terhadap; (i) soalan dengan kata tanya (ii) suruhan", "1.2.1": "Bertutur untuk menyampaikan pesanan dengan sebutan dan intonasi yang betul secara bertatasusila.", "1.2.2": "Menyampaikan maklumat tersurat daripada bahan.", "2.1.1": "Membaca dengan sebutan yang betul dan intonasi yang sesuai; (i) suku kata (ii) perkataan (iii) ayat", "2.1.2": "Membaca dengan sebutan yang betul, intonasi yang sesuai, dan memahami; (i) perkataan (ii) frasa (iii) ayat dalam perenggan", "2.2.1": "Membaca, memahami, dan menaakul bahan untuk mendapatkan; (i) kosa kata umum (ii) ideal tersurat", "2.3.1": "Membaca bahan sastera dengan sebutan yang betul dan intonasi yang sesuai, serta mempersembahkannya dengan penuh penghayatan; (i) cerita (ii) pantun", "2.3.2": "Membaca bahan bukan sastera dengan sebutan yang betul dan intonasi yang sesuai, serta mempersembahkannya dengan penuh penghayatan; (i) label", "3.1.1": "Menulis secara mekanis; (i) huruf (ii) suku kata (iii) perkataan (iv) frasa (v) ayat", "3.2.1": "Membina dan menulis; (i) perkataan (ii) frasa (iii) ayat", "3.2.2": "Membina dan menulis jawapan pemahaman dengan berdasarkan soalan; (i) bertumpu (ii) bercapah", "3.2.3": "Mencatat maklumat tentang sesuatu perkara.", "3.2.4": "Menulis sesuatu yang diimlakkan; (i) perkataan (ii) frasa", "3.3.1": "Menghasilkan penulisan naratif dan bukan naratif secara; (i) terkawal", "3.3.2": "Mengedit dan memurnikan hasil penulisan daripada aspek; (i) ejaan (ii) tanda baca", "4.4.1": "Bercerita secara spontan dengan sebutan yang betul dan intonasi yang sesuai.", "4.2.1": "Menghayati keindahan bahasa; (i) pantun dua kerat dengan sebutan dan intonasi yang sesuai. (ii) pantun empat kerat dengan sebutan dan intonasi yang sesuai.", "4.2.2": "Menyanyikan lagu dengan sebutan yang betul dan intonasi yang sesuai; (i) lagu berdasarkan melodi lagu kanak-kanak", "4.3.1": "Mencipta pantun secara separa terkawal dan mempersembahkan; (i) pantun dua kerat (ii) pantun empat kerat Dalam Aspek Seni Bahasa, pentaksiran kemahiran Mendengar dan Bertutur, Kemahiran Membaca atau Kemahiran Menulis juga boleh dilaksanakan. Walau", "5.1.1": "Memahami dan mengenal pasti penggunaan golongan kata mengikut konteks; (i) kata nama am (ii) kata nama khas (iii) kata ganti nama diri pertama dan kedua (iii) penjodoh bilangan", "5.1.2": "Memahami, mengenal pasti dan menggunakan kata kerja mengikut konteks; (i) kata kerja transitif", "5.1.3": "Memahami, mengenal pasti dan menggunakan kata adjektif mengikut konteks; (i) sifat / keadaan (ii) warna (iii) bentuk", "5.1.4": "Memahami, mengenal pasti dan menggunakan kata tugas mengikut konteks; (i) kata hubung gabungan (ii) kata sendi nama (iii) kata arah", "5.2.1": "Memahami, mengenal pasti dan menggunakan kata terbitan mengikut konteks; (i) kata berimbuhan awalan", "5.2.2": "Memahami, mengenal pasti dan meggunakan kata majmuk mengikut konteks; (i) kata majmuk rangkai kata bebas", "5.2.3": "Memahami, mengenal pasti dan menggunakan kata ganda mengikut konteks; (i) kata ganda penuh", "5.3.1": "Memahami, mengenal pasti dan menggunakan jenis ayat mengikut konteks; (i) ayat penyata (ii) ayat tanya dengan kata tanya", "5.3.2": "Memahami, mengenal pasti dan menggunakan bentuk ayat mengikut konteks; (i) ayat tunggal (ii) ayat majmuk"}
   },
-    'Year 4|MZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi Muzik"},
-    SP: {"1.0.1": "Bernyanyi dengan teknik vokal yang betul", "2.0.1": "Bermain rekoder dengan teknik betul", "3.0.1": "Membuat pergerakan kreatif secara berkumpulan", "4.0.1": "Mengapresiasi muzik pelbagai budaya"}
-  },
-  'Year 4|PJ': {
-    SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Pukul", "4.0": "Akuatik", "5.0": "Kecergasan"},
-    SP: {"1.0.1": "Melakukan kemahiran gimnastik dengan kreatif", "2.0.1": "Mengaplikasi pergerakan mengikut tema", "3.0.1": "Melakukan kemahiran memukul dan memadang", "4.0.1": "Melakukan kemahiran asas akuatik", "5.0.1": "Melakukan aktiviti kecergasan secara terancang"}
-  },
-    'Year 4|PK': {
-    SK: {"1.0": "Kesihatan Diri", "2.0": "Penyalahgunaan Bahan", "3.0": "Kesihatan Mental", "4.0": "Keselamatan Diri"},
-    SP: {"1.0.1": "Mengamalkan penjagaan kesihatan diri", "2.0.1": "Mengenal pasti kesan penyalahgunaan bahan", "3.0.1": "Mengurus stress dengan cara yang sihat", "4.0.1": "Mengamalkan langkah keselamatan"}
-  },
-    'Year 4|PMZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Rekoder", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
-    SP: {"1.0.1": "Bernyanyi dengan teknik vokal", "2.0.1": "Bermain rekoder dengan teknik betul", "3.0.1": "Membuat pergerakan kreatif berkumpulan", "4.0.1": "Mengapresiasi muzik pelbagai budaya"}
-  },
-  'Year 4|PSV': {
-    SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
-    SP: {"1.0.1": "Menghasilkan gambar dengan pelbagai media dan teknik", "2.0.1": "Membuat corak dengan teknik cetakan", "3.0.1": "Membina diorama dan stabil", "4.0.1": "Membuat kraf tradisional secara kreatif"}
-  },
-            'Year 5|BM': {
+                            'Year 5|BM': {
     SK: {"1.1": "Mendengar dan memberikan respons semasa berkomunikasi dalam situasi formal dan tidak formal.", "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan.", "1.3": "Bercerita, dan menceritakan perkara yang didengar, ditonton dan dibaca dengan sebutan dan intonasi yang betul.", "2.1": "Asas membaca dan memahami.", "2.2": "Membaca, memahami, dan menaakul bahan multimedia.", "2.3": "Membaca dan mengapresiasi pelbagai bahan sastera dan bahan bukan sastera.", "3.1": "Asas menulis.", "3.2": "Menulis perkataan, frasa, dan ayat yang bermakna.", "3.3": "Menghasilkan penulisan.", "4.1": "Mengaplikasikan unsur keindahan dan kesantunan bahasa dalam bahan sastera.", "4.2": "Menghayati keindahan dan kesantunan bahasa dalam bahan sastera.", "4.3": "Menghasilkan bahan sastera dengan menyerapkan keindahan dan kesantunan bahasa serta mempersembahkannya secara kreatif.", "4.4": "Mengenal dan menghayati tulisan jawi sebagai seni warisan bangsa.  tidak ditaksir.  oleh Kementerian Pendidikan Malaysia. PdP.", "5.1": "Memahami dan menggunakan golongan kata mengikut konteks.", "5.2": "Memahami dan menggunakan bentuk kata mengikut konteks. mengikut konteks. mengikut kesesuaian PdP. kesesuaian PdP."},
     SP: {"1.1.1": "Mendengar, mengecam sebutan, dan menyebut semula ujaran yang terdapat dalam situasi formal.", "1.1.2": "Mendengar, memahami dan memberikan respons terhadap maklumat yang diujarkan dalam situasi formal.", "1.1.3": "Mendengar, mentafsir dan memberikan respons terhadap soalan secara kritis dan kreatif.", "1.2.1": "Bertutur untuk menyatakan pertimbangan dan keputusan tentang bahan multimedia secara bertatasusila mengikut konteks.", "1.2.2": "Bertutur untuk menghuraikan maklumat tersurat dan tersirat yang dikenal pasti dengan menggunakan idea yang kritis dan kreatif.", "1.2.3": "Bersoal jawab untuk menjana idea tentang sesuatu perkara.", "1.3.1": "Bercerita dengan sebutan yang betul, intonasi dan gaya yang sesuai.", "1.3.2": "Menceritakan sesuatu perkara yang didengar, ditonton dan dibaca dengan sebutan yang betul dan intonasi serta gaya yang sesuai.", "2.1.1": "Membaca dan memahami maklumat tersurat dan tersirat untuk memberikan respons.", "2.1.2": "Membaca dan merujuk kamus serta media elektronik untuk mencari makna perkataan dan meneliti ejaan yang tepat mengikut susunan perkataan.", "2.2.1": "Membaca dan memahami maklumat berdasarkan bahan multimedia untuk membuat pertimbangan dan keputusan.", "2.3.1": "Membaca dan meneliti kandungan teks karya sastera dan karya bukan sastera untuk membuat rumusan.", "2.3.2": "Membaca dan mempersembahkan karya sastera, dan karya bukan sastera dengan gaya penyampaian dan sebutan yang sesuai.", "3.1.1": "Menulis ayat dalam perenggan secara mekanis dalam bentuk tulisan berangkai.", "3.2.1": "Membina dan menulis ayat untuk menyatakan pendapat daripada sesuatu bahan multimedia.", "3.2.2": "Menghasilkan jawapan dengan memberikan alasan secara kritis dan kreatif.", "3.2.3": "Mencatat maklumat berdasarkan bahan yang dibaca, dilihat, dan didengar.", "3.2.4": "Menulis teks prosa yang diimlakkan.", "3.3.1": "Mendraf dan menghasilkan penulisan berformat, dan tidak berformat.", "3.3.2": "Mengedit dan memurnikan perenggan dari aspek ejaan, tanda baca, penggunaan imbuhan, penggunaan kata, dan struktur ayat.", "4.1.1": "Bercerita dan mengujarkan dialog yang mengandungi peribahasa dan bahasa yang santun.", "4.2.1": "Melafazkan dan melagukan syair dengan irama yang sesuai serta menyatakan idea keseluruhan syair.", "4.2.2": "Mendeklamasikan sajak dengan nada yang sesuai dan menyatakan maksud sajak.", "4.3.1": "Mengubah suai puisi dengan bahasa yang indah dan santun secara separa berpandu dan mempersembahkannya secara kreatif.", "4.3.2": "Mengubah suai cerita dengan bahasa yang indah dan santun secara separa berpandu dan mempersembahkannya secara kreatif.", "4.3.3": "Mengubah suai seni kata lagu dengan menggunakan diksi yang sesuai dan mempersembahkannya dengan gaya yang kreatif.", "4.4.1": "Mengenal tulisan jawi yang terdapat dalam sesuatu objek kehidupan harian. (tugu negara, label halal, papan tanda jalan dan lain-lain)", "4.4.2": "Mempamerkan tulisan jawi melalui perkataan yang terdapat dalam sesuatu objek kehidupan harian. (tugu negara, label halal, papan tanda jalan dan lain-lain) Aspek seni bahasa dilaksanakan untuk menyokong kemahiran bahasa. Walau bagaimanapun aspek seni bahasa Persetujuan pelaksanaan tulisan jawi di SJK adalah berdasarkan Surat Siaran dan Garis Panduan yang dikeluarkan Pentaksiran aspek seni bahasa boleh dilaksanakan melalui kemahiran mendengar dan bertutur, membaca dan menulis mengikut kesesuaian", "5.1.1": "Memahami dan menggunakan kata nama mengikut konteks; (i) kata nama am (ii) kata nama khas (iii) kata ganti nama (iv) penjodoh bilangan", "5.1.2": "Memahami dan menggunakan kata kerja transitif dan kata kerja tak transitif mengikut konteks.", "5.1.3": "Memahami dan menggunakan pelbagai kata adjektif mengikut konteks.", "5.1.4": "Memahami dan menggunakan kata tugas mengikut konteks; (i) kata pemeri (ii) kata penguat (iii) kata bantu", "5.2.1": "Memahami dan menggunakan kata berimbuhan mengikut konteks; (i) kata berimbuhan awalan (ii) kata berimbuhan akhiran (iii) (iii) kata berimbuhan apitan (iv) (iv) kata berimbuhan sisipan", "5.2.2": "Memahami dan menggunakan kata majmuk mengikut konteks; (i) kata majmuk bebas dan kata majmuk mantap (ii) kata majmuk kiasan", "5.2.3": "Memahami dan menggunakan kata ganda mengikut konteks; (i) kata ganda penuh (ii) kata ganda separa (iii) kata ganda berentak", "5.3.1": "Memahami dan membina ayat tunggal dan ayat majmuk dengan peluasan subjek dan predikat mengikut konteks.", "5.3.2": "Memahami dan membina pelbagai jenis ayat mengikut konteks; (i) ayat seruan (ii) ayat perintah", "5.3.3": "Memahami dan membina ayat aktif, dan ayat pasif mengikut konteks.", "5.3.4": "Memahami dan membina ayat susunan biasa dan susunan songsang mengikut konteks. Pentaksiran aspek tatabahasa boleh dilaksanakan melalui kemahiran mendengar dan bertutur, membaca dan menulis mengikut"}
   },
-    'Year 5|MZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi Muzik"},
-    SP: {"1.0.1": "Bernyanyi dengan teknik vokal yang betul dan ekspresi", "2.0.1": "Bermain rekoder dengan pic dan irama betul", "3.0.1": "Membuat pergerakan kreatif secara berkumpulan", "4.0.1": "Mengapresiasi muzik tempatan dan antarabangsa"}
-  },
-  'Year 5|PJ': {
-    SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Serangan", "4.0": "Olahraga Asas", "5.0": "Kecergasan", "6.0": "Permainan Kategori Jaring"},
-    SP: {"1.0.1": "Melakukan kemahiran gimnastik dengan kreatif dan estetika", "2.0.1": "Mengaplikasi pergerakan berirama dengan alat dan muzik", "3.0.1": "Melakukan kemahiran menyerang dan bertahan dalam permainan", "4.0.1": "Melakukan kemahiran asas olahraga dengan teknik betul", "5.0.1": "Melakukan aktiviti kecergasan berdasarkan konsep FITT", "6.0.1": "Melakukan kemahiran permainan kategori jaring"}
-  },
-    'Year 5|PK': {
-    SK: {"1.0": "Kesihatan Reproduktif", "2.0": "Penyalahgunaan Bahan", "3.0": "Kesihatan Mental", "4.0": "Pencegahan Penyakit", "5.0": "Pertolongan Cemas"},
-    SP: {"1.0.1": "Mengenal pasti perubahan fizikal remaja", "2.0.1": "Menolak pengaruh rakan sebaya terhadap bahan", "3.0.1": "Mengurus emosi dan stress", "4.0.1": "Mengamalkan langkah pencegahan penyakit", "5.0.1": "Melakukan prosedur pertolongan cemas"}
-  },
-    'Year 5|PMZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Rekoder", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
-    SP: {"1.0.1": "Bernyanyi dengan teknik vokal dan ekspresi", "2.0.1": "Bermain rekoder dengan pic dan irama betul", "3.0.1": "Membuat pergerakan kreatif secara berkumpulan", "4.0.1": "Mengapresiasi muzik tempatan"}
-  },
-  'Year 5|PSV': {
-    SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
-    SP: {"1.0.1": "Menghasilkan gambar dengan kreatif", "2.0.1": "Membuat corak dengan teknik resis dan stensilan", "3.0.1": "Membina model 3D dengan kreatif", "4.0.1": "Menghasilkan kraf tradisional secara kreatif"}
-  },
-            'Year 6|BM': {
+                            'Year 6|BM': {
     SK: {"1.1": "Mendengar dan memberikan respons semasa berkomunikasi dalam situasi formal dan tidak formal.", "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan.", "1.3": "Bercerita, dan menceritakan perkara yang didengar, ditonton dan dibaca dengan sebutan dan intonasi yang betul.", "2.1": "Asas membaca dan memahami.", "2.2": "Membaca, memahami, dan menaakul bahan multimedia.", "2.3": "Membaca dan mengapresiasi pelbagai bahan sastera dan bahan bukan sastera.", "3.1": "Asas menulis.", "3.2": "Menulis perkataan, frasa, dan ayat yang bermakna.", "3.3": "Menghasilkan penulisan.", "4.1": "Mengaplikasikan unsur keindahan dan kesantunan bahasa dalam bahan sastera.", "4.2": "Menghayati keindahan dan kesantunan bahasa dalam bahan sastera.", "4.3": "Menghasilkan bahan sastera dengan menyerapkan keindahan dan kesantunan bahasa serta mempersembahkannya secara kreatif.", "4.4": "Mengenal dan menghayati tulisan jawi sebagai seni warisan bangsa.  tidak ditaksir.  oleh Kementerian Pendidikan Malaysia. PdP.", "5.1": "Memahami dan menggunakan golongan kata mengikut konteks.", "5.2": "Memahami dan menggunakan bentuk kata mengikut konteks. mengikut konteks. mengikut kesesuaian PdP. kesesuaian PdP."},
     SP: {"1.1.1": "Mendengar, mengecam sebutan, dan menyebut semula ujaran yang terdapat dalam situasi formal.", "1.1.2": "Mendengar, memahami dan memberikan respons terhadap maklumat yang diujarkan dalam situasi formal.", "1.1.3": "Mendengar, mentafsir dan memberikan respons terhadap soalan secara kritis dan kreatif.", "1.2.1": "Bertutur untuk menyatakan pertimbangan dan keputusan tentang bahan multimedia secara bertatasusila mengikut konteks.", "1.2.2": "Bertutur untuk menghuraikan maklumat tersurat dan tersirat yang dikenal pasti dengan menggunakan idea yang kritis dan kreatif.", "1.2.3": "Bersoal jawab untuk menjana idea tentang sesuatu perkara.", "1.3.1": "Bercerita dengan sebutan yang betul, intonasi dan gaya yang sesuai.", "1.3.2": "Menceritakan sesuatu perkara yang didengar, ditonton dan dibaca dengan sebutan yang betul dan intonasi serta gaya yang sesuai.", "2.1.1": "Membaca dan memahami maklumat tersurat dan tersirat untuk memberikan respons.", "2.1.2": "Membaca dan merujuk kamus serta media elektronik untuk mencari makna perkataan dan meneliti ejaan yang tepat mengikut susunan perkataan.", "2.2.1": "Membaca dan memahami maklumat berdasarkan bahan multimedia untuk membuat pertimbangan dan keputusan.", "2.3.1": "Membaca dan meneliti kandungan teks karya sastera dan karya bukan sastera untuk membuat rumusan.", "2.3.2": "Membaca dan mempersembahkan karya sastera, dan karya bukan sastera dengan gaya penyampaian dan sebutan yang sesuai.", "3.1.1": "Menulis ayat dalam perenggan secara mekanis dalam bentuk tulisan berangkai.", "3.2.1": "Membina dan menulis ayat untuk menyatakan pendapat daripada sesuatu bahan multimedia.", "3.2.2": "Menghasilkan jawapan dengan memberikan alasan secara kritis dan kreatif.", "3.2.3": "Mencatat maklumat berdasarkan bahan yang dibaca, dilihat, dan didengar.", "3.2.4": "Menulis teks prosa yang diimlakkan.", "3.3.1": "Mendraf dan menghasilkan penulisan berformat, dan tidak berformat.", "3.3.2": "Mengedit dan memurnikan perenggan dari aspek ejaan, tanda baca, penggunaan imbuhan, penggunaan kata, dan struktur ayat.", "4.1.1": "Bercerita dan mengujarkan dialog yang mengandungi peribahasa dan bahasa yang santun.", "4.2.1": "Melafazkan dan melagukan syair dengan irama yang sesuai serta menyatakan idea keseluruhan syair.", "4.2.2": "Mendeklamasikan sajak dengan nada yang sesuai dan menyatakan maksud sajak.", "4.3.1": "Mengubah suai puisi dengan bahasa yang indah dan santun secara separa berpandu dan mempersembahkannya secara kreatif.", "4.3.2": "Mengubah suai cerita dengan bahasa yang indah dan santun secara separa berpandu dan mempersembahkannya secara kreatif.", "4.3.3": "Mengubah suai seni kata lagu dengan menggunakan diksi yang sesuai dan mempersembahkannya dengan gaya yang kreatif.", "4.4.1": "Mengenal tulisan jawi yang terdapat dalam sesuatu objek kehidupan harian. (tugu negara, label halal, papan tanda jalan dan lain-lain)", "4.4.2": "Mempamerkan tulisan jawi melalui perkataan yang terdapat dalam sesuatu objek kehidupan harian. (tugu negara, label halal, papan tanda jalan dan lain-lain) Aspek seni bahasa dilaksanakan untuk menyokong kemahiran bahasa. Walau bagaimanapun aspek seni bahasa Persetujuan pelaksanaan tulisan jawi di SJK adalah berdasarkan Surat Siaran dan Garis Panduan yang dikeluarkan Pentaksiran aspek seni bahasa boleh dilaksanakan melalui kemahiran mendengar dan bertutur, membaca dan menulis mengikut kesesuaian", "5.1.1": "Memahami dan menggunakan kata nama mengikut konteks; (i) kata nama am (ii) kata nama khas (iii) kata ganti nama (iv) penjodoh bilangan", "5.1.2": "Memahami dan menggunakan kata kerja transitif dan kata kerja tak transitif mengikut konteks.", "5.1.3": "Memahami dan menggunakan pelbagai kata adjektif mengikut konteks.", "5.1.4": "Memahami dan menggunakan kata tugas mengikut konteks; (i) kata pemeri (ii) kata penguat (iii) kata bantu", "5.2.1": "Memahami dan menggunakan kata berimbuhan mengikut konteks; (i) kata berimbuhan awalan (ii) kata berimbuhan akhiran (iii) (iii) kata berimbuhan apitan (iv) (iv) kata berimbuhan sisipan", "5.2.2": "Memahami dan menggunakan kata majmuk mengikut konteks; (i) kata majmuk bebas dan kata majmuk mantap (ii) kata majmuk kiasan", "5.2.3": "Memahami dan menggunakan kata ganda mengikut konteks; (i) kata ganda penuh (ii) kata ganda separa (iii) kata ganda berentak", "5.3.1": "Memahami dan membina ayat tunggal dan ayat majmuk dengan peluasan subjek dan predikat mengikut konteks.", "5.3.2": "Memahami dan membina pelbagai jenis ayat mengikut konteks; (i) ayat seruan (ii) ayat perintah", "5.3.3": "Memahami dan membina ayat aktif, dan ayat pasif mengikut konteks.", "5.3.4": "Memahami dan membina ayat susunan biasa dan susunan songsang mengikut konteks. Pentaksiran aspek tatabahasa boleh dilaksanakan melalui kemahiran mendengar dan bertutur, membaca dan menulis mengikut"}
   },
-    'Year 6|MZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi Muzik"},
-    SP: {"1.0.1": "Bernyanyi dengan teknik vokal dan ekspresi yang betul", "2.0.1": "Bermain alat muzik secara ensembel", "3.0.1": "Membuat pergerakan kreatif secara berkumpulan", "4.0.1": "Mengapresiasi karya muzik tempatan dan antarabangsa"}
-  },
-  'Year 6|PJ': {
-    SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Jaring", "4.0": "Olahraga Asas", "5.0": "Rekreasi", "6.0": "Kecergasan"},
-    SP: {"1.0.1": "Melakukan kemahiran gimnastik dengan kreatif dan estetika", "2.0.1": "Mengaplikasi pergerakan berirama dengan kreatif", "3.0.1": "Melakukan kemahiran permainan kategori jaring", "4.0.1": "Melakukan kemahiran asas olahraga dan rekod", "5.0.1": "Mengambil bahagian dalam aktiviti rekreasi", "6.0.1": "Melakukan aktiviti kecergasan secara terancang"}
-  },
-    'Year 6|PK': {
-    SK: {"1.0": "Kesihatan Diri", "2.0": "Penyalahgunaan Bahan", "3.0": "Kesihatan Mental", "4.0": "Kekeluargaan", "5.0": "Kemahiran Interpersonal"},
-    SP: {"1.0.1": "Mengamalkan gaya hidup sihat secara holistik", "2.0.1": "Menganalisis kesan penyalahgunaan bahan", "3.0.1": "Mengurus emosi dan stress secara efektif", "4.0.1": "Mengenal pasti peranan dalam kekeluargaan", "5.0.1": "Mengamalkan kemahiran interpersonal"}
-  },
-    'Year 6|PMZ': {
-    SK: {"1.0": "Bernyanyi", "2.0": "Ensembel", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
-    SP: {"1.0.1": "Bernyanyi dalam ensembel", "2.0.1": "Bermain alat muzik dalam ensembel", "3.0.1": "Membuat pergerakan kreatif secara berkumpulan", "4.0.1": "Mengapresiasi karya muzik"}
-  },
-  'Year 6|PSV': {
-    SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
-    SP: {"1.0.1": "Menghasilkan gambar dengan kreatif dan inovatif", "2.0.1": "Membuat corak dengan gabungan teknik", "3.0.1": "Membina model dan arca dengan kreatif", "4.0.1": "Menghasilkan kraf tradisional dengan inovatif"}
-  },
-        'Year 1|BM': {
+                        'Year 1|BM': {
     SK: {
   "1.1": "Mendengar dan memberikan respons semasa berkomunikasi dalam pelbagai situasi",
   "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan",
@@ -1133,6 +1013,247 @@ const CURR_DB = {
 },
     SP: {
   "6.1.1": "Menghormati lambang-lambang negara dan mengamalkan sikap bersederhana dalam kehidupan."
+}
+  }
+,
+  'Year 1|MZ': {
+    SK: {
+  "2.1": "Nyanyian dan Detik Muzik"
+},
+    SP: {
+  "2.1.1": "Bernyanyi dengan sebutan yang betul mengikut detik lagu."
+}
+  },
+  'Year 1|PJ': {
+    SK: {
+  "1.1": "Pergerakan Lokomotor dan Bukan Lokomotor"
+},
+    SP: {
+  "1.1.1": "Melakukan pergerakan berjalan, berlari, melompat, dan membongkok dengan lakuan yang betul."
+}
+  },
+  'Year 1|PK': {
+    SK: {
+  "1.1": "Kebersihan Diri dan Anggota Badan"
+},
+    SP: {
+  "1.1.1": "Mengetahui anggota tubuh badan lelaki dan perempuan serta menjaga kebersihan peribadi."
+}
+  },
+  'Year 1|PMZ': {
+    SK: {
+  "2.1": "Nyanyian dan Detik Muzik"
+},
+    SP: {
+  "2.1.1": "Bernyanyi dengan sebutan yang betul mengikut detik lagu."
+}
+  },
+  'Year 1|PSV': {
+    SK: {
+  "1.1": "Unsur Seni dalam Menggambar"
+},
+    SP: {
+  "1.1.1": "Mengenal dan mengenalpasti garisan, rupa, dan warna dalam karya seni."
+}
+  },
+  'Year 2|MZ': {
+    SK: {
+  "2.2": "Permainan Alat Perkusi"
+},
+    SP: {
+  "2.2.1": "Memainkan alat perkusi mengikut corak irama yang ditentukan."
+}
+  },
+  'Year 2|PJ': {
+    SK: {
+  "1.4": "Kemahiran Membaling dan Menangkap Bola"
+},
+    SP: {
+  "1.4.1": "Membaling dan menangkap bola dengan pelbagai kelajuan dan arah."
+}
+  },
+  'Year 2|PK': {
+    SK: {
+  "2.1": "Makanan Sihat dan Seimbang"
+},
+    SP: {
+  "2.1.1": "Mengenal pasti makanan berkhasiat dan tidak berkhasiat untuk pertumbuhan."
+}
+  },
+  'Year 2|PMZ': {
+    SK: {
+  "2.2": "Permainan Alat Perkusi"
+},
+    SP: {
+  "2.2.1": "Memainkan alat perkusi mengikut corak irama yang ditentukan."
+}
+  },
+  'Year 2|PSV': {
+    SK: {
+  "1.2": "Teknik Lipatan dan Guntingan"
+},
+    SP: {
+  "1.2.1": "Menghasilkan corak tidak teratur menggunakan teknik lipatan dan guntingan."
+}
+  },
+  'Year 3|MZ': {
+    SK: {
+  "2.3": "Membaca Not Muzik"
+},
+    SP: {
+  "2.3.1": "Membaca dan menulis nilai not kraf, minim, dan semibrif."
+}
+  },
+  'Year 3|PJ': {
+    SK: {
+  "1.7": "Kemahiran Imbangan dan Imbangan Dinamik"
+},
+    SP: {
+  "1.7.1": "Melakukan imbangan di atas satu kaki dan imbangan skuter."
+}
+  },
+  'Year 3|PK': {
+    SK: {
+  "3.1": "Bahaya Merokok dan Alkohol"
+},
+    SP: {
+  "3.1.1": "Memahami bahaya merokok dan minuman beralkohol terhadap kesihatan."
+}
+  },
+  'Year 3|PMZ': {
+    SK: {
+  "2.3": "Membaca Not Muzik"
+},
+    SP: {
+  "2.3.1": "Membaca dan menulis nilai not kraf, minim, dan semibrif."
+}
+  },
+  'Year 3|PSV': {
+    SK: {
+  "1.3": "Teknik Asemblaj dan Binaan"
+},
+    SP: {
+  "1.3.1": "Menghasilkan karya 3D menggunakan bahan terbuang."
+}
+  },
+  'Year 4|MZ': {
+    SK: {
+  "2.1": "Permainan Rekorder"
+},
+    SP: {
+  "2.1.1": "Memainkan rekorder mengikut skor muzik menggunakan not B, A, dan G."
+}
+  },
+  'Year 4|PJ': {
+    SK: {
+  "1.9": "Kemahiran Larian dan Lompatan"
+},
+    SP: {
+  "1.9.1": "Melakukan larian berhalangan dan lompat jauh dengan fasa yang betul."
+}
+  },
+  'Year 4|PK': {
+    SK: {
+  "4.1": "Pengurusan Stres dan Tekanan"
+},
+    SP: {
+  "4.1.1": "Mengenal pasti punca stres dan cara menguruskan emosi secara positif."
+}
+  },
+  'Year 4|PMZ': {
+    SK: {
+  "2.1": "Permainan Rekorder"
+},
+    SP: {
+  "2.1.1": "Memainkan rekorder mengikut skor muzik menggunakan not B, A, dan G."
+}
+  },
+  'Year 4|PSV': {
+    SK: {
+  "1.1": "Lukisan dan Catan"
+},
+    SP: {
+  "1.1.1": "Menghasilkan karya catan menggunakan teknik basah atas basah/kering."
+}
+  },
+  'Year 5|MZ': {
+    SK: {
+  "2.2": "Not C Tinggi dan D Tinggi pada Rekorder"
+},
+    SP: {
+  "2.2.1": "Memainkan rekorder bagi not C tinggi dan D tinggi dengan penjarian yang betul."
+}
+  },
+  'Year 5|PJ': {
+    SK: {
+  "1.6": "Kemahiran Permainan Bola Tampar dan Badminton"
+},
+    SP: {
+  "1.6.1": "Melakukan servis, pukulan dan menimpal bola/bulu tangkis."
+}
+  },
+  'Year 5|PK': {
+    SK: {
+  "6.1": "Pencegahan Diabetes dan Hipertensi"
+},
+    SP: {
+  "6.1.1": "Menjelaskan punca dan cara mencegah penyakit tidak berjangkit."
+}
+  },
+  'Year 5|PMZ': {
+    SK: {
+  "2.2": "Not C Tinggi dan D Tinggi pada Rekorder"
+},
+    SP: {
+  "2.2.1": "Memainkan rekorder bagi not C tinggi dan D tinggi dengan penjarian yang betul."
+}
+  },
+  'Year 5|PSV': {
+    SK: {
+  "1.4": "Ukiran dan Batik"
+},
+    SP: {
+  "1.4.1": "Mengenal pasti motif tradisional dan menghasilkan karya rekaan batik reka bentuk mudah."
+}
+  },
+  'Year 6|MZ': {
+    SK: {
+  "2.4": "Persembahan Ansambel Muzik"
+},
+    SP: {
+  "2.4.1": "Persembahan gabungan nyanyian, alat perkusi, dan rekorder secara berkumpulan."
+}
+  },
+  'Year 6|PJ': {
+    SK: {
+  "3.1": "Kapasiti Aerobik dan Ujian SEGAK"
+},
+    SP: {
+  "3.1.1": "Melakukan aktiviti meningkatkan kapasiti aerobik dan merekodkan keputusan SEGAK."
+}
+  },
+  'Year 6|PK': {
+    SK: {
+  "8.1": "Bantuan Kecemasan DRCAB / CPR"
+},
+    SP: {
+  "8.1.1": "Mengenal pasti situasi kecemasan dan prinsip asas pertolongan cemas."
+}
+  },
+  'Year 6|PMZ': {
+    SK: {
+  "2.4": "Persembahan Ansambel Muzik"
+},
+    SP: {
+  "2.4.1": "Persembahan gabungan nyanyian, alat perkusi, dan rekorder secara berkumpulan."
+}
+  },
+  'Year 6|PSV': {
+    SK: {
+  "2.1": "Pameran Seni dan Apresiasi Karya"
+},
+    SP: {
+  "2.1.1": "Merancang, membuat pameran karya seni, dan membuat ulasan kritis karya sendiri dan rakan."
 }
   }
 
