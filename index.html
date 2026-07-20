@@ -50,6 +50,7 @@
         <div class="mb-3 flex flex-wrap items-center gap-2">
           <button @click="gen()" x-show="tg" class="inline-flex items-center gap-1 rounded-lg px-4 py-2 text-xs font-semibold text-white shadow-md" style="background:linear-gradient(135deg,#C4956A,#8B5A2B)">⚡ Jana RPH</button>
           <select x-model="currentWeek" @change="sv()" class="rounded-lg border border-[#C4956A]/20 bg-white px-2 py-1.5 text-xs font-medium text-[#3A2A1A]"><option value="">📅 Pilih Minggu</option><template x-for="w in D.TAKWIM" :key="w.m"><option :value="w.m" x-text="(w.l?w.l:'Minggu '+w.m+' ('+w.s+' - '+w.e+')')" :disabled="w.m===0"></option></template></select>
+          <button @click="rph.forEach(function(p){var l=p.s==='Prasekolah'?'pra':lg(p.s,tg);var phases=l==='en'?['🎯 Set Induction','📚 Pre-lesson','📖 Lesson Development','💡 Post-lesson','🎯 Closure']:l==='bm'?['🎯 Set Induksi','📚 Pra-PdP','📖 Perkembangan PdP','💡 Pasca-PdP','🎯 Penutup']:['🎯 导入','📚 课前活动','📖 主要教学','💡 课后活动','🎯 总结'];var duDef=[8,7,22,5,5];p.acts=phases.map(function(ph,i){var pool=(ACTS[l]||ACTS['bm']||{})[['i','p','d','ps','c'][i]]||[];var pick=pool.length?pool[Math.floor(Math.random()*pool.length)]:('Aktiviti '+ph);return{ph:ph,d:pick,dr:duDef[i],t:'',s:''};});});sv()" x-show="rph.length" class="inline-flex items-center gap-1 rounded-lg border border-green-300 bg-green-50 px-3 py-2 text-xs font-medium text-green-700 hover:bg-green-100">🔄 Jana Semua Aktiviti</button>
           <button @click="iRef()" x-show="rph.length" class="inline-flex items-center gap-1 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 hover:bg-amber-100">💬 Sisip Refleksi</button>
           <button @click="pAll()" x-show="rph.length" class="inline-flex items-center gap-1 rounded-lg border border-[#C4956A]/20 bg-white px-3 py-2 text-xs font-medium text-[#8B5A2B] hover:bg-[#FFF8F0]">📄 PDF Semua</button>
           <button @click="rph=[];sv()" x-show="rph.length" class="rounded-lg px-3 py-1.5 text-xs font-medium text-red-500 hover:bg-red-50">🗑️ Padam</button>
@@ -71,7 +72,7 @@
             <div><p class="font-semibold text-[#8B5A2B] text-[10px]">🎯 Objektif</p><div class="cc-box mt-1 space-y-1"><template x-for="(o,i) in p.obj" :key="i"><textarea x-model="p.obj[i]" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs mt-1" rows="3"></textarea></template></div>
             <div><p class="font-semibold text-emerald-600 text-[10px]">✅ Kriteria Kejayaan</p><template x-for="(k,i) in p.kj" :key="i"><textarea x-model="p.kj[i]" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs mt-1" rows="3"></textarea></template></div>
             <div><p class="font-semibold text-[#8B5A2B] text-[10px]">📝 Aktiviti</p><div class="space-y-2 mt-1"><template x-for="(a,i) in p.acts" :key="i"><div class="activity-row"><span class="shrink-0 flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-bold mt-0.5 flex-shrink-0" :class="aC(a.ph)" x-text="a.ph.match(/[\u{1F000}-\u{1FFFF}]/u)?.[0]||'?'"></span><div class="cc-box"><div class="flex items-center justify-between gap-2 mb-1"><span class="font-medium text-[#3A2A1A] text-[11px]" x-text="a.ph"></span><span class="text-[10px] text-[#8B5A2B]/60 meta-chip" x-text="a.dr+' min'"></span></div><textarea x-model="a.d" class="w-full border-0 bg-transparent p-0 text-xs resize-none focus:outline-none" rows="5" style="word-break:break-word;overflow-wrap:break-word;white-space:pre-wrap;line-height:1.6;min-height:6em"></textarea><div class="flex gap-2 mt-2 pt-2 border-t border-[#C4956A]/10"><input type="text" x-model="a.t" class="flex-1 rounded-md border border-[#C4956A]/20 bg-[#FFF8F0] px-2 py-1 text-[10px]" placeholder="👩‍🏫 Guru"><input type="text" x-model="a.s" class="flex-1 rounded-md border border-[#C4956A]/20 bg-[#FFF8F0] px-2 py-1 text-[10px]" placeholder="🙋 Murid"></div></div></div></template><p class="font-semibold text-orange-600 text-[10px]">🩺 Pemulihan</p><div class="space-y-1.5 mt-1"><template x-for="(r,i) in p.rem" :key="i"><div class="rounded-lg border border-orange-200 bg-orange-50 p-2"><textarea x-model="r.t" class="w-full rounded border border-orange-200 bg-white p-1 text-[11px] font-medium text-orange-800" rows="3"></textarea><textarea x-model="r.d" class="w-full rounded border border-orange-200 bg-white p-1 text-[10px] text-orange-700 mt-1" rows="5"></textarea></div></template></div></div>
-            <div><p class="font-semibold text-amber-700 text-[10px] mb-1">💬 Refleksi</p><textarea x-model="p.ref" class="w-full rounded-lg border-2 border-amber-200 bg-amber-50 p-3 text-xs text-[#78350f] focus:border-amber-400" rows="3" placeholder="💬 Taip refleksi..."></textarea></div>
+            <div><p class="font-semibold text-amber-700 text-[10px] mb-1">💬 Refleksi</p><textarea x-model="p.ref" class="w-full rounded-lg border-2 border-amber-200 bg-amber-50 p-3 text-xs text-[#78350f] focus:border-amber-400" rows="6" style="min-height:8em;word-break:break-word;overflow-wrap:break-word;white-space:pre-wrap;line-height:1.6" placeholder="💬 Taip refleksi..."></textarea></div>
             <div class="border-t border-[#C4956A]/10 pt-2 mt-2">
               <div class="flex items-center justify-between mb-1">
                 <p class="font-semibold text-indigo-700 text-[10px] uppercase">📊 Rekod Transit</p>
@@ -105,6 +106,7 @@
             </div>
             <div class="flex flex-wrap gap-2 border-t border-[#C4956A]/10 pt-3">
               <button @click.stop="ref1(p)" class="rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-[10px] font-medium text-amber-700 hover:bg-amber-100">💬 Jana Refleksi</button>
+              <button @click.stop="regActs(p)" class="rounded-lg border border-green-300 bg-green-50 px-3 py-1.5 text-[10px] font-medium text-green-700 hover:bg-green-100">🔄 Jana Aktiviti</button>
               <button @click.stop="cp(p)" class="rounded-lg border border-[#C4956A]/20 bg-white px-3 py-1.5 text-[10px] font-medium text-[#8B5A2B] hover:bg-[#FFF8F0]">📋 Salin</button>
               <button @click.stop="pdf1(p)" class="rounded-lg border border-[#C4956A]/20 bg-white px-3 py-1.5 text-[10px] font-medium text-[#8B5A2B] hover:bg-[#FFF8F0]">📄 PDF</button>
               <button @click.stop="rph=rph.filter(x=>x.id!==p.id);sv()" class="rounded-lg px-3 py-1.5 text-[10px] font-medium text-red-500 hover:bg-red-50">🗑️ Padam</button>
@@ -140,7 +142,7 @@
         <template x-if="!rph.length"><div class="flex h-48 items-center justify-center text-[#8B5A2B]/60 text-sm">⚡ Jana RPH dahulu.</div></template>
         <template x-if="rph.length">
           <div><div class="mb-3 flex gap-2"><button @click="iRef()" class="inline-flex items-center gap-1 rounded-lg px-4 py-2 text-xs font-semibold text-white shadow-md" style="background:linear-gradient(135deg,#C4956A,#8B5A2B)">💬 Sisip Refleksi</button></div>
-          <div class="space-y-2"><template x-for="(p,i) in rph" :key="p.id"><div class="rounded-lg border border-[#C4956A]/20 bg-white p-3 shadow-sm"><p class="text-xs font-semibold text-[#3A2A1A] mb-1" x-text="(i+1)+'. '+p.sn+' - '+p.c+' ('+p.d+')'"></p><textarea x-model="p.ref" class="w-full rounded-lg border-2 border-amber-200 bg-amber-50 p-3 text-xs text-[#78350f]" rows="3" placeholder="💬 Taip refleksi..."></textarea><button @click.stop="ref1(p)" class="mt-1 rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-[10px] font-medium text-amber-700 hover:bg-amber-100">💬 Jana Refleksi</button></div></template></div></div>
+          <div class="space-y-2"><template x-for="(p,i) in rph" :key="p.id"><div class="rounded-lg border border-[#C4956A]/20 bg-white p-3 shadow-sm"><p class="text-xs font-semibold text-[#3A2A1A] mb-1" x-text="(i+1)+'. '+p.sn+' - '+p.c+' ('+p.d+')'"></p><textarea x-model="p.ref" class="w-full rounded-lg border-2 border-amber-200 bg-amber-50 p-3 text-xs text-[#78350f]" rows="6" style="min-height:8em;word-break:break-word;overflow-wrap:break-word;white-space:pre-wrap;line-height:1.6" placeholder="💬 Taip refleksi..."></textarea><button @click.stop="ref1(p)" class="mt-1 rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-[10px] font-medium text-amber-700 hover:bg-amber-100">💬 Jana Refleksi</button></div></template></div></div>
         </template>
       </section>
 
@@ -289,6 +291,16 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
       r+='下节课将着重加强技能，确保所有学生达到学习目标。';
       p.ref=r;
     }
+  },
+  regActs(p){
+    var l=p.s==='Prasekolah'?'pra':this.lg(p.s,this.tg);
+    var phases=l==='en'?['🎯 Set Induction','📚 Pre-lesson','📖 Lesson Development','💡 Post-lesson','🎯 Closure']:l==='bm'?['🎯 Set Induksi','📚 Pra-PdP','📖 Perkembangan PdP','💡 Pasca-PdP','🎯 Penutup']:l==='pra'?['🎯 Set Induksi','📚 Pra-PdP','📖 Perkembangan PdP','💡 Pasca-PdP','🎯 Penutup']:['🎯 导入','📚 课前活动','📖 主要教学','💡 课后活动','🎯 总结'];
+    var duDef=[8,7,22,5,5];
+    p.acts=phases.map(function(ph,i){
+      var pool=(ACTS[l]||ACTS['bm']||{})[['i','p','d','ps','c'][i]]||[];
+      var pick=pool.length?pool[Math.floor(Math.random()*pool.length)]:('Aktiviti '+ph);
+      return{ph:ph,d:pick,dr:duDef[i],t:'',s:''};
+    });
   },
   skOpts(p){
     const y=p.c==='Prasekolah'?'Prasekolah':p.c.replace('Tahun ','Year ');
