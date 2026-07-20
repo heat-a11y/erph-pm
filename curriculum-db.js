@@ -154,11 +154,7 @@ const CURR_DB = {
     SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
     SP: {"1.0.1": "Menghasilkan gambar dengan pelbagai media dan teknik", "2.0.1": "Membuat corak dengan teknik cetakan", "3.0.1": "Membina diorama dan stabil", "4.0.1": "Membuat kraf tradisional secara kreatif"}
   },
-  'Year 4|RBT': {
-    SK: {"1.0": "Keselamatan Bengkel", "2.0": "Pengenalan Reka Bentuk", "3.0": "Teknologi Rumah Tangga", "4.0": "Aplikasi Reka Bentuk"},
-    SP: {"1.0.1": "Mematuhi peraturan keselamatan bengkel", "2.0.1": "Mengenal pasti elemen reka bentuk", "3.0.1": "Mengaplikasi teknologi rumah tangga", "4.0.1": "Menghasilkan projek reka bentuk"}
-  },
-  'Year 4|SJ': {
+    'Year 4|SJ': {
     SK: {"1.0": "Pengertian Sejarah", "2.0": "Sejarah Tempat Tinggal", "3.0": "Kerajaan Melayu Awal", "4.0": "Tokoh Terbilang", "5.0": "Warisan Negara"},
     SP: {"1.0.1": "Menyatakan pengertian sejarah", "1.0.2": "Mengenal pasti sumber sejarah", "2.0.1": "Menjelaskan sejarah tempat tinggal", "3.0.1": "Menyatakan kerajaan Melayu awal", "4.0.1": "Mengenal pasti tokoh terbilang", "5.0.1": "Menghargai warisan negara"}
   },
@@ -194,11 +190,7 @@ const CURR_DB = {
     SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
     SP: {"1.0.1": "Menghasilkan gambar dengan kreatif", "2.0.1": "Membuat corak dengan teknik resis dan stensilan", "3.0.1": "Membina model 3D dengan kreatif", "4.0.1": "Menghasilkan kraf tradisional secara kreatif"}
   },
-  'Year 5|RBT': {
-    SK: {"1.0": "Keselamatan Bengkel", "2.0": "Pengenalan Reka Bentuk", "3.0": "Teknologi Rumah Tangga", "4.0": "Teknologi Kejuruteraan", "5.0": "Pengaturcaraan"},
-    SP: {"1.0.1": "Mematuhi peraturan keselamatan", "2.0.1": "Mengenal pasti elemen reka bentuk", "3.0.1": "Menghasilkan projek teknologi rumah tangga", "4.0.1": "Mengaplikasi teknologi kejuruteraan", "5.0.1": "Menulis atur cara mudah"}
-  },
-  'Year 5|SJ': {
+    'Year 5|SJ': {
     SK: {"1.0": "Kedaulatan Negara", "2.0": "Institusi Raja", "3.0": "Perjuangan Kemerdekaan", "4.0": "Identiti Negara", "5.0": "Warisan Negara"},
     SP: {"1.0.1": "Menyatakan maksud kedaulatan", "2.0.1": "Menerangkan peranan institusi raja", "3.0.1": "Menjelaskan perjuangan kemerdekaan", "4.0.1": "Mengenal pasti identiti negara", "5.0.1": "Menghargai warisan negara"}
   },
@@ -234,11 +226,7 @@ const CURR_DB = {
     SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional"},
     SP: {"1.0.1": "Menghasilkan gambar dengan kreatif dan inovatif", "2.0.1": "Membuat corak dengan gabungan teknik", "3.0.1": "Membina model dan arca dengan kreatif", "4.0.1": "Menghasilkan kraf tradisional dengan inovatif"}
   },
-  'Year 6|RBT': {
-    SK: {"1.0": "Keselamatan Bengkel", "2.0": "Pengenalan Reka Bentuk", "3.0": "Teknologi Rumah Tangga", "4.0": "Aplikasi Reka Bentuk", "5.0": "Pengaturcaraan", "6.0": "Teknologi Pertanian"},
-    SP: {"1.0.1": "Mematuhi peraturan keselamatan", "2.0.1": "Mengenal pasti elemen reka bentuk", "3.0.1": "Menghasilkan projek teknologi rumah tangga", "4.0.1": "Mengaplikasi reka bentuk dalam projek", "5.0.1": "Membangunkan atur cara", "6.0.1": "Mengaplikasi teknologi pertanian"}
-  },
-  'Year 6|SJ': {
+    'Year 6|SJ': {
     SK: {"1.0": "Malaysia dan Dunia", "2.0": "Kemerdekaan Negara", "3.0": "Tokoh-tokoh Negara", "4.0": "Hubungan Antarabangsa", "5.0": "Malaysia Madani"},
     SP: {"1.0.1": "Menjelaskan kedudukan Malaysia di dunia", "2.0.1": "Menerangkan sejarah kemerdekaan", "3.0.1": "Mengenal pasti tokoh-tokoh negara", "4.0.1": "Menjelaskan hubungan antarabangsa", "5.0.1": "Menerapkan nilai Malaysia Madani"}
   },
@@ -894,6 +882,65 @@ const CURR_DB = {
   "5.2.1": "计算正方体和长方体的体积和表面积。",
   "6.1.1": "确认坐标平面上点的坐标，并解决涉及比率与比例的问题。",
   "7.1.1": "读取和分析数据，并计算一组数据的平均数。"
+}
+  }
+,
+  'Year 4|RBT': {
+    SK: {
+  "1.1": "工作室安全规则与急救 (Peraturan dan Keselamatan Bengkel)",
+  "2.1": "设计元素与草图绘制 (Elemen dan Lakaran Reka Bentuk)",
+  "3.1": "算法与基础编程 (Asas Pengaturcaraan - Scratch)",
+  "4.1": "产品包装的制作 (Pembangunan Produk Pembungkusan)",
+  "5.1": "食物造型与摆盘设计 (Reka Bentuk dan Persembahan Makanan)"
+},
+    SP: {
+  "1.1.1": "说明工作室的安全规则、个人安全及急救箱的使用。",
+  "1.1.2": "列出工作室发生意外时的处理步骤。",
+  "2.1.1": "阐明设计的定义及其在日常生活中的重要性。",
+  "2.1.2": "认识线条、形状、纹理、颜色等设计元素，并绘制3D产品草图。",
+  "3.1.1": "理解算法（Algorithm）、伪代码（Pseudocode）与流程图（Flowchart）的概念。",
+  "3.1.2": "使用图形化编程软件（如 Scratch）编写简单的控制程序。",
+  "4.1.1": "根据设计元素分析食品或非食品的包装特征，并绘制设计草图。",
+  "4.1.2": "运用合适材料与工具制作3D包装模型。",
+  "5.1.1": "阐明美食设计的含义，并根据主题进行食物摆盘与造型设计。"
+}
+  },
+  'Year 5|RBT': {
+    SK: {
+  "1.1": "基础针法与缝纫作品 (Asas Jahitan dan Penghasilan Artikel)",
+  "2.1": "微控制器应用 (Aplikasi Mikropengawal - Micro:bit)",
+  "3.1": "家庭电器与水电费计算 (Asas Elektrik dan Pengiraan Bil)",
+  "4.1": "制作简易机械模型 (Mekanisme dan Penghasilan Model)"
+},
+    SP: {
+  "1.1.1": "认识手缝基本针法（平针缝、回针缝、扣眼缝等）及缝纫工具。",
+  "1.1.2": "设计并动手制作创意缝纫物品（如小钱包或钥匙包）。",
+  "2.1.1": "理解微控制器的基本概念，连接Micro:bit并编写简单程序。",
+  "2.1.2": "运用传感器（光、声音）创作互动项目。",
+  "3.1.1": "读懂家庭电费单，计算电器耗电量与电费。",
+  "3.1.2": "识别主要电路元件并组装简易串联或并联电路。",
+  "4.1.1": "理解齿轮、滑轮、杠杆、连杆的基本原理。",
+  "4.1.2": "利用回收材料制作一个含简单机械的创意模型。"
+}
+  },
+  'Year 6|RBT': {
+    SK: {
+  "1.1": "综合设计项目 (Projek Reka Bentuk Integrasi)",
+  "2.1": "3D建模与打印简介 (Pengenalan kepada Pemodelan 3D)",
+  "3.1": "高级编程 (Pengaturcaraan Lanjutan)",
+  "4.1": "创业与市场营销 (Keusahawanan dan Pemasaran)",
+  "5.1": "创意科技项目 (Projek Reka Cipta)"
+},
+    SP: {
+  "1.1.1": "运用设计思维（Design Thinking）解决日常生活中的问题。",
+  "1.1.2": "制定项目计划书，包含目标、材料、步骤和预算。",
+  "2.1.1": "认识3D建模软件（如Tinkercad）并创建简单的三维模型。",
+  "3.1.1": "在Scratch/Micro:bit中编写含条件判断和循环的较复杂的程序。",
+  "3.1.2": "结合传感器与输出设备制作简单的智能装置原型。",
+  "4.1.1": "为自创产品设计品牌名称、包装与简单营销策略。",
+  "4.1.2": "计算生产成本和设定售价，理解盈利的基本概念。",
+  "5.1.1": "综合运用编程、设计与手工技能制作创新科技作品。",
+  "5.1.2": "在班级/校内展示并介绍项目成果。"
 }
   }
 
