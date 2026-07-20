@@ -1256,6 +1256,55 @@ const CURR_DB = {
   "2.1.1": "Merancang, membuat pameran karya seni, dan membuat ulasan kritis karya sendiri dan rakan."
 }
   }
+,
+  'Prasekolah|BM': {
+    SK: {
+  "1.1": "Mendengar dan memberi respons terhadap pelbagai bunyi di persekitaran",
+  "1.2": "Mendengar, memahami dan memberi respons secara gerak laku dan lisan",
+  "1.3": "Mendengar dan mengecam bunyi bahasa",
+  "1.4": "Berinteraksi menggunakan ayat mudah",
+  "1.5": "Bertutur untuk menyampaikan idea",
+  "2.1": "Menguasai kemahiran prabaca",
+  "2.2": "Mengenal huruf abjad dan fonik",
+  "2.3": "Membina dan membaca suku kata dan perkataan",
+  "2.4": "Membaca dan memahami frasa dan ayat",
+  "3.1": "Menguasai kemahiran pratulisan",
+  "3.2": "Menguasai kemahiran menulis huruf dan perkataan"
+},
+    SP: {
+  "1.1.1": "Mengenal pasti pelbagai bunyi di persekitaran.",
+  "1.1.2": "Mengecam dan membezakan bunyi di persekitaran: (i) manusia, (ii) alam sekitar, (iii) ciptaan manusia.",
+  "1.1.3": "Memberi respons dan menunjukkan arah bunyi yang didengar.",
+  "1.2.1": "Mendengar dan memberi respons terhadap arahan satu dan dua perkataan.",
+  "1.2.2": "Mendengar dan menyanyi lagu dengan sebutan yang betul.",
+  "1.2.3": "Mendengar, memahami dan memberi respons secara bertatasusila terhadap ucap selamat dan soalan.",
+  "1.2.4": "Mendengar dan melafazkan puisi/pantun mudah dengan intonasi yang betul.",
+  "1.3.1": "Mendengar dan menyebut abjad A-Z.",
+  "1.3.2": "Mendengar, mengecam dan menyebut bunyi suku kata awal yang sama dalam perkataan.",
+  "1.3.3": "Mendengar, mengecam dan menyebut bunyi suku kata akhir yang sama dalam perkataan.",
+  "1.4.1": "Mendengar dan menyebut ayat mudah secara bertatasusila.",
+  "1.4.2": "Berinteraksi untuk meluahkan perasaan dan menyatakan permintaan.",
+  "1.4.3": "Bersoal jawab menggunakan ayat mudah mengikut situasi.",
+  "1.4.4": "Berinteraksi untuk memberi arahan dan memberi pandangan berasaskan bahan rangsangan.",
+  "1.5.1": "Menyampaikan idea tentang sesuatu yang didengar, dilihat atau dialami.",
+  "1.5.2": "Menyampaikan idea secara kritis dan menceritakan semula bahan yang diperhatikan.",
+  "2.1.1": "Mengenal pasti ciri-ciri fizikal buku (judul, gambar/ilustrasi, pengarang).",
+  "2.1.2": "Mengamalkan cara memegang dan membuka helaian buku dari kanan ke kiri dengan betul.",
+  "2.1.3": "Membaca secara olok-olok (pretend reading) berdasarkan gambar.",
+  "2.2.1": "Mengecam dan menyebut huruf kecil dan besar.",
+  "2.2.2": "Menyebut dan membunyikan huruf vokal (a, e, i, o, u).",
+  "2.2.3": "Mengenal pasti dan memadankan huruf kecil dengan huruf besar.",
+  "2.3.1": "Membunyikan suku kata terbuka (KV).",
+  "2.3.2": "Membunyikan suku kata tertutup (KVK).",
+  "2.3.3": "Membaca perkataan gabungan suku kata terbuka dan tertutup (cth: KV+KV, KV+KVK).",
+  "2.4.1": "Membaca frasa yang mengandungi perkataan dengan suku kata terbuka dan tertutup.",
+  "2.4.2": "Membaca dan memahami ayat mudah dengan sebutan dan intonasi yang betul.",
+  "3.1.1": "Memegang alat tulis dengan genggaman dan postur yang betul.",
+  "3.1.2": "Menconteng secara bebas dan menyambung garisan putus-putus (lurus, beralun, zig-zag).",
+  "3.2.1": "Menulis huruf kecil dan huruf besar dengan cara yang betul.",
+  "3.2.2": "Menyalin dan menulis suku kata, perkataan, dan frasa mudah dengan kemas."
+}
+  }
 
 };
 

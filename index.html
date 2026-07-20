@@ -290,7 +290,7 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
     }
   },
   skOpts(p){
-    const y=p.c==='Prasekolah'?'Year 1':p.c.replace('Tahun ','Year ');
+    const y=p.c==='Prasekolah'?'Prasekolah':p.c.replace('Tahun ','Year ');
     const all=typeof getCurriculum!=='undefined'?getCurriculum(y,p.s):null;
     const opts=all?Object.entries(all.SK).map(function(e){return e[0]+' '+e[1];}):[];
     p.sk.forEach(function(v){if(v&&opts.indexOf(v)<0)opts.push(v);});
@@ -298,7 +298,7 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
     return opts;
   },
   spOpts(p){
-    const y=p.c==='Prasekolah'?'Year 1':p.c.replace('Tahun ','Year ');
+    const y=p.c==='Prasekolah'?'Prasekolah':p.c.replace('Tahun ','Year ');
     const all=typeof getCurriculum!=='undefined'?getCurriculum(y,p.s):null;
     const opts=all?Object.entries(all.SP).map(function(e){return e[0]+' '+e[1];}):[];
     p.sp.forEach(function(v){if(v&&opts.indexOf(v)<0)opts.push(v);});
