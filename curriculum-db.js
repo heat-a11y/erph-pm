@@ -1305,6 +1305,41 @@ const CURR_DB = {
   "3.2.2": "Menyalin dan menulis suku kata, perkataan, dan frasa mudah dengan kemas."
 }
   }
+,
+  'Prasekolah|BI': {
+    SK: {
+  "1.1": "Listen to and identify sounds",
+  "1.2": "Listen to and respond appropriately",
+  "1.3": "Listen, understand, and respond in a variety of contexts",
+  "2.1": "Show appropriate book handling skills and print awareness",
+  "2.2": "Apply sounds of letters to recognize words (Phonics)",
+  "2.3": "Demonstrate understanding of a variety of texts",
+  "3.1": "Develop prewriting skills",
+  "3.2": "Develop writing skills"
+},
+    SP: {
+  "1.1.1": "Listen to and identify common environmental and voice sounds.",
+  "1.1.2": "Listen to and respond to stimulus given (rhyme, rhythm, alliteration).",
+  "1.1.3": "Listen to and identify rhyming words in nursery rhymes and songs.",
+  "1.2.1": "Listen to and recite nursery rhymes and sing simple songs.",
+  "1.2.2": "Listen to and repeat greetings and follow simple instructions.",
+  "1.2.3": "Listen to, enjoy, and respond to simple oral texts and storybooks.",
+  "1.3.1": "Participate politely in daily conversations (exchange greetings, express feelings, introduce self).",
+  "1.3.2": "Participate in discussions about familiar experiences, stories heard, and role-play activities.",
+  "2.1.1": "Handle books carefully and recognize basic features of a book (cover, title).",
+  "2.1.2": "Read print in correct direction: left to right, top to bottom.",
+  "2.1.3": "Show awareness that print conveys meaning through pretend reading.",
+  "2.2.1": "Recognize and name letters of the alphabet (small and capital).",
+  "2.2.2": "Recognize and sound out initial, medial, and ending sounds (phonemes) in words.",
+  "2.2.3": "Blend phonemes to form single-syllable words (CVC words like cat, pin, bus).",
+  "2.3.1": "Recognize and read sight words / high-frequency words.",
+  "2.3.2": "Read simple phrases and simple 3 to 5-word sentences with guidance.",
+  "3.1.1": "Demonstrate fine motor control of hands/fingers using writing apparatus correctly.",
+  "3.1.2": "Demonstrate hand-eye coordination through drawing lines, strokes, and patterns.",
+  "3.2.1": "Write recognizable small and capital letters legibly.",
+  "3.2.2": "Copy and write simple words, familiar phrases, and short labels in legible print."
+}
+  }
 
 };
 
