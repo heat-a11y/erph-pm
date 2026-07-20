@@ -337,7 +337,129 @@ const CURR_DB = {
   'Year 6|SN': {
     SK: {"1.1": "科学程序技能 学生能够: 活动建议: 进行研究以掌握科学技能， 工具（若有需）进行定性的观察 如： ，以讲解所发生的现象或变化。 (i) 以正确的方法使用工具及 标准单位测量温度。 或确认异同。 的因素。 (iii) 进行实验以确认影响串联 法使用工具和标准测量单位。 亮度的因素。 作出合理的解释或初步结论。 2 讲述科学程序技能。 30 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释 验或资料，对某件事或现象 作出推测。 应用科学程序技能以完成任 录资料或想法及有系统地将 3 务。 其呈现。 根据时间依序排列事件或现 象。 与物体、事件或变化形式相 关的见解，并加以说明。 分析科学程序技能以解决问题 4 或完成任务。 31 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释 的观点，针对所进行和所观察 的事项，讲述一个说明。 评价科学程序技能以解决问题 5 操纵性变数后，再确定其反应 性变数和固定性变数。 变数之间的关系，作出一个可 验证的概括说明。 程序技能，收集及诠释资料和 作出结论，以验证假设并做报 告。 设计实验以有系统地解决问 6 题，并对自己、同学与环境负 责。 32", "2.0": "人类 表现标准 内容标准 学习标准 备注 级别 诠释", "2.1": "人体的骨骼系 学生能够: 笔记: 统 2.1.1 讲述人体主要骨骼的功能。 人体主要骨骼的功能： 主要骨骼 功能 脊柱 支撑身体 节的位置。 头骨 保护头脑 1 标明人体的主要骨骼。 肋骨 保护内脏 说出人体的骨骼系统里关节的功 能。 四肢骨 支撑和移动 观察人体模型或人体骨骼图以确 或口述，创意地解释有关 人体的 骨骼系统的观察结果。 讲述血液循环系统里所 2 涉及的主要部位的功 能。 34 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释", "2.2": "人体的血液循 学生能够: 笔记： 环系统 涉及的主要部位的功能。 位的功能： 绘制人体血液循环途径的 部位 功能 示意图。 心脏 把血液泵到肺和 带有较多氧气和较多二氧化碳 身体各部位 的血液循环途径。 肺 氧气与二氧化碳 的交换处 血管 输送血液到全身 要性。 写或口述，创意地解释有关人 肺 体的血液循环系统的观察结 果。 推论骨骼系统和血液循环 二氧化 氧气含 4 系统对人体的重要性。 碳含量 心脏 量较多 较多的 的血液 血液 人体 35 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释", "2.3": "人体系统之间 学生能够: 笔记： 的关联 人体系统之间关联的例子： 联。 (i) 当一个人被食物噎着（消化 系统），呼吸道会阻塞（呼 5 吸系统）。 性，以便能正常地操作。 重要性，作出见解。 (ii) 当手骨折断（骨骼系统）， 手会因血液循环受阻（血液 循环系统）而肿胀。 见解，以确保健康的生活。 人体内会相互关联的系统，如 消化系统、血液循环系统、呼 写或口述，创意地解释有关人 吸系统和骨骼系统。 体系统之间的关联的观察结 果。 针对人体系统之间的关 6 联，以创意与创新的方式 进行沟通。 36 小学课程标准 五年级 科学 3.0动物 表现标准 内容标准 学习标准 备注 级别 诠释", "3.1": "动物的物种生 学生能够: 笔记: 存 物种的生存是指动植物延续 说出动物的外形特征和特殊 后代的能力，以避免绝种。 本能如何确保物种生存。 特殊本能以保护自己远离天 动物利用自己的外形特征 敌。 和特殊本能保护自己远离 天敌，如： 特殊本能以保护自己适应恶劣 (i) 自断身体部位 (ii) 喷黑墨 气候。 讲述动物的外形特征和特殊 (iii) 有假眼 2 本能如何确保物种生存。 鼓励使用信息通信技术观察 法。 殊本能来自卫。 解释并举例动物的外形特征 3 和特殊本能如何确保物种生 存。 37 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释 笔记: 述，创意地解释有关动物的物种生存 以绘图呈现有关动物的外 恶劣气候，如： 的观察结果。 4 形特征和特殊本能以确保 (i) 浸在泥泞里：水牛； 物种生存。 (ii) 迁徙：鹭、鲸； (iii) 冬眠：旱獭", "3.2": "设计与制作动 学生能够: 动物保护卵的方法， 物模型 如： 应恶劣气候的动物模型。 壁虎、蝴蝶; 根据动物的外形特征或特 5 殊本能的知识预测其他动 (ii) 卵被黏液包裹着：青 物的自卫法。 离天敌和适应恶劣气候。 (iii) 孵卵：企鹅 为确保自然生态平衡而创造的动物特 的方法，如： 征。 (i) 把幼儿藏在育儿袋： 袋鼠; (ii) 把幼儿藏在嘴里：鳄 述，创意地解释有关想象中的动物模 殊本能的知识设计想象中 鱼、金龙鱼; 6 型的观察结果。 的动物模型并针对其特征 (iii) 攻击威胁幼儿的天 进行推论。 敌：鸡、猫 38 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释", "3.3": "生物之间食与被食 学生能够: 笔记： 的关系 说出食与被食关系中能的主要 1 如何被绿色植物吸收 以进行光合作用，再 者。 从生产者转移给消费 确认食物链中的生产者与消费 者。 者。 结光合作用及生物食与被食之间 的关系。 从能量流动的角度，针对生物 4 食与被食之间的关系的重要 性，作出推论。 39 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释 数量发生了变化，预测其他生物所 预测食物网中生物数量的 5 受到的影响。 变化所带来的影响。 口述，创意地解释有关生物之间食 与被食的关系的观察结果。 针对生物之间食与被食的 关系中能量的流动，以创 6 意与创新的方式进行沟通 并将之呈现。 40 小学课程标准 五年级 科学 4.0植物 表现标准 内容标准 学习标准 备注 级别 诠释", "4.1": "植物物种的生存 学生能够: 保护自己远离天敌。 说出植物传播种子或果实的 1 方法。 适应气候和季节的转换。 写或口述，创意地解释有关植 物物种生存的观察结果。 讲述植物的特有特征如何确 2 保其物种的生存。 解释并举例植物的特有特征 3 如何确保其物种的生存。 41 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释", "4.2": "种子或果实的传 学生能够: 笔记: 播 法。 以绘图呈现有关种子或果 植物传播种子或果实的方 4 实的特征与其传播方法的 法，如： 播方法。 (ii) 靠风力 (iii) 靠人类和动物 预测其传播方法。 根据植物特有特征的知 动物和植物的物种生存的 识，预测其他植物自卫和 写或口述，创意地解释有关种 5 自我适应的方法，并作出 (i) 持续为生物提供食物来 子或果实的传播的观察结果。 支持。 源 (ii) 避免绝种 (iii) 各种生物互相依赖以保 持自然生态平衡 学生根据所学过的种子传 在确保自然生态平衡下， 播方法，预测其他种子的 针对动物和植物的物种生 6 传播方法。 存的重要性，以创意与创 新的方式进行沟通。 42", "5.0": "电 表现标准 内容标准 学习标准 备注 级别 诠释", "5.1": "电源 学生能够:", "5.2": "串联电路和并联电 学生能够: 路 联电路的灯泡排列方式。 并联电路。 根据所提供的电路图，确认 泡的亮度。 44 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释 以比较串联电路或并联电路的 灯泡亮度。 验，以比较串联电路或并联电 装置串联电路和并联电路并 3 路的灯泡亮度。 利用元件符号绘制电路图。 联电路中一些开关被按下或拉 上时灯泡的情况。 写或口述，创意地讲解有关串 联电路和并联电路的观察结 果。 针对错误使用电器的后果， 4 作出见解。 45 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释", "5.3": "安全使用电器和节 学生能够: 活动建议： 省电源 根据电费月结单，分 的因素作出见解。 是影响串联电路和并联电路 析家居或学校所消耗 5 中灯泡亮度的因素，作出结 的电能。 果。 写或口述，创意地讲解有关安 6 源以迈向优质生活，以创意 全使用电器和节省电源的观察 与创新的方式进行沟通。 结果。 46 小学课程标准 五年级 科学", "6.0": "热 表现标准 内容标准 学习标准 备注 级别 诠释", "6.1": "热和温度 学生能够: 笔记: 进行水被加热的活动时， 1 说出热和温度的定义。 材料受热和散热时的情况, 量温度。 如： (i) 材料变热或冷。 观察冰块在加热时温度的变化并确定 (ii) 材料的温度会上升或 下降。 水的冰点和沸点。 (iii) 材料会膨胀或收缩。 2 测量水的沸点和冰点。 活动建议: 情况，作出结论。 学生测量从冰块阶段加热 至沸点的水温。 概括物质受热后会变热，散 3 热后会变冷。 47 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释 笔记: 冷缩原理的重要性。 当热水被搁置，其温度将下 举例说明物质会受热膨胀和遇 降至室温后保持不变。 和口述，创意地解释有关热和水 活动建议: 温的观察结果。 学生进行活动以显示材料热 胀冷缩的影响，如： (i) 加热铁球或铁环。 (ii) 加热及冷却插着玻璃管的 锥形瓶里的颜色水。 诠释水温随着时间变化的图表 5 以确认冰点和沸点。 (iii) 把瓶口套着气球的瓶子浸 在热水和冰块里。 应用有关物质受热和散热效应 的知识解决问题，以创意与创 6 新的方式进行沟通。 48", "7.1": "生锈 学生能够: 笔记： 确认会生锈和不会生锈的物 1 生锈物品的特征： (i) 有红褐色的表层 (ii) 粗糙的表面 2 讲述会生锈的物品。 (iii) 易脆 素。 活动建议： 3 概括铁制成的物品会生锈。 在学校进行防锈活动，如： (ii) 为生锈的窗口涂油以进行 写或口述，创意地解释有关生 4 针对生锈的因素，作出结论。 锈的观察结果。 根据物品，合理地解说适合其 5 防锈的方法。 为周围的物品进行防锈活动， 6 并对所使用的防锈方法作出推 论。 50 小学课程标准 五年级 科学 8.0物质 表现标准 内容标准 学习标准 备注 级别 诠释", "8.1": "物质的形态 学生能够: 笔记: 固体、液体和气体的性质体 的形态存在。 1 说出物质以固体、液体和气体 现于其质量、占据空间、体 的形态存在。 积和形状。 类。 活动建议: 通过模拟活动，针对固体、 气体的特征。 液体和气体的粒子排列作类 比。 同的物质形态存在。 写或口述，创意地解释有关物 质形态的观察结果。 根据物质形态将材料或物体分 3 类。 51 小学课程标准 五年级 科学 表现标准 内容标准 学习标准 备注 级别 诠释", "8.2": "水的形态变化 学生能够: 笔记: 针对水在受热或散热时的形态变 化、沸腾、蒸发和凝聚 化过程，作出结论。 热或散热时，其形态会产生变 化。 成。 或口述，创意地解释有关水的形 总结水的形态变化过程与云和雨 态变化的观察结果。 5 的形成之间的关系。 当固体、液体和气体在受热或散 6 热时，针对其粒子排列作类比， 以创意与创新的方式进行沟通。 52", "9.1": "月相 学生能够: 笔记: 1 说出月球不会发光。 月相如新月、娥眉月、 光。 弦月和满月。 星座的例子如猎户座、 自转及同时绕着地球公转的方向和 2 确认星座的图形与其用途。 北斗七星、南十字座和 周期。 天蝎座。 解释有关月球运转的方向与周 是根据阴历以完成一个运转的周 3 期。 期。 通过描绘，以正确的次序排列 口述，创意地解释有关月相的观察 4 月相。 结果。", "9.2": "星座 学生能够: 总结月相与日常生活中所发生 的事件之间的关系。 通过各种媒介寻找有关其他星 口述，创意地解释有关星座的观察 6 座的存在，以创意与创新的方 结果。 式进行沟通。 54", "10.0": "机械 表现标准 内容标准 学习标准 备注 级别 诠释", "10.1": "生活中所使用 学生能够: 笔记: 的工具 1 确认某种工具中的简单机械。 工具的用途。 下因素： 讲述某种工具在日常生活中的用 (i) 适当的制作材料; 途。 (ii) 使用寿命; 该工具是结合简单机械的功 (iii) 保养; 能而操作。 (iv) 成本; 概括某种工具中简单机械的组合的 (v) 环保; 重要性。 (vi) 安全性 的重要性，以使有关工具能 正常操作。 活动建议: 解释并举例某种工具中简单机械功 (i) 选择学生周围的工 要性，作出见解。 4 能的组合能确保有关工具能正常操 具，如：自动削笔 作。 机、玩具车和自动铅 笔。 书写或口述，创意地解释有 (ii) 将已拆卸的工具重新 组装以了解其操作原 关生活中所使用的工具 5 推论创造优质工具特征的重要性。 的观察结果。 理。 针对改造某种工具使其更优质，以 6 创意与创新的方式进行沟通。 56"},
     SP: {"1.1.1": "观察，即应用所有涉及的感官和", "1.1.2": "分类，即根据共有特征进行比较 1 识记科学程序技能。 (ii) 进行实验以确认导致生锈", "1.1.3": "测量和应用数目，即以正确的方 电路或并联电路里灯泡的", "1.1.4": "推断，即对所获得的观察资料，", "1.1.5": "预测，即根据观察、旧有经", "1.1.6": "沟通，即应用正确的形式记", "1.1.7": "运用空间与时间的关系，即", "1.1.8": "诠释资料，即从资料中选出", "1.1.9": "作出操作性定义，即根据特定", "1.1.10": "控制变数，即确定有关研究的 或完成任务。", "1.1.11": "作出假设，即根据一项研究中", "1.1.12": "进行实验，即使用基本的科学", "2.1.2": "确认人体的骨骼系统里骨骼和关", "2.1.3": "(see description in table)", "2.1.4": "推论骨骼系统对人体的重要性。 活动建议：", "2.1.5": "以绘图、信息与通信技术、书写 认骨骼和关节的位置。", "2.2.1": "讲述人体的血液循环系统里所 血液循环系统所涉及的主要部", "2.2.2": "绘制示意图，以显示人体里所 3", "2.2.3": "总结血液循环系统对人体的重", "2.2.4": "以绘图、信息与通信技术、书 人体血液循环途径的示意图：", "2.3.1": "举例并解释人体系统之间的关", "2.3.2": "推论照顾人体所有系统的重要 针对照顾人体所有系统的", "2.3.3": "针对保护人体系统的方法作出", "2.3.4": "以绘图、信息与通信技术、书", "3.1.1": "说出物种生存的定义。", "3.1.2": "解释并举例动物的外形特征和 1", "3.1.3": "解释并举例动物的外形特征及", "3.1.4": "确认动物保护卵的方法。", "3.1.5": "确认动物确保幼儿生存的方 动物利用各种外形特征和特", "3.1.6": "以绘图、信息与通信技术、书写或口 动物利用特殊本能适应", "3.2.1": "通过想象，创造一个有能力自卫和适 (i) 把卵藏起来：鳄鱼、", "3.2.2": "推论该动物模型的特征以保护自己远 蛙", "3.2.3": "针对动物的特征进行沟通并惊叹上苍 动物确保幼儿继续生存", "3.2.4": "以绘图、信息与通信技术、书写或口 应用动物的外形特征或特", "3.3.1": "说出食物链的定义。 来源。 食物链也显示太阳能", "3.3.2": "确认食物链中的生产者和消费", "3.3.3": "从食物链中能量流动的角度，总 2", "3.3.4": "说出食物网的定义。", "3.3.5": "绘制在不同栖息地里的食物网。 3 绘制某个栖息地的食物网。", "3.3.6": "若某个栖息地里的食物网中的生物", "3.3.7": "以绘图、信息与通信技术、书写或", "4.1.1": "解释并举例植物特有的特征以", "4.1.2": "解释并举例植物特有的特征来", "4.1.3": "以绘图、信息与通信技术、书", "4.2.1": "说出植物传播种子或果实的方", "4.2.2": "联系种子或果实的特征与其传 关系。 (i) 靠水力", "4.2.3": "根据某个种子或果实的特征， (iv) 自动弹射", "4.2.4": "以绘图、信息与通信技术、书 重要性，如：", "5.1.1": "解释并举例电的来源。 1 举例电的来源。", "5.2.1": "确认完整电路中串联电路和并", "5.2.2": "利用元件符号绘制串联电路和", "5.2.3": "比较串联电路和并联电路中灯 2 串联电路和并联电路。", "5.2.4": "改变灯泡的数量来进行实验，", "5.2.5": "改变干电池的数量来进行实", "5.2.6": "通过活动，说出串联电路和并", "5.2.7": "以绘图、信息与通信技术、书", "5.3.1": "进行活动，针对影响电量消耗 针对灯泡数量与干电池数量", "5.3.2": "解释并举例错误使用电器的后 论。", "5.3.3": "讲述使用电器时的安全措施。", "5.3.4": "以绘图、信息与通信技术、书 针对安全使用电器和节省电", "6.1.1": "说出热和温度的定义。 需考量安全措施。", "6.1.2": "以正确的方法使用工具及标准单位测", "6.1.3": "通过活动，运用空间与时间的关系，", "6.1.4": "讲述热水冷却至室温时水温的变化。", "6.1.5": "通过活动，针对材料受热和散热时的", "6.1.6": "推论在日常生活中应用物质热胀", "6.1.7": "以绘图、信息和通信技术、书写 4 冷收缩。", "7.1.1": "说出生锈物品的特征。 品。", "7.1.2": "概括铁制品会生锈。", "7.1.3": "进行实验以确认导致生锈的因", "7.1.4": "讲述防锈的方法。", "7.1.5": "推论防锈的重要性。 (i) 为会生锈的物品油漆。", "7.1.6": "以绘图、信息与通信技术、书 维修。", "8.1.1": "说出物质以固体、液体和气体", "8.1.2": "根据物质形态将材料或物体分", "8.1.3": "通过活动，列出固体、液体和", "8.1.4": "通过活动，概括水能以三种不 2 列出水的形态变化过程。", "8.1.5": "以绘图、信息与通信技术、书", "8.2.1": "通过活动，讲述水的形态变化。 水可以通过凝固、融", "8.2.2": "通过活动，解释并举例物质在受 4 过程改变形态。", "8.2.3": "联系水的形态变化与云和雨的形", "8.2.4": "以绘图、信息与通信技术、书写", "9.1.1": "说出月球不会发亮但是反射太阳的", "9.1.2": "通过模拟活动，讲述月球绕着轴心", "9.1.3": "运用空间与时间的关系，描绘月相", "9.1.4": "以绘图、信息与通信技术、书写或", "9.2.1": "确认星座与其图形。 5", "9.2.2": "说出星座的用途。", "9.2.3": "以绘图、信息与通信技术、书写或", "10.1.1": "说出周围环境所使用的某种 创造优质工具需考量以", "10.1.2": "通过观察真实的工具， 解释 2", "10.1.3": "推论工具里简单机械的组合 3", "10.1.4": "针对创造优质工具特征的重", "10.1.5": "以绘图、信息与通信技术、"}
+  },
+  'Year 1|BM': {
+    SK: {
+  "1.1": "Mendengar dan memberikan respons semasa berkomunikasi dalam pelbagai situasi",
+  "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan",
+  "2.1": "Asas membaca dan memahami",
+  "3.1": "Asas menulis",
+  "3.2": "Menulis perkataan, frasa, dan membina ayat",
+  "4.1": "Mengaplikasikan unsur keindahan dan kesantunan bahasa dalam bahan sastera",
+  "5.1": "Memahami dan menggunakan golongan kata mengikut konteks"
+},
+    SP: {
+  "1.1.1": "Mendengar, mengecam, dan menyebut bunyi bahasa, iaitu abjad, suku kata, perkataan dan frasa dengan betul.",
+  "1.1.2": "Mendengar, memahami, dan memberikan respons terhadap soalan, arahan, dan pesanan ringkas.",
+  "1.2.1": "Bertutur untuk menyampaikan maklumat tersurat daripada bahan secara bertatasusila.",
+  "2.1.1": "Membaca dengan sebutan yang betul dan intonasi yang sesuai: huruf, suku kata, perkataan, dan frasa.",
+  "2.1.2": "Membaca dan memahami perkataan, frasa, dan ayat mudah.",
+  "3.1.1": "Menulis secara mekanis kemas dan betul: huruf, suku kata, perkataan, dan frasa.",
+  "3.2.1": "Membina dan menulis ayat tunggal berdasarkan bahan rangsangan.",
+  "4.1.1": "Bercerita dan menyanyikan lagu kanak-kanak dengan sebutan dan intonasi yang betul.",
+  "5.1.1": "Memahami dan menggunakan kata nama am dan kata nama khas dengan betul."
+}
+  },
+  'Year 2|BM': {
+    SK: {
+  "1.1": "Mendengar dan memberikan respons semasa berkomunikasi",
+  "2.1": "Asas membaca dan memahami",
+  "2.2": "Membaca, memahami, dan menaakul bahan grafik dan bukan grafik",
+  "3.1": "Asas menulis",
+  "3.2": "Menulis perkataan, frasa, dan membina ayat",
+  "4.2": "Menghayati keindahan dan kesantunan bahasa dalam bahan sastera",
+  "5.1": "Memahami dan menggunakan golongan kata mengikut konteks"
+},
+    SP: {
+  "1.1.1": "Mendengar, mengecam, dan menyebut frasa dan ayat tunggal dengan betul.",
+  "1.1.2": "Mendengar, memahami, dan memberikan respons terhadap suruhan, permintaan, dan soalan bercapah.",
+  "2.1.1": "Membaca secara mekanis perkataan, frasa, dan ayat majmuk dengan sebutan yang betul.",
+  "2.2.1": "Membaca dan memahami maklumat tersurat daripada pelbagai bahan grafik.",
+  "3.1.1": "Menulis perkataan dan frasa secara tulisan berangkai dengan kemas.",
+  "3.2.1": "Membina dan menulis ayat tunggal dan ayat majmuk.",
+  "4.2.1": "Melafazkan pantun dua kerat dan empat kerat dengan sebutan dan intonasi yang betul.",
+  "5.1.2": "Memahami dan menggunakan kata ganti nama diri dan kata kerja dengan betul."
+}
+  },
+  'Year 3|BM': {
+    SK: {
+  "1.1": "Mendengar dan memberikan respons semasa berkomunikasi",
+  "1.2": "Bertutur untuk menyampaikan maklumat dan idea",
+  "2.2": "Membaca, memahami, dan menaakul bahan grafik dan bukan grafik",
+  "3.2": "Menulis perkataan, frasa, dan membina ayat",
+  "3.3": "Menghasilkan penulisan dan mengedit",
+  "4.3": "Menghasilkan bahan sastera secara kreatif",
+  "5.2": "Memahami dan menggunakan bentuk kata mengikut konteks"
+},
+    SP: {
+  "1.1.2": "Mendengar, memahami, dan memberikan respons terhadap ajakan, silaan, dan larangan.",
+  "1.2.2": "Menerangkan dan membanding bezakan maklumat tersurat secara jelas.",
+  "2.2.1": "Membaca, memahami, dan mengena pasti idea utama dan idea sampingan daripada bahan bacaan.",
+  "3.2.2": "Menghasilkan penulisan karangan berpandu menggunakan perenggan.",
+  "3.3.1": "Mengedit dan memurnikan hasil penulisan dari segi ejaan, tanda baca, dan penggunaan kata.",
+  "4.3.1": "Mencipta dan mengubah suai lirik lagu secara kreatif dan mempersembahkannya.",
+  "5.2.1": "Memahami dan menggunakan kata berimbuhan awalan dan akhiran mengikut konteks."
+}
+  },
+  'Year 4|BM': {
+    SK: {
+  "1.1": "Mendengar dan memberikan respons semasa berkomunikasi",
+  "1.3": "Menceritakan perkara yang didengar, ditonton, dan dibaca",
+  "2.3": "Membaca dan mengapresiasi pelbagai bahan sastera dan bukan sastera",
+  "3.2": "Menulis perkataan, frasa, dan membina ayat",
+  "3.3": "Menghasilkan penulisan",
+  "4.4": "Mengenal dan menghayati tulisan Jawi",
+  "5.2": "Memahami dan menggunakan bentuk kata mengikut konteks",
+  "5.3": "Memahami dan membina ayat"
+},
+    SP: {
+  "1.1.1": "Mendengar, mengecam sebutan, dan menyebut semula ujaran dalam pelbagai situasi.",
+  "1.3.1": "Menceritakan bahan yang didengar dan ditonton menggunakan sebutan dan intonasi yang betul.",
+  "2.3.1": "Membaca dan menganalisis kandungan bahan sastera dan bahan bukan sastera.",
+  "3.2.1": "Membina dan menulis perenggan yang kohesif dan koheren.",
+  "3.3.1": "Menulis ulasan berdasarkan bahan rangsangan dengan menggunakan bahasa yang betul.",
+  "4.4.1": "Mengenal dan menyebut tulisan Jawi yang terdapat pada papan tanda, seni bina, dan logo.",
+  "5.2.2": "Memahami dan menggunakan kata ganda penuh, separa, dan berentak.",
+  "5.3.1": "Memahami dan membina ayat tunggal dan ayat majmuk dengan peluasan subjek dan predikat."
+}
+  },
+  'Year 5|BM': {
+    SK: {
+  "1.2": "Bertutur untuk menyampaikan maklumat dan idea",
+  "2.2": "Membaca, memahami, dan menaakul bahan grafik dan bukan grafik",
+  "3.3": "Menghasilkan penulisan",
+  "4.1": "Mengaplikasikan unsur keindahan dan kesantunan bahasa",
+  "4.4": "Mengenal dan menghayati tulisan Jawi",
+  "5.3": "Memahami dan membina ayat mengikut konteks"
+},
+    SP: {
+  "1.2.1": "Bertutur untuk menyatakan pertimbangan dan keputusan tentang sesuatu perkara secara kritis.",
+  "2.2.1": "Membaca dan menganalisis maklumat tersurat dan tersirat untuk membuat ramalan.",
+  "3.3.2": "Mengarang karangan berformat dan tidak berformat dengan menggunakan bahasa yang santun dan gramatis.",
+  "4.1.1": "Memahami dan mengaplikasikan peribahasa dalam penulisan dan lisan.",
+  "4.4.1": "Mengenal dan mempamerkan tulisan Jawi melalui ungkapan indah.",
+  "5.3.2": "Memahami dan membina ayat aktif dan ayat pasif mengikut konteks."
+}
+  },
+  'Year 6|BM': {
+    SK: {
+  "1.2": "Bertutur untuk menyampaikan maklumat dan idea bagi pelbagai tujuan",
+  "2.3": "Membaca dan mengapresiasi pelbagai bahan sastera dan bukan sastera",
+  "3.3": "Menghasilkan penulisan secara kreatif dan kritis",
+  "4.2": "Menghayati keindahan dan kesantunan bahasa",
+  "4.4": "Mengenal dan menghayati tulisan Jawi",
+  "5.3": "Memahami dan membina ayat kompleks"
+},
+    SP: {
+  "1.2.3": "Berbincang dan mengemukakan hujah tentang sesuatu isu secara bertatasusila.",
+  "2.3.2": "Membaca, membuat rumusan, dan memberikan respon peribadi terhadap bahan sastera.",
+  "3.3.1": "Menghasilkan penulisan naratif dan deskriptif dengan pengolahan bahasa yang kreatif.",
+  "4.2.2": "Mendeklamasikan sajak dan menyanyikan syair dengan gaya dan intonasi yang betul.",
+  "4.4.1": "Mengenal, memahami, dan menghargai seni tulisan Jawi dalam warisan negara.",
+  "5.3.3": "Memahami dan membina ayat susunan biasa dan ayat susunan songsang mengikut konteks."
+}
   }
+
 };
 
 // Helper: get SK/SP for a subject+year
