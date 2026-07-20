@@ -10,31 +10,15 @@ const CURR_DB = {
     SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi Muzik"},
     SP: {"1.0.1": "Bernyanyi dengan pic dan irama yang betul", "2.0.1": "Bermain alat perkusi mengikut irama", "3.0.1": "Membuat pergerakan mengikut muzik", "4.0.1": "Mengenal pasti pelbagai genre muzik"}
   },
-  'Year 1|PI': {
-    SK: {"1.0": "Al-Quran", "2.0": "Hadis", "3.0": "Akidah", "4.0": "Ibadah", "5.0": "Sirah", "6.0": "Adab", "7.0": "Jawi"},
-    SP: {"1.0.1": "Membaca ayat Al-Quran dengan betul", "2.0.1": "Menjelaskan pengertian hadis", "3.0.1": "Menerangkan asas akidah", "4.0.1": "Melaksanakan ibadah", "5.0.1": "Meneladani sirah Rasulullah", "6.0.1": "Mengamalkan adab dalam kehidupan", "7.0.1": "Menulis huruf Jawi"}
-  },
-  'Year 1|PJ': {
+    'Year 1|PJ': {
     SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Serangan", "4.0": "Olahraga Asas", "5.0": "Kecergasan"},
     SP: {"1.0.1": "Melakukan kemahiran asas gimnastik dengan betul", "2.0.1": "Mengaplikasi pergerakan mengikut irama", "3.0.1": "Melakukan kemahiran menyerang dan bertahan", "4.0.1": "Melakukan kemahiran asas olahraga", "5.0.1": "Melakukan aktiviti kecergasan"}
   },
-  'Year 1|PJPK': {
-    SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan", "4.0": "Kesihatan Diri", "5.0": "Keselamatan"},
-    SP: {"1.0.1": "Melakukan pergerakan asas", "2.0.1": "Membuat pergerakan mengikut irama", "3.0.1": "Melakukan permainan mudah", "4.0.1": "Mengamalkan kebersihan diri", "5.0.1": "Mengamalkan keselamatan diri"}
-  },
-  'Year 1|PK': {
+    'Year 1|PK': {
     SK: {"1.0": "Kesihatan Diri", "2.0": "Kekeluargaan", "3.0": "Keselamatan Diri", "4.0": "Pemakanan Sihat", "5.0": "Pertolongan Cemas"},
     SP: {"1.0.1": "Mengamalkan cara menjaga kebersihan diri", "2.0.1": "Mengenal pasti ahli keluarga dan peranan", "3.0.1": "Mengamalkan langkah keselamatan diri", "4.0.1": "Mengenal pasti makanan berkhasiat", "5.0.1": "Mengenal pasti situasi kecemasan"}
   },
-  'Year 1|PKS': {
-    SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional", "5.0": "Bernyanyi", "6.0": "Alat Perkusi"},
-    SP: {"1.0.1": "Mengenal bahasa seni visual", "2.0.1": "Membuat corak mudah", "3.0.1": "Membina model", "4.0.1": "Mengenal kraf tradisional", "5.0.1": "Bernyanyi dengan irama", "6.0.1": "Bermain alat perkusi"}
-  },
-  'Year 1|PM': {
-    SK: {"1": "我的宗教信 学生能够 说出自身的宗教信仰。 道德价值", "2": "真诚地给予援 学生能够 道德价值", "3": "自身的责任 道德价值", "4": "感谢 学生能够 1 以各种语言道谢。 道德价值", "5": "有礼的言行 学生能够 1 说出有礼的言行举止。 道德价值", "6": "尊重自己 学生能够 1 说出尊重自己的方法. 道德价值", "7": "自爱 学生能够 道德价值", "8": "日常生活中表 1 道德价值", "10": "在日常生活 学生能够 道德价值", "11": "在日常生活 学生能够 1 举例说明勤勉的行为。 道德价值", "12": "在日常生活 学生能够 道德价值", "13": "自身中庸的态 学生能够 1 道德价值", "14": "在日常生活 学生能够 道德价值"},
-    SP: {"1.2": "解释宗教信仰的重要性", "1.3": "辨识上苍的恩赐", "1.4": "感恩上苍的恩赐 思维地图（圆圈形）。", "1.5": "实践宗教信仰的教义 信仰的教义。 的行为/操行。", "2.2": "建议助人的方式/方法", "2.3": "说明给予援助的重要性 上的支持 。", "2.4": "表达助人后的感受 精神与物质上的支持。", "2.5": "对于需要帮助的人给予精 5 别人精神与物质上的支", "3.1": "列出自身的责任 简述实践自身责任的重要", "3.2": "讨论实践自身责任的重要", "3.3": "建议对自身负责的方法  学生制作关于自身责任的每周", "3.4": "对能够实践自身的责任而", "3.5": "实践自身的责任", "4.1": "以各种语言道谢", "4.2": "确认各种感谢的方式", "4.3": "说明感谢的重要性 3", "4.4": "说出向人感谢的感受 示范在各情境中感谢的方  学生利用环保物品制作纪念", "4.5": "制作各种纪念品表示感谢", "5.2": "说出言行举止有礼的效果 果。", "5.3": "示范在交谈中有礼的言行", "5.4": "说出实践有礼的言行举止  学生根据情境卡进行演译。", "5.5": "实践有礼的言行举止", "6.1": "举例说明如何尊重自己  尊重", "6.2": "讲述尊重自己的好处", "6.3": "辨别尊重自己的方法", "6.4": "说出尊重自己的感受 的马尼拉卡片创造皇冠。", "6.5": "在日常生活中实践尊重自己", "7.1": "列出照顾自身整洁与安全  仁爱", "7.2": "举例说明不照顾自身整洁", "7.3": "说出照顾自身整洁与安全 4 与安全的影片，如:洗手、戴", "7.4": "表达照顾自身整洁与安全", "7.5": "在日常生活中，实践照顾", "8.1": "举例说出日常生活中表现公", "8.2": "说出日常生活中表现公正的", "8.3": "评鉴在日常行为中不公正所 示范在各情境里实践公正", "8.4": "在日常行为中体会公正的行 5", "8.5": "在日常生活中实践公正的行 6 公正的行为，并成为学习", "9.1": "举例说明勇于维护自尊", "9.2": "确认勇于维护自尊的重 通过引导，示范在某种情境", "9.3": "评鉴鲁莽行为的后果 示范在各情境里勇于维护自  学生表演《白兔和乌龟》的故", "9.4": "表达成功维护自尊的感", "9.5": "在各种情境里，实践勇", "10.1": "举例说明在日常生活中的", "10.2": "简述诚实行为的重要性 通 过 引 导 ， 示 范 某种情境中", "10.3": "示范在日常生活中实践诚 片。", "10.4": "表达实践诚实行为的感受 5", "10.5": "在各种情境里，实践诚实", "11.2": "简述勤勉的好处", "11.3": "建议能够体现勤勉的活动 3", "11.4": "表达在日常生活中实践勤 示范在各种情境里勤勉的  学生歌唱《小蜜蜂》的歌曲", "11.5": "在日常活动中实践勤勉的", "12.2": "简述与人合作的好处", "12.3": "策划体现合作精神的活动 体现合作的精神。", "12.4": "说出与人合作的感受 比赛。", "12.5": "在日常生活中，体现合作 5", "13.2": "说出中庸态度的重要性", "13.3": "辨识中庸的态度 里实践中庸的态度。", "13.4": "说出在日常生活中，实  学生使用环保物品制作扑满。", "13.5": "在日常生活中，实践中", "14.2": "讨论礼让精神的好处", "14.3": "在各种情境中，示范礼", "14.4": "说出在某种情境中，能 在日常生活中，体现礼让精", "14.5": "在日常生活中，体现礼"}
-  },
-  'Year 1|PMZ': {
+      'Year 1|PMZ': {
     SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
     SP: {"1.0.1": "Bernyanyi lagu mudah", "2.0.1": "Bermain alat perkusi asas", "3.0.1": "Membuat pergerakan mengikut muzik", "4.0.1": "Mengenal pasti alat muzik"}
   },
@@ -50,31 +34,15 @@ const CURR_DB = {
     SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi Muzik"},
     SP: {"1.0.1": "Bernyanyi dengan ekspresi", "2.0.1": "Bermain alat perkusi dengan pelbagai dinamik", "3.0.1": "Membuat pergerakan kreatif mengikut muzik", "4.0.1": "Menghayati unsur muzik dalam lagu"}
   },
-  'Year 2|PI': {
-    SK: {"1.0": "Al-Quran", "2.0": "Hadis", "3.0": "Akidah", "4.0": "Ibadah", "5.0": "Sirah", "6.0": "Adab"},
-    SP: {"1.0.1": "Membaca surah lazim", "2.0.1": "Menjelaskan hadis pillhan", "3.0.1": "Menerangkan sifat Allah", "4.0.1": "Melaksanakan ibadah harian", "5.0.1": "Meneladani sirah nabi", "6.0.1": "Mengamalkan adab harian"}
-  },
-  'Year 2|PJ': {
+    'Year 2|PJ': {
     SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Jaring", "4.0": "Olahraga Asas", "5.0": "Kecergasan"},
     SP: {"1.0.1": "Melakukan kemahiran gimnastik dengan koordinasi", "2.0.1": "Mengaplikasi pergerakan kreatif", "3.0.1": "Melakukan kemahiran permainan jaring", "4.0.1": "Melakukan kemahiran lari dan lompat", "5.0.1": "Melakukan aktiviti kecergasan secara konsisten"}
   },
-  'Year 2|PJPK': {
-    SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan", "4.0": "Kesihatan Diri", "5.0": "Kesihatan Mental"},
-    SP: {"1.0.1": "Melakukan pergerakan dengan koordinasi", "2.0.1": "Membuat pergerakan kreatif", "3.0.1": "Melakukan permainan dengan peraturan", "4.0.1": "Mengamalkan penjagaan kebersihan", "5.0.1": "Mengenal pasti emosi"}
-  },
-  'Year 2|PK': {
+    'Year 2|PK': {
     SK: {"1.0": "Kesihatan Reproduktif", "2.0": "Bahan Terlarang", "3.0": "Kesihatan Mental"},
     SP: {"1.0.1": "Mengenal pasti bahagian tubuh dan fungsinya", "2.0.1": "Mengenal pasti bahan berbahaya", "3.0.1": "Mengenal pasti emosi diri"}
   },
-  'Year 2|PKS': {
-    SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional", "5.0": "Bernyanyi", "6.0": "Alat Perkusi"},
-    SP: {"1.0.1": "Mengaplikasi bahasa seni visual", "2.0.1": "Membuat corak dengan teknik", "3.0.1": "Membina model kreatif", "4.0.1": "Membuat kraf tradisional", "5.0.1": "Bernyanyi dengan pic betul", "6.0.1": "Bermain alat perkusi mengikut irama"}
-  },
-  'Year 2|PM': {
-    SK: {"1": "我的宗教信 学生能够 说出自身的宗教信仰。 道德价值", "2": "真诚地给予援 学生能够 道德价值", "3": "自身的责任 道德价值", "4": "感谢 学生能够 1 以各种语言道谢。 道德价值", "5": "有礼的言行 学生能够 1 说出有礼的言行举止。 道德价值", "6": "尊重自己 学生能够 1 说出尊重自己的方法. 道德价值", "7": "自爱 学生能够 道德价值", "8": "日常生活中表 1 道德价值", "10": "在日常生活 学生能够 道德价值", "11": "在日常生活 学生能够 1 举例说明勤勉的行为。 道德价值", "12": "在日常生活 学生能够 道德价值", "13": "自身中庸的态 学生能够 1 道德价值", "14": "在日常生活 学生能够 道德价值"},
-    SP: {"1.2": "解释宗教信仰的重要性", "1.3": "辨识上苍的恩赐", "1.4": "感恩上苍的恩赐 思维地图（圆圈形）。", "1.5": "实践宗教信仰的教义 信仰的教义。 的行为/操行。", "2.2": "建议助人的方式/方法", "2.3": "说明给予援助的重要性 上的支持 。", "2.4": "表达助人后的感受 精神与物质上的支持。", "2.5": "对于需要帮助的人给予精 5 别人精神与物质上的支", "3.1": "列出自身的责任 简述实践自身责任的重要", "3.2": "讨论实践自身责任的重要", "3.3": "建议对自身负责的方法  学生制作关于自身责任的每周", "3.4": "对能够实践自身的责任而", "3.5": "实践自身的责任", "4.1": "以各种语言道谢", "4.2": "确认各种感谢的方式", "4.3": "说明感谢的重要性 3", "4.4": "说出向人感谢的感受 示范在各情境中感谢的方  学生利用环保物品制作纪念", "4.5": "制作各种纪念品表示感谢", "5.2": "说出言行举止有礼的效果 果。", "5.3": "示范在交谈中有礼的言行", "5.4": "说出实践有礼的言行举止  学生根据情境卡进行演译。", "5.5": "实践有礼的言行举止", "6.1": "举例说明如何尊重自己  尊重", "6.2": "讲述尊重自己的好处", "6.3": "辨别尊重自己的方法", "6.4": "说出尊重自己的感受 的马尼拉卡片创造皇冠。", "6.5": "在日常生活中实践尊重自己", "7.1": "列出照顾自身整洁与安全  仁爱", "7.2": "举例说明不照顾自身整洁", "7.3": "说出照顾自身整洁与安全 4 与安全的影片，如:洗手、戴", "7.4": "表达照顾自身整洁与安全", "7.5": "在日常生活中，实践照顾", "8.1": "举例说出日常生活中表现公", "8.2": "说出日常生活中表现公正的", "8.3": "评鉴在日常行为中不公正所 示范在各情境里实践公正", "8.4": "在日常行为中体会公正的行 5", "8.5": "在日常生活中实践公正的行 6 公正的行为，并成为学习", "9.1": "举例说明勇于维护自尊", "9.2": "确认勇于维护自尊的重 通过引导，示范在某种情境", "9.3": "评鉴鲁莽行为的后果 示范在各情境里勇于维护自  学生表演《白兔和乌龟》的故", "9.4": "表达成功维护自尊的感", "9.5": "在各种情境里，实践勇", "10.1": "举例说明在日常生活中的", "10.2": "简述诚实行为的重要性 通 过 引 导 ， 示 范 某种情境中", "10.3": "示范在日常生活中实践诚 片。", "10.4": "表达实践诚实行为的感受 5", "10.5": "在各种情境里，实践诚实", "11.2": "简述勤勉的好处", "11.3": "建议能够体现勤勉的活动 3", "11.4": "表达在日常生活中实践勤 示范在各种情境里勤勉的  学生歌唱《小蜜蜂》的歌曲", "11.5": "在日常活动中实践勤勉的", "12.2": "简述与人合作的好处", "12.3": "策划体现合作精神的活动 体现合作的精神。", "12.4": "说出与人合作的感受 比赛。", "12.5": "在日常生活中，体现合作 5", "13.2": "说出中庸态度的重要性", "13.3": "辨识中庸的态度 里实践中庸的态度。", "13.4": "说出在日常生活中，实  学生使用环保物品制作扑满。", "13.5": "在日常生活中，实践中", "14.2": "讨论礼让精神的好处", "14.3": "在各种情境中，示范礼", "14.4": "说出在某种情境中，能 在日常生活中，体现礼让精", "14.5": "在日常生活中，体现礼"}
-  },
-  'Year 2|PMZ': {
+      'Year 2|PMZ': {
     SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
     SP: {"1.0.1": "Bernyanyi dengan pic betul", "2.0.1": "Bermain alat perkusi dengan irama", "3.0.1": "Membuat pergerakan kreatif", "4.0.1": "Mengenal pasti tempo dan dinamik"}
   },
@@ -90,31 +58,15 @@ const CURR_DB = {
     SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi Muzik"},
     SP: {"1.0.1": "Bernyanyi dalam pelbagai gaya", "2.0.1": "Bermain alat perkusi dengan pelbagai corak irama", "3.0.1": "Membuat pergerakan kreatif dengan alat", "4.0.1": "Menilai muzik berdasarkan unsur muzik"}
   },
-  'Year 3|PI': {
-    SK: {"1.0": "Al-Quran", "2.0": "Hadis", "3.0": "Akidah", "4.0": "Ibadah", "5.0": "Sirah", "6.0": "Adab", "7.0": "Jawi"},
-    SP: {"1.0.1": "Membaca dan mentadabbur Al-Quran", "2.0.1": "Menjelaskan hadis pillhan", "3.0.1": "Menerangkan rukun iman", "4.0.1": "Melaksanakan ibadah sempurna", "5.0.1": "Meneladani sirah Rasulullah", "6.0.1": "Mengamalkan adab dalam pergaulan", "7.0.1": "Menulis perkataan Jawi"}
-  },
-  'Year 3|PJ': {
+    'Year 3|PJ': {
     SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Serangan", "4.0": "Kecergasan", "5.0": "Rekreasi"},
     SP: {"1.0.1": "Melakukan kemahiran gimnastik dengan kreatif", "2.0.1": "Mengaplikasi pergerakan dengan alat", "3.0.1": "Melakukan kemahiran permainan serangan", "4.0.1": "Melakukan aktiviti kecergasan fizikal", "5.0.1": "Mengambil bahagian dalam aktiviti rekreasi"}
   },
-  'Year 3|PJPK': {
-    SK: {"1.0": "Gimnastik", "2.0": "Berirama", "3.0": "Permainan", "4.0": "Kecergasan", "5.0": "Kesihatan"},
-    SP: {"1.0.1": "Melakukan kemahiran gimnastik", "2.0.1": "Membuat pergerakan berirama dengan muzik", "3.0.1": "Melakukan permainan berkategori", "4.0.1": "Melakukan aktiviti kecergasan", "5.0.1": "Mengamalkan gaya hidup sihat"}
-  },
-  'Year 3|PK': {
+    'Year 3|PK': {
     SK: {"1.0": "Kesihatan Diri", "2.0": "Kekeluargaan", "3.0": "Kemahiran Interpersonal", "4.0": "Pencegahan Penyakit"},
     SP: {"1.0.1": "Mengamalkan gaya hidup sihat", "2.0.1": "Mengenal pasti peranan dalam keluarga", "3.0.1": "Mengamalkan kemahiran komunikasi", "4.0.1": "Mengenal pasti cara pencegahan penyakit"}
   },
-  'Year 3|PKS': {
-    SK: {"1.0": "Menggambar", "2.0": "Corak dan Rekaan", "3.0": "Bentuk dan Binaan", "4.0": "Kraf Tradisional", "5.0": "Bernyanyi", "6.0": "Alat Perkusi"},
-    SP: {"1.0.1": "Mengaplikasi bahasa seni visual dengan kreatif", "2.0.1": "Membuat corak dengan pelbagai teknik", "3.0.1": "Membina model dan boneka", "4.0.1": "Menghasilkan kraf tradisional", "5.0.1": "Bernyanyi dengan teknik betul", "6.0.1": "Bermain alat perkusi dengan corak irama"}
-  },
-  'Year 3|PM': {
-    SK: {"1": "我的宗教信 学生能够 说出自身的宗教信仰。 道德价值", "2": "真诚地给予援 学生能够 道德价值", "3": "自身的责任 道德价值", "4": "感谢 学生能够 1 以各种语言道谢。 道德价值", "5": "有礼的言行 学生能够 1 说出有礼的言行举止。 道德价值", "6": "尊重自己 学生能够 1 说出尊重自己的方法. 道德价值", "7": "自爱 学生能够 道德价值", "8": "日常生活中表 1 道德价值", "10": "在日常生活 学生能够 道德价值", "11": "在日常生活 学生能够 1 举例说明勤勉的行为。 道德价值", "12": "在日常生活 学生能够 道德价值", "13": "自身中庸的态 学生能够 1 道德价值", "14": "在日常生活 学生能够 道德价值"},
-    SP: {"1.2": "解释宗教信仰的重要性", "1.3": "辨识上苍的恩赐", "1.4": "感恩上苍的恩赐 思维地图（圆圈形）。", "1.5": "实践宗教信仰的教义 信仰的教义。 的行为/操行。", "2.2": "建议助人的方式/方法", "2.3": "说明给予援助的重要性 上的支持 。", "2.4": "表达助人后的感受 精神与物质上的支持。", "2.5": "对于需要帮助的人给予精 5 别人精神与物质上的支", "3.1": "列出自身的责任 简述实践自身责任的重要", "3.2": "讨论实践自身责任的重要", "3.3": "建议对自身负责的方法  学生制作关于自身责任的每周", "3.4": "对能够实践自身的责任而", "3.5": "实践自身的责任", "4.1": "以各种语言道谢", "4.2": "确认各种感谢的方式", "4.3": "说明感谢的重要性 3", "4.4": "说出向人感谢的感受 示范在各情境中感谢的方  学生利用环保物品制作纪念", "4.5": "制作各种纪念品表示感谢", "5.2": "说出言行举止有礼的效果 果。", "5.3": "示范在交谈中有礼的言行", "5.4": "说出实践有礼的言行举止  学生根据情境卡进行演译。", "5.5": "实践有礼的言行举止", "6.1": "举例说明如何尊重自己  尊重", "6.2": "讲述尊重自己的好处", "6.3": "辨别尊重自己的方法", "6.4": "说出尊重自己的感受 的马尼拉卡片创造皇冠。", "6.5": "在日常生活中实践尊重自己", "7.1": "列出照顾自身整洁与安全  仁爱", "7.2": "举例说明不照顾自身整洁", "7.3": "说出照顾自身整洁与安全 4 与安全的影片，如:洗手、戴", "7.4": "表达照顾自身整洁与安全", "7.5": "在日常生活中，实践照顾", "8.1": "举例说出日常生活中表现公", "8.2": "说出日常生活中表现公正的", "8.3": "评鉴在日常行为中不公正所 示范在各情境里实践公正", "8.4": "在日常行为中体会公正的行 5", "8.5": "在日常生活中实践公正的行 6 公正的行为，并成为学习", "9.1": "举例说明勇于维护自尊", "9.2": "确认勇于维护自尊的重 通过引导，示范在某种情境", "9.3": "评鉴鲁莽行为的后果 示范在各情境里勇于维护自  学生表演《白兔和乌龟》的故", "9.4": "表达成功维护自尊的感", "9.5": "在各种情境里，实践勇", "10.1": "举例说明在日常生活中的", "10.2": "简述诚实行为的重要性 通 过 引 导 ， 示 范 某种情境中", "10.3": "示范在日常生活中实践诚 片。", "10.4": "表达实践诚实行为的感受 5", "10.5": "在各种情境里，实践诚实", "11.2": "简述勤勉的好处", "11.3": "建议能够体现勤勉的活动 3", "11.4": "表达在日常生活中实践勤 示范在各种情境里勤勉的  学生歌唱《小蜜蜂》的歌曲", "11.5": "在日常活动中实践勤勉的", "12.2": "简述与人合作的好处", "12.3": "策划体现合作精神的活动 体现合作的精神。", "12.4": "说出与人合作的感受 比赛。", "12.5": "在日常生活中，体现合作 5", "13.2": "说出中庸态度的重要性", "13.3": "辨识中庸的态度 里实践中庸的态度。", "13.4": "说出在日常生活中，实  学生使用环保物品制作扑满。", "13.5": "在日常生活中，实践中", "14.2": "讨论礼让精神的好处", "14.3": "在各种情境中，示范礼", "14.4": "说出在某种情境中，能 在日常生活中，体现礼让精", "14.5": "在日常生活中，体现礼"}
-  },
-  'Year 3|PMZ': {
+      'Year 3|PMZ': {
     SK: {"1.0": "Bernyanyi", "2.0": "Alat Perkusi", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
     SP: {"1.0.1": "Bernyanyi dengan teknik betul", "2.0.1": "Bermain alat perkusi dengan corak irama", "3.0.1": "Membuat pergerakan dengan alat", "4.0.1": "Menilai muzik berdasarkan unsur muzik"}
   },
@@ -134,19 +86,11 @@ const CURR_DB = {
     SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Pukul", "4.0": "Akuatik", "5.0": "Kecergasan"},
     SP: {"1.0.1": "Melakukan kemahiran gimnastik dengan kreatif", "2.0.1": "Mengaplikasi pergerakan mengikut tema", "3.0.1": "Melakukan kemahiran memukul dan memadang", "4.0.1": "Melakukan kemahiran asas akuatik", "5.0.1": "Melakukan aktiviti kecergasan secara terancang"}
   },
-  'Year 4|PJPK': {
-    SK: {"1.0": "Olahraga", "2.0": "Berirama", "3.0": "Permainan", "4.0": "Akuatik", "5.0": "Kesihatan"},
-    SP: {"1.0.1": "Melakukan kemahiran olahraga", "2.0.1": "Membuat pergerakan berirama dengan alat", "3.0.1": "Melakukan permainan berkategori", "4.0.1": "Melakukan kemahiran asas akuatik", "5.0.1": "Mengamalkan penjagaan kesihatan"}
-  },
-  'Year 4|PK': {
+    'Year 4|PK': {
     SK: {"1.0": "Kesihatan Diri", "2.0": "Penyalahgunaan Bahan", "3.0": "Kesihatan Mental", "4.0": "Keselamatan Diri"},
     SP: {"1.0.1": "Mengamalkan penjagaan kesihatan diri", "2.0.1": "Mengenal pasti kesan penyalahgunaan bahan", "3.0.1": "Mengurus stress dengan cara yang sihat", "4.0.1": "Mengamalkan langkah keselamatan"}
   },
-  'Year 4|PM': {
-    SK: {"1": "我的宗教信 学生能够 说出自身的宗教信仰。 道德价值", "2": "真诚地给予援 学生能够 道德价值", "3": "自身的责任 道德价值", "4": "感谢 学生能够 1 以各种语言道谢。 道德价值", "5": "有礼的言行 学生能够 1 说出有礼的言行举止。 道德价值", "6": "尊重自己 学生能够 1 说出尊重自己的方法. 道德价值", "7": "自爱 学生能够 道德价值", "8": "日常生活中表 1 道德价值", "10": "在日常生活 学生能够 道德价值", "11": "在日常生活 学生能够 1 举例说明勤勉的行为。 道德价值", "12": "在日常生活 学生能够 道德价值", "13": "自身中庸的态 学生能够 1 道德价值", "14": "在日常生活 学生能够 道德价值"},
-    SP: {"1.2": "解释宗教信仰的重要性", "1.3": "辨识上苍的恩赐", "1.4": "感恩上苍的恩赐 思维地图（圆圈形）。", "1.5": "实践宗教信仰的教义 信仰的教义。 的行为/操行。", "2.2": "建议助人的方式/方法", "2.3": "说明给予援助的重要性 上的支持 。", "2.4": "表达助人后的感受 精神与物质上的支持。", "2.5": "对于需要帮助的人给予精 5 别人精神与物质上的支", "3.1": "列出自身的责任 简述实践自身责任的重要", "3.2": "讨论实践自身责任的重要", "3.3": "建议对自身负责的方法  学生制作关于自身责任的每周", "3.4": "对能够实践自身的责任而", "3.5": "实践自身的责任", "4.1": "以各种语言道谢", "4.2": "确认各种感谢的方式", "4.3": "说明感谢的重要性 3", "4.4": "说出向人感谢的感受 示范在各情境中感谢的方  学生利用环保物品制作纪念", "4.5": "制作各种纪念品表示感谢", "5.2": "说出言行举止有礼的效果 果。", "5.3": "示范在交谈中有礼的言行", "5.4": "说出实践有礼的言行举止  学生根据情境卡进行演译。", "5.5": "实践有礼的言行举止", "6.1": "举例说明如何尊重自己  尊重", "6.2": "讲述尊重自己的好处", "6.3": "辨别尊重自己的方法", "6.4": "说出尊重自己的感受 的马尼拉卡片创造皇冠。", "6.5": "在日常生活中实践尊重自己", "7.1": "列出照顾自身整洁与安全  仁爱", "7.2": "举例说明不照顾自身整洁", "7.3": "说出照顾自身整洁与安全 4 与安全的影片，如:洗手、戴", "7.4": "表达照顾自身整洁与安全", "7.5": "在日常生活中，实践照顾", "8.1": "举例说出日常生活中表现公", "8.2": "说出日常生活中表现公正的", "8.3": "评鉴在日常行为中不公正所 示范在各情境里实践公正", "8.4": "在日常行为中体会公正的行 5", "8.5": "在日常生活中实践公正的行 6 公正的行为，并成为学习", "9.1": "举例说明勇于维护自尊", "9.2": "确认勇于维护自尊的重 通过引导，示范在某种情境", "9.3": "评鉴鲁莽行为的后果 示范在各情境里勇于维护自  学生表演《白兔和乌龟》的故", "9.4": "表达成功维护自尊的感", "9.5": "在各种情境里，实践勇", "10.1": "举例说明在日常生活中的", "10.2": "简述诚实行为的重要性 通 过 引 导 ， 示 范 某种情境中", "10.3": "示范在日常生活中实践诚 片。", "10.4": "表达实践诚实行为的感受 5", "10.5": "在各种情境里，实践诚实", "11.2": "简述勤勉的好处", "11.3": "建议能够体现勤勉的活动 3", "11.4": "表达在日常生活中实践勤 示范在各种情境里勤勉的  学生歌唱《小蜜蜂》的歌曲", "11.5": "在日常活动中实践勤勉的", "12.2": "简述与人合作的好处", "12.3": "策划体现合作精神的活动 体现合作的精神。", "12.4": "说出与人合作的感受 比赛。", "12.5": "在日常生活中，体现合作 5", "13.2": "说出中庸态度的重要性", "13.3": "辨识中庸的态度 里实践中庸的态度。", "13.4": "说出在日常生活中，实  学生使用环保物品制作扑满。", "13.5": "在日常生活中，实践中", "14.2": "讨论礼让精神的好处", "14.3": "在各种情境中，示范礼", "14.4": "说出在某种情境中，能 在日常生活中，体现礼让精", "14.5": "在日常生活中，体现礼"}
-  },
-  'Year 4|PMZ': {
+    'Year 4|PMZ': {
     SK: {"1.0": "Bernyanyi", "2.0": "Rekoder", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
     SP: {"1.0.1": "Bernyanyi dengan teknik vokal", "2.0.1": "Bermain rekoder dengan teknik betul", "3.0.1": "Membuat pergerakan kreatif berkumpulan", "4.0.1": "Mengapresiasi muzik pelbagai budaya"}
   },
@@ -166,19 +110,11 @@ const CURR_DB = {
     SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Serangan", "4.0": "Olahraga Asas", "5.0": "Kecergasan", "6.0": "Permainan Kategori Jaring"},
     SP: {"1.0.1": "Melakukan kemahiran gimnastik dengan kreatif dan estetika", "2.0.1": "Mengaplikasi pergerakan berirama dengan alat dan muzik", "3.0.1": "Melakukan kemahiran menyerang dan bertahan dalam permainan", "4.0.1": "Melakukan kemahiran asas olahraga dengan teknik betul", "5.0.1": "Melakukan aktiviti kecergasan berdasarkan konsep FITT", "6.0.1": "Melakukan kemahiran permainan kategori jaring"}
   },
-  'Year 5|PJPK': {
-    SK: {"1.0": "Olahraga", "2.0": "Berirama", "3.0": "Permainan Serangan", "4.0": "Permainan Jaring", "5.0": "Kecergasan", "6.0": "Kesihatan"},
-    SP: {"1.0.1": "Melakukan kemahiran olahraga dengan teknik", "2.0.1": "Membuat pergerakan berirama secara kumpulan", "3.0.1": "Melakukan kemahiran permainan serangan", "4.0.1": "Melakukan kemahiran permainan jaring", "5.0.1": "Melakukan aktiviti kecergasan", "6.0.1": "Mengamalkan gaya hidup sihat"}
-  },
-  'Year 5|PK': {
+    'Year 5|PK': {
     SK: {"1.0": "Kesihatan Reproduktif", "2.0": "Penyalahgunaan Bahan", "3.0": "Kesihatan Mental", "4.0": "Pencegahan Penyakit", "5.0": "Pertolongan Cemas"},
     SP: {"1.0.1": "Mengenal pasti perubahan fizikal remaja", "2.0.1": "Menolak pengaruh rakan sebaya terhadap bahan", "3.0.1": "Mengurus emosi dan stress", "4.0.1": "Mengamalkan langkah pencegahan penyakit", "5.0.1": "Melakukan prosedur pertolongan cemas"}
   },
-  'Year 5|PM': {
-    SK: {"4.0": "1 sumbangan anggota masyarakat. Penghargaan jasa dan sumbangan Terhadap Jasa Menerangkan bentuk Cadangan Aktiviti: anggota masyarakat. dan 2 penghargaan terhadap jasa dan  Murid membuat buku skrap Sumbangan 4.2 Menghuraikan bentuk sumbangan anggota masyarakat. berkaitan dengan contoh Anggota penghargaan terhadap jasa dan sumbangan Masyarakat jasa dan sumbangan Menghubungkait amalan anggota masyarakat. anggota masyarakat. menghargai jasa dan sumbangan anggota masyarakat dengan  Murid membuat sajak kepentingannya. sebagai salah satu bentuk amalan menghargai jasa penghargaan terhadap dan sumbangan anggota Mengenal pasti dan jasa dan sumbangan masyarakat. mempamerkan perasaan anggota masyarakat.  Murid membuat nota perasaan berkaitan menghargai jasa dan sumbangan ringkas tentang dengan amalan anggota masyarakat. kepentingan amalan menghargai jasa dan menghargai jasa dan sumbangan anggota Menghayati dan melaksanakan sumbangan anggota masyarakat. sikap menghargai jasa dan sumbangan anggota masyarakat dalam kehidupan harian. menghargai jasa dan sumbangan anggota  Murid menghasilkan masyarakat. Menghayati dan mengamalkan cenderahati sebagai sikap menghargai jasa dan menghargai jasa dan secara tekal serta boleh masyarakat. dicontohi. TAFSIRAN PENGUASAAN Beradab mulia dalam hidup bermasyarakat. amalan beradab sopan dan Sopan dan Cadangan Aktiviti: berbudi pekerti mulia dalam Berbudi Menerangkan kepentingan amalan hidup bermasyarakat.  Murid menghasilkan Pekerti Mulia 2 beradab sopan dan berbudi pekerti penanda buku tentang Dalam Hidup 5.2 Menjelaskan kepentingan mulia dalam hidup bermasyarakat. amalan beradab sopan Bermasyarakat amalan beradab sopan dan dan berbudi pekerti berbudi pekerti mulia dalam Menghubungkait pengabaian mulia dalam hidup hidup bermasyarakat. amalan beradab sopan dan bermasyarakat. berbudi pekerti mulia dalam hidup bermasyarakat dengan kesannya.  Murid bersoal jawab pengabaian amalan dengan rakan tentang beradab sopan dan berbudi Mengenal pasti dan mempamerkan kepentingan hemah pekerti mulia dalam hidup perasaan berkaitan dengan amalan tinggi dalam hidup bermasyarakat. 4 beradab sopan dan berbudi pekerti bermasyarakat.  Murid membuat esei berkaitan dengan amalan tentang kesan beradab sopan dan berbudi Menghayati dan melaksanakan pengabaian amalan pekerti mulia dalam hidup sikap beradab sopan dan berbudi bermasyarakat. pekerti mulia terhadap masyarakat hidup bermasyarakat. dalam kehidupan harian.  Murid melakonkan beradab sopan dan berbudi Menghayati dan mengamalkan situasi beradab sopan pekerti mulia dalam hidup sikap beradab sopan dan berbudi dan berbudi pekerti bermasyarakat. bermasyarakat secara tekal serta bermasyarakat. boleh dicontohi. TAFSIRAN PENGUASAAN Amalan Hormat bermasyarakat. kepelbagaian budaya Terhadap Cadangan Aktiviti: dalam hidup Kepelbagaian Menerangkan cara menghormati bermasyarakat.  Murid melengkapkan Budaya Dalam 2 kepelbagaian budaya dalam teka silang kata Hidup 6.2 Menghuraikan cara hidup bermasyarakat. berkaitan contoh Bermasyarakat menghormati kepelbagaian kepelbagaian budaya budaya dalam hidup Menghubungkait amalan dalam masyarakat. bermasyarakat. menghormati kepelbagaian bermasyarakat dengan aktiviti Gallery Walk kepentingan menghormati kepentingannya. berkaitan cara kepelbagaian budaya menghormati dalam hidup Mengenal pasti dan kepelbagaian budaya bermasyarakat. mempamerkan perasaan dalam hidup berkaitan dengan amalan terhadap kepelbagaian budaya  Murid melengkapkan menghormati kepelbagaian dalam hidup bermasyarakat. peta minda yang budaya dalam hidup berkaitan dengan bermasyarakat. Menghayati dan melaksanakan kepentingan sikap menghormati kepelbagaian budaya masyarakat dalam menghormati kepelbagaian kepelbagaian budaya kehidupan harian. budaya dalam hidup masyarakat. bermasyarakat. Menghayati dan mengamalkan  Murid menunjuk cara sikap hormat terhadap perlakuan hormat secara tekal serta boleh mengikut budaya dicontohi. masing-masing. CATATAN TAFSIRAN PENGUASAAN Sayangi kesejahteraan bersama. amalan menyayangi Masyarakat Cadangan Aktiviti: masyarakat demi Demi Menerangkan cara memupuk kesejahteraan bersama.  Murid membuat koleksi Kesejahteraan amalan kasih sayang dalam Bersama 7.2 Menghuraikan cara masyarakat demi kesejahteraan sayang terhadap memupuk amalan kasih bersama. masyarakat dengan sayang dalam menggunakan pelbagai masyarakat demi Menghubungkait amalan media. kesejahteraan bersama. menyayangi masyarakat demi kesejahteraan bersama dengan  Murid memberi kepentingannya. pandangan tentang cara kepentingan amalan memupuk kasih sayang menyayangi masyarakat Mengenal pasti dan mempamerkan dalam masyarakat demi kesejahteraan perasaan berkaitan dengan amalan dengan menggunakan bersama. 4 menyayangi masyarakat demi cabutan kad nama.  Murid menghasilkan satu perasaan berkaitan poster berkaitan dengan dengan amalan Menghayati dan melaksanakan kepentingan amalan menyayangi masyarakat sikap menyayangi masyarakat demi kesejahteraan demi kesejahteraan bersama bersama. dalam kehidupan harian.  Murid menjalankan projek menyayangi masyarakat Menghayati dan mengamalkan dan membentangkannya demi kesejahteraan 6 sikap menyayangi masyarakat menggunakan video atau bersama. demi kesejahteraan bersama pelbagai media. secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN", "8.0": "1 adil dalam hidup Amalan Adil bermasyarakat. amalan adil dalam Dalam Hidup Cadangan Aktiviti: hidup bermasyarakat. Bermasyarakat Menerangkan kepentingan  Murid menyatakan contoh perlakuan adil dalam hidup kepentingan amalan bermasyarakat. bermasyarakat melalui adil dalam hidup permainan “Kerusi Berirama”. bermasyarakat. Menghubungkait pengabaian amalan adil dalam hidup  Murid menghasilkan pantun bermasyarakat dengan empat kerat berkaitan pengabaian amalan kesannya. kepentingan bersikap adil adil dalam hidup dalam hidup bermasyarakat. bermasyarakat. Mengenal pasti dan  Murid menghasilkan esei perasaan berkaitan berkaitan dengan amalan adil pengabaian amalan adil dalam dengan amalan adil dalam hidup bermasyarakat. hidup bermasyarakat. dalam hidup bermasyarakat. Menghayati dan  Murid membuat jurnal adil dalam hidup terhadap masyarakat dalam mereka bersikap adil dalam bermasyarakat. kehidupan harian. hidup bermasyarakat. Menghayati dan mengamalkan sikap adil terhadap masyarakat secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN Amalan Berani bermasyarakat. amalan berani dalam Dalam Hidup Cadangan Aktiviti: hidup bermasyarakat. Bermasyarakat Menerangkan cabaran amalan  Murid menonton klip video berkaitan dengan amalan amalan berani dalam bermasyarakat. berani dalam hidup hidup bermasyarakat. bermasyarakat. Menghubungkait amalan berani dalam hidup  Murid menghuraikan cabaran amalan berani dalam 3 bermasyarakat dengan bersikap berani dalam hidup hidup bermasyarakat. kepentingannya. bermasyarakat melalui aktiviti perasaan berkaitan Mengenal pasti dan  Murid menghasilkan peta dengan amalan berani mempamerkan perasaan minda secara berkumpulan dalam hidup 4 berkaitan dengan amalan berkaitan kepentingan bermasyarakat. berani dalam hidup bersikap berani dalam hidup bermasyarakat. berani dalam hidup pembentangan. Menghayati dan bermasyarakat. melaksanakan sikap berani  Murid membuat penyelesaian masyarakat dalam kehidupan mengamalkan sikap berani harian. dalam hidup bermasyarakat berdasarkan situasi yang Menghayati dan mengamalkan diberi. sikap berani demi secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN jujur dalam hidup Amalan Jujur bermasyarakat. amalan jujur dalam Dalam Hidup Cadangan Aktiviti: hidup bermasyarakat. Bermasyarakat Menerangkan cara memupuk  Murid menonton iklan pendek memupuk amalan jujur bermasyarakat. hidup bermasyarakat dan dalam hidup membuat refleksi. bermasyarakat. Menghubungkait amalan jujur dalam hidup bermasyarakat  Murid menghasilkan brosur dengan kepentingannya. berkaitan dengan cara kepentingan amalan memupuk amalan jujur dalam jujur dalam hidup Mengenal pasti dan hidup bermasyarakat. bermasyarakat. mempamerkan perasaan sesawang berkaitan dengan perasaan berkaitan dalam hidup bermasyarakat. kepentingan amalan jujur dengan amalan jujur dalam hidup bermasyarakat dalam hidup Menghayati dan dan membuat pembentangan. bermasyarakat. melaksanakan sikap jujur jujur dalam hidup kehidupan harian. perlakuan jujur dalam hidup bermasyarakat. bermasyarakat berdasarkan Menghayati dan situasi yang diberi. mengamalkan sikap jujur dalam hidup bermasyarakat secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN Amalan Rajin bermasyarakat. amalan rajin dalam Dalam Hidup Cadangan Aktiviti: hidup bermasyarakat. Bermasyarakat Menerangkan kepentingan  Murid menghasilkan album keratan gambar berkaitan kepentingan amalan bermasyarakat. amalan rajin dalam hidup rajin dalam hidup bermasyarakat. bermasyarakat. Menghubungkait pengabaian amalan rajin dalam hidup  Murid mencari maklumat dan bermasyarakat dengan membuat pembentangan pengabaian amalan kesannya. tentang kepentingan amalan rajin dalam hidup rajin dalam hidup bermasyarakat. Mengenal pasti dan bermasyarakat.  Murid menghasilkan risalah perasaan berkaitan 4 berkaitan dengan amalan berkaitan dengan kesan dengan amalan rajin rajin dalam hidup pengabaian amalan rajin dalam hidup bermasyarakat. dalam hidup bermasyarakat. bermasyarakat. rajin dalam hidup 5 melaksanakan sikap rajin berkaitan amalan rajin dalam bermasyarakat. terhadap masyarakat dalam hidup bermasyarakat. kehidupan harian. Menghayati dan mengamalkan sikap rajin terhadap masyarakat secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN Amalan bermasyarakat. contoh amalan Kerjasama Cadangan Aktiviti: kerjasama dalam Dalam Hidup Menerangkan kepentingan hidup bermasyarakat.  Murid menghasilkan buku Bermasyarakat 2 amalan kerjasama dalam skrap tentang contoh amalan kerjasama dalam hidup kepentingan amalan bermasyarakat. kerjasama dalam Menghubungkait pengabaian hidup bermasyarakat. amalan kerjasama dalam  Murid menjalankan aktiviti pengabaian amalan kesannya. amalan kerjasama dalam hidup bermasyarakat. kerjasama dalam Mengenal pasti dan hidup bermasyarakat.  Murid melakukan sumbang mempamerkan perasaan saran dan membentangkan kesan pengabaian amalan perasaan berkaitan kerjasama dalam hidup kerjasama dalam hidup dengan amalan bermasyarakat. bermasyarakat. kerjasama dalam hidup bermasyarakat. Menghayati dan  Murid melakukan satu projek bekerjasama dalam 5 bekerjasama terhadap berhampiran. hidup bermasyarakat. masyarakat dalam kehidupan harian. Menghayati dan mengamalkan sikap masyarakat secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN Amalan bermasyarakat. bentuk amalan Kesederhanaan Cadangan Aktiviti: kesederhanaan dalam Dalam Hidup Menerangkan cara amalan hidup bermasyarakat.  Murid memberi contoh Bermasyarakat 2 kesederhanaan dalam hidup bentuk amalan kesederhanaan dalam amalan hidup bermasyarakat. kesederhanaan dalam Menghubungkait amalan hidup bermasyarakat. kesederhanaan dalam hidup  Murid melakonkan cara bermasyarakat dengan amalan kesederhanaan kepentingannya. dalam hidup kepentingan amalan bermasyarakat. kesederhanaan dalam Mengenal pasti dan mempamerkan hidup bermasyarakat.  Murid bermain Telefon perasaan berkaitan dengan amalan kepentingan amalan perasaan berkaitan bermasyarakat. dengan amalan kesederhanaan dalam hidup bermasyarakat. kesederhanaan dalam Menghayati dan melaksanakan hidup bermasyarakat. sikap sederhana terhadap  Murid menjalankan aktiviti sederhana dalam harian. situasi sambutan rumah hidup bermasyarakat. terbuka yang dianjurkan Menghayati dan mengamalkan oleh rukun tetangga. sikap bersederhana terhadap masyarakat secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN Amalan bermasyarakat. contoh amalan toleransi dalam hidup Hidup bermasyarakat. Menerangkan kepentingan  Murid menonton klip video Bermasyarakat 2 amalan toleransi dalam hidup dan membuat refleksi bermasyarakat. berkaitan dengan amalan kepentingan amalan toleransi dalam hidup toleransi dalam hidup Menghubungkait pengabaian bermasyarakat. bermasyarakat. main peranan sebagai kesan pengabaian wartawan yang bertanya amalan toleransi Mengenal pasti dan tentang kepentingan dalam hidup mempamerkan perasaan amalan toleransi dalam bermasyarakat. 4 berkaitan dengan amalan hidup bermasyarakat. toleransi dalam hidup bermasyarakat.  Murid membuat peta perasaan berkaitan minda berkaitan dengan dengan amalan Menghayati dan melaksanakan pengabaian amalan toleransi dalam hidup sikap bertoleransi terhadap toleransi dalam hidup bermasyarakat. 5 masyarakat dalam kehidupan bermasyarakat. bertoleransi dalam  Murid bermain permainan hidup bermasyarakat. Menghayati dan mengamalkan yang sesuai untuk menunjukkan sikap sikap bertoleransi terhadap masyarakat secara tekal serta boleh dicontohi."},
-    SP: {"1.2": "Mengenal pasti amalan", "1.3": "Menghuraikan aktiviti Gallery Walk", "1.4": "Mengekspresikan", "1.5": "Mengamalkan sikap Menghayati dan mengamalkan menerima, menghormati", "2.1": "Menyenaraikan contoh  Baik Hati", "2.2": "Menjelaskan kepentingan keperluan dan kebajikan", "2.3": "Menjana idea tentang", "2.4": "Mengekspresikan aktiviti Think-Pair-Share", "2.5": "Mengamalkan sikap peka", "3.1": "Menyenaraikan contoh  Bertanggungjawab", "3.3": "Membuat justifikasi 3", "3.4": "Mengekspresikan 4 berkaitan dengan amalan anggota masyarakat.", "3.5": "Mengamalkan sikap 5 anggota masyarakat.", "4.1": "Menyenaraikan contoh  Berterima Kasih", "4.3": "Mengkaji kepentingan", "4.4": "Mengekspresikan 4 berkaitan dengan amalan", "4.5": "Mengamalkan sikap pembentangan.", "5.1": "Menyenaraikan contoh  Hemah Tinggi", "5.3": "Menaakul kesan", "5.4": "Mengekspresikan perasaan mulia dalam hidup bermasyarakat.", "5.5": "Mengamalkan sikap", "6.1": "Memberi contoh  Hormat", "6.3": "Membuat justifikasi", "6.4": "Mengekspresikan perasaan 4 berkaitan dengan amalan hormat bermasyarakat.", "6.5": "Mengamalkan sikap 5 menghormati", "7.1": "Menyenaraikan contoh  Kasih Sayang", "7.3": "Merumuskan", "7.4": "Mengekspresikan kesejahteraan bersama.", "7.5": "Mengamalkan sikap menyayangi masyarakat", "8.1": "Menyenaraikan contoh  Keadilan", "8.2": "Menjelaskan 2 amalan adil dalam hidup", "8.3": "Menghuraikan kesan 3", "8.4": "Mengekspresikan mempamerkan perasaan", "8.5": "Mengamalkan sikap 5 melaksanakan sikap adil berkaitan dengan pengalaman", "9.1": "Memberikan contoh  Keberanian", "9.2": "Menghuraikan cabaran 2 berani dalam hidup", "9.3": "Menaakul kepentingan", "9.4": "Mengekspresikan sumbang saran.", "9.5": "Mengamalkan sikap bermasyarakat dan membuat", "10.1": "Menyenaraikan contoh 1  Kejujuran", "10.2": "Mengenal pasti cara amalan jujur dalam hidup", "10.3": "Menghuraikan 3", "10.4": "Mengekspresikan berkaitan dengan amalan jujur", "10.5": "Mengamalkan sikap terhadap masyarakat dalam  Murid melakonkan contoh", "11.1": "Menyenaraikan contoh  Kerajinan", "11.2": "Mengenal pasti 2 amalan rajin dalam hidup", "11.3": "Menjelaskan kesan 3", "11.4": "Mengekspresikan mempamerkan perasaan", "11.5": "Mengamalkan sikap Menghayati dan  Murid melakukan simulasi", "12.1": "Menyenaraikan  Kerjasama", "12.2": "Menghuraikan hidup bermasyarakat.", "12.3": "Menjelaskan kesan hidup bermasyarakat dengan temu bual tentang kepentingan", "12.4": "Mengekspresikan", "12.5": "Mengamalkan sikap melaksanakan sikap gotong-royong di kawasan", "13.1": "Menyenaraikan  Kesederhanaan", "13.2": "Menjelaskan cara bermasyarakat.", "13.3": "Menghuraikan", "13.4": "Mengekspresikan kesederhanaan dalam hidup", "13.5": "Mengamalkan sikap masyarakat dalam kehidupan main peranan dalam", "14.1": "Mengenal pasti  Toleransi", "14.2": "Menghuraikan", "14.3": "Membuat justifikasi bermasyarakat dengan kesannya.  Murid membuat aktiviti", "14.4": "Mengekspresikan", "14.5": "Mengamalkan sikap harian."}
-  },
-  'Year 5|PMZ': {
+    'Year 5|PMZ': {
     SK: {"1.0": "Bernyanyi", "2.0": "Rekoder", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
     SP: {"1.0.1": "Bernyanyi dengan teknik vokal dan ekspresi", "2.0.1": "Bermain rekoder dengan pic dan irama betul", "3.0.1": "Membuat pergerakan kreatif secara berkumpulan", "4.0.1": "Mengapresiasi muzik tempatan"}
   },
@@ -198,19 +134,11 @@ const CURR_DB = {
     SK: {"1.0": "Gimnastik Asas", "2.0": "Pergerakan Berirama", "3.0": "Permainan Kategori Jaring", "4.0": "Olahraga Asas", "5.0": "Rekreasi", "6.0": "Kecergasan"},
     SP: {"1.0.1": "Melakukan kemahiran gimnastik dengan kreatif dan estetika", "2.0.1": "Mengaplikasi pergerakan berirama dengan kreatif", "3.0.1": "Melakukan kemahiran permainan kategori jaring", "4.0.1": "Melakukan kemahiran asas olahraga dan rekod", "5.0.1": "Mengambil bahagian dalam aktiviti rekreasi", "6.0.1": "Melakukan aktiviti kecergasan secara terancang"}
   },
-  'Year 6|PJPK': {
-    SK: {"1.0": "Olahraga", "2.0": "Berirama", "3.0": "Permainan Jaring", "4.0": "Rekreasi", "5.0": "Kecergasan", "6.0": "Kesihatan"},
-    SP: {"1.0.1": "Melakukan kemahiran olahraga dengan teknik betul", "2.0.1": "Membuat pergerakan berirama secara kreatif", "3.0.1": "Melakukan kemahiran permainan jaring dengan strategi", "4.0.1": "Mengambil bahagian dalam rekreasi", "5.0.1": "Melakukan aktiviti kecergasan secara terancang", "6.0.1": "Mengamalkan gaya hidup sihat secara holistik"}
-  },
-  'Year 6|PK': {
+    'Year 6|PK': {
     SK: {"1.0": "Kesihatan Diri", "2.0": "Penyalahgunaan Bahan", "3.0": "Kesihatan Mental", "4.0": "Kekeluargaan", "5.0": "Kemahiran Interpersonal"},
     SP: {"1.0.1": "Mengamalkan gaya hidup sihat secara holistik", "2.0.1": "Menganalisis kesan penyalahgunaan bahan", "3.0.1": "Mengurus emosi dan stress secara efektif", "4.0.1": "Mengenal pasti peranan dalam kekeluargaan", "5.0.1": "Mengamalkan kemahiran interpersonal"}
   },
-  'Year 6|PM': {
-    SK: {"4.0": "1 sumbangan anggota masyarakat. Penghargaan jasa dan sumbangan Terhadap Jasa Menerangkan bentuk Cadangan Aktiviti: anggota masyarakat. dan 2 penghargaan terhadap jasa dan  Murid membuat buku skrap Sumbangan 4.2 Menghuraikan bentuk sumbangan anggota masyarakat. berkaitan dengan contoh Anggota penghargaan terhadap jasa dan sumbangan Masyarakat jasa dan sumbangan Menghubungkait amalan anggota masyarakat. anggota masyarakat. menghargai jasa dan sumbangan anggota masyarakat dengan  Murid membuat sajak kepentingannya. sebagai salah satu bentuk amalan menghargai jasa penghargaan terhadap dan sumbangan anggota Mengenal pasti dan jasa dan sumbangan masyarakat. mempamerkan perasaan anggota masyarakat.  Murid membuat nota perasaan berkaitan menghargai jasa dan sumbangan ringkas tentang dengan amalan anggota masyarakat. kepentingan amalan menghargai jasa dan menghargai jasa dan sumbangan anggota Menghayati dan melaksanakan sumbangan anggota masyarakat. sikap menghargai jasa dan sumbangan anggota masyarakat dalam kehidupan harian. menghargai jasa dan sumbangan anggota  Murid menghasilkan masyarakat. Menghayati dan mengamalkan cenderahati sebagai sikap menghargai jasa dan menghargai jasa dan secara tekal serta boleh masyarakat. dicontohi. TAFSIRAN PENGUASAAN Beradab mulia dalam hidup bermasyarakat. amalan beradab sopan dan Sopan dan Cadangan Aktiviti: berbudi pekerti mulia dalam Berbudi Menerangkan kepentingan amalan hidup bermasyarakat.  Murid menghasilkan Pekerti Mulia 2 beradab sopan dan berbudi pekerti penanda buku tentang Dalam Hidup 5.2 Menjelaskan kepentingan mulia dalam hidup bermasyarakat. amalan beradab sopan Bermasyarakat amalan beradab sopan dan dan berbudi pekerti berbudi pekerti mulia dalam Menghubungkait pengabaian mulia dalam hidup hidup bermasyarakat. amalan beradab sopan dan bermasyarakat. berbudi pekerti mulia dalam hidup bermasyarakat dengan kesannya.  Murid bersoal jawab pengabaian amalan dengan rakan tentang beradab sopan dan berbudi Mengenal pasti dan mempamerkan kepentingan hemah pekerti mulia dalam hidup perasaan berkaitan dengan amalan tinggi dalam hidup bermasyarakat. 4 beradab sopan dan berbudi pekerti bermasyarakat.  Murid membuat esei berkaitan dengan amalan tentang kesan beradab sopan dan berbudi Menghayati dan melaksanakan pengabaian amalan pekerti mulia dalam hidup sikap beradab sopan dan berbudi bermasyarakat. pekerti mulia terhadap masyarakat hidup bermasyarakat. dalam kehidupan harian.  Murid melakonkan beradab sopan dan berbudi Menghayati dan mengamalkan situasi beradab sopan pekerti mulia dalam hidup sikap beradab sopan dan berbudi dan berbudi pekerti bermasyarakat. bermasyarakat secara tekal serta bermasyarakat. boleh dicontohi. TAFSIRAN PENGUASAAN Amalan Hormat bermasyarakat. kepelbagaian budaya Terhadap Cadangan Aktiviti: dalam hidup Kepelbagaian Menerangkan cara menghormati bermasyarakat.  Murid melengkapkan Budaya Dalam 2 kepelbagaian budaya dalam teka silang kata Hidup 6.2 Menghuraikan cara hidup bermasyarakat. berkaitan contoh Bermasyarakat menghormati kepelbagaian kepelbagaian budaya budaya dalam hidup Menghubungkait amalan dalam masyarakat. bermasyarakat. menghormati kepelbagaian bermasyarakat dengan aktiviti Gallery Walk kepentingan menghormati kepentingannya. berkaitan cara kepelbagaian budaya menghormati dalam hidup Mengenal pasti dan kepelbagaian budaya bermasyarakat. mempamerkan perasaan dalam hidup berkaitan dengan amalan terhadap kepelbagaian budaya  Murid melengkapkan menghormati kepelbagaian dalam hidup bermasyarakat. peta minda yang budaya dalam hidup berkaitan dengan bermasyarakat. Menghayati dan melaksanakan kepentingan sikap menghormati kepelbagaian budaya masyarakat dalam menghormati kepelbagaian kepelbagaian budaya kehidupan harian. budaya dalam hidup masyarakat. bermasyarakat. Menghayati dan mengamalkan  Murid menunjuk cara sikap hormat terhadap perlakuan hormat secara tekal serta boleh mengikut budaya dicontohi. masing-masing. CATATAN TAFSIRAN PENGUASAAN Sayangi kesejahteraan bersama. amalan menyayangi Masyarakat Cadangan Aktiviti: masyarakat demi Demi Menerangkan cara memupuk kesejahteraan bersama.  Murid membuat koleksi Kesejahteraan amalan kasih sayang dalam Bersama 7.2 Menghuraikan cara masyarakat demi kesejahteraan sayang terhadap memupuk amalan kasih bersama. masyarakat dengan sayang dalam menggunakan pelbagai masyarakat demi Menghubungkait amalan media. kesejahteraan bersama. menyayangi masyarakat demi kesejahteraan bersama dengan  Murid memberi kepentingannya. pandangan tentang cara kepentingan amalan memupuk kasih sayang menyayangi masyarakat Mengenal pasti dan mempamerkan dalam masyarakat demi kesejahteraan perasaan berkaitan dengan amalan dengan menggunakan bersama. 4 menyayangi masyarakat demi cabutan kad nama.  Murid menghasilkan satu perasaan berkaitan poster berkaitan dengan dengan amalan Menghayati dan melaksanakan kepentingan amalan menyayangi masyarakat sikap menyayangi masyarakat demi kesejahteraan demi kesejahteraan bersama bersama. dalam kehidupan harian.  Murid menjalankan projek menyayangi masyarakat Menghayati dan mengamalkan dan membentangkannya demi kesejahteraan 6 sikap menyayangi masyarakat menggunakan video atau bersama. demi kesejahteraan bersama pelbagai media. secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN", "8.0": "1 adil dalam hidup Amalan Adil bermasyarakat. amalan adil dalam Dalam Hidup Cadangan Aktiviti: hidup bermasyarakat. Bermasyarakat Menerangkan kepentingan  Murid menyatakan contoh perlakuan adil dalam hidup kepentingan amalan bermasyarakat. bermasyarakat melalui adil dalam hidup permainan “Kerusi Berirama”. bermasyarakat. Menghubungkait pengabaian amalan adil dalam hidup  Murid menghasilkan pantun bermasyarakat dengan empat kerat berkaitan pengabaian amalan kesannya. kepentingan bersikap adil adil dalam hidup dalam hidup bermasyarakat. bermasyarakat. Mengenal pasti dan  Murid menghasilkan esei perasaan berkaitan berkaitan dengan amalan adil pengabaian amalan adil dalam dengan amalan adil dalam hidup bermasyarakat. hidup bermasyarakat. dalam hidup bermasyarakat. Menghayati dan  Murid membuat jurnal adil dalam hidup terhadap masyarakat dalam mereka bersikap adil dalam bermasyarakat. kehidupan harian. hidup bermasyarakat. Menghayati dan mengamalkan sikap adil terhadap masyarakat secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN Amalan Berani bermasyarakat. amalan berani dalam Dalam Hidup Cadangan Aktiviti: hidup bermasyarakat. Bermasyarakat Menerangkan cabaran amalan  Murid menonton klip video berkaitan dengan amalan amalan berani dalam bermasyarakat. berani dalam hidup hidup bermasyarakat. bermasyarakat. Menghubungkait amalan berani dalam hidup  Murid menghuraikan cabaran amalan berani dalam 3 bermasyarakat dengan bersikap berani dalam hidup hidup bermasyarakat. kepentingannya. bermasyarakat melalui aktiviti perasaan berkaitan Mengenal pasti dan  Murid menghasilkan peta dengan amalan berani mempamerkan perasaan minda secara berkumpulan dalam hidup 4 berkaitan dengan amalan berkaitan kepentingan bermasyarakat. berani dalam hidup bersikap berani dalam hidup bermasyarakat. berani dalam hidup pembentangan. Menghayati dan bermasyarakat. melaksanakan sikap berani  Murid membuat penyelesaian masyarakat dalam kehidupan mengamalkan sikap berani harian. dalam hidup bermasyarakat berdasarkan situasi yang Menghayati dan mengamalkan diberi. sikap berani demi secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN jujur dalam hidup Amalan Jujur bermasyarakat. amalan jujur dalam Dalam Hidup Cadangan Aktiviti: hidup bermasyarakat. Bermasyarakat Menerangkan cara memupuk  Murid menonton iklan pendek memupuk amalan jujur bermasyarakat. hidup bermasyarakat dan dalam hidup membuat refleksi. bermasyarakat. Menghubungkait amalan jujur dalam hidup bermasyarakat  Murid menghasilkan brosur dengan kepentingannya. berkaitan dengan cara kepentingan amalan memupuk amalan jujur dalam jujur dalam hidup Mengenal pasti dan hidup bermasyarakat. bermasyarakat. mempamerkan perasaan sesawang berkaitan dengan perasaan berkaitan dalam hidup bermasyarakat. kepentingan amalan jujur dengan amalan jujur dalam hidup bermasyarakat dalam hidup Menghayati dan dan membuat pembentangan. bermasyarakat. melaksanakan sikap jujur jujur dalam hidup kehidupan harian. perlakuan jujur dalam hidup bermasyarakat. bermasyarakat berdasarkan Menghayati dan situasi yang diberi. mengamalkan sikap jujur dalam hidup bermasyarakat secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN Amalan Rajin bermasyarakat. amalan rajin dalam Dalam Hidup Cadangan Aktiviti: hidup bermasyarakat. Bermasyarakat Menerangkan kepentingan  Murid menghasilkan album keratan gambar berkaitan kepentingan amalan bermasyarakat. amalan rajin dalam hidup rajin dalam hidup bermasyarakat. bermasyarakat. Menghubungkait pengabaian amalan rajin dalam hidup  Murid mencari maklumat dan bermasyarakat dengan membuat pembentangan pengabaian amalan kesannya. tentang kepentingan amalan rajin dalam hidup rajin dalam hidup bermasyarakat. Mengenal pasti dan bermasyarakat.  Murid menghasilkan risalah perasaan berkaitan 4 berkaitan dengan amalan berkaitan dengan kesan dengan amalan rajin rajin dalam hidup pengabaian amalan rajin dalam hidup bermasyarakat. dalam hidup bermasyarakat. bermasyarakat. rajin dalam hidup 5 melaksanakan sikap rajin berkaitan amalan rajin dalam bermasyarakat. terhadap masyarakat dalam hidup bermasyarakat. kehidupan harian. Menghayati dan mengamalkan sikap rajin terhadap masyarakat secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN Amalan bermasyarakat. contoh amalan Kerjasama Cadangan Aktiviti: kerjasama dalam Dalam Hidup Menerangkan kepentingan hidup bermasyarakat.  Murid menghasilkan buku Bermasyarakat 2 amalan kerjasama dalam skrap tentang contoh amalan kerjasama dalam hidup kepentingan amalan bermasyarakat. kerjasama dalam Menghubungkait pengabaian hidup bermasyarakat. amalan kerjasama dalam  Murid menjalankan aktiviti pengabaian amalan kesannya. amalan kerjasama dalam hidup bermasyarakat. kerjasama dalam Mengenal pasti dan hidup bermasyarakat.  Murid melakukan sumbang mempamerkan perasaan saran dan membentangkan kesan pengabaian amalan perasaan berkaitan kerjasama dalam hidup kerjasama dalam hidup dengan amalan bermasyarakat. bermasyarakat. kerjasama dalam hidup bermasyarakat. Menghayati dan  Murid melakukan satu projek bekerjasama dalam 5 bekerjasama terhadap berhampiran. hidup bermasyarakat. masyarakat dalam kehidupan harian. Menghayati dan mengamalkan sikap masyarakat secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN Amalan bermasyarakat. bentuk amalan Kesederhanaan Cadangan Aktiviti: kesederhanaan dalam Dalam Hidup Menerangkan cara amalan hidup bermasyarakat.  Murid memberi contoh Bermasyarakat 2 kesederhanaan dalam hidup bentuk amalan kesederhanaan dalam amalan hidup bermasyarakat. kesederhanaan dalam Menghubungkait amalan hidup bermasyarakat. kesederhanaan dalam hidup  Murid melakonkan cara bermasyarakat dengan amalan kesederhanaan kepentingannya. dalam hidup kepentingan amalan bermasyarakat. kesederhanaan dalam Mengenal pasti dan mempamerkan hidup bermasyarakat.  Murid bermain Telefon perasaan berkaitan dengan amalan kepentingan amalan perasaan berkaitan bermasyarakat. dengan amalan kesederhanaan dalam hidup bermasyarakat. kesederhanaan dalam Menghayati dan melaksanakan hidup bermasyarakat. sikap sederhana terhadap  Murid menjalankan aktiviti sederhana dalam harian. situasi sambutan rumah hidup bermasyarakat. terbuka yang dianjurkan Menghayati dan mengamalkan oleh rukun tetangga. sikap bersederhana terhadap masyarakat secara tekal serta boleh dicontohi. TAFSIRAN PENGUASAAN Amalan bermasyarakat. contoh amalan toleransi dalam hidup Hidup bermasyarakat. Menerangkan kepentingan  Murid menonton klip video Bermasyarakat 2 amalan toleransi dalam hidup dan membuat refleksi bermasyarakat. berkaitan dengan amalan kepentingan amalan toleransi dalam hidup toleransi dalam hidup Menghubungkait pengabaian bermasyarakat. bermasyarakat. main peranan sebagai kesan pengabaian wartawan yang bertanya amalan toleransi Mengenal pasti dan tentang kepentingan dalam hidup mempamerkan perasaan amalan toleransi dalam bermasyarakat. 4 berkaitan dengan amalan hidup bermasyarakat. toleransi dalam hidup bermasyarakat.  Murid membuat peta perasaan berkaitan minda berkaitan dengan dengan amalan Menghayati dan melaksanakan pengabaian amalan toleransi dalam hidup sikap bertoleransi terhadap toleransi dalam hidup bermasyarakat. 5 masyarakat dalam kehidupan bermasyarakat. bertoleransi dalam  Murid bermain permainan hidup bermasyarakat. Menghayati dan mengamalkan yang sesuai untuk menunjukkan sikap sikap bertoleransi terhadap masyarakat secara tekal serta boleh dicontohi."},
-    SP: {"1.2": "Mengenal pasti amalan", "1.3": "Menghuraikan aktiviti Gallery Walk", "1.4": "Mengekspresikan", "1.5": "Mengamalkan sikap Menghayati dan mengamalkan menerima, menghormati", "2.1": "Menyenaraikan contoh  Baik Hati", "2.2": "Menjelaskan kepentingan keperluan dan kebajikan", "2.3": "Menjana idea tentang", "2.4": "Mengekspresikan aktiviti Think-Pair-Share", "2.5": "Mengamalkan sikap peka", "3.1": "Menyenaraikan contoh  Bertanggungjawab", "3.3": "Membuat justifikasi 3", "3.4": "Mengekspresikan 4 berkaitan dengan amalan anggota masyarakat.", "3.5": "Mengamalkan sikap 5 anggota masyarakat.", "4.1": "Menyenaraikan contoh  Berterima Kasih", "4.3": "Mengkaji kepentingan", "4.4": "Mengekspresikan 4 berkaitan dengan amalan", "4.5": "Mengamalkan sikap pembentangan.", "5.1": "Menyenaraikan contoh  Hemah Tinggi", "5.3": "Menaakul kesan", "5.4": "Mengekspresikan perasaan mulia dalam hidup bermasyarakat.", "5.5": "Mengamalkan sikap", "6.1": "Memberi contoh  Hormat", "6.3": "Membuat justifikasi", "6.4": "Mengekspresikan perasaan 4 berkaitan dengan amalan hormat bermasyarakat.", "6.5": "Mengamalkan sikap 5 menghormati", "7.1": "Menyenaraikan contoh  Kasih Sayang", "7.3": "Merumuskan", "7.4": "Mengekspresikan kesejahteraan bersama.", "7.5": "Mengamalkan sikap menyayangi masyarakat", "8.1": "Menyenaraikan contoh  Keadilan", "8.2": "Menjelaskan 2 amalan adil dalam hidup", "8.3": "Menghuraikan kesan 3", "8.4": "Mengekspresikan mempamerkan perasaan", "8.5": "Mengamalkan sikap 5 melaksanakan sikap adil berkaitan dengan pengalaman", "9.1": "Memberikan contoh  Keberanian", "9.2": "Menghuraikan cabaran 2 berani dalam hidup", "9.3": "Menaakul kepentingan", "9.4": "Mengekspresikan sumbang saran.", "9.5": "Mengamalkan sikap bermasyarakat dan membuat", "10.1": "Menyenaraikan contoh 1  Kejujuran", "10.2": "Mengenal pasti cara amalan jujur dalam hidup", "10.3": "Menghuraikan 3", "10.4": "Mengekspresikan berkaitan dengan amalan jujur", "10.5": "Mengamalkan sikap terhadap masyarakat dalam  Murid melakonkan contoh", "11.1": "Menyenaraikan contoh  Kerajinan", "11.2": "Mengenal pasti 2 amalan rajin dalam hidup", "11.3": "Menjelaskan kesan 3", "11.4": "Mengekspresikan mempamerkan perasaan", "11.5": "Mengamalkan sikap Menghayati dan  Murid melakukan simulasi", "12.1": "Menyenaraikan  Kerjasama", "12.2": "Menghuraikan hidup bermasyarakat.", "12.3": "Menjelaskan kesan hidup bermasyarakat dengan temu bual tentang kepentingan", "12.4": "Mengekspresikan", "12.5": "Mengamalkan sikap melaksanakan sikap gotong-royong di kawasan", "13.1": "Menyenaraikan  Kesederhanaan", "13.2": "Menjelaskan cara bermasyarakat.", "13.3": "Menghuraikan", "13.4": "Mengekspresikan kesederhanaan dalam hidup", "13.5": "Mengamalkan sikap masyarakat dalam kehidupan main peranan dalam", "14.1": "Mengenal pasti  Toleransi", "14.2": "Menghuraikan", "14.3": "Membuat justifikasi bermasyarakat dengan kesannya.  Murid membuat aktiviti", "14.4": "Mengekspresikan", "14.5": "Mengamalkan sikap harian."}
-  },
-  'Year 6|PMZ': {
+    'Year 6|PMZ': {
     SK: {"1.0": "Bernyanyi", "2.0": "Ensembel", "3.0": "Pergerakan Muzikal", "4.0": "Apresiasi"},
     SP: {"1.0.1": "Bernyanyi dalam ensembel", "2.0.1": "Bermain alat muzik dalam ensembel", "3.0.1": "Membuat pergerakan kreatif secara berkumpulan", "4.0.1": "Mengapresiasi karya muzik"}
   },
@@ -986,6 +914,225 @@ const CURR_DB = {
   "2.1.2": "说明各州名称的由来及其州旗、州徽与州歌的象征意义。",
   "3.1.1": "阐明五一三事件后制定国家原则的历史背景与五大原则的含义。",
   "3.2.1": "介绍我国各民族的主要传统节庆与文化。"
+}
+  }
+,
+  'Year 1|PI': {
+    SK: {
+  "1.1": "Huruf Hijaiyah dan Surah Al-Fatihah"
+},
+    SP: {
+  "1.1.1": "Membaca dan menyebut huruf hijaiyah tunggal berbaris dengan betul."
+}
+  },
+  'Year 1|PJPK': {
+    SK: {
+  "1.1": "Pergerakan Lokomotor dan Bukan Lokomotor (位移与非位移技能)",
+  "1.1.2": "Kebersihan Diri dan Anggota Badan (个人卫生与身体部位)"
+},
+    SP: {
+  "1.1.1": "Melakukan pergerakan berjalan, berlari, melompat, dan membongkok dengan lakuan yang betul.",
+  "1.1.1.1": "Mengetahui anggota tubuh badan lelaki dan perempuan serta menjaga kebersihan peribadi."
+}
+  },
+  'Year 1|PKS': {
+    SK: {
+  "1.1": "Unsur Seni dalam Menggambar (绘画中的艺术元素)",
+  "2.1": "Nyanyian dan Detik Muzik (唱歌与节奏节拍)"
+},
+    SP: {
+  "1.1.1": "Mengenal dan mengenalpasti garisan, rupa, dan warna dalam karya seni.",
+  "2.1.1": "Bernyanyi dengan sebutan yang betul mengikut detik lagu."
+}
+  },
+  'Year 1|PM': {
+    SK: {
+  "1.1": "Kepercayaan kepada Tuhan (信奉上天)",
+  "1.2": "Baik Hati dan Kasih Sayang terhadap Keluarga (关爱与善良对待家人)"
+},
+    SP: {
+  "1.1.1": "Menyatakan ciptaan Tuhan dan menghargai alam sekitar.",
+  "1.2.1": "Menzahirkan kasih sayang dan sikap membantu ahli keluarga."
+}
+  },
+  'Year 2|PI': {
+    SK: {
+  "2.1": "Rukun Iman dan Bersuci (Asas Wuduk)"
+},
+    SP: {
+  "2.1.1": "Memahami rukun wuduk dan melakukan amalan bersuci dengan betul."
+}
+  },
+  'Year 2|PJPK': {
+    SK: {
+  "1.4": "Kemahiran Membaling dan Menangkap Bola (抛接球技能)",
+  "2.1": "Makanan Sihat dan Seimbang (健康均衡饮食)"
+},
+    SP: {
+  "1.4.1": "Membaling dan menangkap bola dengan pelbagai kelajuan dan arah.",
+  "2.1.1": "Mengenal pasti makanan berkhasiat dan tidak berkhasiat untuk pertumbuhan."
+}
+  },
+  'Year 2|PKS': {
+    SK: {
+  "1.2": "Teknik Lipatan dan Guntingan (折剪纸艺术)",
+  "2.2": "Permainan Alat Perkusi (打击乐器演奏)"
+},
+    SP: {
+  "1.2.1": "Menghasilkan corak tidak teratur menggunakan teknik lipatan dan guntingan.",
+  "2.2.1": "Memainkan alat perkusi mengikut corak irama yang ditentukan."
+}
+  },
+  'Year 2|PM': {
+    SK: {
+  "2.1": "Bertanggungjawab terhadap Keluarga (对家庭负责)"
+},
+    SP: {
+  "2.1.1": "Melaksanakan peranan dan tanggungjawab sebagai ahli keluarga."
+}
+  },
+  'Year 3|PI': {
+    SK: {
+  "3.1": "Riwayat Hidup Nabi Muhammad SAW & Adab Berpakaian"
+},
+    SP: {
+  "3.1.1": "Menerangkan peristiwa penting dalam kehidupan Nabi dan adab berpakaian mengikut syariat."
+}
+  },
+  'Year 3|PJPK': {
+    SK: {
+  "1.7": "Kemahiran Imbangan dan Imbangan Dinamik (平衡技能)",
+  "3.1": "Bahaya Merokok dan Alkohol (香烟与酒精的危害)"
+},
+    SP: {
+  "1.7.1": "Melakukan imbangan di atas satu kaki dan imbangan skuter.",
+  "3.1.1": "Memahami bahaya merokok dan minuman beralkohol terhadap kesihatan."
+}
+  },
+  'Year 3|PKS': {
+    SK: {
+  "1.3": "Teknik Asemblaj dan Binaan (组合与塑造技术)",
+  "2.3": "Membaca Not Muzik (识读音符与节奏)"
+},
+    SP: {
+  "1.3.1": "Menghasilkan karya 3D menggunakan bahan terbuang.",
+  "2.3.1": "Membaca dan menulis nilai not kraf, minim, dan semibrif."
+}
+  },
+  'Year 3|PM': {
+    SK: {
+  "3.1": "Hormat dan Hemah Tinggi di Sekolah (尊师重道与礼貌)"
+},
+    SP: {
+  "3.1.1": "Menunjukkan sikap bersopan santun dan menghormati warga sekolah."
+}
+  },
+  'Year 4|PI': {
+    SK: {
+  "1.2": "Hukum Nun Sakinah dan Tanwin"
+},
+    SP: {
+  "1.2.1": "Mengenal pasti dan membaca ayat yang mengandungi hukum Izhar Halqi dan Izhar Syafawi."
+}
+  },
+  'Year 4|PJPK': {
+    SK: {
+  "1.9": "Kemahiran Larian dan Lompatan (跑与跳技能)",
+  "4.1": "Pengurusan Stres dan Tekanan (压力管理)"
+},
+    SP: {
+  "1.9.1": "Melakukan larian berhalangan dan lompat jauh dengan fasa yang betul.",
+  "4.1.1": "Mengenal pasti punca stres dan cara menguruskan emosi secara positif."
+}
+  },
+  'Year 4|PKS': {
+    SK: {
+  "1.1": "Lukisan dan Catan (素描与水彩画)",
+  "2.1": "Permainan Rekorder (竖笛演奏)"
+},
+    SP: {
+  "1.1.1": "Menghasilkan karya catan menggunakan teknik basah atas basah/kering.",
+  "2.1.1": "Memainkan rekorder mengikut skor muzik menggunakan not B, A, dan G."
+}
+  },
+  'Year 4|PM': {
+    SK: {
+  "4.1": "Kerjasama dan Toleransi Sesama Jiran (邻里合作与包容)"
+},
+    SP: {
+  "4.1.1": "Menerangkan kepentingan amalan toleransi dan bekerjasama dengan jiran."
+}
+  },
+  'Year 5|PI': {
+    SK: {
+  "2.2": "Syarat Wajib dan Syarat Sah Solat"
+},
+    SP: {
+  "2.2.1": "Menjelaskan syarat-syarat sah solat dan perkara yang membatalkan solat."
+}
+  },
+  'Year 5|PJPK': {
+    SK: {
+  "1.6": "Kemahiran Permainan Bola Tampar dan Badminton (排球与羽毛球技能)",
+  "6.1": "Pencegahan Diabetes dan Hipertensi (糖尿病与高血压预防)"
+},
+    SP: {
+  "1.6.1": "Melakukan servis, pukulan dan menimpal bola/bulu tangkis.",
+  "6.1.1": "Menjelaskan punca dan cara mencegah penyakit tidak berjangkit."
+}
+  },
+  'Year 5|PKS': {
+    SK: {
+  "1.4": "Ukiran dan Batik (木雕与蜡染艺术)",
+  "2.2": "Not C Tinggi dan D Tinggi pada Rekorder (高音C与高音D竖笛吹奏)"
+},
+    SP: {
+  "1.4.1": "Mengenal pasti motif tradisional dan menghasilkan karya rekaan batik reka bentuk mudah.",
+  "2.2.1": "Memainkan rekorder bagi not C tinggi dan D tinggi dengan penjarian yang betul."
+}
+  },
+  'Year 5|PM': {
+    SK: {
+  "5.1": "Keberanian dan Kejujuran dalam Masyarakat (社会勇毅与诚信)"
+},
+    SP: {
+  "5.1.1": "Menunjukkan amalan kejujuran dan keberanian menyuarakan kebenaran demi kebaikan bersama."
+}
+  },
+  'Year 6|PI': {
+    SK: {
+  "3.3": "Penulisan Teks Jawi dan Adab Bermusyawarah"
+},
+    SP: {
+  "3.3.1": "Membaca dan menulis pelbagai gubahan teks Jawi serta mengamalkan adab bermusyawarah."
+}
+  },
+  'Year 6|PJPK': {
+    SK: {
+  "3.1": "Kapasiti Aerobik dan Ujian SEGAK (有氧能力与SEGAK体能测试)",
+  "8.1": "Bantuan Kecemasan DRCAB / CPR (基本急救与CPR概念)"
+},
+    SP: {
+  "3.1.1": "Melakukan aktiviti meningkatkan kapasiti aerobik dan merekodkan keputusan SEGAK.",
+  "8.1.1": "Mengenal pasti situasi kecemasan dan prinsip asas pertolongan cemas."
+}
+  },
+  'Year 6|PKS': {
+    SK: {
+  "2.1": "Pameran Seni dan Apresiasi Karya (艺术展览与评估)",
+  "2.4": "Persembahan Ansambel Muzik (乐器合奏表演)"
+},
+    SP: {
+  "2.1.1": "Merancang, membuat pameran karya seni, dan membuat ulasan kritis karya sendiri dan rakan.",
+  "2.4.1": "Persembahan gabungan nyanyian, alat perkusi, dan rekorder secara berkumpulan."
+}
+  },
+  'Year 6|PM': {
+    SK: {
+  "6.1": "Patriotisme dan Kesederhanaan (爱国与中庸之道)"
+},
+    SP: {
+  "6.1.1": "Menghormati lambang-lambang negara dan mengamalkan sikap bersederhana dalam kehidupan."
 }
   }
 
