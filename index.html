@@ -66,7 +66,7 @@
   </div>
           <div @click="p.o=!p.o" class="flex cursor-pointer items-center justify-between border-b border-[#C4956A]/10 px-3 py-2 sm:px-4 sm:py-2.5 gap-2"><div class="min-w-0 flex-1"><p class="text-sm font-semibold text-[#3A2A1A] truncate">📚 <span x-text="p.sn+' | '+p.c"></span></p><div class="cc-header-mobile text-xs text-[#8B5A2B]/70 mt-0.5"><span>📅 M<span x-text="p._wk"></span></span><span>|</span><span x-text="p.d"></span><span>|</span><span>⏰ P<span x-text="p.per"></span></span><span>(<span x-text="p.tm"></span>)</span><span>|</span><span class="meta-chip" x-text="p.dr+'min'"></span></div></div><span class="shrink-0 text-[#C4956A] text-xs ml-1" x-text="p.o?'▼':'▶'"></span></div>
           <div x-show="p.o" x-collapse class="p-4 space-y-4 text-xs">
-            <div><p class="font-semibold text-[#C4956A] text-[11px]">📌 Tema</p><input type="text" x-model="p.tema" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-2 text-xs font-medium text-[#3A2A1A]"></div><div class="mt-2"><p class="font-semibold text-[#C4956A] text-[11px]">📖 Unit</p><input type="text" x-model="p.unit" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-2 text-xs font-medium text-[#3A2A1A]"></div>
+            <div><p class="font-semibold text-[#C4956A] text-[11px]">📌 Tema</p><select x-model="p.tema" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs"><template x-for="o in temaOpts(p)" :key="o"><option :value="o" x-text="o" :selected="o===p.tema"></option></template></select></div><div class="mt-2"><p class="font-semibold text-[#C4956A] text-[11px]">📖 Unit</p><select x-model="p.unit" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs"><template x-for="o in unitOpts(p)" :key="o"><option :value="o" x-text="o" :selected="o===p.unit"></option></template></select></div>
             <div><div class="flex items-center justify-between"><p class="font-semibold text-[#3A2A1A] text-[10px]">📋 Standard Kandungan</p><button @click="p.sk.push('')" class="text-[#C4956A] text-[10px]">+ Tambah</button></div><template x-for="(sk,i) in p.sk" :key="i"><div class="flex gap-1 mt-1"><select x-model="p.sk[i]" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs"><template x-for="o in skOpts(p)" :key="o"><option :value="o" x-text="o" :selected="o===p.sk[i]"></option></template></select><button @click="p.sk.splice(i,1)" class="text-red-400 text-[10px]" x-show="p.sk.length>1">✕</button></div></template></div>
             <div><div class="flex items-center justify-between"><p class="font-semibold text-[#3A2A1A] text-[10px]">🎯 Standard Pembelajaran</p><button @click="p.sp.push('')" class="text-[#C4956A] text-[10px]">+ Tambah</button></div><template x-for="(sp,i) in p.sp" :key="i"><div class="flex gap-1 mt-1"><select x-model="p.sp[i]" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs"><template x-for="o in spOpts(p)" :key="o"><option :value="o" x-text="o" :selected="o===p.sp[i]"></option></template></select><button @click="p.sp.splice(i,1)" class="text-red-400 text-[10px]" x-show="p.sp.length>1">✕</button></div></template></div>
             <div><p class="font-semibold text-[#8B5A2B] text-[10px]">🎯 Objektif</p><div class="cc-box mt-1 space-y-1"><template x-for="(o,i) in p.obj" :key="i"><textarea x-model="p.obj[i]" class="w-full rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs mt-1" rows="3"></textarea></template></div>
@@ -304,6 +304,24 @@ document.addEventListener('alpine:init',()=>{ Alpine.data('app',()=>({
       var pick=pool.length?pool[Math.floor(Math.random()*pool.length)]:('Aktiviti '+ph);
       return{ph:ph,d:pick,dr:duDef[i],t:'',s:''};
     });
+  },
+  temaOpts(p){
+    var yrNum=p.c==='Prasekolah'?0:parseInt((p.c.match(/\d+/)||['0'])[0],10);
+    var subjData=p.c==='Prasekolah'?(RPT['PRASEKOLAH']||{})[p.s]:null;
+    if(!subjData)subjData=(RPT[p.s]||{})[yrNum]||null;
+    var opts=subjData?subjData.map(function(x){return x.t;}):[];
+    if(p.tema&&opts.indexOf(p.tema)<0)opts.push(p.tema);
+    opts.sort();
+    return opts;
+  },
+  unitOpts(p){
+    var yrNum=p.c==='Prasekolah'?0:parseInt((p.c.match(/\d+/)||['0'])[0],10);
+    var subjData=p.c==='Prasekolah'?(RPT['PRASEKOLAH']||{})[p.s]:null;
+    if(!subjData)subjData=(RPT[p.s]||{})[yrNum]||null;
+    var opts=subjData?subjData.map(function(x){return x.u;}):[];
+    if(p.unit&&opts.indexOf(p.unit)<0)opts.push(p.unit);
+    opts.sort();
+    return opts;
   },
   skOpts(p){
     const y=p.c==='Prasekolah'?'Prasekolah':p.c.replace('Tahun ','Year ');
