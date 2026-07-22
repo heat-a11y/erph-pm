@@ -69,22 +69,24 @@
             <div><div class="flex items-center justify-between"><p class="font-semibold text-[#C4956A] text-[11px]">📌 Tema</p><button @click="p.tema.push('')" class="text-[#C4956A] text-[10px]">+ Tambah</button></div>
 <template x-for="(t,i) in p.tema" :key="i">
   <div class="flex gap-1 mt-1">
-    <select x-model="p.tema[i]" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs">
-      <template x-for="o in temaOpts(p)" :key="o">
-        <option :value="o" x-text="o" :selected="o===p.tema[i]"></option>
-      </template>
-    </select>
+    <input type="text" x-model="p.tema[i]" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs" list="temaList">
+      <datalist id="temaList">
+        <template x-for="o in temaOpts(p)" :key="o">
+          <option :value="o" x-text="o"></option>
+        </template>
+      </datalist>
     <button @click="p.tema.splice(i,1)" class="text-red-400 text-[10px]" x-show="p.tema.length>1">✕</button>
   </div>
 </template>
 </div><div class="mt-2"><div class="flex items-center justify-between"><p class="font-semibold text-[#C4956A] text-[11px]">📖 Unit</p><button @click="p.unit.push('')" class="text-[#C4956A] text-[10px]">+ Tambah</button></div>
 <template x-for="(u,i) in p.unit" :key="i">
   <div class="flex gap-1 mt-1">
-    <select x-model="p.unit[i]" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs">
-      <template x-for="o in unitOpts(p)" :key="o">
-        <option :value="o" x-text="o" :selected="o===p.unit[i]"></option>
-      </template>
-    </select>
+    <input type="text" x-model="p.unit[i]" class="flex-1 rounded-lg border border-[#C4956A]/20 bg-[#FFF8F0] p-1.5 text-xs" list="unitList">
+      <datalist id="unitList">
+        <template x-for="o in unitOpts(p)" :key="o">
+          <option :value="o" x-text="o"></option>
+        </template>
+      </datalist>
     <button @click="p.unit.splice(i,1)" class="text-red-400 text-[10px]" x-show="p.unit.length>1">✕</button>
   </div>
 </template>
